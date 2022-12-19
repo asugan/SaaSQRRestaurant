@@ -1,6 +1,6 @@
-const express = require("express");
+import express, { Application } from "express";
 const { engine } = require("express-handlebars");
-const app = express();
+const app: Application = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Handlebars = require("handlebars");
