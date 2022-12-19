@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const Handlebars = require("handlebars");
 const cookieParser = require("cookie-parser");
+const MainController = require("./routes/Main");
 const path = require("path");
 const {
   allowInsecurePrototypeAccess,
@@ -17,8 +18,8 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-const PORT = process.env.PORT;
-const mongoString = process.env.DATABASE_URL;
+const PORT: number = 3000;
+const mongoString: string | undefined = process.env.DATABASE_URL;
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -52,6 +53,8 @@ app.engine(
 app.set("views", path.join(__dirname, "/views/"));
 
 app.use(express.static("public"));
+
+app.use("/", MainController);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
