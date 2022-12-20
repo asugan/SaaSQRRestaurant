@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const Handlebars = require("handlebars");
 const cookieParser = require("cookie-parser");
 const MainController = require("./routes/Main");
+const UserController = require("./routes/User");
 const path = require("path");
 const {
   allowInsecurePrototypeAccess,
@@ -55,6 +56,7 @@ app.set("views", path.join(__dirname, "/views/"));
 app.use(express.static("public"));
 
 app.use("/", MainController);
+app.use("/user", UserController);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
