@@ -20,6 +20,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: 30,
   },
+  userMenu: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Menu",
+    },
+  ],
   created_date: { type: String },
 });
 
@@ -47,3 +53,4 @@ userSchema.pre("save", function (next: any) {
 });
 
 module.exports = mongoose.model("User", userSchema);
+export {};

@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 const User = require("../models/User");
+const Menu = require("../models/Menu");
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 const { serialize } = require("cookie");
@@ -14,6 +15,48 @@ router.get("/register", async (req: any, res: any) => {
 
 router.get("/login", async (req: any, res: any) => {
   res.render("user/login");
+});
+
+router.get("/menu/post", async (req: any, res: any) => {
+  res.render("user/menupost");
+});
+
+router.get("/menu/:name", async (req: any, res: any) => {
+  const menuid = req.params.name;
+
+  const menu = await Menu.findById(menuid);
+
+  try {
+    res.render("user/menu", {
+      menu: menu,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post("/menu/post", async (req: any, res: any) => {
+  const { name, fiyat } = req.body;
+  const user = await User.findById("63a8852918828a103b4bd009");
+
+  const newMenu = new Menu({
+    İcecekler: [
+      {
+        name: name,
+        fiyat: fiyat,
+      },
+    ],
+    user: user,
+  });
+
+  try {
+    await user.userMenu.push(newMenu);
+    await user.save();
+    await newMenu.save();
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.post("/login", async (req: any, res: any) => {
