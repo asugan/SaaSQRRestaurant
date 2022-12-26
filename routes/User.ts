@@ -1,7 +1,7 @@
 import express from "express";
+import { User } from "../models/User";
+import { Menu } from "../models/Menu";
 const router = express.Router();
-const User = require("../models/User");
-const Menu = require("../models/Menu");
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 const { serialize } = require("cookie");

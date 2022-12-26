@@ -1,7 +1,16 @@
-const mongoose = require("mongoose");
+import { Schema, model, Types } from "mongoose";
 const bcrypt = require("bcryptjs");
 
-const userSchema = new mongoose.Schema({
+interface User {
+  username: string;
+  password: string;
+  isSubscribed: boolean;
+  daysLeft: number;
+  userMenu: Types.Array<Types.ObjectId>;
+  created_date: string;
+}
+
+const userSchema = new Schema<User>({
   username: {
     type: String,
     required: true,
@@ -22,7 +31,7 @@ const userSchema = new mongoose.Schema({
   },
   userMenu: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Menu",
     },
   ],
@@ -52,5 +61,4 @@ userSchema.pre("save", function (next: any) {
   }
 });
 
-module.exports = mongoose.model("User", userSchema);
-export {};
+export const User = model<User>("User", userSchema);

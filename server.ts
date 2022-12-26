@@ -1,8 +1,8 @@
 import express, { Application } from "express";
+import { connect } from "mongoose";
 const { engine } = require("express-handlebars");
 const app: Application = express();
 const cors = require("cors");
-const mongoose = require("mongoose");
 const Handlebars = require("handlebars");
 const cookieParser = require("cookie-parser");
 const MainController = require("./routes/Main");
@@ -22,16 +22,11 @@ app.use(cookieParser());
 const PORT: number = 3000;
 const mongoString: string | undefined = process.env.DATABASE_URL;
 
-mongoose.connect(mongoString);
-const database = mongoose.connection;
+const connectMongo = async () => {
+  await connect(mongoString);
+};
 
-database.on("error", (error: string) => {
-  console.log(error);
-});
-
-database.once("connected", () => {
-  console.log("Database Connected");
-});
+connectMongo().catch((err) => console.log(err));
 
 app.set("view engine", "handlebars");
 

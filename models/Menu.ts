@@ -1,6 +1,11 @@
-const mongoose = require("mongoose");
+import { Schema, model, Types } from "mongoose";
 
-const MenuSchema = new mongoose.Schema({
+interface Menu {
+  İcecekler: [{ name: string; fiyat: number }];
+  user: Types.ObjectId;
+}
+
+const MenuSchema = new Schema<Menu>({
   İcecekler: [
     {
       name: {
@@ -14,10 +19,10 @@ const MenuSchema = new mongoose.Schema({
     },
   ],
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
 });
 
-module.exports = mongoose.model("Menu", MenuSchema);
+export const Menu = model<Menu>("Menu", MenuSchema);
