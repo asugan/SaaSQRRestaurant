@@ -1,7 +1,11 @@
 import { Schema, model, Types } from "mongoose";
 
+interface İcecekler {
+  name: string;
+  fiyat: number;
+}
 interface Menu {
-  İcecekler: [{ name: string; fiyat: number }];
+  İcecekler: Types.DocumentArray<İcecekler>;
   user: Types.ObjectId;
 }
 

@@ -1,6 +1,7 @@
 import express from "express";
 import { User } from "../models/User";
 import { Menu } from "../models/Menu";
+import { verify } from "../middlewares/Main";
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
@@ -11,6 +12,14 @@ const secret: string = process.env.SECRET;
 
 router.get("/register", async (req: any, res: any) => {
   res.render("user/register");
+});
+
+router.get("/index", verify, async (req: any, res: any) => {
+  const id = req.token.id;
+
+  res.render("user/userindex", {
+    id: id,
+  });
 });
 
 router.get("/login", async (req: any, res: any) => {
@@ -36,7 +45,7 @@ router.get("/menu/:name", async (req: any, res: any) => {
 });
 
 router.post("/menu/post", async (req: any, res: any) => {
-  const { name, fiyat } = req.body;
+  const { name, fiyat }: { name: string; fiyat: number } = req.body;
   const user = await User.findById("63a8852918828a103b4bd009");
 
   const newMenu = new Menu({
