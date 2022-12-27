@@ -59,7 +59,7 @@ router.post("/menu/post", async (req: any, res: any) => {
   });
 
   try {
-    await user.userMenu.push(newMenu);
+    user.userMenu.push(newMenu);
     await user.save();
     await newMenu.save();
     res.redirect("/");
