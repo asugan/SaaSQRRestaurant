@@ -24,6 +24,6 @@ export const verify = async (
 
     return next();
   } else {
-    return res.status(401).send(console.log("hata"));
+    return res.status(401).render("error/401");
   }
 };

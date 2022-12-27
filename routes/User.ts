@@ -19,21 +19,36 @@ router.get("/login", async (req: Request, res: Response) => {
   res.render("user/login");
 });
 
-router.get("/:id", verify, async (req: any, res: Response) => {
-  const requestid = req.params.id;
+router.get("/logout", async (req, res) => {
+  const jwt = req.cookies.OursiteJWT;
+
+  if (!jwt) {
+    return res.json({ message: "Bro you are already not logged in..." });
+  } else {
+    const serialised = serialize("OursiteJWT", null, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "development",
+      sameSite: "strict",
+      maxAge: -1,
+      path: "/",
+    });
+
+    res.setHeader("Set-Cookie", serialised);
+
+    res.status(200).redirect("/");
+  }
+});
+
+router.get("/dashboard", verify, async (req: any, res: Response) => {
   const id = req.token.id;
 
   try {
-    if (requestid === id) {
-      const user = await User.findById(requestid).populate("userMenu");
-      console.log(user.userMenu);
+    const user = await User.findById(id).populate("userMenu");
+    console.log(user.userMenu);
 
-      res.render("user/userindex", {
-        user: user,
-      });
-    } else {
-      res.redirect("/user/login");
-    }
+    res.render("user/dashboard/index", {
+      user: user,
+    });
   } catch (err) {
     console.log(err);
   }
