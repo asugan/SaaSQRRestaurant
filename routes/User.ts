@@ -1,7 +1,8 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { User } from "../models/User";
 import { Menu } from "../models/Menu";
 import { verify } from "../middlewares/Main";
+import { authornot } from "../middlewares/AuthCheck";
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
@@ -10,27 +11,39 @@ require("dotenv").config();
 
 const secret: string = process.env.SECRET;
 
-router.get("/register", async (req: any, res: any) => {
+router.get("/register", async (req: Request, res: Response) => {
   res.render("user/register");
 });
 
-router.get("/index", verify, async (req: any, res: any) => {
-  const id = req.token.id;
-
-  res.render("user/userindex", {
-    id: id,
-  });
-});
-
-router.get("/login", async (req: any, res: any) => {
+router.get("/login", async (req: Request, res: Response) => {
   res.render("user/login");
 });
 
-router.get("/menu/post", async (req: any, res: any) => {
+router.get("/:id", verify, async (req: any, res: Response) => {
+  const requestid = req.params.id;
+  const id = req.token.id;
+
+  try {
+    if (requestid === id) {
+      const user = await User.findById(requestid).populate("userMenu");
+      console.log(user.userMenu);
+
+      res.render("user/userindex", {
+        user: user,
+      });
+    } else {
+      res.redirect("/user/login");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/menu/post", async (req: Request, res: Response) => {
   res.render("user/menupost");
 });
 
-router.get("/menu/:name", async (req: any, res: any) => {
+router.get("/menu/:name", async (req: Request, res: Response) => {
   const menuid = req.params.name;
 
   const menu = await Menu.findById(menuid);
@@ -44,9 +57,9 @@ router.get("/menu/:name", async (req: any, res: any) => {
   }
 });
 
-router.post("/menu/post", async (req: any, res: any) => {
+router.post("/menu/post", async (req: Request, res: Response) => {
   const { name, fiyat }: { name: string; fiyat: number } = req.body;
-  const user = await User.findById("63a8852918828a103b4bd009");
+  const user = await User.findById("63a9cd96f445eb602de8c372");
 
   const newMenu = new Menu({
     İcecekler: [
@@ -68,7 +81,7 @@ router.post("/menu/post", async (req: any, res: any) => {
   }
 });
 
-router.post("/login", async (req: any, res: any) => {
+router.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   const getuser = await User.findOne({ username: username });
@@ -102,7 +115,7 @@ router.post("/login", async (req: any, res: any) => {
   }
 });
 
-router.post("/register", async (req: any, res: any) => {
+router.post("/register", async (req: Request, res: Response) => {
   const username: string = req.body.username;
   const password: string = req.body.password;
 

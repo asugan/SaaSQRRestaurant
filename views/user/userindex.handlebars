@@ -6,6 +6,12 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>{{id}}</h1>
+    <h1>{{user.username}}</h1>
+    <h1>{{user._id}}</h1>
+    {{#each user.userMenu}}
+      {{#each this.İcecekler}}
+        <h5>{{this.name}}</h5>
+      {{/each}}
+    {{/each}}
   </body>
 </html>
