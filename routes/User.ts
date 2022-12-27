@@ -3,6 +3,8 @@ import { User } from "../models/User";
 import { Menu } from "../models/Menu";
 import { verify } from "../middlewares/Main";
 import { authornot } from "../middlewares/AuthCheck";
+import { Kategori } from "../models/Kategori";
+import { Urun } from "../models/Urun";
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
@@ -44,6 +46,7 @@ router.get("/dashboard", verify, async (req: any, res: Response) => {
 
   try {
     const user = await User.findById(id).populate("userMenu");
+
     console.log(user.userMenu);
 
     res.render("user/dashboard/index", {
@@ -61,7 +64,47 @@ router.get("/menu/post", async (req: Request, res: Response) => {
 router.get("/menu/:name", async (req: Request, res: Response) => {
   const menuid = req.params.name;
 
-  const menu = await Menu.findById(menuid);
+  const menu = await Menu.findById(menuid).populate("Kategoriler");
+
+  const newKategori: any = new Kategori({
+    Name: "Hamhamlar",
+    Menu: menuid,
+  });
+
+  try {
+    await newKategori.save();
+    menu.Kategoriler.push(newKategori);
+    await menu.save();
+
+    const kategori = await Kategori.findById(newKategori._id).populate(
+      "Urunler"
+    );
+
+    const newUrun: any = new Urun({
+      Name: "Mojito",
+      Price: 14,
+      Kategori: kategori._id,
+    });
+    await newUrun.save();
+    kategori.Urunler.push(newUrun);
+    await kategori.save();
+    res.render("user/menu", {
+      menu: menu,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/menu/get/:name", async (req: Request, res: Response) => {
+  const menuid = req.params.name;
+
+  const menu = await Menu.findOne({ Name: menuid }).populate({
+    path: "Kategoriler",
+    populate: [{ path: "Urunler" }],
+  });
+
+  console.log(menu);
 
   try {
     res.render("user/menu", {
@@ -73,16 +116,11 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
 });
 
 router.post("/menu/post", async (req: Request, res: Response) => {
-  const { name, fiyat }: { name: string; fiyat: number } = req.body;
-  const user = await User.findById("63a9cd96f445eb602de8c372");
+  const { name } = req.body;
+  const user = await User.findById("63ab0186d9f5df667e8cacd8");
 
   const newMenu = new Menu({
-    İcecekler: [
-      {
-        name: name,
-        fiyat: fiyat,
-      },
-    ],
+    Name: name,
     user: user,
   });
 

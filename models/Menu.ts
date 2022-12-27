@@ -9,17 +9,14 @@ interface Menu {
   user: Types.ObjectId;
 }
 
-const MenuSchema = new Schema<Menu>({
-  İcecekler: [
+const MenuSchema = new Schema({
+  Name: {
+    type: String,
+  },
+  Kategoriler: [
     {
-      name: {
-        type: String,
-        required: true,
-      },
-      fiyat: {
-        type: Number,
-        required: true,
-      },
+      type: Schema.Types.ObjectId,
+      ref: "Kategori",
     },
   ],
   user: {
@@ -29,4 +26,4 @@ const MenuSchema = new Schema<Menu>({
   },
 });
 
-export const Menu = model<Menu>("Menu", MenuSchema);
+export const Menu = model("Menu", MenuSchema);

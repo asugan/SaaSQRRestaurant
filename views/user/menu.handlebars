@@ -6,9 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    {{#each menu.İcecekler}}
-      <h1>{{name}}</h1>
-      <h1>{{fiyat}}</h1>
+    <h1>{{menu.Name}}</h1>
+
+    {{#each menu.Kategoriler}}
+      <h5>{{this.Name}}</h5>
+      {{#each this.Urunler}}
+        <h5>{{this.Name}}</h5>
+      {{/each}}
     {{/each}}
   </body>
 </html>
