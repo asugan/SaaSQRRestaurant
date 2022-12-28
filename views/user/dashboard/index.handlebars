@@ -349,10 +349,46 @@
               </div>
               <div class="col-12 mt-3">
                 {{#each user.userMenu}}
-                  <a href="{{this.Name}}"><button
+                  <a href="/menu/{{this.Name}}"><button
                       class="btn-sm btn-danger"
                     >Menüyü İncele ({{this.Name}})</button></a>
                 {{/each}}
+              </div>
+              <div class="col-12 mt-3">
+                <p>Please type the URL or Text below and click Generate!</p>
+                <form class="form" action="/scan" method="POST">
+                  <select name="menu" id="menu">
+                    {{#each user.userMenu}}
+                      <option value="{{this._id}}">{{this.Name}}</option>
+                    {{/each}}
+                  </select>
+                  <input
+                    name="url"
+                    id="urlinput"
+                    class="form-control"
+                    placeholder="URL or Text"
+                    type="text"
+                    required
+                  />
+                  <br />
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    value="Get QR"
+                  >Generate</button>
+                </form>
+              </div>
+
+              <div class="col-12 mt-3">
+                {{#each user.userMenu}}
+                  <img src="{{this.QRCode}}" alt="QR Code Image" />
+                {{/each}}
+                <p>Scan the QR Code to access data!</p>
+                <a href="/"><button
+                    type="button"
+                    class="btn btn-primary"
+                  >Back</button></a>
+                <br />
               </div>
             </div>
 
@@ -428,6 +464,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+
+    <script>
+      let hamham = $( "#menu option:selected" ).text();
+      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);
+    </script>
 
   </body>
 

@@ -5,6 +5,7 @@ import { verify } from "../middlewares/Main";
 import { authornot } from "../middlewares/AuthCheck";
 import { Kategori } from "../models/Kategori";
 import { Urun } from "../models/Urun";
+const qr = require("qrcode");
 const router = express.Router();
 
 router.get("/", async (req: any, res: any) => {
@@ -28,6 +29,23 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+router.post("/scan", async (req, res) => {
+  const { url, menu } = req.body;
+
+  if (url.length === 0) res.send("Empty Data!");
+
+  qr.toDataURL(url, async (err: any, src: any) => {
+    if (err) res.send("Error occured");
+
+    const findmenu = await Menu.findById(menu);
+
+    findmenu.QRCode = src;
+    await findmenu.save();
+
+    res.redirect("/user/dashboard");
+  });
 });
 
 module.exports = router;
