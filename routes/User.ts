@@ -61,63 +61,38 @@ router.get("/menu/post", async (req: Request, res: Response) => {
   res.render("user/menupost");
 });
 
-router.get("/menu/:name", async (req: Request, res: Response) => {
-  const menuid = req.params.name;
+router.get("/menu/post1", verify, async (req: any, res: Response) => {
+  const id: any = req.token.id;
+  const user = await User.findById(id).populate("userMenu");
+  const menuid = user.userMenu[0]._id;
+  const findmenu = await Menu.findById(menuid).populate("Kategoriler");
 
-  const menu = await Menu.findById(menuid).populate("Kategoriler");
+  console.log(findmenu);
 
-  const newKategori: any = new Kategori({
-    Name: "Hamhamlar",
-    Menu: menuid,
+  res.render("user/menupost1", {
+    menu: findmenu,
   });
-
-  try {
-    await newKategori.save();
-    menu.Kategoriler.push(newKategori);
-    await menu.save();
-
-    const kategori = await Kategori.findById(newKategori._id).populate(
-      "Urunler"
-    );
-
-    const newUrun: any = new Urun({
-      Name: "Mojito",
-      Price: 14,
-      Kategori: kategori._id,
-    });
-    await newUrun.save();
-    kategori.Urunler.push(newUrun);
-    await kategori.save();
-    res.render("user/menu", {
-      menu: menu,
-    });
-  } catch (err) {
-    console.log(err);
-  }
 });
 
-router.get("/menu/get/:name", async (req: Request, res: Response) => {
-  const menuid = req.params.name;
-
-  const menu = await Menu.findOne({ Name: menuid }).populate({
+router.get("/menu/post2", verify, async (req: any, res: Response) => {
+  const id: any = req.token.id;
+  const user = await User.findById(id).populate("userMenu");
+  const menuid = user.userMenu[0]._id;
+  const findmenu = await Menu.findById(menuid).populate({
     path: "Kategoriler",
     populate: [{ path: "Urunler" }],
   });
 
-  console.log(menu);
-
-  try {
-    res.render("user/menu", {
-      menu: menu,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  res.render("user/menupost2", {
+    menu: findmenu,
+  });
 });
 
-router.post("/menu/post", async (req: Request, res: Response) => {
+router.post("/menu/post", verify, async (req: any, res: Response) => {
   const { name } = req.body;
-  const user = await User.findById("63ab0186d9f5df667e8cacd8");
+  const id: any = req.token.id;
+
+  const user = await User.findById(id);
 
   const newMenu = new Menu({
     Name: name,
@@ -128,7 +103,51 @@ router.post("/menu/post", async (req: Request, res: Response) => {
     user.userMenu.push(newMenu);
     await user.save();
     await newMenu.save();
-    res.redirect("/");
+    res.redirect("/user/menu/post1");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post("/menu/post1", verify, async (req: any, res: Response) => {
+  const { name } = req.body;
+  const id: any = req.token.id;
+
+  const user = await User.findById(id).populate("userMenu");
+  const menuid = user.userMenu[0]._id;
+  const menu = await Menu.findById(menuid);
+
+  const newKategori: any = new Kategori({
+    Name: name,
+    Menu: menu,
+  });
+
+  try {
+    menu.Kategoriler.push(newKategori);
+    await newKategori.save();
+    await menu.save();
+    res.redirect("/user/menu/post1");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post("/menu/post2", verify, async (req: any, res: Response) => {
+  const { name, price, kategori } = req.body;
+
+  const category = await Kategori.findById(kategori);
+
+  const newUrun: any = new Urun({
+    Name: name,
+    Price: price,
+    Kategori: kategori,
+  });
+
+  try {
+    await newUrun.save();
+    category.Urunler.push(newUrun);
+    await category.save();
+    res.redirect("/user/menu/post2");
   } catch (err) {
     console.log(err);
   }

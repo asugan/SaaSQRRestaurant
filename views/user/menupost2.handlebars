@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .container{ display: flex; gap: 1rem; }
+    </style>
+  </head>
+  <body>
+    <form action="/user/menu/post2" method="post">
+      <select name="kategori">
+        {{#each menu.Kategoriler}}
+          <option value="{{this._id}}">{{this.Name}}</option>
+        {{/each}}
+        <input type="text" name="name" />
+        <input type="text" name="price" />
+        <button type="submit ">Ekle</button>
+      </select>
+    </form>
+
+    {{#each menu.Kategoriler}}
+      <h1>{{this.Name}}</h1>
+      {{#each this.Urunler}}
+        <div class="container">
+          <h3>{{this.Name}}</h3>
+          <h3>{{this.Price}} ₺</h3>
+        </div>
+      {{/each}}
+    {{/each}}
+
+    <a href="/user/dashboard"><button>Menüyü Tamamla</button></a>
+  </body>
+</html>

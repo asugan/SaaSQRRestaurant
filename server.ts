@@ -52,6 +52,9 @@ app.use(express.static("public"));
 
 app.use("/", MainController);
 app.use("/user", UserController);
+app.get("*", function (req, res) {
+  res.status(404).render("error/404");
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
