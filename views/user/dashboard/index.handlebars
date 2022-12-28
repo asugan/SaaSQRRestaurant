@@ -342,6 +342,20 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="col-12">
+                <a href="/user/menu/post"><button class="btn-sm btn-danger">Menü
+                    Ekle</button></a>
+              </div>
+              <div class="col-12 mt-3">
+                {{#each user.userMenu}}
+                  <a href="{{this.Name}}"><button
+                      class="btn-sm btn-danger"
+                    >Menüyü İncele ({{this.Name}})</button></a>
+                {{/each}}
+              </div>
+            </div>
+
           </div>
           <!-- /.container-fluid -->
 
