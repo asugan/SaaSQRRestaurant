@@ -9,9 +9,28 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 const { serialize } = require("cookie");
+const multer = require("multer");
+const path = require("path");
+const SharpMulter = require("sharp-multer");
+
 require("dotenv").config();
 
 const secret: string = process.env.SECRET;
+
+const storage: any = SharpMulter({
+  destination: (req: any, file: any, cb: any) => {
+    cb(null, path.resolve("public/images"));
+  },
+  imageOptions: {
+    fileFormat: "webp",
+    quality: 80,
+  },
+  filename: (req: any, file: any, cb: any) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 router.get("/register", async (req: Request, res: Response) => {
   res.render("user/register");
@@ -88,26 +107,33 @@ router.get("/menu/post2", verify, async (req: any, res: Response) => {
   });
 });
 
-router.post("/menu/post", verify, async (req: any, res: Response) => {
-  const { name } = req.body;
-  const id: any = req.token.id;
+router.post(
+  "/menu/post",
+  upload.single("image"),
+  verify,
+  async (req: any, res: Response) => {
+    const { name } = req.body;
+    const id: any = req.token.id;
+    const image = req.file.filename;
+    console.log(image);
 
-  const user = await User.findById(id);
+    const user = await User.findById(id);
 
-  const newMenu = new Menu({
-    Name: name,
-    user: user,
-  });
+    const newMenu = new Menu({
+      Name: name,
+      user: user,
+    });
 
-  try {
-    user.userMenu.push(newMenu);
-    await user.save();
-    await newMenu.save();
-    res.redirect("/user/menu/post1");
-  } catch (err) {
-    console.log(err);
+    try {
+      user.userMenu.push(newMenu);
+      await user.save();
+      await newMenu.save();
+      res.redirect("/user/menu/post");
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
 router.post("/menu/post1", verify, async (req: any, res: Response) => {
   const { name } = req.body;
