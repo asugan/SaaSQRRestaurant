@@ -40,7 +40,7 @@ export const UserTask = {
   },
 
   runschedule: () =>
-    cron.schedule("* * * * * *", async () => {
+    cron.schedule("0 0 0 * * *", async () => {
       await UserTask.findwithday();
       await UserTask.findwithoutday();
     }),
