@@ -3,7 +3,7 @@ import { User } from "../models/User";
 
 export const UserTask = {
   runschedule: () =>
-    cron.schedule("* * * * *", async () => {
+    cron.schedule("0 0 0 * * *", async () => {
       const finduser = await User.find({});
 
       for (let i = 0; i < finduser.length; i++) {
