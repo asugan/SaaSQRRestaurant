@@ -19,6 +19,10 @@ const MenuSchema = new Schema({
   image: {
     type: String,
   },
+  isVisible: {
+    type: Boolean,
+    default: true,
+  },
   Kategoriler: [
     {
       type: Schema.Types.ObjectId,
