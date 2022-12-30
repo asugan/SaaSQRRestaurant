@@ -11,6 +11,7 @@ const path = require("path");
 const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
+import { UserTask } from "./crontasks/Usertask";
 
 require("dotenv").config();
 
@@ -59,3 +60,5 @@ app.get("*", function (req, res) {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+UserTask.runschedule();

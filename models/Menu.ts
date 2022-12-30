@@ -16,6 +16,9 @@ const MenuSchema = new Schema({
   QRCode: {
     type: String,
   },
+  image: {
+    type: String,
+  },
   Kategoriler: [
     {
       type: Schema.Types.ObjectId,

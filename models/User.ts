@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 interface User {
   username: string;
   password: string;
-  isSubscribed: boolean;
+  userLevel: string;
   daysLeft: number;
   userMenu: Types.Array<Types.ObjectId>;
   created_date: string;
@@ -19,15 +19,16 @@ const userSchema = new Schema<User>({
     type: String,
     required: true,
   },
-  isSubscribed: {
-    type: Boolean,
+  userLevel: {
+    type: String,
     required: true,
-    default: false,
+    enum: ["Deneme", "Abone", "Satıcı"],
+    default: "Deneme",
   },
   daysLeft: {
     type: Number,
     required: true,
-    default: 30,
+    default: 14,
   },
   userMenu: [
     {

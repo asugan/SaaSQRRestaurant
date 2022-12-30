@@ -16,6 +16,9 @@ const UrunSchema = new Schema({
   Price: {
     type: Number,
   },
+  image: {
+    type: String,
+  },
   Kategori: {
     type: Schema.Types.ObjectId,
     ref: "Kategori",
