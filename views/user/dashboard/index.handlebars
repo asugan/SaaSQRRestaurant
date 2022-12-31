@@ -355,6 +355,12 @@
                 {{/each}}
               </div>
               <div class="col-12 mt-3">
+                <a href="/user/menu/postmasa"><button
+                    class="btn-sm btn-danger"
+                  >Menüye Masa Ekle
+                  </button></a>
+              </div>
+              <div class="col-12 mt-3">
                 <p>Please type the URL or Text below and click Generate!</p>
                 <form class="form" action="/scan" method="POST">
                   <select name="menu" id="menu">
@@ -381,14 +387,26 @@
 
               <div class="col-12 mt-3">
                 {{#each user.userMenu}}
-                  <img src="{{this.QRCode}}" alt="QR Code Image" />
+                  {{#if this.QRCode}}
+                    <div class="image">
+                      <img
+                        src="{{this.QRCode}}"
+                        class="img-thumbnail"
+                        alt="QR Code Image"
+                      />
+                    </div>
+                    <div class="download mt-3">
+                      <a
+                        href="{{this.QRCode}}"
+                        download="{{this.Name}}-QR"
+                        class="ml-5"
+                      ><button
+                          type="button"
+                          class="btn btn-primary"
+                        >İndir</button></a>
+                    </div>
+                  {{/if}}
                 {{/each}}
-                <p>Scan the QR Code to access data!</p>
-                <a href="/"><button
-                    type="button"
-                    class="btn btn-primary"
-                  >Back</button></a>
-                <br />
               </div>
             </div>
 

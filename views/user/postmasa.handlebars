@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/user/menu/postmasa" method="post">
+      <select name="menu">
+        {{#each user.userMenu}}
+          <option value="" selected>Menü Seçin</option>
+          <option value="{{this._id}}">{{this.Name}}</option>
+        {{/each}}
+      </select>
+      <input type="text" name="number" />
+      <button type="submit">Masa Ekle</button>
+    </form>
+
+    <div class="container">
+      {{#each user.userMenu}}
+        <h1>{{this.Name}}</h1>
+        {{#each this.Masalar}}
+          <h3>{{this.Number}}</h3>
+        {{/each}}
+      {{/each}}
+    </div>
+  </body>
+</html>

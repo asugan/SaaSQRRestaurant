@@ -29,6 +29,12 @@ const MenuSchema = new Schema({
       ref: "Kategori",
     },
   ],
+  Masalar: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Masa",
+    },
+  ],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",

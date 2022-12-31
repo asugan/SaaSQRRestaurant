@@ -41,10 +41,14 @@ router.post("/scan", async (req, res) => {
 
     const findmenu = await Menu.findById(menu);
 
-    findmenu.QRCode = src;
-    await findmenu.save();
+    if (findmenu) {
+      findmenu.QRCode = src;
+      await findmenu.save();
 
-    res.redirect("/user/dashboard");
+      res.redirect("/user/dashboard");
+    } else {
+      res.redirect("/user/dashboard");
+    }
   });
 });
 

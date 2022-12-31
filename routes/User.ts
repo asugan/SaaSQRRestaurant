@@ -5,6 +5,7 @@ import { verify } from "../middlewares/Main";
 import { authornot } from "../middlewares/AuthCheck";
 import { Kategori } from "../models/Kategori";
 import { Urun } from "../models/Urun";
+import { Masa } from "../models/Masa";
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
@@ -107,6 +108,18 @@ router.get("/menu/post2", verify, async (req: any, res: Response) => {
   });
 });
 
+router.get("/menu/postmasa", verify, async (req: any, res: Response) => {
+  const id: any = req.token.id;
+  const user = await User.findById(id).populate({
+    path: "userMenu",
+    populate: [{ path: "Masalar" }],
+  });
+
+  res.render("user/postmasa", {
+    user: user,
+  });
+});
+
 router.post(
   "/menu/post",
   upload.single("image"),
@@ -174,6 +187,26 @@ router.post("/menu/post2", verify, async (req: any, res: Response) => {
     category.Urunler.push(newUrun);
     await category.save();
     res.redirect("/user/menu/post2");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post("/menu/postmasa", verify, async (req: any, res: Response) => {
+  const { number, menu } = req.body;
+
+  const findmenu = await Menu.findById(menu);
+
+  const newMasa: any = new Masa({
+    Number: number,
+    Menu: menu,
+  });
+
+  try {
+    await newMasa.save();
+    findmenu.Masalar.push(newMasa);
+    await findmenu.save();
+    res.redirect("/user/menu/postmasa");
   } catch (err) {
     console.log(err);
   }
