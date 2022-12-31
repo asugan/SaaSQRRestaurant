@@ -6,8 +6,22 @@ const stripe = require("stripe")(
 
 const YOUR_DOMAIN = "http://localhost:3000";
 
+router.get("/success", async (req, res) => {
+  var session_id = req.query.session_id;
+
+  const hamham = await stripe.checkout.sessions.retrieve(session_id);
+
+  console.log(hamham);
+
+  res.render("stripe/success");
+});
+
+router.get("/cancel", async (req, res) => {
+  res.render("stripe/cancel");
+});
+
 router.get("/createitem", async (req, res) => {
-  res.render("iyzicreate");
+  res.render("stripe/create");
 });
 
 router.post("/create-checkout-session", async (req, res) => {
@@ -25,13 +39,26 @@ router.post("/create-checkout-session", async (req, res) => {
     ],
     currency: "try",
     mode: "subscription",
-    success_url: `${YOUR_DOMAIN}/success`,
-    cancel_url: `${YOUR_DOMAIN}/cancel`,
+    success_url: `${YOUR_DOMAIN}/stripe/success?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${YOUR_DOMAIN}/stripe/cancel`,
   });
 
-  console.log(session);
-
   res.redirect(303, session.url);
+});
+
+router.post("/create-portal-session", async (req, res) => {
+  const sessionobj =
+    "cs_test_a1Jkp64qluy7d5SqEVBBEYW1iiZrFZm9U6pzZA3yDRGXhSV7byTyp9wVPM";
+  const checkoutSession = await stripe.checkout.sessions.retrieve(sessionobj);
+
+  const returnUrl = YOUR_DOMAIN;
+
+  const portalSession = await stripe.billingPortal.sessions.create({
+    customer: checkoutSession.customer,
+    return_url: returnUrl,
+  });
+
+  res.redirect(303, portalSession.url);
 });
 
 module.exports = router;
