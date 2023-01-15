@@ -1,0 +1,18 @@
+/*  NAVBAR BASLANGIC */
+
+nav {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem 10rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(87, 87, 206);
+}
+
+nav .sections ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+/* NAVBAT BİTİS */
