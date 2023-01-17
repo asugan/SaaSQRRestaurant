@@ -129,3 +129,94 @@ table {
 }
 
 /* RESET CSS SONU */
+
+:root {
+  --first: #6c4ab6;
+  --second: #8d72e1;
+  --third: #8d9eff;
+  --fourth: #b9e0ff;
+}
+
+body {
+  background-color: var(--fourth);
+}
+
+.landing .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0rem 10rem;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing .container .rightdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.landing .container .rightdiv .imagediv {
+  animation: MoveUpDown 2s linear infinite;
+  position: absolute;
+}
+
+.landing .container .rightdiv img {
+  height: 500px;
+}
+
+@keyframes MoveUpDown {
+  0%,
+  100% {
+    transform: translateY(50px);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+}
+
+.landing .container .leftdiv h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.landing .container .leftdiv p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.landing .container .leftdiv .call {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.landing .container .leftdiv a {
+  background-color: var(--second);
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--first);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+}
+
+@media screen and (max-width: 720px) {
+  .landing .container {
+    padding: 0rem 2rem;
+    gap: 5rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .landing .container .leftdiv {
+    text-align: center;
+  }
+
+  .landing .container .leftdiv p {
+    font-size: 1.3rem;
+  }
+}

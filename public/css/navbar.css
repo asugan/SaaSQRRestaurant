@@ -6,7 +6,7 @@ nav {
   padding: 2rem 10rem;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(87, 87, 206);
+  background-color: var(--first);
 }
 
 nav .sections ul {

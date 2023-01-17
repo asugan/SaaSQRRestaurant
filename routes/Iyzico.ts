@@ -1,6 +1,10 @@
 import express, { Request, Response } from "express";
 const router = express.Router();
 const Iyzipay = require("iyzipay");
+/* const fetch = require("node-fetch"); */
+require("dotenv").config();
+
+/* const token = process.env.Lemon_Secret; */
 
 const iyzipay = new Iyzipay({
   apiKey: "sandbox-TucwT5o4eGlwIClHOl7OyIShZby2zhCK",
@@ -24,7 +28,7 @@ router.post("/pay", async (req, res) => {
     customer: {
       name: "Cagatay",
       surname: "Eren",
-      identityNumber: digits,
+      identityNumber: "26464487898",
       email: "cagatayeren18@hotmail.com",
       gsmNumber: "+905426430505",
       billingAddress: {
@@ -63,34 +67,54 @@ router.post("/pay", async (req, res) => {
 });
 
 router.post("/iyzipaycallback", async (req, res) => {
-  iyzipay.subscriptionCheckoutForm.retrieve(
-    {
-      locale: Iyzipay.LOCALE.TR,
-      conversationId: "123456789",
-      token: req.body.token,
-    },
-    function (err: any, result: any) {
-      const hamham = async () => {
-        try {
-          console.log(result);
-          res.redirect("/iyzipay/success");
-        } catch (err) {
-          console.log(err);
-        }
-      };
+  const request = {
+    checkoutFormToken: req.body.token,
+  };
 
-      if (result.paymentStatus === "SUCCESS") {
-        hamham();
+  iyzipay.subscriptionCheckoutForm.retrieve(
+    request,
+    function (err: any, result: any) {
+      if (result.status === "success") {
+        console.log(result);
+        res.redirect("/iyzipay/success");
       } else {
         console.log(err);
-        res.render("odeme/failed");
+        res.redirect("/iyzipay/failed");
       }
     }
   );
+});
+
+router.post("/getcustomer", async (req, res) => {
+  const request = {
+    subscriptionReferenceCode: "0e3108ca-4388-4e19-b755-46cda0870580",
+  };
+
+  iyzipay.subscription.retrieve(request, function (err: any, result: any) {
+    console.log(err, result);
+  });
 });
 
 router.get("/success", async (req, res) => {
   res.render("iyzico/success");
 });
 
+router.get("/failed", async (req, res) => {
+  res.render("iyzico/failed");
+});
+
+/* router.get("/lemon", async (req, res) => {
+  const getdata = await fetch("https://api.lemonsqueezy.com/v1/subscriptions", {
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const jsontodata = await getdata.json();
+  console.log(jsontodata.data[0]);
+
+  res.render("lemon/index");
+});
+ */
 module.exports = router;
