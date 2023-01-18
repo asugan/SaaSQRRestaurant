@@ -3,16 +3,22 @@
 nav {
   display: flex;
   flex-direction: row;
-  padding: 2rem 10rem;
+  padding: 2rem 8rem;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--first);
+  background-color: var(--third);
 }
 
 nav .sections ul {
   display: flex;
   flex-direction: row;
   gap: 2rem;
+}
+
+@media screen and (max-width: 720px) {
+  nav .sections ul {
+    display: none;
+  }
 }
 
 /* NAVBAT BİTİS */

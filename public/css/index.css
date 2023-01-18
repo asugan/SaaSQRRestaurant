@@ -141,12 +141,23 @@ body {
   background-color: var(--fourth);
 }
 
+/* Landing Başlangıç */
+
+.landing {
+  height: 100vh;
+}
+
 .landing .container {
   display: grid;
+  border-bottom: 10px solid var(--first);
+  height: 75%;
   grid-template-columns: repeat(2, 1fr);
   padding: 0rem 10rem;
   align-items: center;
-  height: 100vh;
+  background-image: url(../images/background.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .landing .container .rightdiv {
@@ -154,7 +165,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 100%;
+  height: 600px;
   width: 100%;
 }
 
@@ -185,7 +196,7 @@ body {
 }
 
 .landing .container .leftdiv p {
-  text-align: center;
+  text-align: start;
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -205,18 +216,140 @@ body {
   padding: 1rem 2rem;
 }
 
-@media screen and (max-width: 720px) {
+.landing .bottom {
+  justify-content: center;
+  display: flex;
+  height: 25%;
+  align-items: center;
+}
+
+.landing .bottom i {
+  font-size: 5rem;
+  color: var(--first);
+}
+
+@media screen and (max-width: 1200px) {
+  .landing .container {
+    padding: 0rem 4rem;
+    height: fit-content;
+  }
+
+  .landing .container .rightdiv img {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .landing {
+    height: fit-content;
+  }
+
+  .landing .bottom {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .landing .container {
     padding: 0rem 2rem;
-    gap: 5rem;
+    height: fit-content;
     grid-template-columns: repeat(1, 1fr);
   }
 
+  .landing .container .rightdiv {
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .landing .container .rightdiv img {
+    height: 350px;
+  }
+
   .landing .container .leftdiv {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding-bottom: 2rem;
     text-align: center;
   }
 
   .landing .container .leftdiv p {
     font-size: 1.3rem;
+  }
+}
+
+/* Landing Bitiş */
+
+.landing-2 {
+  border-top: 10px solid var(--first);
+  background-color: var(--third);
+}
+
+.landing-2 .container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 5rem 10rem;
+  align-items: center;
+  gap: 2rem;
+}
+
+.landing-2 .container .leftdiv {
+  grid-column: 1/4;
+}
+
+.landing-2 .container .rightdiv {
+  grid-column: 4/6;
+}
+
+.landing-2 .container .rightdiv .call {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.landing-2 .container .rightdiv a {
+  background-color: var(--second);
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--first);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+}
+
+.landing-2 .container .rightdiv h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.landing-2 .container .rightdiv p {
+  text-align: start;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.landing-2 .container .leftdiv img {
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .landing-2 .container {
+    padding: 0rem 4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .landing-2 .container {
+    padding: 0rem 2rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .landing-2 .container .leftdiv {
+    grid-column: 1/2;
+  }
+
+  .landing-2 .container .rightdiv {
+    grid-column: 1/2;
   }
 }
