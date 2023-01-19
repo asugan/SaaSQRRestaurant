@@ -168,7 +168,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 600px;
+  height: 650px;
   width: 100%;
 }
 
@@ -178,7 +178,7 @@ body {
 }
 
 .landing .container .rightdiv img {
-  height: 500px;
+  height: 550px;
 }
 
 @keyframes MoveUpDown {
@@ -237,6 +237,10 @@ body {
     height: fit-content;
   }
 
+  .landing .container .rightdiv {
+    justify-content: center;
+  }
+
   .landing .container .rightdiv img {
     height: 400px;
   }
@@ -259,6 +263,7 @@ body {
   }
 
   .landing .container .rightdiv {
+    justify-content: center;
     grid-row-start: 1;
     grid-row-end: 2;
   }

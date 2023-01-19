@@ -3,7 +3,7 @@
 nav {
   display: flex;
   flex-direction: row;
-  padding: 2rem 8rem;
+  padding: 2rem 10rem;
   align-items: center;
   justify-content: space-between;
   background-color: var(--third);
