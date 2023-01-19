@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap");
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -139,6 +141,7 @@ table {
 
 body {
   background-color: var(--fourth);
+  font-family: "Kalam", cursive;
 }
 
 /* Landing Başlangıç */
@@ -278,6 +281,8 @@ body {
 
 /* Landing Bitiş */
 
+/* Tanitim-1 Başlangıç */
+
 .landing-2 {
   border-top: 10px solid var(--first);
   background-color: var(--third);
@@ -301,7 +306,6 @@ body {
 
 .landing-2 .container .rightdiv .call {
   margin-top: 3rem;
-  margin-bottom: 3rem;
   text-align: center;
 }
 
@@ -335,13 +339,13 @@ body {
 
 @media screen and (max-width: 1200px) {
   .landing-2 .container {
-    padding: 0rem 4rem;
+    padding: 4rem 4rem;
   }
 }
 
 @media screen and (max-width: 768px) {
   .landing-2 .container {
-    padding: 0rem 2rem;
+    padding: 4rem 2rem;
     grid-template-columns: repeat(1, 1fr);
   }
 
@@ -353,3 +357,90 @@ body {
     grid-column: 1/2;
   }
 }
+
+/* Tanitim-1 Bitiş */
+
+/* Fiyat Başlangıç */
+
+.price {
+  border-top: 10px solid var(--first);
+}
+
+.price .container {
+  padding: 5rem 6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.price .container .trial {
+  background-color: var(--third);
+  padding: 2rem 3rem;
+  border: 5px solid var(--first);
+  border-radius: 10px;
+}
+
+.price .container .price1 {
+  background-color: var(--third);
+  padding: 2rem 3rem;
+  border: 5px solid var(--first);
+  border-radius: 10px;
+}
+
+.price .container .price2 {
+  background-color: var(--third);
+  padding: 2rem 3rem;
+  border: 5px solid var(--first);
+  border-radius: 10px;
+}
+
+.price .container h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 5px solid var(--first);
+  padding-bottom: 0.6rem;
+}
+
+.price .container ul {
+  margin-top: 1rem;
+}
+
+.price .container ul li {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+  text-align: start;
+}
+
+.price .container .call {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.price .container a {
+  background-color: var(--second);
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--first);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .price .container {
+    padding: 4rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .price .container {
+    padding: 4rem 2rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Fiyat Bitiş */
