@@ -33,10 +33,21 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
 
 router.post("/scan", async (req, res) => {
   const { url, menu } = req.body;
+  const opts = {
+    errorCorrectionLevel: "H",
+    type: "image/webp",
+    quality: 1,
+    width: 300,
+    margin: 1,
+    color: {
+      dark: "#010599FF",
+      light: "#FFBF60FF",
+    },
+  };
 
   if (url.length === 0) res.send("Empty Data!");
 
-  qr.toDataURL(url, async (err: any, src: any) => {
+  qr.toDataURL(url, opts, async (err: any, src: any) => {
     if (err) res.send("Error occured");
 
     const findmenu = await Menu.findById(menu);

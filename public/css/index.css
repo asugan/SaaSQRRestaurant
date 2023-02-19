@@ -191,17 +191,24 @@ body {
   }
 }
 
+.landing .container .leftdiv {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .landing .container .leftdiv h1 {
   margin-bottom: 2rem;
   text-align: center;
   font-weight: bolder;
-  font-size: 2rem;
+  font-size: 2.6rem;
 }
 
 .landing .container .leftdiv p {
   text-align: start;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
 }
 
 .landing .container .leftdiv .call {
@@ -217,6 +224,14 @@ body {
   border: 2px solid var(--first);
   border-radius: 15px;
   padding: 1rem 2rem;
+}
+
+.landing .container .leftdiv .first {
+  margin-right: 1rem;
+}
+
+.landing .container .leftdiv .last {
+  margin-left: 1rem;
 }
 
 .landing .bottom {
@@ -327,13 +342,18 @@ body {
   margin-bottom: 2rem;
   text-align: center;
   font-weight: bolder;
-  font-size: 2rem;
+  font-size: 2.6rem;
 }
 
 .landing-2 .container .rightdiv p {
   text-align: start;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+
+.landing-2 .container .leftdiv {
+  text-align: center;
 }
 
 .landing-2 .container .leftdiv img {
@@ -364,6 +384,92 @@ body {
 }
 
 /* Tanitim-1 Bitiş */
+
+/* Tanitim-2 Başlangıç */
+
+.landing-3 {
+  border-top: 10px solid var(--first);
+  background-color: var(--third);
+}
+
+.landing-3 .container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 5rem 10rem;
+  align-items: center;
+  gap: 2rem;
+}
+
+.landing-3 .container .leftdiv {
+  grid-column: 1/3;
+}
+
+.landing-3 .container .rightdiv {
+  grid-column: 3/6;
+}
+
+.landing-3 .container .leftdiv .call {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.landing-3 .container .leftdiv a {
+  background-color: var(--second);
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--first);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+}
+
+.landing-3 .container .leftdiv h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2.6rem;
+}
+
+.landing-3 .container .leftdiv p {
+  text-align: start;
+  font-weight: bold;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+
+.landing-3 .container .rightdiv {
+  text-align: center;
+}
+
+.landing-3 .container .rightdiv img {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .landing-3 .container {
+    padding: 4rem 4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .landing-3 .container {
+    padding: 4rem 2rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .landing-3 .container .rightdiv {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
+
+  .landing-3 .container .leftdiv {
+    grid-row: 2/3;
+    grid-column: 1/2;
+  }
+}
+
+/* Tanitim-2 Bitiş */
 
 /* Fiyat Başlangıç */
 

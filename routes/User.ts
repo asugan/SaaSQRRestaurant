@@ -128,13 +128,13 @@ router.post(
     const { name } = req.body;
     const id: any = req.token.id;
     const image = req.file.filename;
-    console.log(image);
 
     const user = await User.findById(id);
 
     const newMenu = new Menu({
       Name: name,
       user: user,
+      image: image,
     });
 
     try {
@@ -171,26 +171,33 @@ router.post("/menu/post1", verify, async (req: any, res: Response) => {
   }
 });
 
-router.post("/menu/post2", verify, async (req: any, res: Response) => {
-  const { name, price, kategori } = req.body;
+router.post(
+  "/menu/post2",
+  upload.single("image"),
+  verify,
+  async (req: any, res: Response) => {
+    const { name, price, kategori } = req.body;
+    const image = req.file.filename;
 
-  const category = await Kategori.findById(kategori);
+    const category = await Kategori.findById(kategori);
 
-  const newUrun: any = new Urun({
-    Name: name,
-    Price: price,
-    Kategori: kategori,
-  });
+    const newUrun: any = new Urun({
+      Name: name,
+      Price: price,
+      Kategori: kategori,
+      image: image,
+    });
 
-  try {
-    await newUrun.save();
-    category.Urunler.push(newUrun);
-    await category.save();
-    res.redirect("/user/menu/post2");
-  } catch (err) {
-    console.log(err);
+    try {
+      await newUrun.save();
+      category.Urunler.push(newUrun);
+      await category.save();
+      res.redirect("/user/menu/post2");
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
 router.post("/menu/postmasa", verify, async (req: any, res: Response) => {
   const { number, menu } = req.body;
