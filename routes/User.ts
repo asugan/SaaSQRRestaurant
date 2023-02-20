@@ -148,28 +148,35 @@ router.post(
   }
 );
 
-router.post("/menu/post1", verify, async (req: any, res: Response) => {
-  const { name } = req.body;
-  const id: any = req.token.id;
+router.post(
+  "/menu/post1",
+  upload.single("image"),
+  verify,
+  async (req: any, res: Response) => {
+    const { name } = req.body;
+    const id: any = req.token.id;
+    const image = req.file.filename;
 
-  const user = await User.findById(id).populate("userMenu");
-  const menuid = user.userMenu[0]._id;
-  const menu = await Menu.findById(menuid);
+    const user = await User.findById(id).populate("userMenu");
+    const menuid = user.userMenu[0]._id;
+    const menu = await Menu.findById(menuid);
 
-  const newKategori: any = new Kategori({
-    Name: name,
-    Menu: menu,
-  });
+    const newKategori: any = new Kategori({
+      Name: name,
+      Menu: menu,
+      image: image,
+    });
 
-  try {
-    menu.Kategoriler.push(newKategori);
-    await newKategori.save();
-    await menu.save();
-    res.redirect("/user/menu/post1");
-  } catch (err) {
-    console.log(err);
+    try {
+      menu.Kategoriler.push(newKategori);
+      await newKategori.save();
+      await menu.save();
+      res.redirect("/user/menu/post1");
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
 router.post(
   "/menu/post2",

@@ -13,6 +13,9 @@ const KategoriSchema = new Schema({
   Name: {
     type: String,
   },
+  image: {
+    type: String,
+  },
   Urunler: [
     {
       type: Schema.Types.ObjectId,
