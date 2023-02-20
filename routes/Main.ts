@@ -23,7 +23,7 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
   console.log(menu);
 
   try {
-    res.render("user/menu", {
+    res.render("menuthemes/menu1", {
       menu: menu,
     });
   } catch (err) {
