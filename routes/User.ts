@@ -104,10 +104,10 @@ router.get("/:menu/kategoriekle", verify, async (req: any, res: Response) => {
   }
 });
 
-router.get("/menu/post2", verify, async (req: any, res: Response) => {
+router.get("/:menu/urunekle", verify, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
-  const menuid = user.userMenu[0]._id;
+  const menuid = req.params.menu;
   const findmenu = await Menu.findById(menuid).populate({
     path: "Kategoriler",
     populate: [{ path: "Urunler" }],
@@ -115,6 +115,7 @@ router.get("/menu/post2", verify, async (req: any, res: Response) => {
 
   res.render("user/menupost2", {
     menu: findmenu,
+    menuid: menuid,
   });
 });
 
@@ -203,7 +204,7 @@ router.post(
   upload.single("image"),
   verify,
   async (req: any, res: Response) => {
-    const { name, price, kategori } = req.body;
+    const { name, price, kategori, menuid } = req.body;
     const image = req.file.filename;
 
     const category = await Kategori.findById(kategori);
@@ -219,7 +220,7 @@ router.post(
       await newUrun.save();
       category.Urunler.push(newUrun);
       await category.save();
-      res.redirect("/user/menu/post2");
+      res.redirect(`/user/${menuid}/urunekle`);
     } catch (err) {
       console.log(err);
     }

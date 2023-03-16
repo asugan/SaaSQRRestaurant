@@ -15,6 +15,7 @@
         {{#each menu.Kategoriler}}
           <option value="{{this._id}}">{{this.Name}}</option>
         {{/each}}
+        <input type="hidden" name="menuid" value="{{menuid}}" />
         <input type="text" name="name" />
         <input type="text" name="price" />
         <input

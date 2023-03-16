@@ -12,6 +12,7 @@ interface Menu {
 const MenuSchema = new Schema({
   Name: {
     type: String,
+    required: true,
   },
   QRCode: {
     type: String,
