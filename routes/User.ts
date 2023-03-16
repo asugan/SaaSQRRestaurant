@@ -81,17 +81,27 @@ router.get("/menu/post", async (req: Request, res: Response) => {
   res.render("user/menupost");
 });
 
-router.get("/menu/post1", verify, async (req: any, res: Response) => {
+router.get("/:menu/kategoriekle", verify, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
-  const menuid = user.userMenu[0]._id;
-  const findmenu = await Menu.findById(menuid).populate("Kategoriler");
+  const menuid = req.params.menu;
 
-  console.log(findmenu);
-
-  res.render("user/menupost1", {
-    menu: findmenu,
+  const filter = user.userMenu.filter((item) => {
+    return item === menuid;
   });
+
+  if (filter) {
+    const findmenu = await Menu.findById(menuid).populate("Kategoriler");
+
+    console.log(findmenu);
+
+    res.render("user/menupost1", {
+      menuid: menuid,
+      menu: findmenu,
+    });
+  } else {
+    res.render("error/401");
+  }
 });
 
 router.get("/menu/post2", verify, async (req: any, res: Response) => {
@@ -141,7 +151,8 @@ router.post(
       user.userMenu.push(newMenu);
       await user.save();
       await newMenu.save();
-      res.redirect("/user/menu/post");
+      const menuid = newMenu._id;
+      res.redirect(`/user/${menuid}/kategoriekle`);
     } catch (err) {
       console.log(err);
     }
@@ -153,27 +164,36 @@ router.post(
   upload.single("image"),
   verify,
   async (req: any, res: Response) => {
-    const { name } = req.body;
+    const { name, idmenu } = req.body;
     const id: any = req.token.id;
     const image = req.file.filename;
 
     const user = await User.findById(id).populate("userMenu");
-    const menuid = user.userMenu[0]._id;
-    const menu = await Menu.findById(menuid);
+    const menuid = idmenu;
 
-    const newKategori: any = new Kategori({
-      Name: name,
-      Menu: menu,
-      image: image,
+    const filter = user.userMenu.filter((item) => {
+      return item === menuid;
     });
 
-    try {
-      menu.Kategoriler.push(newKategori);
-      await newKategori.save();
-      await menu.save();
-      res.redirect("/user/menu/post1");
-    } catch (err) {
-      console.log(err);
+    if (filter) {
+      const menu = await Menu.findById(menuid);
+
+      const newKategori: any = new Kategori({
+        Name: name,
+        Menu: menu,
+        image: image,
+      });
+
+      try {
+        menu.Kategoriler.push(newKategori);
+        await newKategori.save();
+        await menu.save();
+        res.redirect(`/user/${menuid}/kategoriekle`);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      res.render("error/401");
     }
   }
 );
