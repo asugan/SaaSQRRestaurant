@@ -6,6 +6,7 @@ import { authornot } from "../middlewares/AuthCheck";
 import { Kategori } from "../models/Kategori";
 import { Urun } from "../models/Urun";
 import { Masa } from "../models/Masa";
+import { stringToSlug } from "../helpers/slug";
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
@@ -139,6 +140,7 @@ router.post(
     const { name } = req.body;
     const id: any = req.token.id;
     const image = req.file.filename;
+    const slug = stringToSlug(name);
 
     const user = await User.findById(id);
 
@@ -146,6 +148,7 @@ router.post(
       Name: name,
       user: user,
       image: image,
+      Slug: slug,
     });
 
     try {

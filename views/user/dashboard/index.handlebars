@@ -349,9 +349,9 @@
               </div>
               <div class="col-12 mt-3">
                 {{#each user.userMenu}}
-                  <a href="/menu/{{this.Name}}"><button
+                  <a href="/menu/{{this.Slug}}"><button
                       class="btn-sm btn-danger"
-                    >Menüyü İncele ({{this.Name}})</button></a>
+                    >Menüyü İncele ({{this.Slug}})</button></a>
                 {{/each}}
               </div>
               <div class="col-12 mt-3">
@@ -365,7 +365,7 @@
                 <form class="form" action="/scan" method="POST">
                   <select name="menu" id="menu">
                     {{#each user.userMenu}}
-                      <option value="{{this._id}}">{{this.Name}}</option>
+                      <option value="{{this.Slug}}">{{this.Name}}</option>
                     {{/each}}
                   </select>
                   <input
@@ -485,10 +485,10 @@
     <script src="/js/sb-admin-2.min.js"></script>
 
     <script>
-      let hamham = $( "#menu" ).find('option:selected').text();
+      let hamham = $( "#menu" ).find('option:selected').val();
       $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);
       $("#menu").change(function() { let hamham =
-      $(this).find("option:selected").text();
+      $(this).find("option:selected").val();
       $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);});
     </script>
 
