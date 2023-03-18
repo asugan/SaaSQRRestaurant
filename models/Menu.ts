@@ -17,6 +17,7 @@ const MenuSchema = new Schema({
   Slug: {
     type: String,
     required: true,
+    unique: true,
   },
   QRCode: {
     type: String,

@@ -27,8 +27,16 @@
     <section class="menu--header">
       <div class="container">
         <div class="row">
-          <div class="col-12">
-            <h1 class="text-center menu--header">{{menu.Name}}</h1>
+          <div
+            class="col-8 offset-2 pt-2 pb-2 d-flex justify-content-between align-items-center"
+          >
+            <img
+              style="height:200px;"
+              class="img-fluid"
+              src="/images/{{menu.image}}"
+              alt=""
+            />
+            <h1 class="text-center text-white menu--header">{{menu.Name}}</h1>
           </div>
         </div>
       </div>
@@ -45,7 +53,20 @@
                   style="background-image: url('/images/{{this.image}}'); background-position: center;
     background-repeat: no-repeat; background-size: cover;"
                 >
-                  <h3>{{this.Name}}</h3>
+                  <h1 class="text-white text-center">{{this.Name}}</h1>
+                </div>
+                <div class="col-12 p-0">
+                  {{#each this.Urunler}}
+                    <div class="uruncontainer d-flex justify-content-between">
+                      <img
+                        style="height:200px"
+                        class="img-fluid p-0"
+                        src="/images/{{this.image}}"
+                        alt=""
+                      />
+                      <h4 class="p-0">{{this.Name}}</h4>
+                    </div>
+                  {{/each}}
                 </div>
               </div>
             {{/each}}

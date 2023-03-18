@@ -15,7 +15,7 @@ router.get("/", async (req: any, res: any) => {
 router.get("/menu/:name", async (req: Request, res: Response) => {
   const menuid = req.params.name;
 
-  const menu = await Menu.findOne({ Name: menuid }).populate({
+  const menu = await Menu.findOne({ Slug: menuid }).populate({
     path: "Kategoriler",
     populate: [{ path: "Urunler" }],
   });
