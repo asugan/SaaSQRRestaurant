@@ -42,12 +42,30 @@
       </div>
     </section>
 
-    <section class="categories">
+    <section>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-8 offset-2 p-0">
+            <div class="buttons">
+              {{#each menu.Kategoriler}}
+                <button
+                  class="btn btn-warning"
+                  onclick="filterfunc(this)"
+                >{{this.Name}}</button>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="categories mt-5 mb-5">
       <div class="container">
         <div class="row">
           <div class="col-8 offset-2">
             {{#each menu.Kategoriler}}
-              <div class="row">
+              <div class="row selectrow {{this.Name}}">
                 <div
                   class="col-12 p-5 category--background"
                   style="background-image: url('/images/{{this.image}}'); background-position: center;
@@ -80,5 +98,6 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/menu.js"></script>
   </body>
 </html>
