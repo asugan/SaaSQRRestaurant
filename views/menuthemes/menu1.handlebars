@@ -15,14 +15,6 @@
     .menu--header{ background-color: black; }
   </style>
   <body>
-    {{!-- <h1>{{menu.Name}}</h1>
-
-    {{#each menu.Kategoriler}}
-      <h5>{{this.Name}}</h5>
-      {{#each this.Urunler}}
-        <h5>{{this.Name}}</h5>
-      {{/each}}
-    {{/each}} --}}
 
     <section class="menu--header">
       <div class="container">
@@ -47,6 +39,10 @@
         <div class="row">
           <div class="col-8 offset-2 p-0">
             <div class="buttons">
+              <button
+                class="btn btn-warning"
+                onclick="filterfunc(this)"
+              >Hepsi</button>
               {{#each menu.Kategoriler}}
                 <button
                   class="btn btn-warning"

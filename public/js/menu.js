@@ -13,13 +13,25 @@ const filterfunc = (name) => {
     (item) => !item.includes(itemname)
   );
 
-  for (i = 0; i < otherfiltered.length; i++) {
-    const item = document.getElementsByClassName(otherfiltered[i]);
-    item[0].style.display = "none";
-  }
+  if (itemname === "Hepsi") {
+    for (i = 0; i < otherfiltered.length; i++) {
+      const item = document.getElementsByClassName(otherfiltered[i]);
+      item[0].style.display = "block";
+    }
 
-  for (i = 0; i < filtered.length; i++) {
-    const item = document.getElementsByClassName(filtered[i]);
-    item[0].style.display = "block";
+    for (i = 0; i < filtered.length; i++) {
+      const item = document.getElementsByClassName(filtered[i]);
+      item[0].style.display = "block";
+    }
+  } else {
+    for (i = 0; i < otherfiltered.length; i++) {
+      const item = document.getElementsByClassName(otherfiltered[i]);
+      item[0].style.display = "none";
+    }
+
+    for (i = 0; i < filtered.length; i++) {
+      const item = document.getElementsByClassName(filtered[i]);
+      item[0].style.display = "block";
+    }
   }
 };
