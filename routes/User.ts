@@ -149,8 +149,19 @@ router.post(
   async (req: any, res: Response) => {
     const { name } = req.body;
     const id: any = req.token.id;
-    const image = req.file.filename;
     const slug = stringToSlug(name);
+
+    const filePath = "public/images";
+    const splitname = req.file.filename.split(".")[0];
+    const image = stringToSlug(splitname) + ".webp";
+
+    await fs.rename(
+      `${filePath}/${req.file.filename}`,
+      `${filePath}/${image}`,
+      () => {
+        console.log("success");
+      }
+    );
 
     const user = await User.findById(id);
 
@@ -180,7 +191,17 @@ router.post(
   async (req: any, res: Response) => {
     const { name, idmenu } = req.body;
     const id: any = req.token.id;
-    const image = req.file.filename;
+    const filePath = "public/images";
+    const splitname = req.file.filename.split(".")[0];
+    const image = stringToSlug(splitname) + ".webp";
+
+    await fs.rename(
+      `${filePath}/${req.file.filename}`,
+      `${filePath}/${image}`,
+      () => {
+        console.log("success");
+      }
+    );
 
     const user = await User.findById(id).populate("userMenu");
     const menuid = idmenu;
@@ -218,7 +239,17 @@ router.post(
   verify,
   async (req: any, res: Response) => {
     const { name, price, kategori, menuid } = req.body;
-    const image = req.file.filename;
+    const filePath = "public/images";
+    const splitname = req.file.filename.split(".")[0];
+    const image = stringToSlug(splitname) + ".webp";
+
+    await fs.rename(
+      `${filePath}/${req.file.filename}`,
+      `${filePath}/${image}`,
+      () => {
+        console.log("success");
+      }
+    );
 
     const category = await Kategori.findById(kategori);
 
