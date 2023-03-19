@@ -82,6 +82,15 @@ router.get("/menu/post", async (req: Request, res: Response) => {
   res.render("user/menupost");
 });
 
+router.get("/:menu/edit", async (req: Request, res: Response) => {
+  const menuid = req.params.menu;
+  const findmenu = await Menu.findOne({ Slug: menuid });
+
+  res.render("user/editmenupost", {
+    menu: findmenu,
+  });
+});
+
 router.get("/:menu/kategoriekle", verify, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
@@ -249,6 +258,36 @@ router.post("/menu/postmasa", verify, async (req: any, res: Response) => {
     console.log(err);
   }
 });
+
+router.post(
+  "/menu/edit",
+  upload.single("image"),
+  verify,
+  async (req: any, res: any) => {
+    const { name, id } = req.body;
+
+    const menu = await Menu.findById(id);
+    const slug = menu.Slug;
+
+    if (req.file) {
+      const image = req.file.filename;
+      const updatedData = {
+        Name: name,
+        image: image,
+      };
+      const options = { new: true };
+      const result = await Menu.findByIdAndUpdate(id, updatedData, options);
+      res.redirect(`/user/${slug}/edit`);
+    } else {
+      const updatedData = {
+        Name: name,
+      };
+      const options = { new: true };
+      const result = await Menu.findByIdAndUpdate(id, updatedData, options);
+      res.redirect(`/user/${slug}/edit`);
+    }
+  }
+);
 
 router.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;
