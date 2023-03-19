@@ -14,6 +14,7 @@ const { serialize } = require("cookie");
 const multer = require("multer");
 const path = require("path");
 const SharpMulter = require("sharp-multer");
+const fs = require("fs");
 
 require("dotenv").config();
 
@@ -268,9 +269,21 @@ router.post(
 
     const menu = await Menu.findById(id);
     const slug = menu.Slug;
+    const filePath = "public/images";
 
     if (req.file) {
-      const image = req.file.filename;
+      await fs.unlinkSync(`${filePath}/${menu.image}`);
+      const splitname = req.file.filename.split(".")[0];
+      const image = stringToSlug(splitname) + ".webp";
+
+      await fs.rename(
+        `${filePath}/${req.file.filename}`,
+        `${filePath}/${image}`,
+        () => {
+          console.log("success");
+        }
+      );
+
       const updatedData = {
         Name: name,
         image: image,
