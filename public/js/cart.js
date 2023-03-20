@@ -1,4 +1,5 @@
 const cart = [];
+const orderinput = document.getElementsByClassName("orderinput")[0];
 
 const sendid = async (id) => {
   const urunid = id.classList[0];
@@ -29,5 +30,8 @@ const submit = async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(cart),
-  });
+  })
+    .then((res) => res.json())
+    .then((json) => (window.location.href = `/order/getorder/${json}`))
+    .catch((err) => console.error("error:" + err));
 };
