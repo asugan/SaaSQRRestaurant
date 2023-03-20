@@ -50,7 +50,7 @@ router.post("/scan", async (req, res) => {
   qr.toDataURL(url, opts, async (err: any, src: any) => {
     if (err) res.send("Error occured");
 
-    const findmenu = await Menu.findById(menu);
+    const findmenu = await Menu.findOne({ Slug: menu });
 
     if (findmenu) {
       findmenu.QRCode = src;

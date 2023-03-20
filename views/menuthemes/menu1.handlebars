@@ -20,15 +20,25 @@
       <div class="container">
         <div class="row">
           <div
-            class="col-8 offset-2 pt-2 pb-2 d-flex justify-content-between align-items-center"
+            class="col-xl-8 offset-xl-2 pt-2 pb-2 d-flex justify-content-between align-items-center"
           >
-            <img
-              style="height:200px;"
-              class="img-fluid"
-              src="/images/{{menu.image}}"
-              alt=""
-            />
-            <h1 class="text-center text-white menu--header">{{menu.Name}}</h1>
+            <div class="row">
+              <div
+                class="col-lg-8 d-flex align-items-center justify-content-start"
+              >
+                <img
+                  style="height:200px;"
+                  class="img-fluid"
+                  src="/images/{{menu.image}}"
+                  alt=""
+                />
+              </div>
+              <div
+                class="col-lg-4 d-flex align-items-center justify-content-end"
+              >
+                <h1 class="text-center text-white">{{menu.Name}}</h1>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -59,7 +69,7 @@
     <section class="categories mt-5 mb-5">
       <div class="container">
         <div class="row">
-          <div class="col-8 offset-2">
+          <div class="col-lg-8 offset-lg-2">
             {{#each menu.Kategoriler}}
               <div class="row selectrow {{this.Name}}">
                 <div
@@ -69,16 +79,40 @@
                 >
                   <h1 class="text-white text-center">{{this.Name}}</h1>
                 </div>
-                <div class="col-12 p-0">
+                <div
+                  class="col-12 pt-3 pb-3"
+                  style="background-color: black; border-bottom:2px solid white;"
+                >
                   {{#each this.Urunler}}
-                    <div class="uruncontainer d-flex justify-content-between">
-                      <img
-                        style="height:200px"
-                        class="img-fluid p-0"
-                        src="/images/{{this.image}}"
-                        alt=""
-                      />
-                      <h4 class="p-0">{{this.Name}}</h4>
+                    <div class="uruncontainer ps-3 pe-3">
+                      <div class="row">
+                        <div
+                          class="col-xl-4 p-0 d-flex justify-content-center align-items-center"
+                        >
+                          <img
+                            style="max-height:180px; min-height:180px; max-width:250px; min-width:250px"
+                            class="img-fluid rounded-circle"
+                            src="/images/{{this.image}}"
+                            alt=""
+                          />
+                        </div>
+                        <div
+                          class="col-xl-6 d-flex justify-content-center align-items-center mt-3 mt-xl-0"
+                        >
+                          <div class="aciklama text-center">
+                            <h4 class="text-white">{{this.Name}}</h4>
+                            <p class="text-white">Lorem ipsum dolor sit amet
+                              consectetur adipisicing elit. Similique, ipsum
+                              temporibus! Laboriosam quasi ea commodi
+                              dignissimos ipsum doloribus. Quia, consequatur!</p>
+                          </div>
+                        </div>
+                        <div
+                          class="col-xl-2 p-0 d-flex justify-content-center align-items-center"
+                        >
+                          <h4 class="text-white">{{this.Price}}₺</h4>
+                        </div>
+                      </div>
                     </div>
                   {{/each}}
                 </div>
