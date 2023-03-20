@@ -1,5 +1,10 @@
 const cart = [];
 const orderinput = document.getElementsByClassName("orderinput")[0];
+function delay(milliseconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+}
 
 const sendid = async (id) => {
   const urunid = id.classList[0];
@@ -32,6 +37,7 @@ const submit = async () => {
     body: JSON.stringify(cart),
   })
     .then((res) => res.json())
+    .then(await delay(1500))
     .then((json) => (window.location.href = `/order/getorder/${json}`))
     .catch((err) => console.error("error:" + err));
 };
