@@ -9,6 +9,7 @@ const MainController = require("./routes/Main");
 const UserController = require("./routes/User");
 const StripeController = require("./routes/Stripe");
 const IyzicoController = require("./routes/Iyzico");
+const OrderController = require("./routes/Order");
 const path = require("path");
 const {
   allowInsecurePrototypeAccess,
@@ -57,6 +58,7 @@ app.use("/", MainController);
 app.use("/user", UserController);
 app.use("/stripe", StripeController);
 app.use("/iyzipay", IyzicoController);
+app.use("/order", OrderController);
 app.get("*", function (req, res) {
   res.status(404).render("error/404");
 });
