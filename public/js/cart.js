@@ -1,5 +1,6 @@
 const cart = [];
 const orderinput = document.getElementsByClassName("orderinput")[0];
+// const numberinput = document.getElementsByClassName("numberinput")[0];
 
 function delay(milliseconds) {
   return new Promise((resolve) => {
@@ -27,11 +28,12 @@ const sendid = async (id) => {
   const selectelement = select[0].parentElement;
   const urunadi = selectelement.getElementsByClassName("itemname")[0].innerHTML;
   const fiyat = selectelement.getElementsByClassName("itemprice")[0].innerHTML;
+  const adet = selectelement.getElementsByClassName("numberinput")[0].value;
 
-  cart.push({ id: urunid, urunadi: urunadi, fiyat: fiyat, adet: 2 });
+  cart.push({ id: urunid, urunadi: urunadi, fiyat: fiyat, adet: adet });
 
   const fiyatlar = cart.map((i) => {
-    return Number(i.fiyat.split("₺")[0]);
+    return Number(i.fiyat.split("₺")[0] * i.adet);
   });
 
   let mycart = document.getElementsByClassName("cart")[0];
@@ -44,7 +46,7 @@ const sendid = async (id) => {
             <div class="card border-secondary col-lg-4">
                 <div class="card-header">Urun ID</div>
                 <div class="card-body text-secondary">
-                    <h5 class="card-title">${cart[i].id}</h5>
+                    <h5 class="card-title">${cart[i].adet}</h5>
                 </div>
             </div>
             <div class="card border-secondary col-lg-4">
@@ -80,4 +82,32 @@ const submit = async () => {
     .then(await delay(1500))
     .then((json) => (window.location.href = `/order/getorder/${json}`))
     .catch((err) => console.error("error:" + err));
+};
+
+const valueup = (id) => {
+  const select = document.getElementsByClassName(
+    `uruncontainer ${id.classList[0]}`
+  );
+
+  const selectelement = select[0].parentElement;
+
+  const numberinput = selectelement.getElementsByClassName("numberinput")[0];
+
+  if (numberinput.value < 10) {
+    numberinput.value++;
+  }
+};
+
+const valuedown = (id) => {
+  const select = document.getElementsByClassName(
+    `uruncontainer ${id.classList[0]}`
+  );
+
+  const selectelement = select[0].parentElement;
+
+  const numberinput = selectelement.getElementsByClassName("numberinput")[0];
+
+  if (numberinput.value > 1) {
+    numberinput.value--;
+  }
 };

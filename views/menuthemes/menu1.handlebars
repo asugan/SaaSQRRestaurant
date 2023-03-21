@@ -101,10 +101,15 @@
                         >
                           <div class="aciklama text-center">
                             <h4 class="text-white itemname">{{this.Name}}</h4>
-                            <p class="text-white">Lorem ipsum dolor sit amet
-                              consectetur adipisicing elit. Similique, ipsum
-                              temporibus! Laboriosam quasi ea commodi
-                              dignissimos ipsum doloribus. Quia, consequatur!</p>
+                            <button
+                              class="{{this._id}}"
+                              onclick="valuedown(this)"
+                            >-</button>
+                            <input class="numberinput" type="text" value="1" />
+                            <button
+                              class="{{this._id}}"
+                              onclick="valueup(this)"
+                            >+</button>
                             <button
                               class="{{this._id}} btn btn-md btn-warning"
                               onclick="sendid(this)"
