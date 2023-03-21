@@ -20,14 +20,16 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
     populate: [{ path: "Urunler" }],
   });
 
-  console.log(menu);
-
-  try {
-    res.render("menuthemes/menu1", {
-      menu: menu,
-    });
-  } catch (err) {
-    console.log(err);
+  if (menu) {
+    try {
+      res.render("menuthemes/menu1", {
+        menu: menu,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    res.render("error/404");
   }
 });
 
