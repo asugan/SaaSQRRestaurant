@@ -28,7 +28,7 @@ const sendid = async (id) => {
   const urunadi = selectelement.getElementsByClassName("itemname")[0].innerHTML;
   const fiyat = selectelement.getElementsByClassName("itemprice")[0].innerHTML;
 
-  cart.push({ id: urunid, urunadi: urunadi, fiyat: fiyat });
+  cart.push({ id: urunid, urunadi: urunadi, fiyat: fiyat, adet: 2 });
 
   const fiyatlar = cart.map((i) => {
     return Number(i.fiyat.split("₺")[0]);

@@ -11,6 +11,12 @@ const OrderSchema = new Schema({
       required: true,
     },
   ],
+  Adetler: [
+    {
+      type: Number,
+      required: true,
+    },
+  ],
   Masaid: {
     // Productta Schema type: Schema.Types.ObjectId,
     type: Number,

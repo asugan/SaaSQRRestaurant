@@ -7,6 +7,13 @@
   </head>
   <body>
     <h1>Order Page</h1>
+    {{#each order.Urunler}}
+      <h1>{{this.Name}}</h1>
+    {{/each}}
+
+    {{#each order.Adetler}}
+      <h1>{{this}}</h1>
+    {{/each}}
 
     <form action="/order/iyzipay" method="post">
       <input name="orderid" type="hidden" value="{{orderid}}" />
