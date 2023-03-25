@@ -60,7 +60,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Yönetim Paneli</span></a>
         </li>
 
         <!-- Divider -->
@@ -68,7 +68,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Interface
+          Menüleriniz
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -82,7 +82,7 @@
             aria-controls="collapseTwo"
           >
             <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
+            <span>Menü Düzenle</span>
           </a>
           <div
             id="collapseTwo"
@@ -91,11 +91,11 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Custom Components:</h6>
+              <h6 class="collapse-header">Menülerinizi Düzenleyin:</h6>
               {{#each user.userMenu}}
                 <a
                   class="collapse-item"
-                  href="/menu/{{this.Name}}"
+                  href="{{this.Slug}}/edit"
                 >{{this.Name}}</a>
               {{/each}}
 
@@ -387,27 +387,35 @@
               </div>
 
               <div class="col-12 mt-3">
-                {{#each user.userMenu}}
-                  {{#if this.QRCode}}
-                    <div class="image">
-                      <img
-                        src="{{this.QRCode}}"
-                        class="img-thumbnail"
-                        alt="QR Code Image"
-                      />
-                    </div>
-                    <div class="download mt-3">
-                      <a
-                        href="{{this.QRCode}}"
-                        download="{{this.Name}}-QR"
-                        class="ml-5"
-                      ><button
-                          type="button"
-                          class="btn btn-primary"
-                        >İndir</button></a>
-                    </div>
-                  {{/if}}
-                {{/each}}
+                <div class="row">
+                  {{#each user.userMenu}}
+                    {{#if this.QRCode}}
+                      <div
+                        class="col-4 d-flex justify-content-center align-items-center flex-column"
+                      >
+                        <div class="qrhead">
+                          <h3 class="text-dark">{{this.Name}}</h3>
+                        </div>
+                        <div class="image">
+                          <img
+                            src="{{this.QRCode}}"
+                            class="img-thumbnail"
+                            alt="QR Code Image"
+                          />
+                        </div>
+                        <div class="download mt-3">
+                          <a
+                            href="{{this.QRCode}}"
+                            download="{{this.Slug}}-QR"
+                          ><button
+                              type="button"
+                              class="btn btn-primary pr-5 pl-5"
+                            >İndir</button></a>
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
+                </div>
               </div>
             </div>
 
