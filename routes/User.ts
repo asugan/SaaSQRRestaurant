@@ -80,14 +80,14 @@ router.get("/dashboard", verify, async (req: any, res: Response) => {
 });
 
 router.get("/menu/post", async (req: Request, res: Response) => {
-  res.render("user/menudashboardpost");
+  res.render("user/dashboard/menuaddpages/menudashboardpost");
 });
 
 router.get("/:menu/edit", async (req: Request, res: Response) => {
   const menuid = req.params.menu;
   const findmenu = await Menu.findOne({ Slug: menuid });
 
-  res.render("user/editmenupost", {
+  res.render("user/dashboard/menueditpages/editmenupost", {
     menu: findmenu,
   });
 });
@@ -106,7 +106,7 @@ router.get("/:menu/kategoriekle", verify, async (req: any, res: Response) => {
 
     console.log(findmenu);
 
-    res.render("user/menukategoripost", {
+    res.render("user/dashboard/menuaddpages/menukategoripost", {
       menuid: menuid,
       menu: findmenu,
     });
@@ -124,7 +124,7 @@ router.get("/:menu/urunekle", verify, async (req: any, res: Response) => {
     populate: [{ path: "Urunler" }],
   });
 
-  res.render("user/menuurunpost", {
+  res.render("user/dashboard/menuaddpages/menuurunpost", {
     menu: findmenu,
     menuid: menuid,
   });
