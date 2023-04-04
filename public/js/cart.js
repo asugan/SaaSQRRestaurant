@@ -29,6 +29,7 @@ const sendid = async (id) => {
   const urunadi = selectelement.getElementsByClassName("itemname")[0].innerHTML;
   const fiyat = selectelement.getElementsByClassName("itemprice")[0].innerHTML;
   const adet = selectelement.getElementsByClassName("numberinput")[0].value;
+  const cartadet = document.getElementsByClassName("bagspan")[0];
 
   cart.push({ id: urunid, urunadi: urunadi, fiyat: fiyat, adet: adet });
 
@@ -36,37 +37,31 @@ const sendid = async (id) => {
     return Number(i.fiyat.split("₺")[0] * i.adet);
   });
 
-  let mycart = document.getElementsByClassName("cart")[0];
+  let mycart = document.getElementsByClassName("cartinside")[0];
   let myfiyatlar = document.getElementsByClassName("maliyet")[0];
   let htmlcart = "";
+  cartadet.innerHTML = cart.length;
 
   for (let i = 0; i < cart.length; i++) {
     htmlcart += `
-        <div class="card-group">
-            <div class="card border-secondary col-lg-4">
-                <div class="card-header">Urun ID</div>
-                <div class="card-body text-secondary">
-                    <h5 class="card-title">${cart[i].adet}</h5>
-                </div>
-            </div>
-            <div class="card border-secondary col-lg-4">
-                <div class="card-header">Urun Adı</div>
-                <div class="card-body text-secondary">
-                    <h5 class="card-title">${cart[i].urunadi}</h5>
-                </div>
-            </div>
-            <div class="card border-secondary col-lg-4">
-                <div class="card-header">Fiyat</div>
-                <div class="card-body text-secondary">
-                    <h5 class="card-title">${cart[i].fiyat}</h5>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-2">
+            <h5>${cart[i].adet}</h5>
+          </div>
+          <div class="col-8">
+            <h5>${cart[i].urunadi}</h5>
+          </div>
+          <div class="col-2">
+            <h5>${cart[i].fiyat}</h5>
+          </div>
         </div>
     `;
   }
 
   mycart.innerHTML = htmlcart;
-  myfiyatlar.innerHTML = `<h1 class="text-center">${sumArray(fiyatlar)} ₺</h1>`;
+  myfiyatlar.innerHTML = `<h3 class="text-center">Toplam: ${sumArray(
+    fiyatlar
+  )} ₺</h3>`;
 };
 
 const submit = async () => {

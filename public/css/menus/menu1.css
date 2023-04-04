@@ -1,0 +1,89 @@
+body {
+  background-color: #fcffe7 !important;
+}
+
+button {
+  background-color: #bad7e9 !important;
+  border: #eb455f 1px solid !important;
+}
+
+.menu--header {
+  background-color: #bad7e9;
+}
+
+.menu--header h1 {
+  color: #2b3467;
+}
+
+.headerlogo {
+  height: 200px;
+}
+
+.bagcontainer {
+  background-color: #fcffe7;
+}
+
+.fa-shopping-bag {
+  color: #2b3467;
+  cursor: pointer;
+}
+
+.shoppingbagcontainer {
+  position: relative;
+}
+
+.bagspan {
+  position: absolute;
+  cursor: pointer;
+  color: #fcffe7;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.categorycontainer {
+  background-color: #fcffe7;
+}
+
+.category--background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.imgitem {
+  max-height: 180px;
+  min-height: 180px;
+  max-width: 250px;
+  min-width: 250px;
+}
+
+.numberinput {
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.itembg {
+  background-color: #2b3467;
+  border-bottom: 2px solid #eb455f;
+}
+
+.btnsupdown {
+  font-weight: bolder !important;
+}
+
+.cartcontainer {
+  display: none;
+}
+
+.fa-facebook-official {
+  color: #2b3467;
+}
+
+.fa-instagram {
+  color: #2b3467;
+}
+
+.fa-twitter-square {
+  color: #2b3467;
+}

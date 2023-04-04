@@ -35,3 +35,15 @@ const filterfunc = (name) => {
     }
   }
 };
+
+const shoppingbag = document.getElementsByClassName("fa-shopping-bag")[0];
+
+shoppingbag.addEventListener("click", function () {
+  const cart = document.getElementsByClassName("cartcontainer")[0];
+
+  if (cart.style.display === "block") {
+    cart.style.display = "none";
+  } else {
+    cart.style.display = "block";
+  }
+});
