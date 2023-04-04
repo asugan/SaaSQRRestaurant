@@ -16,7 +16,8 @@ button {
 }
 
 .headerlogo {
-  height: 200px;
+  width: 250px !important;
+  height: 200px !important;
 }
 
 .bagcontainer {

@@ -80,7 +80,7 @@ router.get("/dashboard", verify, async (req: any, res: Response) => {
 });
 
 router.get("/menu/post", async (req: Request, res: Response) => {
-  res.render("user/menupost");
+  res.render("user/menudashboardpost");
 });
 
 router.get("/:menu/edit", async (req: Request, res: Response) => {
@@ -106,7 +106,7 @@ router.get("/:menu/kategoriekle", verify, async (req: any, res: Response) => {
 
     console.log(findmenu);
 
-    res.render("user/menupost1", {
+    res.render("user/menukategoripost", {
       menuid: menuid,
       menu: findmenu,
     });
@@ -124,7 +124,7 @@ router.get("/:menu/urunekle", verify, async (req: any, res: Response) => {
     populate: [{ path: "Urunler" }],
   });
 
-  res.render("user/menupost2", {
+  res.render("user/menuurunpost", {
     menu: findmenu,
     menuid: menuid,
   });
