@@ -15,6 +15,7 @@ const multer = require("multer");
 const path = require("path");
 const SharpMulter = require("sharp-multer");
 const fs = require("fs");
+let date = new Date().toLocaleDateString("tr-TR");
 
 require("dotenv").config();
 
@@ -244,7 +245,7 @@ router.post(
 
     const filePath = "public/images";
     const splitname = req.file.filename.split(".")[0];
-    const image = stringToSlug(splitname) + ".webp";
+    const image = stringToSlug(splitname + " " + date) + ".webp";
 
     await fs.rename(
       `${filePath}/${req.file.filename}`,
@@ -284,7 +285,7 @@ router.post(
     const id: any = req.token.id;
     const filePath = "public/images";
     const splitname = req.file.filename.split(".")[0];
-    const image = stringToSlug(splitname) + ".webp";
+    const image = stringToSlug(splitname + " " + date) + ".webp";
 
     await fs.rename(
       `${filePath}/${req.file.filename}`,
@@ -333,7 +334,7 @@ router.post(
     const id: any = req.token.id;
     const filePath = "public/images";
     const splitname = req.file.filename.split(".")[0];
-    const image = stringToSlug(splitname) + ".webp";
+    const image = stringToSlug(splitname + " " + date) + ".webp";
 
     await fs.rename(
       `${filePath}/${req.file.filename}`,
@@ -414,7 +415,7 @@ router.post(
       if (req.file) {
         await fs.unlinkSync(`${filePath}/${menu.image}`);
         const splitname = req.file.filename.split(".")[0];
-        const image = stringToSlug(splitname) + ".webp";
+        const image = stringToSlug(splitname + " " + date) + ".webp";
 
         await fs.rename(
           `${filePath}/${req.file.filename}`,
@@ -466,7 +467,7 @@ router.post(
       if (req.file) {
         await fs.unlinkSync(`${filePath}/${menu.image}`);
         const splitname = req.file.filename.split(".")[0];
-        const image = stringToSlug(splitname) + ".webp";
+        const image = stringToSlug(splitname + " " + date) + ".webp";
 
         await fs.rename(
           `${filePath}/${req.file.filename}`,
@@ -526,7 +527,7 @@ router.post(
       if (req.file) {
         await fs.unlinkSync(`${filePath}/${menu.image}`);
         const splitname = req.file.filename.split(".")[0];
-        const image = stringToSlug(splitname) + ".webp";
+        const image = stringToSlug(splitname + " " + date) + ".webp";
 
         await fs.rename(
           `${filePath}/${req.file.filename}`,
