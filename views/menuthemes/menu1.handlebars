@@ -49,37 +49,8 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 offset-lg-2 pt-2 pb-4 bagcontainer">
-            <div class="column d-flex flex-column">
-              {{!               <div
-                class="shoppingbagcontainer d-flex justify-content-center align-items-center"
-              >
-                <i class="fa fa-4x fa-shopping-bag"></i>
-                <span class="bagspan">0</span>
-              </div> }}
-              {{!--     <div class="cartcontainer text-center pt-2">
-                {{!    <div class="cartinside">
-                </div>
-                <div class="maliyet"></div> }}
-                <div class="buttondiv mt-4 d-flex justify-content-center">
-                  <button
-                    class="btn btn-md btn-warning"
-                    onclick="submit()"
-                  >Ödemeye Geç</button>
-                </div>
-              </div> --}}
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="row">
           <div class="col-lg-8 offset-lg-2 pr-2 pl-2 p-lg-0 categorycontainer">
-            <div class="buttons pb-3">
+            <div class="buttons pb-3 pt-3">
               <button
                 class="btn btn-warning mt-2 mt-lg-0"
                 onclick="filterfunc(this)"
@@ -183,9 +154,13 @@
                 <span class="bagspan">0</span>
               </div>
               <div class="cartcontainer text-center">
-                <div class="cartinside">
+                <div class="container">
+                  <div class="col-lg-8 offset-lg-2">
+                    <div class="cartinside">
+                    </div>
+                    <div class="maliyet"></div>
+                  </div>
                 </div>
-                <div class="maliyet"></div>
               </div>
               <i
                 class="fa fa-3x fa-arrow-right"
