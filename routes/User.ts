@@ -559,23 +559,48 @@ router.post(
   }
 );
 
-router.post("/:id/kategorisil", authornot, async (req, res) => {
-  try {
-    const id = req.params.id;
+router.post("/:id/kategorisil", verify, async (req: any, res: any) => {
+  const id = req.params.id;
+  const category = await Kategori.findById(id);
+  const mymenu = await Menu.findById(category.Menu._id);
+  const userid: any = req.token.id;
+  const user = await User.findById(userid).populate("userMenu");
+  const filter = user.userMenu.filter((item) => {
+    return item === mymenu._id;
+  });
+
+  if (filter) {
     const data = await Kategori.findByIdAndDelete(id);
-    res.redirect("/user/dashboard");
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+    try {
+      res.redirect(`/user/${mymenu.Slug}/edit2`);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  } else {
+    res.render("error/401");
   }
 });
 
-router.post("/:id/urunsil", authornot, async (req, res) => {
-  try {
-    const id = req.params.id;
-    const data = await Urun.findByIdAndDelete(id);
-    res.redirect("/user/dashboard");
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+router.post("/:id/urunsil", verify, async (req: any, res: any) => {
+  const id = req.params.id;
+  const menu = await Urun.findById(id);
+  const mycategory = await Kategori.findById(menu.Kategori._id);
+  const mymenu = await Menu.findById(mycategory.Menu._id);
+  const userid: any = req.token.id;
+  const user = await User.findById(userid).populate("userMenu");
+  const filter = user.userMenu.filter((item) => {
+    return item === mymenu._id;
+  });
+
+  if (filter) {
+    try {
+      const data = await Urun.findByIdAndDelete(id);
+      res.redirect(`/user/${mymenu.Slug}/edit2`);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  } else {
+    res.render("error/401");
   }
 });
 
