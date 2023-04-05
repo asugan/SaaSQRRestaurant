@@ -87,8 +87,46 @@ router.get("/:menu/edit", async (req: Request, res: Response) => {
   const menuid = req.params.menu;
   const findmenu = await Menu.findOne({ Slug: menuid });
 
-  res.render("user/dashboard/menueditpages/editmenupost", {
+  res.render("user/dashboard/menueditpages/menueditdashboardpost", {
     menu: findmenu,
+  });
+});
+
+router.get("/:menu/edit2", async (req: Request, res: Response) => {
+  const menuid = req.params.menu;
+  const findmenu = await Menu.findOne({ Slug: menuid }).populate({
+    path: "Kategoriler",
+    populate: [{ path: "Urunler" }],
+  });
+
+  res.render("user/dashboard/menueditpages/menueditkategori", {
+    menu: findmenu,
+  });
+});
+
+router.get("/:menu/urunedit", async (req: Request, res: Response) => {
+  const urunid = req.params.menu;
+  const findmenu = await Urun.findById(urunid);
+  const mycategory = await Kategori.findById(findmenu.Kategori._id);
+  const mymenu = await Menu.findById(mycategory.Menu._id).populate(
+    "Kategoriler"
+  );
+
+  res.render("user/dashboard/menueditpages/menuediturun", {
+    menu: findmenu,
+    menuSlug: mymenu,
+  });
+});
+
+router.get("/:menu/kategoriedit", async (req: Request, res: Response) => {
+  const urunid = req.params.menu;
+  const findmenu = await Kategori.findById(urunid);
+  const mymenu = await Menu.findById(findmenu.Menu._id);
+  const Slug = mymenu.Slug;
+
+  res.render("user/dashboard/menueditpages/menueditonepagekategori", {
+    menu: findmenu,
+    menuSlug: Slug,
   });
 });
 
@@ -332,6 +370,114 @@ router.post(
     }
   }
 );
+
+router.post(
+  "/menu/kategoriedit",
+  upload.single("image"),
+  verify,
+  async (req: any, res: any) => {
+    const { name, id } = req.body;
+
+    const menu = await Kategori.findById(id);
+    const mymenu = await Menu.findById(menu.Menu._id);
+    const Slug = mymenu.Slug;
+    const filePath = "public/images";
+
+    if (req.file) {
+      await fs.unlinkSync(`${filePath}/${menu.image}`);
+      const splitname = req.file.filename.split(".")[0];
+      const image = stringToSlug(splitname) + ".webp";
+
+      await fs.rename(
+        `${filePath}/${req.file.filename}`,
+        `${filePath}/${image}`,
+        () => {
+          console.log("success");
+        }
+      );
+
+      const updatedData = {
+        Name: name,
+        image: image,
+      };
+      const options = { new: true };
+      const result = await Kategori.findByIdAndUpdate(id, updatedData, options);
+      res.redirect(`/user/${Slug}/edit2`);
+    } else {
+      const updatedData = {
+        Name: name,
+      };
+      const options = { new: true };
+      const result = await Kategori.findByIdAndUpdate(id, updatedData, options);
+      res.redirect(`/user/${Slug}/edit2`);
+    }
+  }
+);
+
+router.post(
+  "/menu/urunedit",
+  upload.single("image"),
+  verify,
+  async (req: any, res: any) => {
+    const { name, id, price } = req.body;
+
+    const menu = await Urun.findById(id);
+    const mycategory = await Kategori.findById(menu.Kategori._id);
+    const mymenu = await Menu.findById(mycategory.Menu._id);
+    const filePath = "public/images";
+
+    if (req.file) {
+      await fs.unlinkSync(`${filePath}/${menu.image}`);
+      const splitname = req.file.filename.split(".")[0];
+      const image = stringToSlug(splitname) + ".webp";
+
+      await fs.rename(
+        `${filePath}/${req.file.filename}`,
+        `${filePath}/${image}`,
+        () => {
+          console.log("success");
+        }
+      );
+
+      const updatedData = {
+        Name: name,
+        image: image,
+        Price: price,
+      };
+      const options = { new: true };
+      const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+      res.redirect(`/user/${mymenu.Slug}/edit2`);
+    } else {
+      const updatedData = {
+        Name: name,
+        Price: price,
+      };
+      const options = { new: true };
+      const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+      res.redirect(`/user/${mymenu.Slug}/edit2`);
+    }
+  }
+);
+
+router.post("/:id/kategorisil", authornot, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await Kategori.findByIdAndDelete(id);
+    res.redirect("/user/dashboard");
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.post("/:id/urunsil", authornot, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await Urun.findByIdAndDelete(id);
+    res.redirect("/user/dashboard");
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 router.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;
