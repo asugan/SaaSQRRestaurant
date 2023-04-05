@@ -24,11 +24,6 @@ button {
   background-color: #fcffe7;
 }
 
-.fa-shopping-bag {
-  color: #2b3467;
-  cursor: pointer;
-}
-
 .shoppingbagcontainer {
   position: relative;
 }
@@ -78,6 +73,11 @@ button {
 }
 
 .cartcontainer {
+  background-color: #bad7e9;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
   display: none;
 }
 
@@ -107,4 +107,5 @@ button {
 
 .bottombar i {
   cursor: pointer;
+  color: #2b3467 !important;
 }

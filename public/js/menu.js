@@ -36,7 +36,7 @@ const filterfunc = (name) => {
   }
 };
 
-const shoppingbag = document.getElementsByClassName("fa-shopping-bag")[0];
+const shoppingbag = document.getElementsByClassName("shoppingbagcontainer")[0];
 
 shoppingbag.addEventListener("click", function () {
   const cart = document.getElementsByClassName("cartcontainer")[0];
