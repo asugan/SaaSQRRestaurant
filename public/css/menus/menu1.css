@@ -52,10 +52,14 @@ button {
 }
 
 .imgitem {
-  max-height: 180px;
-  min-height: 180px;
-  max-width: 250px;
-  min-width: 250px;
+  width: 220px !important;
+  height: 150px !important;
+}
+
+.itemprice {
+  background-color: #bad7e9;
+  padding: 0.5rem 1.2rem;
+  color: #2b3467 !important;
 }
 
 .numberinput {
@@ -87,4 +91,20 @@ button {
 
 .fa-twitter-square {
   color: #2b3467;
+}
+
+.categories {
+  margin-bottom: 6rem;
+}
+
+.bottombar {
+  background-color: #bad7e9;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.bottombar i {
+  cursor: pointer;
 }

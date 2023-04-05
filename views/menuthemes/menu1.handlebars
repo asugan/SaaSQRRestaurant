@@ -21,32 +21,26 @@
     <section class="menu--header">
       <div class="container">
         <div class="row">
-          <div
-            class="col-xl-8 offset-xl-2 pt-2 pb-2 d-flex justify-content-between align-items-center"
-          >
-
-            <div
-              class="col-lg-8 d-flex align-items-center justify-content-center justify-content-md-start"
-            >
-              <img
-                class="img-fluid headerlogo"
-                src="/images/{{menu.image}}"
-                alt=""
-              />
-            </div>
-            <div class="col-lg-4 d-flex flex-column">
+          <div class="col-lg-8 offset-lg-2 pt-2 pb-2">
+            <div class="row">
               <div
-                class="social-media d-flex justify-content-between pt-3 pt-md-0"
+                class="col-lg-8 d-flex align-items-center justify-content-center justify-content-lg-start"
               >
-                <i class="fa fa-3x fa-facebook-official"></i>
-                <i class="fa fa-3x fa-instagram"></i>
-                <i class="fa fa-3x fa-twitter-square"></i>
+                <img
+                  class="img-fluid headerlogo mt-3 mt-lg-0"
+                  src="/images/{{menu.image}}"
+                  alt=""
+                />
               </div>
-              <h1
-                class="text-center pt-3 pb-3 pb-md-0 pt-md-5"
-              >{{menu.Name}}</h1>
+              <div class="col-lg-4 d-flex flex-column">
+                <div class="social-media d-flex justify-content-evenly pt-3">
+                  <i class="fa fa-3x fa-facebook-official"></i>
+                  <i class="fa fa-3x fa-instagram"></i>
+                  <i class="fa fa-3x fa-twitter-square"></i>
+                </div>
+                <h1 class="text-center pt-3 pb-3 pb-lg-0">{{menu.Name}}</h1>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -84,15 +78,15 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 offset-lg-2 p-0 categorycontainer">
-            <div class="buttons pt-3 pb-3">
+          <div class="col-lg-8 offset-lg-2 pr-2 pl-2 p-lg-0 categorycontainer">
+            <div class="buttons pb-3">
               <button
-                class="btn btn-warning"
+                class="btn btn-warning mt-2 mt-lg-0"
                 onclick="filterfunc(this)"
               >Hepsi</button>
               {{#each menu.Kategoriler}}
                 <button
-                  class="btn btn-warning"
+                  class="btn btn-warning mt-2 mt-lg-0"
                   onclick="filterfunc(this)"
                 >{{this.Name}}</button>
               {{/each}}
@@ -100,7 +94,6 @@
           </div>
         </div>
       </div>
-
     </section>
 
     <section class="categories">
@@ -162,7 +155,7 @@
                         <div
                           class="col-xl-2 p-0 d-flex justify-content-center align-items-center"
                         >
-                          <h4 class="text-white itemprice">{{this.Price}}₺</h4>
+                          <h4 class="itemprice">{{this.Price}}₺</h4>
                         </div>
                       </div>
                     </div>
@@ -170,6 +163,26 @@
                 </div>
               </div>
             {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="bottombar pt-4 pb-4">
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-lg-8 offset-lg-2 d-flex flex-row justify-content-between"
+            >
+              <i class="fa fa-3x fa-arrow-left" aria-hidden="true"></i>
+              <i class="fa fa-3x fa-home" aria-hidden="true"></i>
+              <i
+                class="fa fa-3x fa-arrow-right"
+                onclick="submit()"
+                aria-hidden="true"
+              ></i>
+            </div>
           </div>
         </div>
       </div>
