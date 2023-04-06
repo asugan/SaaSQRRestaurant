@@ -8,11 +8,8 @@
   <body>
     <h1>Order Page</h1>
     {{#each order.Urunler}}
-      <h1>{{this.Name}}</h1>
-    {{/each}}
-
-    {{#each order.Adetler}}
-      <h1>{{this}}</h1>
+      <h1>{{this.Urun.Name}}</h1>
+      <h1>{{this.Adet}}</h1>
     {{/each}}
 
     <form action="/order/iyzipay" method="post">

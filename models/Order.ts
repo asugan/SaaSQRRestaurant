@@ -7,13 +7,7 @@ const OrderSchema = new Schema({
   Urunler: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Urun",
-      required: true,
-    },
-  ],
-  Adetler: [
-    {
-      type: Number,
+      ref: "OrderUrun",
       required: true,
     },
   ],
