@@ -13,7 +13,7 @@ const filterfunc = (name) => {
     (item) => !item.includes(itemname)
   );
 
-  if (itemname === "Hepsi") {
+  if (itemname === "All") {
     for (i = 0; i < otherfiltered.length; i++) {
       const item = document.getElementsByClassName(otherfiltered[i]);
       item[0].style.display = "block";
@@ -38,6 +38,7 @@ const filterfunc = (name) => {
 
 const shoppingbag = document.getElementsByClassName("shoppingbagcontainer")[0];
 const rightarrow = document.getElementsByClassName("fa-arrow-right")[0];
+const leftarrow = document.getElementsByClassName("fa-arrow-left")[0];
 
 shoppingbag.addEventListener("click", function () {
   const cart = document.getElementsByClassName("cartcontainer")[0];
@@ -52,9 +53,11 @@ shoppingbag.addEventListener("click", function () {
 rightarrow.addEventListener("click", function () {
   const cartmodal = document.getElementsByClassName("cartmodal")[0];
 
-  if (cartmodal.style.display === "block") {
-    cartmodal.style.display = "none";
-  } else {
-    cartmodal.style.display = "block";
-  }
+  cartmodal.style.display = "block";
+});
+
+leftarrow.addEventListener("click", function () {
+  const cartmodal = document.getElementsByClassName("cartmodal")[0];
+
+  cartmodal.style.display = "none";
 });

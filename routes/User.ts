@@ -71,8 +71,6 @@ router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   try {
     const user = await User.findById(id).populate("userMenu");
 
-    console.log(user.userMenu);
-
     res.render("user/dashboard/index", {
       user: user,
     });
@@ -81,11 +79,16 @@ router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   }
 });
 
-router.get("/menu/post", verify, async (req: any, res: Response) => {
-  res.render("user/dashboard/menuaddpages/menudashboardpost");
+router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
+  const id = req.token.id;
+  const user = await User.findById(id).populate("userMenu");
+
+  res.render("user/dashboard/menuaddpages/menudashboardpost", {
+    user: user,
+  });
 });
 
-router.get("/:menu/orders", verify, async (req: any, res: Response) => {
+router.get("/:menu/orders", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
@@ -109,13 +112,14 @@ router.get("/:menu/orders", verify, async (req: any, res: Response) => {
 
     res.render("user/dashboard/orderpages/index", {
       menu: findmenu,
+      user: user,
     });
   } else {
     res.render("error/401");
   }
 });
 
-router.get("/:menu/edit", verify, async (req: any, res: Response) => {
+router.get("/:menu/edit", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
@@ -129,13 +133,14 @@ router.get("/:menu/edit", verify, async (req: any, res: Response) => {
 
     res.render("user/dashboard/menueditpages/menueditdashboardpost", {
       menu: findmenu,
+      user: user,
     });
   } else {
     res.render("error/401");
   }
 });
 
-router.get("/:menu/edit2", verify, async (req: any, res: Response) => {
+router.get("/:menu/edit2", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
@@ -152,13 +157,14 @@ router.get("/:menu/edit2", verify, async (req: any, res: Response) => {
 
     res.render("user/dashboard/menueditpages/menueditkategori", {
       menu: findmenu,
+      user: user,
     });
   } else {
     req.render("error/401");
   }
 });
 
-router.get("/:menu/urunedit", verify, async (req: any, res: Response) => {
+router.get("/:menu/urunedit", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
   const urunid = req.params.menu;
@@ -177,59 +183,70 @@ router.get("/:menu/urunedit", verify, async (req: any, res: Response) => {
     res.render("user/dashboard/menueditpages/menuediturun", {
       menu: findmenu,
       menuSlug: mymenu,
+      user: user,
     });
   } else {
     res.render("error/401");
   }
 });
 
-router.get("/:menu/kategoriedit", verify, async (req: any, res: Response) => {
-  const id: any = req.token.id;
-  const user = await User.findById(id).populate("userMenu");
-  const urunid = req.params.menu;
+router.get(
+  "/:menu/kategoriedit",
+  marabacheck,
+  async (req: any, res: Response) => {
+    const id: any = req.token.id;
+    const user = await User.findById(id).populate("userMenu");
+    const urunid = req.params.menu;
 
-  const filter = user.userMenu.filter((item) => {
-    return item === urunid;
-  });
-
-  if (filter) {
-    const findmenu = await Kategori.findById(urunid);
-    const mymenu = await Menu.findById(findmenu.Menu._id);
-    const Slug = mymenu.Slug;
-
-    res.render("user/dashboard/menueditpages/menueditonepagekategori", {
-      menu: findmenu,
-      menuSlug: Slug,
+    const filter = user.userMenu.filter((item) => {
+      return item === urunid;
     });
-  } else {
-    res.render("error/401");
+
+    if (filter) {
+      const findmenu = await Kategori.findById(urunid);
+      const mymenu = await Menu.findById(findmenu.Menu._id);
+      const Slug = mymenu.Slug;
+
+      res.render("user/dashboard/menueditpages/menueditonepagekategori", {
+        menu: findmenu,
+        menuSlug: Slug,
+        user: user,
+      });
+    } else {
+      res.render("error/401");
+    }
   }
-});
+);
 
-router.get("/:menu/kategoriekle", verify, async (req: any, res: Response) => {
-  const id: any = req.token.id;
-  const user = await User.findById(id).populate("userMenu");
-  const menuid = req.params.menu;
+router.get(
+  "/:menu/kategoriekle",
+  marabacheck,
+  async (req: any, res: Response) => {
+    const id: any = req.token.id;
+    const user = await User.findById(id).populate("userMenu");
+    const menuid = req.params.menu;
 
-  const filter = user.userMenu.filter((item) => {
-    return item === menuid;
-  });
-
-  if (filter) {
-    const findmenu = await Menu.findById(menuid).populate("Kategoriler");
-
-    console.log(findmenu);
-
-    res.render("user/dashboard/menuaddpages/menukategoripost", {
-      menuid: menuid,
-      menu: findmenu,
+    const filter = user.userMenu.filter((item) => {
+      return item === menuid;
     });
-  } else {
-    res.render("error/401");
-  }
-});
 
-router.get("/:menu/urunekle", verify, async (req: any, res: Response) => {
+    if (filter) {
+      const findmenu = await Menu.findById(menuid).populate("Kategoriler");
+
+      console.log(findmenu);
+
+      res.render("user/dashboard/menuaddpages/menukategoripost", {
+        menuid: menuid,
+        menu: findmenu,
+        user: user,
+      });
+    } else {
+      res.render("error/401");
+    }
+  }
+);
+
+router.get("/:menu/urunekle", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
@@ -247,13 +264,14 @@ router.get("/:menu/urunekle", verify, async (req: any, res: Response) => {
     res.render("user/dashboard/menuaddpages/menuurunpost", {
       menu: findmenu,
       menuid: menuid,
+      user: user,
     });
   } else {
     res.render("error/401");
   }
 });
 
-router.get("/menu/postmasa", verify, async (req: any, res: Response) => {
+router.get("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate({
     path: "userMenu",
@@ -268,7 +286,7 @@ router.get("/menu/postmasa", verify, async (req: any, res: Response) => {
 router.post(
   "/menu/post",
   upload.single("image"),
-  verify,
+  marabacheck,
   async (req: any, res: Response) => {
     const { name } = req.body;
     const id: any = req.token.id;
@@ -310,7 +328,7 @@ router.post(
 router.post(
   "/menu/post1",
   upload.single("image"),
-  verify,
+  marabacheck,
   async (req: any, res: Response) => {
     const { name, idmenu } = req.body;
     const id: any = req.token.id;
@@ -359,7 +377,7 @@ router.post(
 router.post(
   "/menu/post2",
   upload.single("image"),
-  verify,
+  marabacheck,
   async (req: any, res: Response) => {
     const { name, price, kategori, menuid } = req.body;
     const id: any = req.token.id;
@@ -406,7 +424,7 @@ router.post(
   }
 );
 
-router.post("/menu/postmasa", verify, async (req: any, res: Response) => {
+router.post("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
   const { number, menu } = req.body;
 
   const findmenu = await Menu.findById(menu);
@@ -429,7 +447,7 @@ router.post("/menu/postmasa", verify, async (req: any, res: Response) => {
 router.post(
   "/menu/edit",
   upload.single("image"),
-  verify,
+  marabacheck,
   async (req: any, res: any) => {
     const { name, id } = req.body;
     const userid: any = req.token.id;
@@ -480,7 +498,7 @@ router.post(
 router.post(
   "/menu/kategoriedit",
   upload.single("image"),
-  verify,
+  marabacheck,
   async (req: any, res: any) => {
     const { name, id } = req.body;
 
@@ -540,7 +558,7 @@ router.post(
 router.post(
   "/menu/urunedit",
   upload.single("image"),
-  verify,
+  marabacheck,
   async (req: any, res: any) => {
     const { name, id, price } = req.body;
 
@@ -591,7 +609,7 @@ router.post(
   }
 );
 
-router.post("/:id/kategorisil", verify, async (req: any, res: any) => {
+router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
   const id = req.params.id;
   const category = await Kategori.findById(id);
   const mymenu = await Menu.findById(category.Menu._id);
@@ -613,7 +631,7 @@ router.post("/:id/kategorisil", verify, async (req: any, res: any) => {
   }
 });
 
-router.post("/:id/urunsil", verify, async (req: any, res: any) => {
+router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   const id = req.params.id;
   const menu = await Urun.findById(id);
   const mycategory = await Kategori.findById(menu.Kategori._id);

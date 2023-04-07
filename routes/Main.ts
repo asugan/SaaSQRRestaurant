@@ -25,8 +25,6 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
     })
     .populate("Masalar");
 
-  console.log(menu.Masalar);
-
   if (menu) {
     try {
       res.render("menuthemes/menu1", {
