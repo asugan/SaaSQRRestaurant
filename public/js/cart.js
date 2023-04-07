@@ -34,7 +34,7 @@ const sendid = async (id) => {
   cart.push({ id: urunid, urunadi: urunadi, fiyat: fiyat, adet: adet });
 
   const fiyatlar = cart.map((i) => {
-    return Number(i.fiyat.split("₺")[0] * i.adet);
+    return Number(i.fiyat.split("$")[1] * i.adet);
   });
 
   let mycart = document.getElementsByClassName("cartinside")[0];
@@ -59,9 +59,9 @@ const sendid = async (id) => {
   }
 
   mycart.innerHTML = htmlcart;
-  myfiyatlar.innerHTML = `<h3 class="text-center">Toplam: ${sumArray(
+  myfiyatlar.innerHTML = `<h3 class="text-center">Total: $${sumArray(
     fiyatlar
-  )} ₺</h3>`;
+  )}</h3>`;
 };
 
 const submit = async () => {

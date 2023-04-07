@@ -9,6 +9,9 @@ const qr = require("qrcode");
 const router = express.Router();
 
 router.get("/", async (req: any, res: any) => {
+  //console.log(req.get("Accept-Language"));
+  //console.log(req.acceptsLanguages("en-US"));
+
   res.render("index");
 });
 

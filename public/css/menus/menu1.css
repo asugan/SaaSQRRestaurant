@@ -109,3 +109,23 @@ button {
   cursor: pointer;
   color: #2b3467 !important;
 }
+
+@media screen and (max-width: 600px) {
+  .btnsupdown {
+    padding: 0.2rem 0.5rem !important;
+  }
+
+  .imgitem {
+    width: 220px !important;
+    height: 100px !important;
+  }
+
+  .itemprice {
+    padding: 0.15rem 0.4rem !important;
+    color: #2b3467 !important;
+  }
+
+  .pricediv h4 {
+    font-size: 1.1rem;
+  }
+}
