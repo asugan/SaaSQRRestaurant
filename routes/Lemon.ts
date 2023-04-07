@@ -46,7 +46,7 @@ router.get("/", verify, async (req: any, res: any) => {
   }
 });
 
-router.get("/getuserdata", verify, async (req: any, res: any) => {
+/* router.get("/getuserdata", verify, async (req: any, res: any) => {
   const id: any = req.token.id;
   const user = await User.findById(id);
   let data: any;
@@ -67,6 +67,6 @@ router.get("/getuserdata", verify, async (req: any, res: any) => {
     });
 
   console.log(data);
-});
+}); */
 
 module.exports = router;
