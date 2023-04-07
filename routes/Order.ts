@@ -5,6 +5,7 @@ import { verify } from "../middlewares/Main";
 import { authornot } from "../middlewares/AuthCheck";
 import { Kategori } from "../models/Kategori";
 import { Urun } from "../models/Urun";
+import { Masa } from "../models/Masa";
 import { Order } from "../models/Order";
 import { OrderUrun } from "../models/OrderUrun";
 const router = express.Router();
@@ -17,10 +18,15 @@ const iyzipay = new Iyzipay({
 });
 
 router.post("/", async (req: any, res: any) => {
-  const urunler = req.body;
+  const urunler = req.body.cart;
+  const mymasaid = req.body.value;
+  const note = req.body.note;
 
-  const order = new Order({
-    Masaid: 13,
+  const findmasa = await Masa.findById(mymasaid);
+
+  const order: any = new Order({
+    Masaid: findmasa._id,
+    Description: note,
   });
 
   for (let i = 0; i < urunler.length; i++) {
@@ -36,6 +42,8 @@ router.post("/", async (req: any, res: any) => {
 
   try {
     await order.save();
+    findmasa.Orders.push(order);
+    await findmasa.save();
   } catch (err) {
     console.log(err);
   }

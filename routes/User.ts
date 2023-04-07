@@ -85,6 +85,36 @@ router.get("/menu/post", verify, async (req: any, res: Response) => {
   res.render("user/dashboard/menuaddpages/menudashboardpost");
 });
 
+router.get("/:menu/orders", verify, async (req: any, res: Response) => {
+  const id: any = req.token.id;
+  const user = await User.findById(id).populate("userMenu");
+  const menuid = req.params.menu;
+
+  const filter = user.userMenu.filter((item) => {
+    return item === menuid;
+  });
+
+  if (filter) {
+    const findmenu: any = await Menu.findOne({ Slug: menuid }).populate({
+      path: "Masalar",
+      populate: [
+        {
+          path: "Orders",
+          populate: [{ path: "Urunler", populate: [{ path: "Urun" }] }],
+        },
+      ],
+    });
+
+    console.log(findmenu.Masalar[1].Orders[1].Urunler[0].Urun);
+
+    res.render("user/dashboard/orderpages/index", {
+      menu: findmenu,
+    });
+  } else {
+    res.render("error/401");
+  }
+});
+
 router.get("/:menu/edit", verify, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");

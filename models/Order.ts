@@ -12,8 +12,7 @@ const OrderSchema = new Schema({
     },
   ],
   Masaid: {
-    // Productta Schema type: Schema.Types.ObjectId,
-    type: Number,
+    type: Schema.Types.ObjectId,
     ref: "Masa",
     required: true,
   },

@@ -114,7 +114,7 @@
             aria-controls="collapseUtilities"
           >
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Menü Siparişleri</span>
+            <span>Utilities</span>
           </a>
           <div
             id="collapseUtilities"
@@ -123,13 +123,14 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Siparişlerinizi Takip Edin:</h6>
-              {{#each user.userMenu}}
-                <a
-                  class="collapse-item"
-                  href="{{this.Slug}}/orders"
-                >{{this.Name}}</a>
-              {{/each}}
+              <h6 class="collapse-header">Custom Utilities:</h6>
+              <a class="collapse-item" href="utilities-color.html">Colors</a>
+              <a class="collapse-item" href="utilities-border.html">Borders</a>
+              <a
+                class="collapse-item"
+                href="utilities-animation.html"
+              >Animations</a>
+              <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>
           </div>
         </li>
@@ -279,145 +280,29 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <div
-              class="d-sm-flex align-items-center justify-content-between mb-4"
-            >
-              <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-              <a
-                href="#"
-                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-              ><i class="fas fa-download fa-sm text-white-50"></i>
-                Generate Report</a>
-            </div>
-
-            <!-- Content Row -->
+          <div class="container">
             <div class="row">
-
-              <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="text-xs font-weight-bold text-primary text-uppercase mb-1"
-                        >
-                          Menü Sayısı</div>
-                        <div
-                          class="h5 mb-0 font-weight-bold text-gray-800"
-                        >{{user.userMenu.length}}</div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+              {{#each menu.Masalar}}
+                <div class="col-4">
+                  <h2>Masa {{this.Number}}</h2>
+                  {{#each this.Orders}}
+                    <h5>{{this._id}}</h5>
+                    <div class="modall">
+                      <div class="col-12 d-flex flex-column">
+                        {{#each this.Urunler}}
+                          <div class="one d-flex flex-row">
+                            <h6>{{this.Urun.Name}}</h6>
+                            <h6>{{this.Adet}}</h6>
+                            <h6>{{this.Urun.Price}}</h6>
+                          </div>
+                        {{/each}}
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Pending Requests Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div
-                          class="text-xs font-weight-bold text-warning text-uppercase mb-1"
-                        >
-                          Kalan Üyelik Süreniz</div>
-                        <div
-                          class="h5 mb-0 font-weight-bold text-gray-800"
-                        >{{datehelper user.daysLeft}}</div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12">
-                <a href="/user/menu/post"><button class="btn-sm btn-danger">Menü
-                    Ekle</button></a>
-              </div>
-              <div class="col-12 mt-3">
-                {{#each user.userMenu}}
-                  <a href="/menu/{{this.Slug}}"><button
-                      class="btn-sm btn-danger"
-                    >Menüyü İncele ({{this.Slug}})</button></a>
-                {{/each}}
-              </div>
-              <div class="col-12 mt-3">
-                <a href="/user/menu/postmasa"><button
-                    class="btn-sm btn-danger"
-                  >Menüye Masa Ekle
-                  </button></a>
-              </div>
-              <div class="col-12 mt-3">
-                <p>Please type the URL or Text below and click Generate!</p>
-                <form class="form" action="/scan" method="POST">
-                  <select name="menu" id="menu">
-                    {{#each user.userMenu}}
-                      <option value="{{this.Slug}}">{{this.Name}}</option>
-                    {{/each}}
-                  </select>
-                  <input
-                    name="url"
-                    id="urlinput"
-                    class="form-control"
-                    placeholder="URL or Text"
-                    type="text"
-                    readonly
-                    required
-                  />
-                  <br />
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                    value="Get QR"
-                  >Generate</button>
-                </form>
-              </div>
-
-              <div class="col-12 mt-3">
-                <div class="row">
-                  {{#each user.userMenu}}
-                    {{#if this.QRCode}}
-                      <div
-                        class="col-4 d-flex justify-content-center align-items-center flex-column"
-                      >
-                        <div class="qrhead">
-                          <h3 class="text-dark">{{this.Name}}</h3>
-                        </div>
-                        <div class="image">
-                          <img
-                            src="{{this.QRCode}}"
-                            class="img-thumbnail"
-                            alt="QR Code Image"
-                          />
-                        </div>
-                        <div class="download mt-3">
-                          <a
-                            href="{{this.QRCode}}"
-                            download="{{this.Slug}}-QR"
-                          ><button
-                              type="button"
-                              class="btn btn-primary pr-5 pl-5"
-                            >İndir</button></a>
-                        </div>
-                      </div>
-                    {{/if}}
                   {{/each}}
                 </div>
-              </div>
+              {{/each}}
             </div>
-
           </div>
           <!-- /.container-fluid -->
 

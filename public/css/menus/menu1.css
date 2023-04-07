@@ -98,6 +98,7 @@ button {
 }
 
 .bottombar {
+  z-index: 2;
   background-color: #bad7e9;
   position: fixed;
   left: 0;
@@ -108,6 +109,33 @@ button {
 .bottombar i {
   cursor: pointer;
   color: #2b3467 !important;
+}
+
+.cartmodal {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.cartmodal .container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.cartmodal .container .col-12 {
+  background-color: #eb455f;
+  opacity: 0.9;
+  height: 100vh;
+  width: 100vw;
 }
 
 @media screen and (max-width: 600px) {

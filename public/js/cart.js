@@ -31,7 +31,12 @@ const sendid = async (id) => {
   const adet = selectelement.getElementsByClassName("numberinput")[0].value;
   const cartadet = document.getElementsByClassName("bagspan")[0];
 
-  cart.push({ id: urunid, urunadi: urunadi, fiyat: fiyat, adet: adet });
+  cart.push({
+    id: urunid,
+    urunadi: urunadi,
+    fiyat: fiyat,
+    adet: adet,
+  });
 
   const fiyatlar = cart.map((i) => {
     return Number(i.fiyat.split("$")[1] * i.adet);
@@ -39,6 +44,8 @@ const sendid = async (id) => {
 
   let mycart = document.getElementsByClassName("cartinside")[0];
   let myfiyatlar = document.getElementsByClassName("maliyet")[0];
+  let mycart1 = document.getElementsByClassName("cartinside")[1];
+  let myfiyatlar1 = document.getElementsByClassName("maliyet")[1];
   let htmlcart = "";
   cartadet.innerHTML = cart.length;
 
@@ -62,16 +69,25 @@ const sendid = async (id) => {
   myfiyatlar.innerHTML = `<h3 class="text-center">Total: $${sumArray(
     fiyatlar
   )}</h3>`;
+  mycart1.innerHTML = htmlcart;
+  myfiyatlar1.innerHTML = `<h3 class="text-center">Total: $${sumArray(
+    fiyatlar
+  )}</h3>`;
 };
 
 const submit = async () => {
+  const e = document.getElementById("optionmasa");
+  let value = e.options[e.selectedIndex].value;
+  const u = document.getElementById("ordernote").value;
+  console.log(u);
+
   await fetch("http://localhost:3000/order", {
     method: "POST",
     mode: "cors",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(cart),
+    body: JSON.stringify({ cart: cart, value: value, note: u }),
   })
     .then((res) => res.json())
     .then(await delay(1500))

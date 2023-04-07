@@ -18,6 +18,43 @@
   </head>
   <body>
 
+    <section>
+      <div class="cartmodal">
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-12 d-flex flex-column justify-content-center align-items-center"
+            >
+              <h3>Information</h3>
+              <div class="cartinside">
+              </div>
+              <div class="maliyet"></div>
+              <select
+                id="optionmasa"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option selected>Select your table</option>
+                {{#each menu.Masalar}}
+                  <option value="{{this._id}}">{{this.Number}}</option>
+                {{/each}}
+              </select>
+              <input
+                id="ordernote"
+                class="form-control mt-3"
+                type="text"
+                placeholder="If you have note, please send us..."
+              />
+              <button
+                class="btn btn-md btn-warning mt-3 mb-3"
+                onclick="submit()"
+              >Send Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="menu--header">
       <div class="container">
         <div class="row">
@@ -162,11 +199,7 @@
                   </div>
                 </div>
               </div>
-              <i
-                class="fa fa-3x fa-arrow-right"
-                onclick="submit()"
-                aria-hidden="true"
-              ></i>
+              <i class="fa fa-3x fa-arrow-right" aria-hidden="true"></i>
             </div>
           </div>
         </div>

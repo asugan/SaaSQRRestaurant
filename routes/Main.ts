@@ -18,10 +18,14 @@ router.get("/", async (req: any, res: any) => {
 router.get("/menu/:name", async (req: Request, res: Response) => {
   const menuid = req.params.name;
 
-  const menu = await Menu.findOne({ Slug: menuid }).populate({
-    path: "Kategoriler",
-    populate: [{ path: "Urunler" }],
-  });
+  const menu = await Menu.findOne({ Slug: menuid })
+    .populate({
+      path: "Kategoriler",
+      populate: [{ path: "Urunler" }],
+    })
+    .populate("Masalar");
+
+  console.log(menu.Masalar);
 
   if (menu) {
     try {
