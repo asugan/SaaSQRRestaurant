@@ -5,13 +5,18 @@ interface User {
   username: string;
   password: string;
   userLevel: string;
-  daysLeft: number;
+  email: string;
+  daysLeft: Date;
   userMenu: Types.Array<Types.ObjectId>;
-  created_date: string;
+  created_date: Date;
 }
 
 const userSchema = new Schema<User>({
   username: {
+    type: String,
+    required: true,
+  },
+  email: {
     type: String,
     required: true,
   },
@@ -22,13 +27,13 @@ const userSchema = new Schema<User>({
   userLevel: {
     type: String,
     required: true,
-    enum: ["Deneme", "Abone", "Satıcı"],
+    enum: ["Maraba", "Deneme", "Abone"],
     default: "Deneme",
   },
   daysLeft: {
-    type: Number,
+    type: Date,
     required: true,
-    default: 14,
+    default: new Date(new Date().getTime() + 4 * 24 * 60 * 60 * 1000),
   },
   userMenu: [
     {
@@ -36,7 +41,7 @@ const userSchema = new Schema<User>({
       ref: "Menu",
     },
   ],
-  created_date: { type: String },
+  created_date: { type: Date, required: true, default: new Date().getTime() },
 });
 
 userSchema.pre("save", function (next: any) {

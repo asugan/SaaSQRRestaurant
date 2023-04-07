@@ -14,7 +14,9 @@ const path = require("path");
 const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
-import { UserTask } from "./crontasks/Usertask";
+const LemonController = require("./routes/Lemon");
+// import { UserTask } from "./crontasks/Usertask";
+import { checkUser } from "./crontasks/UserCheck";
 
 require("dotenv").config();
 
@@ -46,6 +48,9 @@ app.engine(
         if (str.length > 40) return str.substring(0, 40) + "...";
         return str;
       },
+      datehelper: function (date: any) {
+        return date.toISOString().slice(0, 10);
+      },
     },
   })
 );
@@ -59,6 +64,7 @@ app.use("/user", UserController);
 app.use("/stripe", StripeController);
 app.use("/iyzipay", IyzicoController);
 app.use("/order", OrderController);
+app.use("/lemon", LemonController);
 app.get("*", function (req, res) {
   res.status(404).render("error/404");
 });
@@ -67,4 +73,4 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-UserTask.runschedule();
+checkUser.runschedule();

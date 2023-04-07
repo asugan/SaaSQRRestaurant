@@ -3,6 +3,7 @@ import { User } from "../models/User";
 import { Menu } from "../models/Menu";
 import { verify } from "../middlewares/Main";
 import { authornot } from "../middlewares/AuthCheck";
+import { marabacheck } from "../middlewares/MarabaCheck";
 import { Kategori } from "../models/Kategori";
 import { Urun } from "../models/Urun";
 import { Masa } from "../models/Masa";
@@ -64,7 +65,7 @@ router.get("/logout", async (req, res) => {
   }
 });
 
-router.get("/dashboard", verify, async (req: any, res: Response) => {
+router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   const id = req.token.id;
 
   try {
@@ -623,7 +624,7 @@ router.post("/login", async (req: Request, res: Response) => {
       const serialised = serialize("OursiteJWT", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV !== "development",
-        sameSite: "strict",
+        sameSite: "lax",
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
       });
@@ -642,10 +643,12 @@ router.post("/login", async (req: Request, res: Response) => {
 router.post("/register", async (req: Request, res: Response) => {
   const username: string = req.body.username;
   const password: string = req.body.password;
+  const email: string = req.body.email;
 
   const newUser = new User({
     username: username,
     password: password,
+    email: email,
     created_date: Date.now(),
   });
 

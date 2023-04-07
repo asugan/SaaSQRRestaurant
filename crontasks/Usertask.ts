@@ -1,4 +1,4 @@
-const cron = require("node-cron");
+/* const cron = require("node-cron");
 import { User } from "../models/User";
 
 export const UserTask = {
@@ -45,3 +45,4 @@ export const UserTask = {
       await UserTask.findwithoutday();
     }),
 };
+ */
