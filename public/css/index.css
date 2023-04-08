@@ -153,11 +153,11 @@ body {
 .landing .container {
   display: grid;
   border-bottom: 10px solid var(--first);
-  height: 75%;
+  height: 100%;
   grid-template-columns: repeat(2, 1fr);
   padding: 0rem 10rem;
   align-items: center;
-  background-image: url(../images/background.webp);
+  background-image: url(../img/background.webp);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -178,7 +178,9 @@ body {
 }
 
 .landing .container .rightdiv img {
-  height: 550px;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
 }
 
 @keyframes MoveUpDown {
@@ -234,14 +236,14 @@ body {
   margin-left: 1rem;
 }
 
-.landing .bottom {
+.bottom {
   justify-content: center;
   display: flex;
   height: 25%;
   align-items: center;
 }
 
-.landing .bottom i {
+.bottom i {
   font-size: 5rem;
   color: var(--first);
 }
@@ -249,7 +251,7 @@ body {
 @media screen and (max-width: 1200px) {
   .landing .container {
     padding: 0rem 4rem;
-    height: fit-content;
+    height: 100%;
   }
 
   .landing .container .rightdiv {
@@ -257,7 +259,9 @@ body {
   }
 
   .landing .container .rightdiv img {
-    height: 400px;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -266,7 +270,7 @@ body {
     height: fit-content;
   }
 
-  .landing .bottom {
+  .bottom {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
@@ -284,7 +288,9 @@ body {
   }
 
   .landing .container .rightdiv img {
-    height: 350px;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
   }
 
   .landing .container .leftdiv {
@@ -338,7 +344,7 @@ body {
   padding: 1rem 2rem;
 }
 
-.landing-2 .container .rightdiv h1 {
+.landing-2 .container .rightdiv h2 {
   margin-bottom: 2rem;
   text-align: center;
   font-weight: bolder;
@@ -357,7 +363,7 @@ body {
 }
 
 .landing-2 .container .leftdiv img {
-  max-width: 800px;
+  max-width: 450px;
   width: 100%;
   height: auto;
 }
@@ -422,7 +428,7 @@ body {
   padding: 1rem 2rem;
 }
 
-.landing-3 .container .leftdiv h1 {
+.landing-3 .container .leftdiv h2 {
   margin-bottom: 2rem;
   text-align: center;
   font-weight: bolder;
@@ -441,7 +447,7 @@ body {
 }
 
 .landing-3 .container .rightdiv img {
-  max-width: 600px;
+  max-width: 450px;
   width: 100%;
   height: auto;
 }

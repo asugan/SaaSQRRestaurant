@@ -48,9 +48,9 @@
           href="index.html"
         >
           <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-utensils"></i>
           </div>
-          <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+          <div class="sidebar-brand-text mx-3">QR Menu</div>
         </a>
 
         <!-- Divider -->
@@ -60,7 +60,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Yönetim Paneli</span></a>
+            <span>User Dashboard</span></a>
         </li>
 
         <!-- Divider -->
@@ -68,7 +68,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Menüleriniz
+          Menu Panel
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -82,7 +82,7 @@
             aria-controls="collapseTwo"
           >
             <i class="fas fa-fw fa-cog"></i>
-            <span>Menü Düzenle</span>
+            <span>Edit Menu</span>
           </a>
           <div
             id="collapseTwo"
@@ -91,7 +91,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Menülerinizi Düzenleyin:</h6>
+              <h6 class="collapse-header">Edit your menus:</h6>
               {{#each user.userMenu}}
                 <a
                   class="collapse-item"
@@ -114,7 +114,7 @@
             aria-controls="collapseUtilities"
           >
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Menü Siparişleri</span>
+            <span>Menu Orders</span>
           </a>
           <div
             id="collapseUtilities"
@@ -123,7 +123,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Siparişlerinizi Takip Edin:</h6>
+              <h6 class="collapse-header">Track your menu orders:</h6>
               {{#each user.userMenu}}
                 <a
                   class="collapse-item"
@@ -224,21 +224,27 @@
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
               >
-                <label for="kategori">Kategori Seçin</label>
+                <label for="kategori">Select Category</label>
                 <select name="kategori">
                   {{#each menuSlug.Kategoriler}}
                     <option value="{{this._id}}">{{this.Name}}</option>
                   {{/each}}
                 </select>
-                <label class="mt-2" for="name">Urun Adı</label>
+                <label class="mt-2" for="name">Item Name</label>
                 <input type="text" name="name" value="{{menu.Name}}" />
-                <label class="mt-2" for="name">Urun Fiyatı</label>
+                <label class="mt-2" for="name">Item Price</label>
                 <input type="text" name="price" value="{{menu.Price}}" />
               </div>
               <div
-                class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
+                class="label1 d-flex flex-column justify-content-center align-items-center mt-3"
               >
-                <label for="image">Urun Resmi</label>
+                <label for="image">Item Image</label>
+                <img
+                  class="mb-3"
+                  style="width: 150px;"
+                  src="/images/{{menu.image}}"
+                  alt=""
+                />
                 <input
                   type="file"
                   name="image"
@@ -253,12 +259,12 @@
               <div
                 class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
               >
-                <button class="btn btn-sm btn-danger mr-4" type="submit">Urunu
-                  Düzenle</button>
+                <button class="btn btn-sm btn-danger mr-4" type="submit">Finish
+                  Edit !</button>
                 <a
                   class="btn btn-sm btn-danger"
                   href="/user/{{menuSlug.Slug}}/edit2"
-                >Düzenlemeye Geri Dön</a>
+                >Back to Items Page</a>
               </div>
 
             </form>

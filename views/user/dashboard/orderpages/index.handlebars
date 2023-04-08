@@ -49,9 +49,9 @@
           href="index.html"
         >
           <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-utensils"></i>
           </div>
-          <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+          <div class="sidebar-brand-text mx-3">QR Menu</div>
         </a>
 
         <!-- Divider -->
@@ -61,7 +61,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Yönetim Paneli</span></a>
+            <span>User Dashboard</span></a>
         </li>
 
         <!-- Divider -->
@@ -69,7 +69,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Menüleriniz
+          Menu Panel
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -83,7 +83,7 @@
             aria-controls="collapseTwo"
           >
             <i class="fas fa-fw fa-cog"></i>
-            <span>Menü Düzenle</span>
+            <span>Edit Menu</span>
           </a>
           <div
             id="collapseTwo"
@@ -92,7 +92,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Menülerinizi Düzenleyin:</h6>
+              <h6 class="collapse-header">Edit your menus:</h6>
               {{#each user.userMenu}}
                 <a
                   class="collapse-item"
@@ -115,7 +115,7 @@
             aria-controls="collapseUtilities"
           >
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Menü Siparişleri</span>
+            <span>Menu Orders</span>
           </a>
           <div
             id="collapseUtilities"
@@ -124,7 +124,7 @@
             data-parent="#accordionSidebar"
           >
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Siparişlerinizi Takip Edin:</h6>
+              <h6 class="collapse-header">Track your menu orders:</h6>
               {{#each user.userMenu}}
                 <a
                   class="collapse-item"
@@ -221,7 +221,7 @@
             <div class="row">
               {{#each menu.Masalar}}
                 <div class="col-4">
-                  <h2>Masa {{this.Number}}</h2>
+                  <h2>Table {{this.Number}}</h2>
                   {{#each this.Orders}}
                     <h5>{{this._id}}</h5>
                     <div class="modall">
@@ -229,7 +229,7 @@
                         {{#each this.Urunler}}
                           <div class="one d-flex flex-row">
                             <h6>{{this.Urun.Name}}</h6>
-                            <h6>{{this.Adet}}</h6>
+                            <h6 class="ml-2 mr-2">{{this.Adet}}</h6>
                             <h6>{{this.Urun.Price}}</h6>
                           </div>
                         {{/each}}
