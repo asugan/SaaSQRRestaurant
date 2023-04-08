@@ -215,90 +215,90 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="container-fluid">
-            <form
-              action="/user/menu/post2"
-              method="post"
-              enctype="multipart/form-data"
-            >
-              <div
-                class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
-              >
-                <input type="hidden" name="menuid" value="{{menuid}}" />
-                <label for="kategori">Kategori Seçin</label>
-                <select name="kategori">
-                  {{#each menu.Kategoriler}}
-                    <option value="{{this._id}}">{{this.Name}}</option>
-                  {{/each}}
-                </select>
-                <label class="mt-2" for="name">Urun Adı</label>
-                <input type="text" name="name" />
-                <label class="mt-2" for="name">Urun Fiyatı</label>
-                <input type="text" name="price" />
-              </div>
-              <div
-                class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
-              >
-                <label for="image">Urun Resmi</label>
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  onchange="showPreview(event);"
-                />
-                <div class="preview mt-3">
-                  <img style="width: 200px;" id="file-ip-1-preview" />
-                </div>
-              </div>
-              <div
-                class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
-              >
-                <button class="btn btn-sm btn-danger mr-4" type="submit">Urun
-                  Ekle</button>
-                <a
-                  class="btn btn-sm btn-danger"
-                  href="/menu/{{menu.Slug}}"
-                >Menümü Yayınla</a>
-              </div>
 
-            </form>
-
-            {{#each menu.Kategoriler}}
-              <div
-                class="inline d-flex flex-column justify-content-center align-items-center mt-3"
+          <div class="row">
+            <div class="col-lg-6">
+              <form
+                action="/user/menu/post2"
+                method="post"
+                enctype="multipart/form-data"
               >
                 <div
-                  class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
                 >
-                  <img
-                    class="mr-5"
-                    style="width: 200px;"
-                    src="/images/{{this.image}}"
+                  <input type="hidden" name="menuid" value="{{menuid}}" />
+                  <label for="kategori">Kategori Seçin</label>
+                  <select name="kategori">
+                    {{#each menu.Kategoriler}}
+                      <option value="{{this._id}}">{{this.Name}}</option>
+                    {{/each}}
+                  </select>
+                  <label class="mt-2" for="name">Urun Adı</label>
+                  <input type="text" name="name" />
+                  <label class="mt-2" for="name">Urun Fiyatı</label>
+                  <input type="text" name="price" />
+                </div>
+                <div
+                  class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
+                >
+                  <label for="image">Urun Resmi</label>
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    onchange="showPreview(event);"
                   />
-                  <h3 class="text-dark">{{this.Name}}</h3>
+                  <div class="preview mt-3">
+                    <img style="width: 200px;" id="file-ip-1-preview" />
+                  </div>
                 </div>
                 <div
-                  class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                  class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  {{#each this.Urunler}}
+                  <button class="btn btn-sm btn-danger mr-4" type="submit">Urun
+                    Ekle</button>
+                  <a
+                    class="btn btn-sm btn-danger"
+                    href="/menu/{{menu.Slug}}"
+                  >Menümü Yayınla</a>
+                </div>
+
+              </form>
+            </div>
+
+            <div
+              class="col-lg-6 d-flex flex-column justify-content-start align-items-center align-items-lg-start"
+            >
+              {{#each menu.Kategoriler}}
+                <div
+                  class="inline d-flex flex-column justify-content-center align-items-center mt-3"
+                >
+                  <div
+                    class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
                     <img
                       class="mr-5"
-                      style="width: 100px; height:60px;"
+                      style="width: 200px; height:120px;"
                       src="/images/{{this.image}}"
                     />
-                    <h5 class="text-dark mr-5">{{this.Name}}</h5>
-                    <h5 class="text-dark">{{this.Price}} ₺</h5>
-                  {{/each}}
+                    <h3 class="text-dark">{{this.Name}}</h3>
+                  </div>
+                  <div
+                    class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
+                    {{#each this.Urunler}}
+                      <img
+                        class="mr-5"
+                        style="width: 100px; height:60px;"
+                        src="/images/{{this.image}}"
+                      />
+                      <h5 class="text-dark mr-5">{{this.Name}}</h5>
+                      <h5 class="text-dark">{{this.Price}} ₺</h5>
+                    {{/each}}
+                  </div>
                 </div>
-              </div>
-            {{/each}}
-
-            <script>
-              function showPreview(event){ if(event.target.files.length > 0){
-              var src = URL.createObjectURL(event.target.files[0]); var preview
-              = document.getElementById("file-ip-1-preview"); preview.src = src;
-              preview.style.display = "block"; } }
-            </script>
+              {{/each}}
+            </div>
 
           </div>
           <!-- /.container-fluid -->
@@ -362,7 +362,12 @@
         </div>
       </div>
     </div>
-
+    <script>
+      function showPreview(event){ if(event.target.files.length > 0){ var src =
+      URL.createObjectURL(event.target.files[0]); var preview =
+      document.getElementById("file-ip-1-preview"); preview.src = src;
+      preview.style.display = "block"; } }
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
