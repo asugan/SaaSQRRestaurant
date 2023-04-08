@@ -108,8 +108,6 @@ router.get("/:menu/orders", marabacheck, async (req: any, res: Response) => {
       ],
     });
 
-    console.log(findmenu.Masalar[1].Orders[1].Urunler[0].Urun);
-
     res.render("user/dashboard/orderpages/index", {
       menu: findmenu,
       user: user,

@@ -215,6 +215,21 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
+          <div
+            class="container d-flex justify-content-center align-items-center"
+          >
+            <div class="row">
+              <a
+                class="btn btn-lg btn-danger mr-2"
+                href="/user/{{menu._id}}/kategoriekle"
+              >Add Category</a>
+              <a
+                class="btn btn-lg btn-danger"
+                href="/user/{{menu._id}}/urunekle"
+              >Add Item</a>
+            </div>
+          </div>
+
           {{#each menu.Kategoriler}}
             <div
               class="inline d-flex flex-column justify-content-center align-items-center mt-3"
@@ -222,44 +237,60 @@
               <div
                 class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
               >
-                <img
-                  class="mr-5"
-                  style="width: 200px;"
-                  src="/images/{{this.image}}"
-                />
-                <h3 class="text-dark">{{this.Name}}</h3>
-                <a
-                  class="btn btn-sm btn-danger ml-5"
-                  href="/user/{{this._id}}/kategoriedit"
-                >Edit</a>
-                <form method="post" action="/user/{{this._id}}/kategorisil">
-                  <button
-                    class="ml-2 mt-3 btn btn-sm btn-danger"
-                    type="submit"
-                  >Delete</button>
-                </form>
+                <div class="row">
+                  <div class="col-md-6 text-center">
+                    <img
+                      class="mr-5"
+                      style="width: 200px; height:120px;"
+                      src="/images/{{this.image}}"
+                    />
+                  </div>
+                  <div
+                    class="col-md-6 d-flex justify-content-center align-items-center"
+                  >
+                    <h3 class="text-dark">{{this.Name}}</h3>
+                    <a
+                      class="btn btn-sm btn-danger ml-5"
+                      href="/user/{{this._id}}/kategoriedit"
+                    >Edit</a>
+                    <form method="post" action="/user/{{this._id}}/kategorisil">
+                      <button
+                        class="ml-2 mt-3 btn btn-sm btn-danger"
+                        type="submit"
+                      >Delete</button>
+                    </form>
+                  </div>
+                </div>
               </div>
               <div
                 class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
               >
                 {{#each this.Urunler}}
-                  <img
-                    class="mr-5"
-                    style="width: 100px; height:60px;"
-                    src="/images/{{this.image}}"
-                  />
-                  <h5 class="text-dark mr-5">{{this.Name}}</h5>
-                  <h5 class="text-dark">{{this.Price}} ₺</h5>
-                  <a
-                    class="btn btn-sm btn-danger ml-5"
-                    href="/user/{{this._id}}/urunedit"
-                  >Düzenle</a>
-                  <form method="post" action="/user/{{this._id}}/urunsil">
-                    <button
-                      class="ml-2 mt-3 btn btn-sm btn-danger"
-                      type="submit"
-                    >Sil</button>
-                  </form>
+                  <div class="row">
+                    <div class="col-md-6 text-center">
+                      <img
+                        class="mr-5"
+                        style="width: 100px; height:60px;"
+                        src="/images/{{this.image}}"
+                      />
+                    </div>
+                    <div
+                      class="col-md-6 d-flex justify-content-center align-items-center"
+                    >
+                      <h5 class="text-dark mr-5">{{this.Name}}</h5>
+                      <h5 class="text-dark">{{this.Price}} ₺</h5>
+                      <a
+                        class="btn btn-sm btn-danger ml-5"
+                        href="/user/{{this._id}}/urunedit"
+                      >Edit</a>
+                      <form method="post" action="/user/{{this._id}}/urunsil">
+                        <button
+                          class="ml-2 mt-3 btn btn-sm btn-danger"
+                          type="submit"
+                        >Delete</button>
+                      </form>
+                    </div>
+                  </div>
                 {{/each}}
               </div>
             </div>

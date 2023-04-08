@@ -217,29 +217,39 @@
 
           <!-- Begin Page Content -->
 
-          <div class="container">
-            <div class="row">
-              {{#each menu.Masalar}}
-                <div class="col-4">
-                  <h2>Table {{this.Number}}</h2>
-                  {{#each this.Orders}}
-                    <h5>{{this._id}}</h5>
-                    <div class="modall">
-                      <div class="col-12 d-flex flex-column">
-                        {{#each this.Urunler}}
-                          <div class="one d-flex flex-row">
-                            <h6>{{this.Urun.Name}}</h6>
-                            <h6 class="ml-2 mr-2">{{this.Adet}}</h6>
-                            <h6>{{this.Urun.Price}}</h6>
-                          </div>
-                        {{/each}}
+          {{#if menu.Masalar}}
+            <div class="container">
+              <div class="row">
+                {{#each menu.Masalar}}
+                  <div class="col-4">
+                    <h2>Table {{this.Number}}</h2>
+                    {{#each this.Orders}}
+                      <h5>{{this._id}}</h5>
+                      <div class="modall">
+                        <div class="col-12 d-flex flex-column">
+                          {{#each this.Urunler}}
+                            <div class="one d-flex flex-row">
+                              <h6>{{this.Urun.Name}}</h6>
+                              <h6 class="ml-2 mr-2">{{this.Adet}}</h6>
+                              <h6>{{this.Urun.Price}}</h6>
+                            </div>
+                          {{/each}}
+                        </div>
                       </div>
-                    </div>
-                  {{/each}}
-                </div>
-              {{/each}}
+                    {{/each}}
+                  </div>
+                {{/each}}
+              </div>
             </div>
-          </div>
+
+          {{else}}
+            <div class="container">
+              <div class="row">
+                <h1>No Order Yet</h1>
+              </div>
+            </div>
+          {{/if}}
+
           <!-- /.container-fluid -->
 
         </div>
