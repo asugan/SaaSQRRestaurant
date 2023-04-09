@@ -228,9 +228,15 @@
                 <input type="text" name="name" value="{{menu.Name}}" />
               </div>
               <div
-                class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
+                class="label1 d-flex flex-column justify-content-center align-items-center mt-3"
               >
                 <label for="image">Kategori Resmi</label>
+                <img
+                  class="mb-3"
+                  style="width: 150px;"
+                  src="/images/{{menu.image}}"
+                  alt=""
+                />
                 <input
                   type="file"
                   name="image"
@@ -245,14 +251,12 @@
               <div
                 class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
               >
-                <button
-                  class="btn btn-sm btn-danger mr-4"
-                  type="submit"
-                >Kategori Düzenle</button>
+                <button class="btn btn-sm btn-danger mr-4" type="submit">Finish
+                  Edit!</button>
                 <a
                   class="btn btn-sm btn-danger"
                   href="/user/{{menuSlug}}/edit2"
-                >Düzenlemeye Geri Dön</a>
+                >Back to Items Page</a>
               </div>
 
             </form>
