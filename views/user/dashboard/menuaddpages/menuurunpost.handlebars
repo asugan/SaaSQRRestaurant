@@ -45,7 +45,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="/user/dashboard"
         >
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-utensils"></i>
@@ -58,7 +58,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="/user/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>User Dashboard</span></a>
         </li>
@@ -227,21 +227,21 @@
                   class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
                 >
                   <input type="hidden" name="menuid" value="{{menuid}}" />
-                  <label for="kategori">Kategori Seçin</label>
+                  <label for="kategori">Select Category</label>
                   <select name="kategori">
                     {{#each menu.Kategoriler}}
                       <option value="{{this._id}}">{{this.Name}}</option>
                     {{/each}}
                   </select>
-                  <label class="mt-2" for="name">Urun Adı</label>
+                  <label class="mt-2" for="name">Item Name</label>
                   <input type="text" name="name" />
-                  <label class="mt-2" for="name">Urun Fiyatı</label>
+                  <label class="mt-2" for="name">Item Price</label>
                   <input type="text" name="price" />
                 </div>
                 <div
                   class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
                 >
-                  <label for="image">Urun Resmi</label>
+                  <label for="image">Item Image</label>
                   <input
                     type="file"
                     name="image"
@@ -255,12 +255,12 @@
                 <div
                   class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  <button class="btn btn-sm btn-danger mr-4" type="submit">Urun
-                    Ekle</button>
+                  <button class="btn btn-sm btn-danger mr-4" type="submit">Add
+                    Item</button>
                   <a
                     class="btn btn-sm btn-danger"
                     href="/menu/{{menu.Slug}}"
-                  >Menümü Yayınla</a>
+                  >Publish my menu</a>
                 </div>
 
               </form>

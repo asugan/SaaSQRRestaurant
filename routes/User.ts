@@ -607,6 +607,27 @@ router.post(
   }
 );
 
+router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
+  const id = req.params.id;
+  const category = await Menu.findById(id);
+  const userid: any = req.token.id;
+  const user = await User.findById(userid).populate("userMenu");
+  const filter = user.userMenu.filter((item) => {
+    return item === category._id;
+  });
+
+  if (filter) {
+    const data = await Menu.findByIdAndDelete(id);
+    try {
+      res.redirect(`/user/dashboard`);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  } else {
+    res.render("error/401");
+  }
+});
+
 router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
   const id = req.params.id;
   const category = await Kategori.findById(id);

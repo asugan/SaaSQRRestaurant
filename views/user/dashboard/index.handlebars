@@ -45,7 +45,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="/user/dashboard"
         >
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-utensils"></i>
@@ -58,7 +58,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="/user/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>User Dashboard</span></a>
         </li>
@@ -222,11 +222,6 @@
               class="d-sm-flex align-items-center justify-content-between mb-4"
             >
               <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-              <a
-                href="#"
-                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-              ><i class="fas fa-download fa-sm text-white-50"></i>
-                Generate Report</a>
             </div>
 
             <!-- Content Row -->
@@ -241,7 +236,7 @@
                         <div
                           class="text-xs font-weight-bold text-primary text-uppercase mb-1"
                         >
-                          Menü Sayısı</div>
+                          Menu Count</div>
                         <div
                           class="h5 mb-0 font-weight-bold text-gray-800"
                         >{{user.userMenu.length}}</div>
@@ -263,7 +258,7 @@
                         <div
                           class="text-xs font-weight-bold text-warning text-uppercase mb-1"
                         >
-                          Kalan Üyelik Süreniz</div>
+                          Subscribe Days Left</div>
                         <div
                           class="h5 mb-0 font-weight-bold text-gray-800"
                         >{{datehelper user.daysLeft}}</div>
@@ -279,24 +274,24 @@
 
             <div class="row">
               <div class="col-12">
-                <a href="/user/menu/post"><button class="btn-sm btn-danger">Menü
-                    Ekle</button></a>
+                <a href="/user/menu/post"><button class="btn-sm btn-danger">Add
+                    Menu</button></a>
               </div>
               <div class="col-12 mt-3">
                 {{#each user.userMenu}}
                   <a href="/menu/{{this.Slug}}"><button
                       class="btn-sm btn-danger"
-                    >Menüyü İncele ({{this.Slug}})</button></a>
+                    >Observe Menu ({{this.Slug}})</button></a>
                 {{/each}}
               </div>
               <div class="col-12 mt-3">
                 <a href="/user/menu/postmasa"><button
                     class="btn-sm btn-danger"
-                  >Menüye Masa Ekle
+                  >Add Table to Menu
                   </button></a>
               </div>
               <div class="col-12 mt-3">
-                <p>Please type the URL or Text below and click Generate!</p>
+                <p>Please click generate button to qr code.</p>
                 <form class="form" action="/scan" method="POST">
                   <select name="menu" id="menu">
                     {{#each user.userMenu}}
@@ -306,7 +301,7 @@
                   <input
                     name="url"
                     id="urlinput"
-                    class="form-control"
+                    class="form-control mt-3"
                     placeholder="URL or Text"
                     type="text"
                     readonly
