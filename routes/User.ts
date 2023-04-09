@@ -276,7 +276,7 @@ router.get("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
     populate: [{ path: "Masalar" }],
   });
 
-  res.render("user/postmasa", {
+  res.render("user/dashboard/masapages/postmasa", {
     user: user,
   });
 });
@@ -685,7 +685,7 @@ router.post("/:id/masasil", marabacheck, async (req: any, res: any) => {
   if (filter) {
     try {
       const data = await Masa.findByIdAndDelete(id);
-      res.redirect(`/user/menu/masapages/postmasa`);
+      res.redirect(`/user/menu/postmasa`);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
