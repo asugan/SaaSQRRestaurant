@@ -685,7 +685,7 @@ router.post("/:id/masasil", marabacheck, async (req: any, res: any) => {
   if (filter) {
     try {
       const data = await Masa.findByIdAndDelete(id);
-      res.redirect(`/user/menu/postmasa`);
+      res.redirect(`/user/menu/masapages/postmasa`);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
