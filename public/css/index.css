@@ -477,11 +477,81 @@ body {
 
 /* Tanitim-2 Bitiş */
 
+/* Tanitim-3 Başlangıç */
+
+.landing-4 {
+  border-top: 10px solid var(--first);
+  border-bottom: 10px solid var(--first);
+  background-color: var(--third);
+}
+
+.landing-4 .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 5rem 10rem;
+  align-items: center;
+  gap: 2rem;
+}
+
+.landing-4 .container .one img {
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+}
+
+.landing-4 .container .two img {
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+}
+
+.landing-4 .container .three img {
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+}
+
+.landing-4 .container .call {
+  grid-column: 1/4;
+}
+
+.landing-4 .container .call h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2.6rem;
+}
+
+.landing-4 .container .call h5 {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  font-weight: bold;
+}
+
+/* Tanitim-3 Bitiş */
+
+/* Tanitim-4 Başlangıç */
+
+.landing-5 .container {
+  padding-top: 5rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+.landing-5 .container h5 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 2.6rem;
+}
+
+/* Tanitim-4 Bitiş */
+
 /* Fiyat Başlangıç */
 
-.price {
+/* .price {
   border-top: 10px solid var(--first);
-}
+} */
 
 .price .container {
   padding: 5rem 6rem;
