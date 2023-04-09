@@ -3,6 +3,8 @@ import { Schema, model, Types } from "mongoose";
 const MasaSchema = new Schema({
   Number: {
     type: Number,
+    required: true,
+    unique: true,
   },
   Orders: [
     {

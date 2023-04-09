@@ -673,6 +673,27 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   }
 });
 
+router.post("/:id/masasil", marabacheck, async (req: any, res: any) => {
+  const id = req.params.id;
+  const menu = await Masa.findById(id).populate("Menu");
+  const userid: any = req.token.id;
+  const user = await User.findById(userid).populate("userMenu");
+  const filter = user.userMenu.filter((item) => {
+    return item === menu.Menu._id;
+  });
+
+  if (filter) {
+    try {
+      const data = await Masa.findByIdAndDelete(id);
+      res.redirect(`/user/menu/postmasa`);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  } else {
+    res.render("error/401");
+  }
+});
+
 router.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
