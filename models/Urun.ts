@@ -13,7 +13,25 @@ const UrunSchema = new Schema({
   Name: {
     type: String,
   },
+  Nameen: {
+    type: String,
+  },
+  Nameru: {
+    type: String,
+  },
+  Namefr: {
+    type: String,
+  },
   Description: {
+    type: String,
+  },
+  Descriptionen: {
+    type: String,
+  },
+  Descriptionru: {
+    type: String,
+  },
+  Descriptionfr: {
     type: String,
   },
   Price: {

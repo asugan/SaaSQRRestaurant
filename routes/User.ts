@@ -16,6 +16,7 @@ const fs = require("fs");
 let date = new Date().toLocaleDateString("tr-TR");
 const jwt = require("jsonwebtoken");
 import { sendMail } from "../middlewares/tokenSender";
+const { translate } = require("free-translate");
 
 require("dotenv").config();
 
@@ -286,7 +287,62 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: Response) => {
-    const { name, idmenu } = req.body;
+    let { name, idmenu, nameen, nameru, namefr } = req.body;
+
+    if (nameen === "yes" && nameru === "yes" && namefr === "yes") {
+      const kelime = req.body.name;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+      const translated1 = await translate(kelime, { from: "tr", to: "ru" });
+      const translated2 = await translate(kelime, { from: "tr", to: "fr" });
+
+      nameen = translated;
+      nameru = translated1;
+      namefr = translated2;
+    } else if (nameen === "yes" && nameru === "yes") {
+      const kelime = req.body.name;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+      const translated1 = await translate(kelime, { from: "tr", to: "ru" });
+
+      nameen = translated;
+      nameru = translated1;
+    } else if (nameen === "yes" && namefr === "yes") {
+      const kelime = req.body.name;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+      const translated1 = await translate(kelime, { from: "tr", to: "fr" });
+
+      nameen = translated;
+      namefr = translated1;
+    } else if (nameru === "yes" && namefr === "yes") {
+      const kelime = req.body.name;
+
+      const translated = await translate(kelime, { from: "tr", to: "ru" });
+      const translated1 = await translate(kelime, { from: "tr", to: "fr" });
+
+      nameru = translated;
+      namefr = translated1;
+    } else if (nameen === "yes") {
+      const kelime = req.body.name;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+
+      nameen = translated;
+    } else if (nameru === "yes") {
+      const kelime = req.body.name;
+
+      const translated = await translate(kelime, { from: "tr", to: "ru" });
+
+      nameru = translated;
+    } else if (namefr === "yes") {
+      const kelime = req.body.name;
+
+      const translated = await translate(kelime, { from: "tr", to: "fr" });
+
+      namefr = translated;
+    }
+
     const id: any = req.token.id;
     const filePath = "public/images";
     const splitname = req.file.filename.split(".")[0];
@@ -314,6 +370,9 @@ router.post(
         Name: name,
         Menu: menu,
         image: image,
+        Nameen: nameen,
+        Namefr: namefr,
+        Nameru: nameru,
       });
 
       try {
@@ -335,7 +394,96 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: Response) => {
-    const { name, price, kategori, menuid, description } = req.body;
+    let { name, price, kategori, menuid, description, nameen, nameru, namefr } =
+      req.body;
+
+    let descriptionen, descriptionru, descriptionfr;
+
+    if (nameen === "yes" && nameru === "yes" && namefr === "yes") {
+      const kelime = req.body.name;
+      const aciklama = req.body.description;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+      const translated1 = await translate(kelime, { from: "tr", to: "ru" });
+      const translated2 = await translate(kelime, { from: "tr", to: "fr" });
+      const translated3 = await translate(aciklama, { from: "tr", to: "en" });
+      const translated4 = await translate(aciklama, { from: "tr", to: "ru" });
+      const translated5 = await translate(aciklama, { from: "tr", to: "fr" });
+
+      nameen = translated;
+      nameru = translated1;
+      namefr = translated2;
+      descriptionen = translated3;
+      descriptionru = translated4;
+      descriptionfr = translated5;
+    } else if (nameen === "yes" && nameru === "yes") {
+      const kelime = req.body.name;
+      const aciklama = req.body.description;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+      const translated1 = await translate(kelime, { from: "tr", to: "ru" });
+      const translated2 = await translate(aciklama, { from: "tr", to: "en" });
+      const translated3 = await translate(aciklama, { from: "tr", to: "ru" });
+
+      nameen = translated;
+      nameru = translated1;
+      descriptionen = translated2;
+      descriptionru = translated3;
+    } else if (nameen === "yes" && namefr === "yes") {
+      const kelime = req.body.name;
+      const aciklama = req.body.description;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+      const translated1 = await translate(kelime, { from: "tr", to: "fr" });
+      const translated2 = await translate(aciklama, { from: "tr", to: "en" });
+      const translated3 = await translate(aciklama, { from: "tr", to: "fr" });
+
+      nameen = translated;
+      namefr = translated1;
+      descriptionen = translated2;
+      descriptionfr = translated3;
+    } else if (nameru === "yes" && namefr === "yes") {
+      const kelime = req.body.name;
+      const aciklama = req.body.description;
+
+      const translated = await translate(kelime, { from: "tr", to: "ru" });
+      const translated1 = await translate(kelime, { from: "tr", to: "fr" });
+      const translated2 = await translate(aciklama, { from: "tr", to: "ru" });
+      const translated3 = await translate(aciklama, { from: "tr", to: "fr" });
+
+      nameru = translated;
+      namefr = translated1;
+      descriptionru = translated2;
+      descriptionfr = translated3;
+    } else if (nameen === "yes") {
+      const kelime = req.body.name;
+      const aciklama = req.body.description;
+
+      const translated = await translate(kelime, { from: "tr", to: "en" });
+      const translated1 = await translate(aciklama, { from: "tr", to: "en" });
+
+      nameen = translated;
+      descriptionen = translated1;
+    } else if (nameru === "yes") {
+      const kelime = req.body.name;
+      const aciklama = req.body.description;
+
+      const translated = await translate(kelime, { from: "tr", to: "ru" });
+      const translated1 = await translate(aciklama, { from: "tr", to: "ru" });
+
+      nameru = translated;
+      descriptionru = translated1;
+    } else if (namefr === "yes") {
+      const kelime = req.body.name;
+      const aciklama = req.body.description;
+
+      const translated = await translate(kelime, { from: "tr", to: "fr" });
+      const translated1 = await translate(aciklama, { from: "tr", to: "fr" });
+
+      namefr = translated;
+      descriptionfr = translated1;
+    }
+
     const id: any = req.token.id;
     const filePath = "public/images";
     const splitname = req.file.filename.split(".")[0];
@@ -361,10 +509,16 @@ router.post(
 
       const newUrun: any = new Urun({
         Name: name,
+        Nameen: nameen,
+        Namefr: namefr,
+        Nameru: nameru,
         Price: price,
         Kategori: kategori,
         image: image,
         Description: description,
+        Descriptionen: descriptionen,
+        Descriptionfr: descriptionfr,
+        Descriptionru: descriptionru,
       });
 
       try {

@@ -19,7 +19,7 @@ export const sendMail = async (email: string) => {
       mail: email,
     },
     secret,
-    { expiresIn: "10m" }
+    { expiresIn: "365d" }
   );
 
   const mailConfigurations = {

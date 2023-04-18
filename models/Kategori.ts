@@ -13,6 +13,15 @@ const KategoriSchema = new Schema({
   Name: {
     type: String,
   },
+  Nameen: {
+    type: String,
+  },
+  Nameru: {
+    type: String,
+  },
+  Namefr: {
+    type: String,
+  },
   image: {
     type: String,
   },
