@@ -103,36 +103,6 @@
           </div>
         </li>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseUtilities"
-            aria-expanded="true"
-            aria-controls="collapseUtilities"
-          >
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Menu Orders</span>
-          </a>
-          <div
-            id="collapseUtilities"
-            class="collapse"
-            aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Track your menu orders:</h6>
-              {{#each user.userMenu}}
-                <a
-                  class="collapse-item"
-                  href="/user/{{this.Slug}}/orders"
-                >{{this.Name}}</a>
-              {{/each}}
-            </div>
-          </div>
-        </li>
       </ul>
       <!-- End of Sidebar -->
 
@@ -251,12 +221,14 @@
               <div
                 class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
               >
-                <button class="btn btn-sm btn-danger mr-4" type="submit">Finish
-                  Edit!</button>
+                <button
+                  class="btn btn-sm btn-danger mr-4"
+                  type="submit"
+                >Kaydet</button>
                 <a
                   class="btn btn-sm btn-danger"
                   href="/user/{{menuSlug}}/edit2"
-                >Back to Items Page</a>
+                >Ürünler Sayfasına Dön</a>
               </div>
 
             </form>

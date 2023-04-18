@@ -88,7 +88,7 @@ router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
   });
 });
 
-router.get("/:menu/orders", marabacheck, async (req: any, res: Response) => {
+/* router.get("/:menu/orders", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
@@ -115,7 +115,7 @@ router.get("/:menu/orders", marabacheck, async (req: any, res: Response) => {
   } else {
     res.render("error/401");
   }
-});
+}); */
 
 router.get("/:menu/edit", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
@@ -269,7 +269,7 @@ router.get("/:menu/urunekle", marabacheck, async (req: any, res: Response) => {
   }
 });
 
-router.get("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
+/* router.get("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate({
     path: "userMenu",
@@ -279,7 +279,7 @@ router.get("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
   res.render("user/dashboard/masapages/postmasa", {
     user: user,
   });
-});
+}); */
 
 router.post(
   "/menu/post",
@@ -377,7 +377,7 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: Response) => {
-    const { name, price, kategori, menuid } = req.body;
+    const { name, price, kategori, menuid, description } = req.body;
     const id: any = req.token.id;
     const filePath = "public/images";
     const splitname = req.file.filename.split(".")[0];
@@ -406,6 +406,7 @@ router.post(
         Price: price,
         Kategori: kategori,
         image: image,
+        Description: description,
       });
 
       try {
@@ -422,7 +423,7 @@ router.post(
   }
 );
 
-router.post("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
+/* router.post("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
   const { number, menu } = req.body;
 
   const findmenu = await Menu.findById(menu);
@@ -440,7 +441,7 @@ router.post("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
   } catch (err) {
     console.log(err);
   }
-});
+}); */
 
 router.post(
   "/menu/edit",
@@ -558,7 +559,7 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: any) => {
-    const { name, id, price } = req.body;
+    const { name, id, price, description } = req.body;
 
     const menu = await Urun.findById(id);
     const mycategory = await Kategori.findById(menu.Kategori._id);
@@ -588,6 +589,7 @@ router.post(
           Name: name,
           image: image,
           Price: price,
+          Description: description,
         };
         const options = { new: true };
         const result = await Urun.findByIdAndUpdate(id, updatedData, options);
@@ -596,6 +598,7 @@ router.post(
         const updatedData = {
           Name: name,
           Price: price,
+          Description: description,
         };
         const options = { new: true };
         const result = await Urun.findByIdAndUpdate(id, updatedData, options);
@@ -673,7 +676,7 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   }
 });
 
-router.post("/:id/masasil", marabacheck, async (req: any, res: any) => {
+/* router.post("/:id/masasil", marabacheck, async (req: any, res: any) => {
   const id = req.params.id;
   const menu = await Masa.findById(id).populate("Menu");
   const userid: any = req.token.id;
@@ -692,7 +695,7 @@ router.post("/:id/masasil", marabacheck, async (req: any, res: any) => {
   } else {
     res.render("error/401");
   }
-});
+}); */
 
 router.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;

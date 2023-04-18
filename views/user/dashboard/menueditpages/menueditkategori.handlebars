@@ -103,36 +103,6 @@
           </div>
         </li>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseUtilities"
-            aria-expanded="true"
-            aria-controls="collapseUtilities"
-          >
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Menu Orders</span>
-          </a>
-          <div
-            id="collapseUtilities"
-            class="collapse"
-            aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Track your menu orders:</h6>
-              {{#each user.userMenu}}
-                <a
-                  class="collapse-item"
-                  href="/user/{{this.Slug}}/orders"
-                >{{this.Name}}</a>
-              {{/each}}
-            </div>
-          </div>
-        </li>
       </ul>
       <!-- End of Sidebar -->
 
@@ -222,11 +192,11 @@
               <a
                 class="btn btn-lg btn-danger mr-2"
                 href="/user/{{menu._id}}/kategoriekle"
-              >Add Category</a>
+              >Kategori Ekle</a>
               <a
                 class="btn btn-lg btn-danger"
                 href="/user/{{menu._id}}/urunekle"
-              >Add Item</a>
+              >Ürün Ekle</a>
             </div>
           </div>
 
@@ -252,12 +222,12 @@
                     <a
                       class="btn btn-sm btn-danger ml-5"
                       href="/user/{{this._id}}/kategoriedit"
-                    >Edit</a>
+                    >Düzenle</a>
                     <form method="post" action="/user/{{this._id}}/kategorisil">
                       <button
                         class="ml-2 mt-3 btn btn-sm btn-danger"
                         type="submit"
-                      >Delete</button>
+                      >Sil</button>
                     </form>
                   </div>
                 </div>
@@ -282,12 +252,12 @@
                       <a
                         class="btn btn-sm btn-danger ml-5"
                         href="/user/{{this._id}}/urunedit"
-                      >Edit</a>
+                      >Düzenle</a>
                       <form method="post" action="/user/{{this._id}}/urunsil">
                         <button
                           class="ml-2 mt-3 btn btn-sm btn-danger"
                           type="submit"
-                        >Delete</button>
+                        >Sil</button>
                       </form>
                     </div>
                   </div>

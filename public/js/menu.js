@@ -36,7 +36,7 @@ const filterfunc = (name) => {
   }
 };
 
-const shoppingbag = document.getElementsByClassName("shoppingbagcontainer")[0];
+/* const shoppingbag = document.getElementsByClassName("shoppingbagcontainer")[0];
 const rightarrow = document.getElementsByClassName("fa-arrow-right")[0];
 const leftarrow = document.getElementsByClassName("fa-arrow-left")[0];
 
@@ -60,4 +60,4 @@ leftarrow.addEventListener("click", function () {
   const cartmodal = document.getElementsByClassName("cartmodal")[0];
 
   cartmodal.style.display = "none";
-});
+}); */

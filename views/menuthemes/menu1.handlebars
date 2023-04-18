@@ -18,100 +18,13 @@
   </head>
   <body>
 
-    <section>
-      <div class="cartmodal">
-        <div class="container">
-          <div class="row">
-            <div
-              class="col-12 d-flex flex-column justify-content-center align-items-center"
-            >
-              <h3>Information</h3>
-              <div class="cartinside">
-              </div>
-              <div class="maliyet"></div>
-              <div class="formcheck d-flex flex-row">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault2"
-                    checked
-                  />
-                  <label class="form-check-label me-2" for="flexRadioDefault2">
-                    Order in Restaurant
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault1"
-                  />
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Order in Home
-                  </label>
-                </div>
-              </div>
-              <select
-                id="optionmasa"
-                class="form-select mt-2"
-                aria-label="Default select example"
-              >
-                <option selected>Select your table</option>
-                {{#each menu.Masalar}}
-                  <option value="{{this._id}}">{{this.Number}}</option>
-                {{/each}}
-              </select>
-              <input
-                id="ordernote"
-                class="form-control mt-3"
-                type="text"
-                placeholder="If you have note, please send us..."
-              />
-              <div class="formcheck d-flex flex-row mt-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault2"
-                    checked
-                  />
-                  <label class="form-check-label me-2" for="flexRadioDefault2">
-                    Pay with Cash
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault1"
-                  />
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Pay with Credit Card
-                  </label>
-                </div>
-              </div>
-              <button
-                class="btn btn-md btn-warning mt-3 mb-3"
-                onclick="submit()"
-              >Send Order</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="menu--header">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 offset-lg-2 pt-2 pb-2">
             <div class="row">
               <div
-                class="col-lg-8 d-flex align-items-center justify-content-center justify-content-lg-start"
+                class="col-lg-8 d-flex align-items-center justify-content-center justify-content-lg-start p-0"
               >
                 <img
                   class="img-fluid headerlogo mt-3 mt-lg-0"
@@ -119,13 +32,16 @@
                   alt=""
                 />
               </div>
-              <div class="col-lg-4 d-flex flex-column">
+              <div class="col-lg-4 d-flex flex-column p-0">
                 <div class="social-media d-flex justify-content-evenly pt-3">
                   <i class="fa fa-3x fa-facebook-official"></i>
                   <i class="fa fa-3x fa-instagram"></i>
                   <i class="fa fa-3x fa-twitter-square"></i>
                 </div>
-                <h1 class="text-center pt-3 pb-3 pb-lg-0">{{menu.Name}}</h1>
+                <h1
+                  class="text-center pt-3 pb-3 pb-lg-0"
+                  style="word-wrap: break-word;"
+                >{{menu.Name}}</h1>
               </div>
             </div>
           </div>
@@ -186,35 +102,15 @@
                             class="aciklama d-flex flex-column justify-content-evenly align-items-center"
                           >
                             <h4 class="text-white itemname">{{this.Name}}</h4>
-                            <div class="middiv d-flex justify-content-center">
-                              <button
-                                class="{{this._id}}
-                                  btn btn-lg btn-warning btnsupdown"
-                                onclick="valuedown(this)"
-                              >-</button>
-                              <input
-                                class="numberinput w-25"
-                                type="text"
-                                value="1"
-                                readonly
-                              />
-                              <button
-                                class="{{this._id}}
-                                  btn btn-lg btn-warning btnsupdown"
-                                onclick="valueup(this)"
-                              >+</button>
-                            </div>
-                            <button
-                              class="{{this._id}}
-                                btn btn-md btn-warning mt-3 mb-3"
-                              onclick="sendid(this)"
-                            >Add to Cart</button>
+                            <p
+                              class="text-white text-center"
+                            >{{this.Description}}</p>
                           </div>
                         </div>
                         <div
                           class="col-2 p-0 d-flex justify-content-center align-items-center pricediv"
                         >
-                          <h4 class="itemprice">${{this.Price}}</h4>
+                          <h4 class="itemprice">{{this.Price}}₺</h4>
                         </div>
                       </div>
                     </div>
@@ -226,43 +122,11 @@
         </div>
       </div>
     </section>
-
-    <section>
-      <div class="bottombar pt-3 pb-3">
-        <div class="container">
-          <div class="row">
-            <div
-              class="col-lg-8 offset-lg-2 d-flex flex-row justify-content-between align-items-center"
-            >
-              <i class="fa fa-3x fa-arrow-left" aria-hidden="true"></i>
-              <div
-                class="shoppingbagcontainer d-flex justify-content-center align-items-center"
-              >
-                <i class="fa fa-4x fa-shopping-bag"></i>
-                <span class="bagspan">0</span>
-              </div>
-              <div class="cartcontainer text-center">
-                <div class="container">
-                  <div class="col-lg-8 offset-lg-2">
-                    <div class="cartinside">
-                    </div>
-                    <div class="maliyet"></div>
-                  </div>
-                </div>
-              </div>
-              <i class="fa fa-3x fa-arrow-right" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
     <script src="/js/menu.js"></script>
-    <script src="/js/cart.js"></script>
   </body>
 </html>

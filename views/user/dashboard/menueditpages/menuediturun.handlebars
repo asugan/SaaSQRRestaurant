@@ -103,36 +103,6 @@
           </div>
         </li>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseUtilities"
-            aria-expanded="true"
-            aria-controls="collapseUtilities"
-          >
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Menu Orders</span>
-          </a>
-          <div
-            id="collapseUtilities"
-            class="collapse"
-            aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Track your menu orders:</h6>
-              {{#each user.userMenu}}
-                <a
-                  class="collapse-item"
-                  href="/user/{{this.Slug}}/orders"
-                >{{this.Name}}</a>
-              {{/each}}
-            </div>
-          </div>
-        </li>
       </ul>
       <!-- End of Sidebar -->
 
@@ -224,21 +194,31 @@
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
               >
-                <label for="kategori">Select Category</label>
+                <label for="kategori">Kategori Seçin</label>
                 <select name="kategori">
                   {{#each menuSlug.Kategoriler}}
                     <option value="{{this._id}}">{{this.Name}}</option>
                   {{/each}}
                 </select>
-                <label class="mt-2" for="name">Item Name</label>
+                <label class="mt-2" for="name">Ürün Adı</label>
                 <input type="text" name="name" value="{{menu.Name}}" />
-                <label class="mt-2" for="name">Item Price</label>
+                <label class="mt-2" for="name">Ürün Fiyatı</label>
                 <input type="text" name="price" value="{{menu.Price}}" />
+                <div class="form-group mt-2 text-center">
+                  <label for="exampleFormControlTextarea1">Ürün Açıklaması Yazın</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    name="description"
+                    value="{{menu.Description}}"
+                  ></textarea>
+                </div>
               </div>
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center mt-3"
               >
-                <label for="image">Item Image</label>
+                <label for="image">Ürün Resmi</label>
                 <img
                   class="mb-3"
                   style="width: 150px;"
@@ -259,12 +239,14 @@
               <div
                 class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
               >
-                <button class="btn btn-sm btn-danger mr-4" type="submit">Finish
-                  Edit !</button>
+                <button
+                  class="btn btn-sm btn-danger mr-4"
+                  type="submit"
+                >Kaydet</button>
                 <a
                   class="btn btn-sm btn-danger"
                   href="/user/{{menuSlug.Slug}}/edit2"
-                >Back to Items Page</a>
+                >Ürünler Sayfasına Dön</a>
               </div>
 
             </form>

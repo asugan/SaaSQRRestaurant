@@ -61,9 +61,9 @@ app.use(express.static("public"));
 
 app.use("/", MainController);
 app.use("/user", UserController);
-app.use("/stripe", StripeController);
-app.use("/iyzipay", IyzicoController);
-app.use("/order", OrderController);
+// app.use("/stripe", StripeController);
+// app.use("/iyzipay", IyzicoController);
+// app.use("/order", OrderController);
 app.use("/lemon", LemonController);
 app.get("*", function (req, res) {
   res.status(404).render("error/404");
