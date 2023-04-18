@@ -35,29 +35,3 @@ const filterfunc = (name) => {
     }
   }
 };
-
-/* const shoppingbag = document.getElementsByClassName("shoppingbagcontainer")[0];
-const rightarrow = document.getElementsByClassName("fa-arrow-right")[0];
-const leftarrow = document.getElementsByClassName("fa-arrow-left")[0];
-
-shoppingbag.addEventListener("click", function () {
-  const cart = document.getElementsByClassName("cartcontainer")[0];
-
-  if (cart.style.display === "block") {
-    cart.style.display = "none";
-  } else {
-    cart.style.display = "block";
-  }
-});
-
-rightarrow.addEventListener("click", function () {
-  const cartmodal = document.getElementsByClassName("cartmodal")[0];
-
-  cartmodal.style.display = "block";
-});
-
-leftarrow.addEventListener("click", function () {
-  const cartmodal = document.getElementsByClassName("cartmodal")[0];
-
-  cartmodal.style.display = "none";
-}); */

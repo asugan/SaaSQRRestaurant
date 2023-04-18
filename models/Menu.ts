@@ -25,20 +25,10 @@ const MenuSchema = new Schema({
   image: {
     type: String,
   },
-  isVisible: {
-    type: Boolean,
-    default: true,
-  },
   Kategoriler: [
     {
       type: Schema.Types.ObjectId,
       ref: "Kategori",
-    },
-  ],
-  Masalar: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Masa",
     },
   ],
   user: {

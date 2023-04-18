@@ -1,10 +1,5 @@
 import express, { Request, Response } from "express";
-import { User } from "../models/User";
 import { Menu } from "../models/Menu";
-import { verify } from "../middlewares/Main";
-import { authornot } from "../middlewares/AuthCheck";
-import { Kategori } from "../models/Kategori";
-import { Urun } from "../models/Urun";
 const qr = require("qrcode");
 const router = express.Router();
 

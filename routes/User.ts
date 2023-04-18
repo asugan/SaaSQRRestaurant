@@ -1,12 +1,9 @@
 import express, { Request, Response } from "express";
 import { User } from "../models/User";
 import { Menu } from "../models/Menu";
-import { verify } from "../middlewares/Main";
-import { authornot } from "../middlewares/AuthCheck";
 import { marabacheck } from "../middlewares/MarabaCheck";
 import { Kategori } from "../models/Kategori";
 import { Urun } from "../models/Urun";
-import { Masa } from "../models/Masa";
 import { stringToSlug } from "../helpers/slug";
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -17,6 +14,8 @@ const path = require("path");
 const SharpMulter = require("sharp-multer");
 const fs = require("fs");
 let date = new Date().toLocaleDateString("tr-TR");
+const jwt = require("jsonwebtoken");
+import { sendMail } from "../middlewares/tokenSender";
 
 require("dotenv").config();
 
@@ -87,35 +86,6 @@ router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
     user: user,
   });
 });
-
-/* router.get("/:menu/orders", marabacheck, async (req: any, res: Response) => {
-  const id: any = req.token.id;
-  const user = await User.findById(id).populate("userMenu");
-  const menuid = req.params.menu;
-
-  const filter = user.userMenu.filter((item) => {
-    return item === menuid;
-  });
-
-  if (filter) {
-    const findmenu: any = await Menu.findOne({ Slug: menuid }).populate({
-      path: "Masalar",
-      populate: [
-        {
-          path: "Orders",
-          populate: [{ path: "Urunler", populate: [{ path: "Urun" }] }],
-        },
-      ],
-    });
-
-    res.render("user/dashboard/orderpages/index", {
-      menu: findmenu,
-      user: user,
-    });
-  } else {
-    res.render("error/401");
-  }
-}); */
 
 router.get("/:menu/edit", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
@@ -269,18 +239,6 @@ router.get("/:menu/urunekle", marabacheck, async (req: any, res: Response) => {
   }
 });
 
-/* router.get("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
-  const id: any = req.token.id;
-  const user = await User.findById(id).populate({
-    path: "userMenu",
-    populate: [{ path: "Masalar" }],
-  });
-
-  res.render("user/dashboard/masapages/postmasa", {
-    user: user,
-  });
-}); */
-
 router.post(
   "/menu/post",
   upload.single("image"),
@@ -422,26 +380,6 @@ router.post(
     }
   }
 );
-
-/* router.post("/menu/postmasa", marabacheck, async (req: any, res: Response) => {
-  const { number, menu } = req.body;
-
-  const findmenu = await Menu.findById(menu);
-
-  const newMasa: any = new Masa({
-    Number: number,
-    Menu: menu,
-  });
-
-  try {
-    await newMasa.save();
-    findmenu.Masalar.push(newMasa);
-    await findmenu.save();
-    res.redirect("/user/menu/postmasa");
-  } catch (err) {
-    console.log(err);
-  }
-}); */
 
 router.post(
   "/menu/edit",
@@ -676,58 +614,41 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   }
 });
 
-/* router.post("/:id/masasil", marabacheck, async (req: any, res: any) => {
-  const id = req.params.id;
-  const menu = await Masa.findById(id).populate("Menu");
-  const userid: any = req.token.id;
-  const user = await User.findById(userid).populate("userMenu");
-  const filter = user.userMenu.filter((item) => {
-    return item === menu.Menu._id;
-  });
-
-  if (filter) {
-    try {
-      const data = await Masa.findByIdAndDelete(id);
-      res.redirect(`/user/menu/postmasa`);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
-    }
-  } else {
-    res.render("error/401");
-  }
-}); */
-
 router.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   const getuser = await User.findOne({ username: username });
 
-  try {
-    if (await bcrypt.compare(password, getuser.password)) {
-      const token = sign(
-        {
-          exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, // 30 days
-          id: getuser._id,
-        },
-        secret
-      );
+  if (getuser.verified === true) {
+    try {
+      if (await bcrypt.compare(password, getuser.password)) {
+        const token = sign(
+          {
+            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, // 30 days
+            id: getuser._id,
+          },
+          secret
+        );
 
-      const serialised = serialize("OursiteJWT", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV !== "development",
-        sameSite: "lax",
-        maxAge: 60 * 60 * 24 * 30,
-        path: "/",
-      });
+        const serialised = serialize("OursiteJWT", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== "development",
+          sameSite: "lax",
+          maxAge: 60 * 60 * 24 * 30,
+          path: "/",
+        });
 
-      res.setHeader("Set-Cookie", serialised);
+        res.setHeader("Set-Cookie", serialised);
 
-      res.status(200).redirect("/");
-    } else {
-      console.log("Kullanıcı Adı yada Şifre Yanlış");
+        res.status(200).redirect("/");
+      } else {
+        console.log("Kullanıcı Adı yada Şifre Yanlış");
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
+  } else {
+    res.render("lütfen hesabınızı doğrulayın");
   }
 });
 
@@ -736,18 +657,48 @@ router.post("/register", async (req: Request, res: Response) => {
   const password: string = req.body.password;
   const email: string = req.body.email;
 
-  const newUser = new User({
-    username: username,
-    password: password,
-    email: email,
-    created_date: Date.now(),
+  const finduser = await User.findOne({
+    $or: [{ username: username }, { email: email }],
   });
+  console.log(finduser);
 
-  try {
-    await newUser.save();
+  if (finduser) {
+    res.send("email yada kullanıcı adı kayıtlı");
+  } else {
+    const newUser = new User({
+      username: username,
+      password: password,
+      email: email,
+      created_date: Date.now(),
+    });
+
+    try {
+      await newUser.save();
+      await sendMail(email);
+      res.redirect("/");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+router.get("/verify/:token", async (req, res) => {
+  const { token } = req.params;
+
+  // Verifying the JWT token
+  const data = jwt.verify(token, "mysecret");
+
+  const finduser = await User.findOne({ email: data.mail });
+
+  console.log(finduser);
+
+  if (finduser) {
+    finduser.verified = true;
+    await finduser.save();
     res.redirect("/");
-  } catch (err) {
-    console.log(err);
+  } else {
+    finduser.verified = false;
+    res.redirect("/");
   }
 });
 
