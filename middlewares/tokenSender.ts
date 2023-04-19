@@ -1,16 +1,19 @@
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-
-const secret = "mysecret";
+require("dotenv").config();
 
 export const sendMail = async (email: string) => {
+  const secret = process.env.SECRET;
+  const mail = process.env.MAIL;
+  const pass = process.env.MAILPASS;
+
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
-      user: "cagatayeren1898@gmail.com",
-      pass: "bznzjyzrnoqlpudj",
+      user: mail,
+      pass: pass,
     },
   });
 
@@ -24,7 +27,7 @@ export const sendMail = async (email: string) => {
 
   const mailConfigurations = {
     // It should be a string of sender/server email
-    from: "cagatayeren1898@gmail.com",
+    from: mail,
 
     to: email,
 

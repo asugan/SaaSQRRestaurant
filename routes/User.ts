@@ -843,11 +843,9 @@ router.get("/verify/:token", async (req, res) => {
   const { token } = req.params;
 
   // Verifying the JWT token
-  const data = jwt.verify(token, "mysecret");
+  const data = jwt.verify(token, secret);
 
   const finduser = await User.findOne({ email: data.mail });
-
-  console.log(finduser);
 
   if (finduser) {
     finduser.verified = true;
