@@ -710,8 +710,9 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
   const filter = user.userMenu.filter((item) => {
     return item === category._id;
   });
-
+  const filePath = "public/images";
   if (filter) {
+    await fs.unlinkSync(`${filePath}/${category.image}`);
     const data = await Menu.findByIdAndDelete(id);
     try {
       res.redirect(`/user/dashboard`);
@@ -732,8 +733,9 @@ router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
   const filter = user.userMenu.filter((item) => {
     return item === mymenu._id;
   });
-
+  const filePath = "public/images";
   if (filter) {
+    await fs.unlinkSync(`${filePath}/${category.image}`);
     const data = await Kategori.findByIdAndDelete(id);
     try {
       res.redirect(`/user/${mymenu.Slug}/edit2`);
@@ -755,9 +757,10 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   const filter = user.userMenu.filter((item) => {
     return item === mymenu._id;
   });
-
+  const filePath = "public/images";
   if (filter) {
     try {
+      await fs.unlinkSync(`${filePath}/${menu.image}`);
       const data = await Urun.findByIdAndDelete(id);
       res.redirect(`/user/${mymenu.Slug}/edit2`);
     } catch (error) {

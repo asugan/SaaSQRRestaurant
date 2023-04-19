@@ -13,7 +13,12 @@ const filterfunc = (name) => {
     (item) => !item.includes(itemname)
   );
 
-  if (itemname === "All") {
+  if (
+    itemname === "All" ||
+    itemname === "Hepsi" ||
+    itemname === "все" ||
+    itemname === "tous"
+  ) {
     for (i = 0; i < otherfiltered.length; i++) {
       const item = document.getElementsByClassName(otherfiltered[i]);
       item[0].style.display = "block";
