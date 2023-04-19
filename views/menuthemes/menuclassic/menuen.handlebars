@@ -1,0 +1,132 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/menus/menu1.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+
+    <section class="menu--header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 pt-2 pb-2">
+            <div class="row">
+              <div
+                class="col-lg-8 d-flex align-items-center justify-content-center justify-content-lg-start p-0"
+              >
+                <img
+                  class="img-fluid headerlogo mt-3 mt-lg-0"
+                  src="/images/{{menu.image}}"
+                  alt=""
+                />
+              </div>
+              <div class="col-lg-4 d-flex flex-column p-0">
+                <div class="social-media d-flex justify-content-evenly pt-3">
+                  <i class="fa fa-3x fa-facebook-official"></i>
+                  <i class="fa fa-3x fa-instagram"></i>
+                  <i class="fa fa-3x fa-twitter-square"></i>
+                </div>
+                <h1
+                  class="text-center pt-3 pb-3 pb-lg-0"
+                  style="word-wrap: break-word;"
+                >{{menu.Name}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 pr-2 pl-2 p-lg-0 categorycontainer">
+            <div class="buttons pb-3 pt-3">
+              <button
+                class="btn btn-warning mt-2 mt-lg-0"
+                onclick="filterfunc(this)"
+              >All</button>
+              {{#each menu.Kategoriler}}
+                <button
+                  class="btn btn-warning mt-2 mt-lg-0"
+                  onclick="filterfunc(this)"
+                >{{this.Nameen}}</button>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            {{#each menu.Kategoriler}}
+              <div class="row selectrow {{this.Nameen}}">
+                <div
+                  class="col-12 p-5 category--background"
+                  style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('/images/{{this.image}}');"
+                >
+                  <h1 class="text-white text-center">{{this.Nameen}}</h1>
+                </div>
+                <div class="col-12 pt-3 pb-3 itembg">
+                  {{#each this.Urunler}}
+                    <div class="uruncontainer ps-3 pe-3 {{this._id}}">
+                      <div class="row">
+                        <div
+                          class="col-4 p-0 d-flex justify-content-center align-items-center"
+                        >
+                          <img
+                            class="img-fluid imgitem"
+                            src="/images/{{this.image}}"
+                            alt=""
+                          />
+                        </div>
+                        <div
+                          class="col-6 d-flex justify-content-center mt-3 mt-xl-0"
+                        >
+                          <div
+                            class="aciklama d-flex flex-column justify-content-evenly align-items-center"
+                          >
+                            <h4 class="text-white itemname">{{this.Nameen}}</h4>
+                            <p
+                              class="text-white text-center"
+                            >{{this.Descriptionen}}</p>
+                          </div>
+                        </div>
+                        <div
+                          class="col-2 p-0 d-flex justify-content-center align-items-center pricediv"
+                        >
+                          <h4 class="itemprice">{{this.Price}}₺</h4>
+                        </div>
+                      </div>
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/menu.js"></script>
+  </body>
+</html>

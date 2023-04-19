@@ -13,16 +13,77 @@ router.get("/", async (req: any, res: any) => {
 router.get("/menu/:name", async (req: Request, res: Response) => {
   const menuid = req.params.name;
 
-  const menu = await Menu.findOne({ Slug: menuid })
-    .populate({
-      path: "Kategoriler",
-      populate: [{ path: "Urunler" }],
-    })
-    .populate("Masalar");
+  const menu = await Menu.findOne({ Slug: menuid }).populate({
+    path: "Kategoriler",
+    populate: [{ path: "Urunler" }],
+  });
 
   if (menu) {
     try {
-      res.render("menuthemes/menu1", {
+      res.render("menuthemes/menuclassic/menu", {
+        menu: menu,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    res.render("error/404");
+  }
+});
+
+router.get("/menu/:name/en", async (req: Request, res: Response) => {
+  const menuid = req.params.name;
+
+  const menu = await Menu.findOne({ Slug: menuid }).populate({
+    path: "Kategoriler",
+    populate: [{ path: "Urunler" }],
+  });
+
+  if (menu) {
+    try {
+      res.render("menuthemes/menuclassic/menuen", {
+        menu: menu,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    res.render("error/404");
+  }
+});
+
+router.get("/menu/:name/ru", async (req: Request, res: Response) => {
+  const menuid = req.params.name;
+
+  const menu = await Menu.findOne({ Slug: menuid }).populate({
+    path: "Kategoriler",
+    populate: [{ path: "Urunler" }],
+  });
+
+  if (menu) {
+    try {
+      res.render("menuthemes/menuclassic/menuru", {
+        menu: menu,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    res.render("error/404");
+  }
+});
+
+router.get("/menu/:name/fr", async (req: Request, res: Response) => {
+  const menuid = req.params.name;
+
+  const menu = await Menu.findOne({ Slug: menuid }).populate({
+    path: "Kategoriler",
+    populate: [{ path: "Urunler" }],
+  });
+
+  if (menu) {
+    try {
+      res.render("menuthemes/menuclassic/menufr", {
         menu: menu,
       });
     } catch (err) {
