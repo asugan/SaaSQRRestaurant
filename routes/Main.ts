@@ -20,7 +20,7 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
 
   if (menu) {
     try {
-      res.render("menuthemes/menuclassic/menu", {
+      res.render(`menuthemes/menuclassic/menu${menu.NativeLang}`, {
         menu: menu,
       });
     } catch (err) {
@@ -31,8 +31,9 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/menu/:name/en", async (req: Request, res: Response) => {
+router.get("/menu/:name/:lang", async (req: Request, res: Response) => {
   const menuid = req.params.name;
+  const lang = req.params.lang;
 
   const menu = await Menu.findOne({ Slug: menuid }).populate({
     path: "Kategoriler",
@@ -41,51 +42,13 @@ router.get("/menu/:name/en", async (req: Request, res: Response) => {
 
   if (menu) {
     try {
-      res.render("menuthemes/menuclassic/menuen", {
-        menu: menu,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    res.render("error/404");
-  }
-});
-
-router.get("/menu/:name/ru", async (req: Request, res: Response) => {
-  const menuid = req.params.name;
-
-  const menu = await Menu.findOne({ Slug: menuid }).populate({
-    path: "Kategoriler",
-    populate: [{ path: "Urunler" }],
-  });
-
-  if (menu) {
-    try {
-      res.render("menuthemes/menuclassic/menuru", {
-        menu: menu,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    res.render("error/404");
-  }
-});
-
-router.get("/menu/:name/fr", async (req: Request, res: Response) => {
-  const menuid = req.params.name;
-
-  const menu = await Menu.findOne({ Slug: menuid }).populate({
-    path: "Kategoriler",
-    populate: [{ path: "Urunler" }],
-  });
-
-  if (menu) {
-    try {
-      res.render("menuthemes/menuclassic/menufr", {
-        menu: menu,
-      });
+      if (menu.NativeLang !== lang) {
+        res.render(`menuthemes/menuclassic/menu${lang}`, {
+          menu: menu,
+        });
+      } else {
+        res.redirect(`/menu/${menu.Slug}`);
+      }
     } catch (err) {
       console.log(err);
     }

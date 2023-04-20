@@ -540,7 +540,7 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: any) => {
-    const { name, id } = req.body;
+    const { name, id, lang } = req.body;
     const userid: any = req.token.id;
     const user = await User.findById(userid).populate("userMenu");
     const filter = user.userMenu.filter((item) => {
@@ -567,6 +567,7 @@ router.post(
 
         const updatedData = {
           Name: name,
+          NativeLang: lang,
           image: image,
         };
         const options = { new: true };
@@ -575,6 +576,7 @@ router.post(
       } else {
         const updatedData = {
           Name: name,
+          NativeLang: lang,
         };
         const options = { new: true };
         const result = await Menu.findByIdAndUpdate(id, updatedData, options);

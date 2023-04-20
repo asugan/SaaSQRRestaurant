@@ -200,6 +200,17 @@
               >
                 <label for="name">Menu Adı</label>
                 <input type="text" name="name" value="{{menu.Name}}" />
+                <select
+                  class="form-select mt-3"
+                  aria-label="Default select example"
+                  name="lang"
+                >
+                  <option value="{{menu.NativeLang}}">Menü Ana Dilinizi Seçin</option>
+                  <option value="tr">Türkçe</option>
+                  <option value="en">İngilizce</option>
+                  <option value="fr">Fransızca</option>
+                  <option value="ru">Rusça</option>
+                </select>
               </div>
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center mt-5"

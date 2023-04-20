@@ -14,6 +14,12 @@ const MenuSchema = new Schema({
     type: String,
     required: true,
   },
+  NativeLang: {
+    type: String,
+    required: true,
+    enum: ["tr", "en", "ru", "fr"],
+    default: "tr",
+  },
   Slug: {
     type: String,
     required: true,

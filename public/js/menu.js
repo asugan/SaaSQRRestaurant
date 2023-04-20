@@ -1,6 +1,12 @@
 const catnames = document.getElementsByClassName("selectrow");
 const catnames_array = [];
 
+const fetchcurrency = async () => {
+  const response = await fetch("https://finans.truncgil.com/today.json");
+  const jsonData = await response.json();
+  return jsonData.USD.Alış;
+};
+
 for (i = 0; i < catnames.length; i++) {
   catnames_array.push(catnames[i].classList[2]);
 }
@@ -40,3 +46,19 @@ const filterfunc = (name) => {
     }
   }
 };
+
+const itemprices = document.getElementsByClassName("itemprice");
+
+const kurguncelle = async () => {
+  const kur = await fetchcurrency();
+  const parsedkur = parseFloat(kur).toFixed(1);
+
+  for (i = 0; i < itemprices.length; i++) {
+    const pricefloat = itemprices[i].innerText.split("₺")[0];
+
+    itemprices[i].innerText =
+      parseFloat(pricefloat / parsedkur).toFixed(1) + " ₺";
+  }
+};
+
+kurguncelle();
