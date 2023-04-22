@@ -1,0 +1,114 @@
+.vh100 {
+  height: 100vh;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.register .username {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.register .username input {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.register .password {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+}
+
+.register .password input {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.register .password .pass1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.register .password .pass2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.register .email {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+}
+
+.register .email .email1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.register .email .email2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.register .email input {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.register button {
+  background-color: var(--second);
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--first);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.register form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-size: 1.2rem;
+  position: absolute;
+  background-color: red;
+  padding: 2rem;
+}
+
+.error .errorclose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  width: 100%;
+  height: 2rem;
+  cursor: pointer;
+}

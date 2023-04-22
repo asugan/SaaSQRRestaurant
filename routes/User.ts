@@ -819,7 +819,7 @@ router.post("/register", async (req: Request, res: Response) => {
   });
   if (error) {
     try {
-      res.render("user/register", {
+      res.status(500).render("user/register", {
         error: error.details,
       });
     } catch (err) {

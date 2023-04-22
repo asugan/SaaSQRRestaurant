@@ -3,18 +3,79 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/register.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Document</title>
   </head>
   <body>
-    <form action="/user/register" method="post">
-      <input type="text" name="username" />
-      <input type="text" name="password" />
-      <input type="text" name="email" />
-      <button type="submit">Kayıt Ol</button>
-    </form>
+    <div class="vh100">
+      <nav>
+        <div class="logo">
+          <h1>logo</h1>
+        </div>
+        <div class="sections">
+          <ul>
+            <li>Anasayfa</li>
+            <li>Fiyatlar</li>
+            <li>Hakkımızda</li>
+            <li>Giriş</li>
+          </ul>
+        </div>
+      </nav>
 
-    {{#each error}}
-      <h5>{{this.message}}</h5>
-    {{/each}}
+      <section class="register">
+        <form action="/user/register" method="post">
+          <div class="username">
+            <label for="username">Kullanıcı Adı</label>
+            <input type="text" name="username" />
+          </div>
+          <div class="password">
+            <div class="pass1">
+              <label for="password">Şifre</label>
+              <input type="password" name="password" />
+            </div>
+            <div class="pass2">
+              <label for="confimpassword">Şifre Onay</label>
+              <input type="password" name="confirmpassword" />
+            </div>
+          </div>
+          <div class="email">
+            <div class="email1">
+              <label for="email">Eposta</label>
+              <input type="text" name="email" />
+            </div>
+            <div class="email2">
+              <label for="confirmemail">Eposta Onay</label>
+              <input type="text" name="confirmemail" />
+            </div>
+
+          </div>
+          <button type="submit">Kayıt Ol , 4 Gün Bedava Dene !</button>
+        </form>
+        {{#if error}}
+          <div class="error">
+            <div onclick="kapat()" class="errorclose">
+              <h1>KAPAT</h1>
+            </div>
+            {{#each error}}
+              <h4>{{this.message}}</h4>
+            {{/each}}
+          </div>
+        {{/if}}
+      </section>
+    </div>
+
+    <script>
+      const kapat = () =>
+      document.getElementsByClassName("error")[0].style.display = "none"
+    </script>
   </body>
 </html>
