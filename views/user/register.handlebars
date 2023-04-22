@@ -12,5 +12,9 @@
       <input type="text" name="email" />
       <button type="submit">Kayıt Ol</button>
     </form>
+
+    {{#each error}}
+      <h5>{{this.message}}</h5>
+    {{/each}}
   </body>
 </html>

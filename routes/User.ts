@@ -17,6 +17,8 @@ let date = new Date().toLocaleDateString("tr-TR");
 const jwt = require("jsonwebtoken");
 import { sendMail } from "../middlewares/tokenSender";
 const { translate } = require("free-translate");
+const { validationResult, body } = require("express-validator");
+const { userSignupValidate } = require("../helpers/uservalidate");
 
 require("dotenv").config();
 
@@ -812,31 +814,44 @@ router.post("/login", async (req: Request, res: Response) => {
 });
 
 router.post("/register", async (req: Request, res: Response) => {
-  const username: string = req.body.username;
-  const password: string = req.body.password;
-  const email: string = req.body.email;
-
-  const finduser = await User.findOne({
-    $or: [{ username: username }, { email: email }],
+  const { error, value } = userSignupValidate.validate(req.body, {
+    abortEarly: false,
   });
-  console.log(finduser);
-
-  if (finduser) {
-    res.send("email yada kullanıcı adı kayıtlı");
-  } else {
-    const newUser = new User({
-      username: username,
-      password: password,
-      email: email,
-      created_date: Date.now(),
-    });
-
+  if (error) {
     try {
-      await newUser.save();
-      await sendMail(email);
-      res.redirect("/");
+      res.render("user/register", {
+        error: error.details,
+      });
     } catch (err) {
       console.log(err);
+    }
+  } else {
+    const username: string = req.body.username;
+    const password: string = req.body.password;
+    const email: string = req.body.email;
+
+    const finduser = await User.findOne({
+      $or: [{ username: username }, { email: email }],
+    });
+    console.log(finduser);
+
+    if (finduser) {
+      res.send("email yada kullanıcı adı kayıtlı");
+    } else {
+      const newUser = new User({
+        username: username,
+        password: password,
+        email: email,
+        created_date: Date.now(),
+      });
+
+      try {
+        await newUser.save();
+        await sendMail(email);
+        res.redirect("/");
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 });
