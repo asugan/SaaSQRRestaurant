@@ -1,13 +1,22 @@
 import express, { Request, Response } from "express";
 import { Menu } from "../models/Menu";
+const { authornot } = require("../middlewares/AuthCheck");
 const qr = require("qrcode");
 const router = express.Router();
 
-router.get("/", async (req: any, res: any) => {
+router.get("/", authornot, async (req: any, res: any) => {
   //console.log(req.get("Accept-Language"));
   //console.log(req.acceptsLanguages("en-US"));
 
-  res.render("index");
+  const user = req.token;
+
+  if (user) {
+    res.render("index", {
+      user: user,
+    });
+  } else {
+    res.render("index");
+  }
 });
 
 router.get("/menu/:name", async (req: Request, res: Response) => {

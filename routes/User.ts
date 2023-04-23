@@ -51,7 +51,7 @@ router.get("/logout", async (req, res) => {
   const jwt = req.cookies.OursiteJWT;
 
   if (!jwt) {
-    return res.json({ message: "Bro you are already not logged in..." });
+    return res.redirect("/");
   } else {
     const serialised = serialize("OursiteJWT", null, {
       httpOnly: true,

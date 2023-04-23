@@ -16,8 +16,15 @@ nav .sections ul {
   gap: 2rem;
 }
 
+nav .sections ul li a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 nav .hamburger {
   display: none;
+  cursor: pointer;
 }
 
 nav .mobilesection {
@@ -27,9 +34,13 @@ nav .mobilesection {
   text-align: center;
   left: 0;
   top: 80px;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   z-index: 1;
+}
+
+nav .mobilesection ul li a {
+  text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -37,7 +48,7 @@ nav .mobilesection {
 nav .mobilesection ul {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
 nav .mobilesection {
