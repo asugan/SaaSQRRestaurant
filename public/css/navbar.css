@@ -7,6 +7,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   background-color: var(--third);
+  position: relative;
 }
 
 nav .sections ul {
@@ -15,9 +16,45 @@ nav .sections ul {
   gap: 2rem;
 }
 
+nav .hamburger {
+  display: none;
+}
+
+nav .mobilesection {
+  position: absolute;
+  background-color: var(--second);
+  width: 100%;
+  text-align: center;
+  left: 0;
+  top: 80px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  z-index: 1;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+nav .mobilesection ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+nav .mobilesection {
+  display: none;
+}
+
 @media screen and (max-width: 720px) {
+  nav {
+    padding: 2rem 2rem;
+  }
+
   nav .sections ul {
     display: none;
+  }
+
+  nav .hamburger {
+    display: block;
   }
 }
 
