@@ -45,10 +45,30 @@
           </div>
           <button type="submit">Giriş Yap</button>
         </form>
-        {{#each error}}
-          <h5>{{this.message}}</h5>
-        {{/each}}
+        {{#if error}}
+          <div class="error">
+            <div onclick="kapat()" class="errorclose">
+              <h1>KAPAT</h1>
+            </div>
+            {{#each error}}
+              <h4>{{this.message}}</h4>
+            {{/each}}
+          </div>
+        {{/if}}
+        {{#if oneerror}}
+          <div class="error">
+            <div onclick="kapat()" class="errorclose">
+              <h1>KAPAT</h1>
+            </div>
+            <h4>{{oneerror}}</h4>
+          </div>
+        {{/if}}
       </section>
     </div>
+
+    <script>
+      const kapat = () =>
+      document.getElementsByClassName("error")[0].style.display = "none"
+    </script>
   </body>
 </html>

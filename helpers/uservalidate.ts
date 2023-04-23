@@ -1,5 +1,15 @@
 const Joi = require("joi");
 
+export const userLoginValidate = Joi.object({
+  username: Joi.string()
+    .alphanum()
+    .min(3)
+    .message("Minimum 3 harf olmalı")
+    .max(30)
+    .required(),
+  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9@]{3,30}$")),
+});
+
 export const userSignupValidate = Joi.object({
   username: Joi.string()
     .alphanum()

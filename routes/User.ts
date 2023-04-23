@@ -17,7 +17,7 @@ let date = new Date().toLocaleDateString("tr-TR");
 const jwt = require("jsonwebtoken");
 import { sendMail } from "../middlewares/tokenSender";
 const { translate } = require("free-translate");
-const { validationResult, body } = require("express-validator");
+const { userLoginValidate } = require("../helpers/uservalidate");
 const { userSignupValidate } = require("../helpers/uservalidate");
 
 require("dotenv").config();
@@ -776,40 +776,57 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
 });
 
 router.post("/login", async (req: Request, res: Response) => {
-  const { username, password } = req.body;
-
-  const getuser = await User.findOne({ username: username });
-
-  if (getuser.verified === true) {
+  const { error, value } = userLoginValidate.validate(req.body, {
+    abortEarly: false,
+  });
+  if (error) {
     try {
-      if (await bcrypt.compare(password, getuser.password)) {
-        const token = sign(
-          {
-            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, // 30 days
-            id: getuser._id,
-          },
-          secret
-        );
-
-        const serialised = serialize("OursiteJWT", token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV !== "development",
-          sameSite: "lax",
-          maxAge: 60 * 60 * 24 * 30,
-          path: "/",
-        });
-
-        res.setHeader("Set-Cookie", serialised);
-
-        res.status(200).redirect("/");
-      } else {
-        console.log("Kullanıcı Adı yada Şifre Yanlış");
-      }
+      res.status(500).render("user/login", {
+        error: error.details,
+      });
     } catch (err) {
       console.log(err);
     }
   } else {
-    res.render("lütfen hesabınızı doğrulayın");
+    const { username, password } = req.body;
+
+    const getuser = await User.findOne({ username: username });
+
+    if (getuser && getuser.verified === true) {
+      try {
+        if (await bcrypt.compare(password, getuser.password)) {
+          const token = sign(
+            {
+              exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, // 30 days
+              id: getuser._id,
+            },
+            secret
+          );
+
+          const serialised = serialize("OursiteJWT", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== "development",
+            sameSite: "lax",
+            maxAge: 60 * 60 * 24 * 30,
+            path: "/",
+          });
+
+          res.setHeader("Set-Cookie", serialised);
+
+          res.status(200).redirect("/");
+        } else {
+          res.render("user/login", {
+            oneerror: "kullanıcı adı yada şifre yanlış.",
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      res.render("user/login", {
+        oneerror: "lütfen hesabınızı doğrulayın.",
+      });
+    }
   }
 });
 
