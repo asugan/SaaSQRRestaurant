@@ -206,6 +206,10 @@ body {
   font-size: 2.6rem;
 }
 
+.landing .container .leftdiv h1 span {
+  text-decoration: underline;
+}
+
 .landing .container .leftdiv p {
   text-align: start;
   font-weight: bold;

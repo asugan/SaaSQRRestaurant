@@ -3,11 +3,25 @@
 nav {
   display: flex;
   flex-direction: row;
-  padding: 2rem 10rem;
+  padding: 1.6rem 10rem;
   align-items: center;
   justify-content: space-between;
   background-color: var(--third);
   position: relative;
+}
+
+nav .logo a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: black;
+}
+
+nav .logo span {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 nav .sections ul {
@@ -20,6 +34,7 @@ nav .sections ul li a {
   font-size: 1.2rem;
   font-weight: bold;
   text-decoration: none;
+  color: black;
 }
 
 nav .hamburger {
@@ -43,6 +58,7 @@ nav .mobilesection ul li a {
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
+  color: black;
 }
 
 nav .mobilesection ul {
