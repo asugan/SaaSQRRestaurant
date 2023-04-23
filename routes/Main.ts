@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { Menu } from "../models/Menu";
+import { User } from "../models/User";
 const { authornot } = require("../middlewares/AuthCheck");
 const qr = require("qrcode");
 const router = express.Router();
@@ -11,8 +12,11 @@ router.get("/", authornot, async (req: any, res: any) => {
   const user = req.token;
 
   if (user) {
+    const userid = req.token.id;
+    const username = await User.findById(userid);
+
     res.render("index", {
-      user: user,
+      user: username,
     });
   } else {
     res.render("index");

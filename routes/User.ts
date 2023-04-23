@@ -16,6 +16,7 @@ const fs = require("fs");
 let date = new Date().toLocaleDateString("tr-TR");
 const jwt = require("jsonwebtoken");
 import { sendMail } from "../middlewares/tokenSender";
+import { authornot } from "../middlewares/AuthCheck";
 const { translate } = require("free-translate");
 const { userLoginValidate } = require("../helpers/uservalidate");
 const { userSignupValidate } = require("../helpers/uservalidate");
@@ -39,12 +40,24 @@ const storage: any = SharpMulter({
 
 const upload = multer({ storage: storage });
 
-router.get("/register", async (req: Request, res: Response) => {
-  res.render("user/register");
+router.get("/register", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/register");
+  }
 });
 
-router.get("/login", async (req: Request, res: Response) => {
-  res.render("user/login");
+router.get("/login", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/login");
+  }
 });
 
 router.get("/logout", async (req, res) => {
