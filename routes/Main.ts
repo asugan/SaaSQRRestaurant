@@ -31,7 +31,9 @@ router.get("/menu/:name", async (req: Request, res: Response) => {
     populate: [{ path: "Urunler" }],
   });
 
-  if (menu) {
+  const user = await User.findById(menu.user);
+
+  if (menu && user.userLevel !== "Maraba") {
     try {
       res.render(`menuthemes/menuclassic/menu${menu.NativeLang}`, {
         menu: menu,
