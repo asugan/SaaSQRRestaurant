@@ -7,6 +7,7 @@ const Handlebars = require("handlebars");
 const cookieParser = require("cookie-parser");
 const MainController = require("./routes/Main");
 const UserController = require("./routes/User");
+const AdminContoller = require("./routes/Admin");
 const path = require("path");
 const {
   allowInsecurePrototypeAccess,
@@ -59,6 +60,7 @@ app.use(express.static("public"));
 app.use("/", MainController);
 app.use("/user", UserController);
 app.use("/lemon", LemonController);
+app.use("/admin", AdminContoller);
 app.get("*", function (req, res) {
   res.status(404).render("error/404");
 });

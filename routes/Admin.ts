@@ -9,3 +9,5 @@ require("dotenv").config();
 router.get("/", async (req: any, res: any) => {
   res.render("admin/dashboard/index");
 });
+
+module.exports = router;
