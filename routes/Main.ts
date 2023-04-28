@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import { Menu } from "../models/Menu";
 import { User } from "../models/User";
+const UserController = require("./User");
+const AdminContoller = require("./Admin");
+const LemonController = require("./Lemon");
 const { authornot } = require("../middlewares/AuthCheck");
 const qr = require("qrcode");
 const router = express.Router();
@@ -20,55 +23,6 @@ router.get("/", authornot, async (req: any, res: any) => {
     });
   } else {
     res.render("index");
-  }
-});
-
-router.get("/menu/:name", async (req: Request, res: Response) => {
-  const menuid = req.params.name;
-
-  const menu = await Menu.findOne({ Slug: menuid }).populate({
-    path: "Kategoriler",
-    populate: [{ path: "Urunler" }],
-  });
-
-  const user = await User.findById(menu.user);
-
-  if (menu && user.userLevel !== "Maraba") {
-    try {
-      res.render(`menuthemes/menuclassic/menu${menu.NativeLang}`, {
-        menu: menu,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    res.render("error/404");
-  }
-});
-
-router.get("/menu/:name/:lang", async (req: Request, res: Response) => {
-  const menuid = req.params.name;
-  const lang = req.params.lang;
-
-  const menu = await Menu.findOne({ Slug: menuid }).populate({
-    path: "Kategoriler",
-    populate: [{ path: "Urunler" }],
-  });
-
-  if (menu) {
-    try {
-      if (menu.NativeLang !== lang) {
-        res.render(`menuthemes/menuclassic/menu${lang}`, {
-          menu: menu,
-        });
-      } else {
-        res.redirect(`/menu/${menu.Slug}`);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    res.render("error/404");
   }
 });
 
@@ -103,5 +57,9 @@ router.post("/scan", async (req, res) => {
     }
   });
 });
+
+router.use("/user", UserController);
+router.use("/lemon", LemonController);
+router.use("/admin", AdminContoller);
 
 module.exports = router;

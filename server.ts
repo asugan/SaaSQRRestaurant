@@ -1,19 +1,17 @@
 import express, { Application } from "express";
 import { connect } from "mongoose";
+const vhost = require("vhost");
 const { engine } = require("express-handlebars");
 const app: Application = express();
 const cors = require("cors");
 const Handlebars = require("handlebars");
 const cookieParser = require("cookie-parser");
 const MainController = require("./routes/Main");
-const UserController = require("./routes/User");
-const AdminContoller = require("./routes/Admin");
+const MenuController = require("./routes/Menu");
 const path = require("path");
 const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
-const LemonController = require("./routes/Lemon");
-// import { UserTask } from "./crontasks/Usertask";
 import { checkUser } from "./crontasks/UserCheck";
 
 require("dotenv").config();
@@ -25,6 +23,7 @@ app.use(cookieParser());
 
 const PORT: number = 3000;
 const mongoString: string | undefined = process.env.DATABASE_URL;
+const domain = process.env.DOMAIN;
 
 const connectMongo = async () => {
   await connect(mongoString);
@@ -57,10 +56,8 @@ app.set("views", path.join(__dirname, "/views/"));
 
 app.use(express.static("public"));
 
-app.use("/", MainController);
-app.use("/user", UserController);
-app.use("/lemon", LemonController);
-app.use("/admin", AdminContoller);
+app.use(vhost(`${domain}`, MainController));
+app.use(vhost(`*.${domain}`, MenuController));
 app.get("*", function (req, res) {
   res.status(404).render("error/404");
 });
