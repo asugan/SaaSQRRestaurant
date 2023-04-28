@@ -31,12 +31,23 @@ router.get("/", async (req: any, res: any) => {
 
 router.get("/:lang", async (req: any, res: any) => {
   const menuid = req.vhost[0];
-  const lang = req.params.lang;
+  let lang;
 
   const menu = await Menu.findOne({ Slug: menuid }).populate({
     path: "Kategoriler",
     populate: [{ path: "Urunler" }],
   });
+
+  if (
+    req.params.lang === "tr" ||
+    req.params.lang === "fr" ||
+    req.params.lang === "ru" ||
+    req.params.lang === "en"
+  ) {
+    lang = req.params.lang;
+  } else {
+    lang = menu.NativeLang;
+  }
 
   if (menu) {
     const user = await User.findById(menu.user);
@@ -46,7 +57,7 @@ router.get("/:lang", async (req: any, res: any) => {
           menu: menu,
         });
       } else {
-        res.redirect(`/menu/${menu.Slug}`);
+        res.redirect(`/`);
       }
     } catch (err) {
       console.log(err);
