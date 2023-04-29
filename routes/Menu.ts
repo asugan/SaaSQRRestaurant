@@ -38,18 +38,18 @@ router.get("/:lang", async (req: any, res: any) => {
     populate: [{ path: "Urunler" }],
   });
 
-  if (
-    req.params.lang === "tr" ||
-    req.params.lang === "fr" ||
-    req.params.lang === "ru" ||
-    req.params.lang === "en"
-  ) {
-    lang = req.params.lang;
-  } else {
-    lang = menu.NativeLang;
-  }
-
   if (menu) {
+    if (
+      req.params.lang === "tr" ||
+      req.params.lang === "fr" ||
+      req.params.lang === "ru" ||
+      req.params.lang === "en"
+    ) {
+      lang = req.params.lang;
+    } else {
+      lang = menu.NativeLang;
+    }
+
     const user = await User.findById(menu.user);
     try {
       if (menu.NativeLang !== lang && user.userLevel !== "Maraba") {

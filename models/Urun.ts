@@ -13,6 +13,9 @@ const UrunSchema = new Schema({
   Name: {
     type: String,
   },
+  Currency: {
+    type: String,
+  },
   Nameen: {
     type: String,
   },

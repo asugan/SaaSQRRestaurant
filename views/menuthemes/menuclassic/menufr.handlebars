@@ -72,6 +72,19 @@
                   class="fi fi-ru"
                 ></span></a>
             </div>
+            <div class="selectdiv mt-3">
+              <select
+                onchange="select()"
+                id="money"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option value="{{menu.Currency}}" selected>Select Currency</option>
+                <option value="₺">₺</option>
+                <option value="€">€</option>
+                <option value="$">$</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -138,7 +151,8 @@
                         <div
                           class="col-2 p-0 d-flex justify-content-center align-items-center pricediv"
                         >
-                          <h4 class="itemprice">{{this.Price}}₺</h4>
+                          <h4 class="itemprice">{{this.Price}}
+                            {{this.Currency}}</h4>
                         </div>
                       </div>
                     </div>

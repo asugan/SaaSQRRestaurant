@@ -1,10 +1,95 @@
 const catnames = document.getElementsByClassName("selectrow");
 const catnames_array = [];
+const prices_array = [];
+const firstvalue = document.getElementById("money").selectedOptions[0].value;
 
-const fetchcurrency = async () => {
+const fetchcusd = async () => {
   const response = await fetch("https://finans.truncgil.com/today.json");
   const jsonData = await response.json();
   return jsonData.USD.Alış;
+};
+
+const fetchceur = async () => {
+  const response = await fetch("https://finans.truncgil.com/today.json");
+  const jsonData = await response.json();
+  return jsonData.EUR.Alış;
+};
+
+const itemprices = document.getElementsByClassName("itemprice");
+
+for (i = 0; i < itemprices.length; i++) {
+  const lastletter = itemprices[i].innerText.slice(-1);
+  const pricefloat = itemprices[i].innerText.split(lastletter)[0];
+  prices_array.push(pricefloat);
+}
+
+const kurguncelle = async (tag) => {
+  const kurusd = await fetchcusd();
+  const kureur = await fetchceur();
+  const parsedkurusd = parseFloat(kurusd).toFixed(1);
+  const parsedkureur = parseFloat(kureur).toFixed(1);
+
+  if (firstvalue === "₺") {
+    if (tag === "$") {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText =
+          parseFloat(prices_array[i] / parsedkurusd).toFixed(1) + ` ${tag}`;
+      }
+    } else if (tag === "€") {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText =
+          parseFloat(prices_array[i] / parsedkureur).toFixed(1) + ` ${tag}`;
+      }
+    } else {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText = parseFloat(prices_array[i]) + ` ₺`;
+      }
+    }
+  } else if (firstvalue === "$") {
+    if (tag === "₺") {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText =
+          parseFloat(prices_array[i] * parsedkurusd).toFixed(1) + ` ${tag}`;
+      }
+    } else if (tag === "€") {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText =
+          parseFloat((prices_array[i] * parsedkurusd) / parsedkureur).toFixed(
+            1
+          ) + ` ${tag}`;
+      }
+    } else {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText = parseFloat(prices_array[i]) + ` $`;
+      }
+    }
+  } else if (firstvalue === "€") {
+    if (tag === "₺") {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText =
+          parseFloat(prices_array[i] * parsedkureur).toFixed(1) + ` ${tag}`;
+      }
+    } else if (tag === "$") {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText =
+          parseFloat((prices_array[i] * parsedkureur) / parsedkurusd).toFixed(
+            1
+          ) + ` ${tag}`;
+      }
+    } else {
+      for (i = 0; i < itemprices.length; i++) {
+        itemprices[i].innerText = parseFloat(prices_array[i]) + ` €`;
+      }
+    }
+  } else {
+    return;
+  }
+};
+
+const select = async () => {
+  var selectedValue = document.getElementById("money").value;
+
+  await kurguncelle(selectedValue);
 };
 
 for (i = 0; i < catnames.length; i++) {
@@ -46,19 +131,3 @@ const filterfunc = (name) => {
     }
   }
 };
-
-const itemprices = document.getElementsByClassName("itemprice");
-
-const kurguncelle = async () => {
-  const kur = await fetchcurrency();
-  const parsedkur = parseFloat(kur).toFixed(1);
-
-  for (i = 0; i < itemprices.length; i++) {
-    const pricefloat = itemprices[i].innerText.split("₺")[0];
-
-    itemprices[i].innerText =
-      parseFloat(pricefloat / parsedkur).toFixed(1) + " ₺";
-  }
-};
-
-kurguncelle();

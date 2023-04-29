@@ -260,7 +260,7 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: Response) => {
-    const { name } = req.body;
+    const { name, lang, currency } = req.body;
     const id: any = req.token.id;
     const slug = stringToSlug(name);
 
@@ -283,6 +283,8 @@ router.post(
       user: user,
       image: image,
       Slug: slug,
+      NativeLang: lang,
+      Currency: currency,
     });
 
     try {
@@ -409,8 +411,17 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: Response) => {
-    let { name, price, kategori, menuid, description, nameen, nameru, namefr } =
-      req.body;
+    let {
+      name,
+      price,
+      kategori,
+      menuid,
+      description,
+      nameen,
+      nameru,
+      namefr,
+      currency,
+    } = req.body;
 
     let descriptionen, descriptionru, descriptionfr;
 
@@ -524,6 +535,7 @@ router.post(
 
       const newUrun: any = new Urun({
         Name: name,
+        Currency: currency,
         Nameen: nameen,
         Namefr: namefr,
         Nameru: nameru,
@@ -555,7 +567,7 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: any) => {
-    const { name, id, lang } = req.body;
+    const { name, id, lang, currency } = req.body;
     const userid: any = req.token.id;
     const user = await User.findById(userid).populate("userMenu");
     const filter = user.userMenu.filter((item) => {
@@ -584,6 +596,7 @@ router.post(
           Name: name,
           NativeLang: lang,
           image: image,
+          Currency: currency,
         };
         const options = { new: true };
         const result = await Menu.findByIdAndUpdate(id, updatedData, options);
@@ -592,6 +605,7 @@ router.post(
         const updatedData = {
           Name: name,
           NativeLang: lang,
+          Currency: currency,
         };
         const options = { new: true };
         const result = await Menu.findByIdAndUpdate(id, updatedData, options);

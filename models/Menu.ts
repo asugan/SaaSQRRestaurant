@@ -20,6 +20,12 @@ const MenuSchema = new Schema({
     enum: ["tr", "en", "ru", "fr"],
     default: "tr",
   },
+  Currency: {
+    type: String,
+    required: true,
+    enum: ["₺", "$", "€"],
+    default: "₺",
+  },
   Slug: {
     type: String,
     required: true,

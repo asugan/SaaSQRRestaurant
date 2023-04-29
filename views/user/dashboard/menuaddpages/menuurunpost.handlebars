@@ -197,6 +197,11 @@
                   class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
                 >
                   <input type="hidden" name="menuid" value="{{menuid}}" />
+                  <input
+                    type="hidden"
+                    name="currency"
+                    value="{{menu.Currency}}"
+                  />
                   <label for="kategori">Kategori Seçin</label>
                   <select name="kategori">
                     {{#each menu.Kategoriler}}
