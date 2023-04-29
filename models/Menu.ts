@@ -37,6 +37,18 @@ const MenuSchema = new Schema({
   image: {
     type: String,
   },
+  Twitter: {
+    type: String,
+  },
+  Facebook: {
+    type: String,
+  },
+  Instagram: {
+    type: String,
+  },
+  Whatsapp: {
+    type: String,
+  },
   Kategoriler: [
     {
       type: Schema.Types.ObjectId,
