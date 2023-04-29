@@ -6,6 +6,7 @@ export const sendMail = async (email: string) => {
   const secret = process.env.SECRET;
   const mail = process.env.MAIL;
   const pass = process.env.MAILPASS;
+  const domain = process.env.DOMAIN;
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -38,7 +39,7 @@ export const sendMail = async (email: string) => {
     text: `Hi! There, You have recently visited
 		our website and entered your email.
 		Please follow the given link to verify your email
-		http://localhost:3000/user/verify/${token}
+		http://${domain}/user/verify/${token}
 		Thanks`,
   };
 
