@@ -39,7 +39,7 @@ export const sendMail = async (email: string) => {
     text: `Hi! There, You have recently visited
 		our website and entered your email.
 		Please follow the given link to verify your email
-		http://${domain}/user/verify/${token}
+		http://${domain}:3000/user/verify/${token}
 		Thanks`,
   };
 
