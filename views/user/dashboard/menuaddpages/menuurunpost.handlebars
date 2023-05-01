@@ -73,34 +73,43 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Edit Menu</span>
-          </a>
-          <div
-            id="collapseTwo"
-            class="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Edit your menus:</h6>
-              {{#each user.userMenu}}
+          {{#each user.userMenu}}
+            <a
+              class="nav-link collapsed"
+              href="#"
+              data-toggle="collapse"
+              data-target="#{{this.Slug}}"
+              aria-expanded="true"
+              aria-controls="collapseTwo"
+            >
+              <i class="fas fa-fw fa-cog"></i>
+              <span>{{this.Name}}</span>
+            </a>
+            <div
+              id="{{this.Slug}}"
+              class="collapse"
+              aria-labelledby="headingTwo"
+              data-parent="#accordionSidebar"
+            >
+              <div class="bg-white py-2 collapse-inner rounded">
+
+                <h6 class="collapse-header">Menü Düzenle</h6>
+                <a class="collapse-item" href="/user/{{this.Slug}}/edit">Menü
+                  Bilgileri Düzenle</a>
                 <a
                   class="collapse-item"
-                  href="/user/{{this.Slug}}/edit"
-                >{{this.Name}}</a>
-              {{/each}}
+                  href="/user/{{this.Slug}}/edit2"
+                >Kategori, Ürün Düzenle</a>
+                <a
+                  class="collapse-item"
+                  href="/user/{{this.id}}/kategoriekle"
+                >Kategori Ekle</a>
+                <a class="collapse-item" href="/user/{{this.id}}/urunekle">Ürün
+                  Ekle</a>
 
+              </div>
             </div>
-          </div>
+          {{/each}}
         </li>
 
       </ul>
