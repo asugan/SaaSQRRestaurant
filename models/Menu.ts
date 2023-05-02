@@ -49,6 +49,10 @@ const MenuSchema = new Schema({
   Whatsapp: {
     type: String,
   },
+  MenuID: {
+    type: Number,
+    required: true,
+  },
   Kategoriler: [
     {
       type: Schema.Types.ObjectId,

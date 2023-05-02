@@ -28,6 +28,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/dashboards/loading.css" />
 
   </head>
 
@@ -264,6 +265,7 @@
                   <button
                     class="btn btn-sm btn-danger mr-4"
                     type="submit"
+                    onclick="loadingscreen()"
                   >Kategoriyi Ekle</button>
                   <a
                     class="btn btn-sm btn-danger"
@@ -352,6 +354,14 @@
       </div>
     </div>
 
+    <div class="loading">
+      <div
+        align="center"
+        style="position: absolute; margin-top: 120px; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: 550; color: black;"
+      >Çeviriler Yapılıyor...
+      </div>
+    </div>
+
     <script>
       function showPreview(event){ if(event.target.files.length > 0){ var src =
       URL.createObjectURL(event.target.files[0]); var preview =
@@ -367,6 +377,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Dashboard Loading -->
+    <script src="/js/loadings.js"></script>
 
     <script>
       let hamham = $( "#menu" ).find('option:selected').val();
