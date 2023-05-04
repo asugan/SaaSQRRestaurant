@@ -206,32 +206,42 @@
                 <div
                   class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
                 >
-                  <input type="hidden" name="menuid" value="{{menuid}}" />
+                  <input type="hidden" name="menuid" value="{{menu.id}}" />
                   <input
                     type="hidden"
                     name="currency"
                     value="{{menu.Currency}}"
                   />
                   <label for="kategori">Kategori Seçin</label>
-                  <select name="kategori">
-                    {{#each menu.Kategoriler}}
-                      <option value="{{this._id}}">{{this.Name}}</option>
-                    {{/each}}
-                  </select>
-                  <label class="mt-2" for="name">Ürün Adı</label>
-                  <input class="tr" type="text" name="name" />
-                  <label class="mt-2" for="name">Ürün Fiyatı</label>
-                  <input type="text" name="price" />
-                  <div class="form-group mt-2 text-center">
-                    <label for="exampleFormControlTextarea1">Ürün Açıklaması
-                      Yazın</label>
+                  <div class="col-sm-6">
+                    <select class="form-control form-select" name="kategori">
+                      {{#each menu.Kategoriler}}
+                        <option value="{{this._id}}">{{this.Name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <input
+                      class="form-control mt-2 tr"
+                      type="text"
+                      name="name"
+                      placeholder="Ürün Adı"
+                    />
+                    <input
+                      class="form-control mt-2"
+                      type="text"
+                      name="price"
+                      placeholder="Ürün Fiyatı"
+                    />
                     <textarea
-                      class="form-control"
+                      class="form-control mt-2"
                       id="exampleFormControlTextarea1"
                       rows="3"
                       name="description"
+                      placeholder="Ürün Açıklaması Girin"
                     ></textarea>
                   </div>
+
                   <div class="form-check mt-3">
                     <input
                       class="form-check-input"
@@ -270,15 +280,32 @@
                   </div>
                 </div>
                 <div
-                  class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
+                  class="col-12 d-flex flex-column justify-content-center align-items-center"
                 >
-                  <label for="image">Ürün Resmi</label>
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    onchange="showPreview(event);"
-                  />
+                  <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span
+                          class="input-group-text"
+                          id="inputGroupFileAddon01"
+                        >Ürün Resmi</span>
+                      </div>
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          name="image"
+                          class="custom-file-input"
+                          id="inputGroupFile01"
+                          aria-describedby="inputGroupFileAddon01"
+                          onchange="showPreview(event);"
+                        />
+                        <label
+                          class="custom-file-label"
+                          for="inputGroupFile01"
+                        >Ürün Resmi</label>
+                      </div>
+                    </div>
+                  </div>
                   <div class="preview mt-3">
                     <img style="width: 200px;" id="file-ip-1-preview" />
                   </div>
@@ -310,22 +337,26 @@
                   <div
                     class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
                   >
-                    <img
-                      class="mr-5"
-                      style="width: 200px; height:120px;"
-                      src="/images/{{this.image}}"
-                    />
+                    {{#if this.image}}
+                      <img
+                        class="mr-5"
+                        style="width: 200px; height:120px;"
+                        src="/images/{{this.image}}"
+                      />
+                    {{/if}}
                     <h3 class="text-dark">{{this.Name}}</h3>
                   </div>
                   <div
                     class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
                   >
                     {{#each this.Urunler}}
-                      <img
-                        class="mr-5"
-                        style="width: 100px; height:60px;"
-                        src="/images/{{this.image}}"
-                      />
+                      {{#if this.image}}
+                        <img
+                          class="mr-5"
+                          style="width: 100px; height:60px;"
+                          src="/images/{{this.image}}"
+                        />
+                      {{/if}}
                       <h5 class="text-dark mr-5">{{this.Name}}</h5>
                       <h5 class="text-dark">{{this.Price}} ₺</h5>
                     {{/each}}

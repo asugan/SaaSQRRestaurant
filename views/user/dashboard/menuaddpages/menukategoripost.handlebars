@@ -205,9 +205,15 @@
                 <div
                   class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
                 >
-                  <input type="hidden" name="idmenu" value={{menuid}} />
-                  <label for="name">Kategori Adı</label>
-                  <input class="tr" type="text" name="name" />
+                  <div class="col-md-6 col-12">
+                    <input type="hidden" name="idmenu" value={{menu.id}} />
+                    <input
+                      placeholder="Kategori Adı"
+                      class="form-control tr"
+                      type="text"
+                      name="name"
+                    />
+                  </div>
                   <div class="form-check mt-3">
                     <input
                       class="form-check-input"
@@ -246,15 +252,32 @@
                   </div>
                 </div>
                 <div
-                  class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
+                  class="col-12 d-flex flex-column justify-content-center align-items-center"
                 >
-                  <label for="image">Kategori Resmi</label>
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    onchange="showPreview(event);"
-                  />
+                  <div class="col-md-6 mt-3">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span
+                          class="input-group-text"
+                          id="inputGroupFileAddon01"
+                        >Kategori Resmi</span>
+                      </div>
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          name="image"
+                          class="custom-file-input"
+                          id="inputGroupFile01"
+                          aria-describedby="inputGroupFileAddon01"
+                          onchange="showPreview(event);"
+                        />
+                        <label
+                          class="custom-file-label"
+                          for="inputGroupFile01"
+                        >Kategori Resmi</label>
+                      </div>
+                    </div>
+                  </div>
                   <div class="preview mt-3">
                     <img style="width: 200px;" id="file-ip-1-preview" />
                   </div>
@@ -269,7 +292,7 @@
                   >Kategoriyi Ekle</button>
                   <a
                     class="btn btn-sm btn-danger"
-                    href="/user/{{menuid}}/urunekle"
+                    href="/user/{{menu.Slug}}/urunekle"
                   >Ürün Ekleme Sayfasına Geç</a>
                 </div>
 
@@ -282,11 +305,13 @@
                 <div
                   class="inline d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  <img
-                    class="mr-5"
-                    style="width: 200px; height:120px;"
-                    src="/images/{{this.image}}"
-                  />
+                  {{#if this.image}}
+                    <img
+                      class="mr-5"
+                      style="width: 200px; height:120px;"
+                      src="/images/{{this.image}}"
+                    />
+                  {{/if}}
                   <h3 class="text-dark">{{this.Name}}</h3>
                 </div>
               {{/each}}

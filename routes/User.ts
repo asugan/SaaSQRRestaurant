@@ -108,11 +108,11 @@ router.get("/:menu/edit", marabacheck, async (req: any, res: Response) => {
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
 
-  const filter = user.userMenu.filter((item) => {
-    return item === menuid;
+  const filter = user.userMenu.filter((item: any) => {
+    return item.Slug === menuid;
   });
 
-  if (filter) {
+  if (filter.length) {
     const findmenu = await Menu.findOne({ Slug: menuid });
 
     res.render("user/dashboard/menueditpages/menueditdashboardpost", {
@@ -129,11 +129,11 @@ router.get("/:menu/edit2", marabacheck, async (req: any, res: Response) => {
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
 
-  const filter = user.userMenu.filter((item) => {
-    return item === menuid;
+  const filter = user.userMenu.filter((item: any) => {
+    return item.Slug === menuid;
   });
 
-  if (filter) {
+  if (filter.length) {
     const findmenu = await Menu.findOne({ Slug: menuid }).populate({
       path: "Kategoriler",
       populate: [{ path: "Urunler" }],
@@ -152,25 +152,24 @@ router.get("/:menu/urunedit", marabacheck, async (req: any, res: Response) => {
   const id: any = req.token.id;
   const user = await User.findById(id).populate("userMenu");
   const urunid = req.params.menu;
+  const findmenu = await Urun.findById(urunid);
+  const mycategory = await Kategori.findById(findmenu.Kategori._id);
+  const mymenu = await Menu.findById(mycategory.Menu._id).populate(
+    "Kategoriler"
+  );
 
-  const filter = user.userMenu.filter((item) => {
-    return item === urunid;
+  const filter = user.userMenu.filter((item: any) => {
+    return item.Slug === mymenu.Slug;
   });
 
-  if (filter) {
-    const findmenu = await Urun.findById(urunid);
-    const mycategory = await Kategori.findById(findmenu.Kategori._id);
-    const mymenu = await Menu.findById(mycategory.Menu._id).populate(
-      "Kategoriler"
-    );
-
+  if (filter.length) {
     res.render("user/dashboard/menueditpages/menuediturun", {
       menu: findmenu,
       menuSlug: mymenu,
       user: user,
     });
   } else {
-    res.render("error/401");
+    res.render("error/404");
   }
 });
 
@@ -181,23 +180,22 @@ router.get(
     const id: any = req.token.id;
     const user = await User.findById(id).populate("userMenu");
     const urunid = req.params.menu;
+    const findmenu = await Kategori.findById(urunid);
+    const mymenu = await Menu.findById(findmenu.Menu._id);
+    const Slug = mymenu.Slug;
 
-    const filter = user.userMenu.filter((item) => {
-      return item === urunid;
+    const filter = user.userMenu.filter((item: any) => {
+      return item.Slug === mymenu.Slug;
     });
 
-    if (filter) {
-      const findmenu = await Kategori.findById(urunid);
-      const mymenu = await Menu.findById(findmenu.Menu._id);
-      const Slug = mymenu.Slug;
-
+    if (filter.length) {
       res.render("user/dashboard/menueditpages/menueditonepagekategori", {
         menu: findmenu,
         menuSlug: Slug,
         user: user,
       });
     } else {
-      res.render("error/401");
+      res.render("error/404");
     }
   }
 );
@@ -210,22 +208,21 @@ router.get(
     const user = await User.findById(id).populate("userMenu");
     const menuid = req.params.menu;
 
-    const filter = user.userMenu.filter((item) => {
-      return item === menuid;
+    const filter = user.userMenu.filter((item: any) => {
+      return item.Slug === menuid;
     });
 
-    if (filter) {
-      const findmenu = await Menu.findById(menuid).populate("Kategoriler");
-
-      console.log(findmenu);
+    if (filter.length) {
+      const findmenu = await Menu.findOne({ Slug: menuid }).populate(
+        "Kategoriler"
+      );
 
       res.render("user/dashboard/menuaddpages/menukategoripost", {
-        menuid: menuid,
         menu: findmenu,
         user: user,
       });
     } else {
-      res.render("error/401");
+      res.render("error/404");
     }
   }
 );
@@ -235,19 +232,18 @@ router.get("/:menu/urunekle", marabacheck, async (req: any, res: Response) => {
   const user = await User.findById(id).populate("userMenu");
   const menuid = req.params.menu;
 
-  const filter = user.userMenu.filter((item) => {
-    return item === menuid;
+  const filter = user.userMenu.filter((item: any) => {
+    return item.Slug === menuid;
   });
 
-  if (filter) {
-    const findmenu = await Menu.findById(menuid).populate({
+  if (filter.length) {
+    const findmenu = await Menu.findOne({ Slug: menuid }).populate({
       path: "Kategoriler",
       populate: [{ path: "Urunler" }],
     });
 
     res.render("user/dashboard/menuaddpages/menuurunpost", {
       menu: findmenu,
-      menuid: menuid,
       user: user,
     });
   } else {
@@ -260,41 +256,61 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: Response) => {
-    const { name, lang, currency } = req.body;
+    const {
+      name,
+      lang,
+      currency,
+      instagram,
+      facebook,
+      twitter,
+      whatsapp,
+      menuid,
+    } = req.body;
     const id: any = req.token.id;
     const slug = stringToSlug(name);
-
     const filePath = "public/images";
-    const splitname = req.file.filename.split(".")[0];
-    const image = stringToSlug(splitname + " " + date) + ".webp";
 
-    await fs.rename(
-      `${filePath}/${req.file.filename}`,
-      `${filePath}/${image}`,
-      () => {
-        console.log("success");
+    if (req.file) {
+      const splitname = req.file.filename.split(".")[0];
+      const image = stringToSlug(splitname + " " + date) + ".webp";
+
+      await fs.rename(
+        `${filePath}/${req.file.filename}`,
+        `${filePath}/${image}`,
+        () => {
+          console.log("success");
+        }
+      );
+
+      const user = await User.findById(id);
+
+      const newMenu = new Menu({
+        Name: name,
+        user: user,
+        image: image,
+        Slug: slug,
+        NativeLang: lang,
+        Currency: currency,
+        Instagram: instagram,
+        Facebook: facebook,
+        Twitter: twitter,
+        Whatsapp: whatsapp,
+        MenuID: menuid,
+      });
+
+      try {
+        user.userMenu.push(newMenu);
+        await user.save();
+        await newMenu.save();
+        const menuid = newMenu.Slug;
+        res.redirect(`/user/${menuid}/kategoriekle`);
+      } catch (err) {
+        console.log(err);
       }
-    );
-
-    const user = await User.findById(id);
-
-    const newMenu = new Menu({
-      Name: name,
-      user: user,
-      image: image,
-      Slug: slug,
-      NativeLang: lang,
-      Currency: currency,
-    });
-
-    try {
-      user.userMenu.push(newMenu);
-      await user.save();
-      await newMenu.save();
-      const menuid = newMenu._id;
-      res.redirect(`/user/${menuid}/kategoriekle`);
-    } catch (err) {
-      console.log(err);
+    } else {
+      res.render("user/dashboard/menuaddpages/menudashboardpost", {
+        error: "Logo Yüklemek Zorundasınız !",
+      });
     }
   }
 );
@@ -362,46 +378,79 @@ router.post(
 
     const id: any = req.token.id;
     const filePath = "public/images";
-    const splitname = req.file.filename.split(".")[0];
-    const image = stringToSlug(splitname + " " + date) + ".webp";
 
-    await fs.rename(
-      `${filePath}/${req.file.filename}`,
-      `${filePath}/${image}`,
-      () => {
-        console.log("success");
-      }
-    );
+    if (req.file) {
+      const splitname = req.file.filename.split(".")[0];
+      const image = stringToSlug(splitname + " " + date) + ".webp";
 
-    const user = await User.findById(id).populate("userMenu");
-    const menuid = idmenu;
+      await fs.rename(
+        `${filePath}/${req.file.filename}`,
+        `${filePath}/${image}`,
+        () => {
+          console.log("success");
+        }
+      );
 
-    const filter = user.userMenu.filter((item) => {
-      return item === menuid;
-    });
+      const user = await User.findById(id).populate("userMenu");
+      const menuid = idmenu;
 
-    if (filter) {
-      const menu = await Menu.findById(menuid);
-
-      const newKategori: any = new Kategori({
-        Name: name,
-        Menu: menu,
-        image: image,
-        Nameen: nameen,
-        Namefr: namefr,
-        Nameru: nameru,
+      const filter = user.userMenu.filter((item) => {
+        return item.id === menuid;
       });
 
-      try {
-        menu.Kategoriler.push(newKategori);
-        await newKategori.save();
-        await menu.save();
-        res.redirect(`/user/${menuid}/kategoriekle`);
-      } catch (err) {
-        console.log(err);
+      if (filter.length) {
+        const menu = await Menu.findById(menuid);
+
+        const newKategori: any = new Kategori({
+          Name: name,
+          Menu: menu,
+          image: image,
+          Nameen: nameen,
+          Namefr: namefr,
+          Nameru: nameru,
+        });
+
+        try {
+          menu.Kategoriler.push(newKategori);
+          await newKategori.save();
+          await menu.save();
+          res.redirect(`/user/${menu.Slug}/kategoriekle`);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        res.render("error/404");
       }
     } else {
-      res.render("error/401");
+      const user = await User.findById(id).populate("userMenu");
+      const menuid = idmenu;
+
+      const filter = user.userMenu.filter((item) => {
+        return item.id === menuid;
+      });
+
+      if (filter.length) {
+        const menu = await Menu.findById(menuid);
+
+        const newKategori: any = new Kategori({
+          Name: name,
+          Menu: menu,
+          Nameen: nameen,
+          Namefr: namefr,
+          Nameru: nameru,
+        });
+
+        try {
+          menu.Kategoriler.push(newKategori);
+          await newKategori.save();
+          await menu.save();
+          res.redirect(`/user/${menu.Slug}/kategoriekle`);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        res.render("error/404");
+      }
     }
   }
 );
@@ -512,52 +561,91 @@ router.post(
 
     const id: any = req.token.id;
     const filePath = "public/images";
-    const splitname = req.file.filename.split(".")[0];
-    const image = stringToSlug(splitname + " " + date) + ".webp";
 
-    await fs.rename(
-      `${filePath}/${req.file.filename}`,
-      `${filePath}/${image}`,
-      () => {
-        console.log("success");
-      }
-    );
+    if (req.file) {
+      const splitname = req.file.filename.split(".")[0];
+      const image = stringToSlug(splitname + " " + date) + ".webp";
 
-    const user = await User.findById(id).populate("userMenu");
-    const idmenu = menuid;
+      await fs.rename(
+        `${filePath}/${req.file.filename}`,
+        `${filePath}/${image}`,
+        () => {
+          console.log("success");
+        }
+      );
 
-    const filter = user.userMenu.filter((item) => {
-      return item === idmenu;
-    });
+      const user = await User.findById(id).populate("userMenu");
+      const mainmenu = await Menu.findById(menuid);
 
-    if (filter) {
-      const category = await Kategori.findById(kategori);
-
-      const newUrun: any = new Urun({
-        Name: name,
-        Currency: currency,
-        Nameen: nameen,
-        Namefr: namefr,
-        Nameru: nameru,
-        Price: price,
-        Kategori: kategori,
-        image: image,
-        Description: description,
-        Descriptionen: descriptionen,
-        Descriptionfr: descriptionfr,
-        Descriptionru: descriptionru,
+      const filter = user.userMenu.filter((item: any) => {
+        return item.Slug === mainmenu.Slug;
       });
 
-      try {
-        await newUrun.save();
-        category.Urunler.push(newUrun);
-        await category.save();
-        res.redirect(`/user/${menuid}/urunekle`);
-      } catch (err) {
-        console.log(err);
+      if (filter.length) {
+        const category = await Kategori.findById(kategori);
+
+        const newUrun: any = new Urun({
+          Name: name,
+          Currency: currency,
+          Nameen: nameen,
+          Namefr: namefr,
+          Nameru: nameru,
+          Price: price,
+          Kategori: kategori,
+          image: image,
+          Description: description,
+          Descriptionen: descriptionen,
+          Descriptionfr: descriptionfr,
+          Descriptionru: descriptionru,
+        });
+
+        try {
+          await newUrun.save();
+          category.Urunler.push(newUrun);
+          await category.save();
+          res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        res.render("error/404");
       }
     } else {
-      res.render("error/401");
+      const user = await User.findById(id).populate("userMenu");
+      const mainmenu = await Menu.findById(menuid);
+
+      const filter = user.userMenu.filter((item: any) => {
+        return item.Slug === mainmenu.Slug;
+      });
+
+      if (filter.length) {
+        const category = await Kategori.findById(kategori);
+
+        const newUrun: any = new Urun({
+          Name: name,
+          Currency: currency,
+          Nameen: nameen,
+          Namefr: namefr,
+          Nameru: nameru,
+          Price: price,
+          Kategori: kategori,
+          Description: description,
+          Descriptionen: descriptionen,
+          Descriptionfr: descriptionfr,
+          Descriptionru: descriptionru,
+        });
+
+        try {
+          await newUrun.save();
+          category.Urunler.push(newUrun);
+          await category.save();
+          res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        res.render("error/404");
+      }
     }
   }
 );
@@ -567,14 +655,24 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: any) => {
-    const { name, id, lang, currency } = req.body;
+    const {
+      name,
+      id,
+      lang,
+      currency,
+      instagram,
+      facebook,
+      whatsapp,
+      twitter,
+      menuid,
+    } = req.body;
     const userid: any = req.token.id;
     const user = await User.findById(userid).populate("userMenu");
     const filter = user.userMenu.filter((item) => {
-      return item === id;
+      return item.id === id;
     });
 
-    if (filter) {
+    if (filter.length) {
       const menu = await Menu.findById(id);
       const slug = menu.Slug;
       const filePath = "public/images";
@@ -597,6 +695,11 @@ router.post(
           NativeLang: lang,
           image: image,
           Currency: currency,
+          Instagram: instagram,
+          Facebook: facebook,
+          Twitter: twitter,
+          Whatsapp: whatsapp,
+          MenuID: menuid,
         };
         const options = { new: true };
         const result = await Menu.findByIdAndUpdate(id, updatedData, options);
@@ -606,13 +709,18 @@ router.post(
           Name: name,
           NativeLang: lang,
           Currency: currency,
+          Instagram: instagram,
+          Facebook: facebook,
+          Twitter: twitter,
+          Whatsapp: whatsapp,
+          MenuID: menuid,
         };
         const options = { new: true };
         const result = await Menu.findByIdAndUpdate(id, updatedData, options);
         res.redirect(`/user/${slug}/edit`);
       }
     } else {
-      res.render("error/401");
+      res.render("error/404");
     }
   }
 );
@@ -628,13 +736,13 @@ router.post(
     const mymenu = await Menu.findById(menu.Menu._id);
     const userid: any = req.token.id;
     const user = await User.findById(userid).populate("userMenu");
-    const filter = user.userMenu.filter((item) => {
-      return item === mymenu._id;
+    const filter = user.userMenu.filter((item: any) => {
+      return item.id === mymenu.id;
     });
     const Slug = mymenu.Slug;
     const filePath = "public/images";
 
-    if (filter) {
+    if (filter.length) {
       if (req.file) {
         await fs.unlinkSync(`${filePath}/${menu.image}`);
         const splitname = req.file.filename.split(".")[0];
@@ -689,12 +797,12 @@ router.post(
     const mymenu = await Menu.findById(mycategory.Menu._id);
     const userid: any = req.token.id;
     const user = await User.findById(userid).populate("userMenu");
-    const filter = user.userMenu.filter((item) => {
-      return item === mymenu._id;
+    const filter = user.userMenu.filter((item: any) => {
+      return item.id === mymenu.id;
     });
     const filePath = "public/images";
 
-    if (filter) {
+    if (filter.length) {
       if (req.file) {
         await fs.unlinkSync(`${filePath}/${menu.image}`);
         const splitname = req.file.filename.split(".")[0];
@@ -739,10 +847,10 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
   const userid: any = req.token.id;
   const user = await User.findById(userid).populate("userMenu");
   const filter = user.userMenu.filter((item) => {
-    return item === category._id;
+    return item.id === category.id;
   });
   const filePath = "public/images";
-  if (filter) {
+  if (filter.length) {
     await fs.unlinkSync(`${filePath}/${category.image}`);
     const data = await Menu.findByIdAndDelete(id);
     try {
@@ -761,17 +869,26 @@ router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
   const mymenu = await Menu.findById(category.Menu._id);
   const userid: any = req.token.id;
   const user = await User.findById(userid).populate("userMenu");
-  const filter = user.userMenu.filter((item) => {
-    return item === mymenu._id;
+  const filter = user.userMenu.filter((item: any) => {
+    return item.id === mymenu.id;
   });
   const filePath = "public/images";
-  if (filter) {
-    await fs.unlinkSync(`${filePath}/${category.image}`);
-    const data = await Kategori.findByIdAndDelete(id);
-    try {
-      res.redirect(`/user/${mymenu.Slug}/edit2`);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
+  if (filter.length) {
+    if (category.image) {
+      await fs.unlinkSync(`${filePath}/${category.image}`);
+      const data = await Kategori.findByIdAndDelete(id);
+      try {
+        res.redirect(`/user/${mymenu.Slug}/edit2`);
+      } catch (error) {
+        res.render("error/401");
+      }
+    } else {
+      const data = await Kategori.findByIdAndDelete(id);
+      try {
+        res.redirect(`/user/${mymenu.Slug}/edit2`);
+      } catch (error) {
+        res.render("error/401");
+      }
     }
   } else {
     res.render("error/401");
@@ -785,17 +902,26 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   const mymenu = await Menu.findById(mycategory.Menu._id);
   const userid: any = req.token.id;
   const user = await User.findById(userid).populate("userMenu");
-  const filter = user.userMenu.filter((item) => {
-    return item === mymenu._id;
+  const filter = user.userMenu.filter((item: any) => {
+    return item.id === mymenu.id;
   });
   const filePath = "public/images";
-  if (filter) {
-    try {
-      await fs.unlinkSync(`${filePath}/${menu.image}`);
-      const data = await Urun.findByIdAndDelete(id);
-      res.redirect(`/user/${mymenu.Slug}/edit2`);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
+  if (filter.length) {
+    if (menu.image) {
+      try {
+        await fs.unlinkSync(`${filePath}/${menu.image}`);
+        const data = await Urun.findByIdAndDelete(id);
+        res.redirect(`/user/${mymenu.Slug}/edit2`);
+      } catch (error) {
+        res.render("error/401");
+      }
+    } else {
+      try {
+        const data = await Urun.findByIdAndDelete(id);
+        res.redirect(`/user/${mymenu.Slug}/edit2`);
+      } catch (error) {
+        res.render("error/401");
+      }
     }
   } else {
     res.render("error/401");

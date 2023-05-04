@@ -188,25 +188,51 @@
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
               >
-                <label for="name">Kategori Adı</label>
-                <input type="text" name="name" value="{{menu.Name}}" />
+                <div class="col-md-4 col-12">
+                  <input
+                    placeholder="Kategori Adı"
+                    class="form-control tr"
+                    type="text"
+                    name="name"
+                    value="{{menu.Name}}"
+                  />
+                </div>
               </div>
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center mt-3"
               >
-                <label for="image">Kategori Resmi</label>
-                <img
-                  class="mb-3"
-                  style="width: 150px;"
-                  src="/images/{{menu.image}}"
-                  alt=""
-                />
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  onchange="showPreview(event);"
-                />
+                {{#if menu.image}}
+                  <img
+                    class="mb-3 mt-3"
+                    style="width: 150px;"
+                    src="/images/{{menu.image}}"
+                    alt=""
+                  />
+                {{/if}}
+                <div class="col-md-4 mt-3">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span
+                        class="input-group-text"
+                        id="inputGroupFileAddon01"
+                      >Kategori Resmi</span>
+                    </div>
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        name="image"
+                        class="custom-file-input"
+                        id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01"
+                        onchange="showPreview(event);"
+                      />
+                      <label
+                        class="custom-file-label"
+                        for="inputGroupFile01"
+                      >Kategori Resmi</label>
+                    </div>
+                  </div>
+                </div>
                 <div class="preview mt-3">
                   <img style="width: 200px;" id="file-ip-1-preview" />
                 </div>

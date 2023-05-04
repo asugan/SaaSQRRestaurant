@@ -245,7 +245,7 @@
                           class="form-control"
                           placeholder="Instagram"
                           type="text"
-                          name="name"
+                          name="instagram"
                         />
                       </div>
                       <div class="col-md-6 mt-2 mt-md-0">
@@ -253,7 +253,7 @@
                           class="form-control"
                           placeholder="Facebook"
                           type="text"
-                          name="name"
+                          name="facebook"
                         />
                       </div>
                       <div class="col-md-6 mt-2">
@@ -261,7 +261,7 @@
                           class="form-control"
                           placeholder="Twitter"
                           type="text"
-                          name="name"
+                          name="twitter"
                         />
                       </div>
                       <div class="col-md-6 mt-2">
@@ -269,7 +269,7 @@
                           class="form-control"
                           placeholder="Whatsapp"
                           type="text"
-                          name="name"
+                          name="whatsapp"
                         />
                       </div>
                     </div>
@@ -304,16 +304,16 @@
                   <div class="preview mt-3">
                     <img style="width: 200px;" id="file-ip-1-preview" />
                   </div>
+                  {{#if error}}
+                    <h2 class="text-danger">{{error}}</h2>
+                  {{/if}}
                 </div>
 
                 <div class="menuid mt-3">
                   <div
                     class="selectable d-flex justify-content-center align-items-center"
                   >
-                    <select
-                      class="form-control form-select mt-3"
-                      name="currency"
-                    >
+                    <select class="form-control form-select mt-3" name="menuid">
                       <option selected>Menü Tasarımı Seçin</option>
                       <option value="1">Classic</option>
                     </select>
