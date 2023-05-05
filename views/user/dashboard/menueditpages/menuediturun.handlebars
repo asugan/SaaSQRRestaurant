@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>QRMenux Yönetim Paneli</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -50,7 +50,7 @@
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-utensils"></i>
           </div>
-          <div class="sidebar-brand-text mx-3">QR Menu</div>
+          <div class="sidebar-brand-text mx-3">QR Menux</div>
         </a>
 
         <!-- Divider -->
@@ -72,35 +72,47 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
+
         <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Edit Menu</span>
-          </a>
-          <div
-            id="collapseTwo"
-            class="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Edit your menus:</h6>
-              {{#each user.userMenu}}
+          {{#each user.userMenu}}
+            <a
+              class="nav-link collapsed"
+              href="#"
+              data-toggle="collapse"
+              data-target="#{{this.Slug}}"
+              aria-expanded="true"
+              aria-controls="collapseTwo"
+            >
+              <i class="fas fa-fw fa-cog"></i>
+              <span>{{this.Name}}</span>
+            </a>
+            <div
+              id="{{this.Slug}}"
+              class="collapse"
+              aria-labelledby="headingTwo"
+              data-parent="#accordionSidebar"
+            >
+              <div class="bg-white py-2 collapse-inner rounded">
+
+                <h6 class="collapse-header">Menü Düzenle</h6>
+                <a class="collapse-item" href="/user/{{this.Slug}}/edit">Menü
+                  Bilgileri Düzenle</a>
                 <a
                   class="collapse-item"
-                  href="/user/{{this.Slug}}/edit"
-                >{{this.Name}}</a>
-              {{/each}}
+                  href="/user/{{this.Slug}}/edit2"
+                >Kategori, Ürün Düzenle</a>
+                <a
+                  class="collapse-item"
+                  href="/user/{{this.Slug}}/kategoriekle"
+                >Kategori Ekle</a>
+                <a
+                  class="collapse-item"
+                  href="/user/{{this.Slug}}/urunekle"
+                >Ürün Ekle</a>
 
+              </div>
             </div>
-          </div>
+          {{/each}}
         </li>
 
       </ul>
@@ -129,48 +141,54 @@
             <ul class="navbar-nav ml-auto">
 
               <!-- Nav Item - User Information -->
-              <li class="nav-item">
-                {{#each user.userMenu}}
-                  <a
-                    class="nav-link collapsed"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#{{this.Slug}}"
-                    aria-expanded="true"
-                    aria-controls="collapseTwo"
-                  >
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>{{this.Name}}</span>
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span
+                    class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  >{{user.username}}</span>
+                  <img
+                    class="img-profile rounded-circle"
+                    src="/img/undraw_profile.svg"
+                  />
+                </a>
+                <!-- Dropdown - User Information -->
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
                   </a>
-                  <div
-                    id="{{this.Slug}}"
-                    class="collapse"
-                    aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar"
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
                   >
-                    <div class="bg-white py-2 collapse-inner rounded">
-
-                      <h6 class="collapse-header">Menü Düzenle</h6>
-                      <a
-                        class="collapse-item"
-                        href="/user/{{this.Slug}}/edit"
-                      >Menü Bilgileri Düzenle</a>
-                      <a
-                        class="collapse-item"
-                        href="/user/{{this.Slug}}/edit2"
-                      >Kategori, Ürün Düzenle</a>
-                      <a
-                        class="collapse-item"
-                        href="/user/{{this.id}}/kategoriekle"
-                      >Kategori Ekle</a>
-                      <a
-                        class="collapse-item"
-                        href="/user/{{this.id}}/urunekle"
-                      >Ürün Ekle</a>
-
-                    </div>
-                  </div>
-                {{/each}}
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
               </li>
 
             </ul>
