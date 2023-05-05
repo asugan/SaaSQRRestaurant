@@ -843,15 +843,26 @@ router.post(
 
 router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
   const id = req.params.id;
-  const category = await Menu.findById(id);
+  const menu: any = await Menu.findById(id).populate("Kategoriler");
   const userid: any = req.token.id;
   const user = await User.findById(userid).populate("userMenu");
   const filter = user.userMenu.filter((item) => {
-    return item.id === category.id;
+    return item.id === menu.id;
   });
   const filePath = "public/images";
   if (filter.length) {
-    await fs.unlinkSync(`${filePath}/${category.image}`);
+    await fs.unlinkSync(`${filePath}/${menu.image}`);
+    for (let i = 0; i < menu.Kategoriler.length; i++) {
+      const kategori: any = await Kategori.findById(
+        menu.Kategoriler[i].id
+      ).populate("Urunler");
+      if (kategori.image) {
+        for (let x = 0; x < kategori.Urunler.length; x++) {
+          await fs.unlinkSync(`${filePath}/${kategori.Urunler[x].image}`);
+        }
+        await fs.unlinkSync(`${filePath}/${menu.Kategoriler[i].image}`);
+      }
+    }
     const data = await Menu.findByIdAndDelete(id);
     try {
       res.redirect(`/user/dashboard`);
@@ -859,7 +870,7 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
       res.status(400).json({ message: error.message });
     }
   } else {
-    res.render("error/401");
+    res.render("error/404");
   }
 });
 
