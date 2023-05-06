@@ -28,7 +28,6 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/dashboards/loading.css" />
 
   </head>
 
@@ -206,176 +205,92 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
+          <div class="container-fluid">
 
-          <div class="row">
-            <div class="col-lg-6">
-              <form
-                action="/user/menu/post2"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <div
-                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
-                >
-                  <input type="hidden" name="menuid" value="{{menu.id}}" />
-                  <input
-                    type="hidden"
-                    name="currency"
-                    value="{{menu.Currency}}"
-                  />
-                  <label for="kategori">Kategori Seçin</label>
-                  <div class="col-sm-6">
-                    <select class="form-control form-select" name="kategori">
-                      {{#each menu.Kategoriler}}
-                        <option value="{{this._id}}">{{this.Name}}</option>
-                      {{/each}}
-                    </select>
-                  </div>
-                  <div class="col-sm-6">
-                    <input
-                      class="form-control mt-2 tr"
-                      type="text"
-                      name="name"
-                      placeholder="Ürün Adı"
-                    />
-                    <input
-                      class="form-control mt-2"
-                      type="text"
-                      name="price"
-                      placeholder="Ürün Fiyatı"
-                    />
-                    <textarea
-                      class="form-control mt-2"
-                      id="exampleFormControlTextarea1"
-                      rows="3"
-                      name="description"
-                      placeholder="Ürün Açıklaması Girin"
-                    ></textarea>
-                  </div>
-
-                  <div class="form-check mt-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="defaultCheck1"
-                      value="yes"
-                      name="nameen"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">
-                      İngilizce Çevrilsin
-                    </label>
-                  </div>
-                  <div class="form-check mt-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="defaultCheck1"
-                      value="yes"
-                      name="namefr"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">
-                      Fransızca Çevrilsin
-                    </label>
-                  </div>
-                  <div class="form-check mt-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="defaultCheck1"
-                      value="yes"
-                      name="nameru"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">
-                      Rusça Çevrilsin
-                    </label>
-                  </div>
-                </div>
-                <div
-                  class="col-12 d-flex flex-column justify-content-center align-items-center"
-                >
-                  <div class="col-md-6 mt-3">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span
-                          class="input-group-text"
-                          id="inputGroupFileAddon01"
-                        >Ürün Resmi</span>
-                      </div>
-                      <div class="custom-file">
-                        <input
-                          type="file"
-                          name="image"
-                          class="custom-file-input"
-                          id="inputGroupFile01"
-                          aria-describedby="inputGroupFileAddon01"
-                          onchange="showPreview(event);"
-                        />
-                        <label
-                          class="custom-file-label"
-                          for="inputGroupFile01"
-                        >Ürün Resmi</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="preview mt-3">
-                    <img style="width: 200px;" id="file-ip-1-preview" />
-                  </div>
-                </div>
-                <div
-                  class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
-                >
-                  <button
-                    class="btn btn-sm btn-danger mr-4"
-                    onclick="loadingscreen()"
-                    type="submit"
-                  >Ürün Ekle</button>
-                  <a
-                    class="btn btn-sm btn-danger"
-                    href="/menu/{{menu.Slug}}"
-                  >Menümü Yayınla</a>
-                </div>
-
-              </form>
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-center mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">QR Oluştur</h1>
             </div>
 
-            <div
-              class="col-lg-6 d-flex flex-column justify-content-start align-items-center align-items-lg-start"
-            >
-              {{#each menu.Kategoriler}}
-                <div
-                  class="inline d-flex flex-column justify-content-center align-items-center mt-3"
-                >
-                  <div
-                    class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
-                  >
-                    {{#if this.image}}
-                      <img
-                        class="mr-5"
-                        style="width: 200px; height:120px;"
-                        src="/images/{{this.image}}"
-                      />
-                    {{/if}}
-                    <h3 class="text-dark">{{this.Name}}</h3>
-                  </div>
-                  <div
-                    class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
-                  >
-                    {{#each this.Urunler}}
-                      {{#if this.image}}
-                        <img
-                          class="mr-5"
-                          style="width: 100px; height:60px;"
-                          src="/images/{{this.image}}"
-                        />
+            {{#if user.userMenu}}
+              <div class="row">
+
+                <div class="col-12 mt-3">
+                  <p>Oluştur butonuna tıklayarak menünüze QR Kod
+                    oluşturabilirsiniz.</p>
+                  <form class="form" action="/scan" method="POST">
+                    <select class="form-control" name="menu" id="menu">
+                      {{#each user.userMenu}}
+                        <option value="{{this.Slug}}">{{this.Name}}</option>
+                      {{/each}}
+                    </select>
+                    <input
+                      name="url"
+                      id="urlinput"
+                      class="form-control mt-3"
+                      placeholder="URL or Text"
+                      type="text"
+                      readonly
+                      required
+                    />
+                    <br />
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      value="Get QR"
+                    >QR Oluştur</button>
+                  </form>
+                </div>
+
+                <div class="col-12 mt-3">
+                  <div class="row">
+                    {{#each user.userMenu}}
+                      {{#if this.QRCode}}
+                        <div
+                          class="col-4 d-flex justify-content-center align-items-center flex-column"
+                        >
+                          <div class="qrhead">
+                            <h3 class="text-dark">{{this.Name}}</h3>
+                          </div>
+                          <div class="image">
+                            <img
+                              src="{{this.QRCode}}"
+                              class="img-thumbnail"
+                              alt="QR Code Image"
+                            />
+                          </div>
+                          <div class="download mt-3">
+                            <a
+                              href="{{this.QRCode}}"
+                              download="{{this.Slug}}-QR"
+                            ><button
+                                type="button"
+                                class="btn btn-primary pr-5 pl-5"
+                              >QR Kodu Indir</button></a>
+                          </div>
+                        </div>
                       {{/if}}
-                      <h5 class="text-dark mr-5">{{this.Name}}</h5>
-                      <h5 class="text-dark">{{this.Price}} ₺</h5>
                     {{/each}}
                   </div>
                 </div>
-              {{/each}}
-            </div>
+              </div>
+            {{else}}
+              <div class="row">
+                <div class="col-12">
+                  <div
+                    class="d-flex flex-column justify-content-center align-items-center"
+                  >
+                    <h1>Lütfen İlk Menü Oluşturun</h1>
+                    <a class="mt-2" href="/user/menu/post"><button
+                        class="btn btn-sm btn-danger"
+                      >Menü Oluştur</button></a>
+                  </div>
+                </div>
+              </div>
 
+            {{/if}}
           </div>
           <!-- /.container-fluid -->
 
@@ -386,7 +301,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2021</span>
+              <span>Copyright &copy; Your Website 2023</span>
             </div>
           </div>
         </footer>
@@ -439,20 +354,6 @@
       </div>
     </div>
 
-    <div class="loading">
-      <div
-        align="center"
-        style="position: absolute; margin-top: 120px; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: 550; color: black;"
-      >Çeviriler Yapılıyor...
-      </div>
-    </div>
-
-    <script>
-      function showPreview(event){ if(event.target.files.length > 0){ var src =
-      URL.createObjectURL(event.target.files[0]); var preview =
-      document.getElementById("file-ip-1-preview"); preview.src = src;
-      preview.style.display = "block"; } }
-    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -463,15 +364,12 @@
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
 
-    <!-- Dashboard Loading -->
-    <script src="/js/loadings.js"></script>
-
     <script>
       let hamham = $( "#menu" ).find('option:selected').val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);
+      $('#urlinput:text').val(`http://${hamham}.localhost:3000`);
       $("#menu").change(function() { let hamham =
       $(this).find("option:selected").val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);});
+      $('#urlinput:text').val(`http://${hamham}.localhost:3000`);});
     </script>
 
   </body>

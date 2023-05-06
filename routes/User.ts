@@ -94,6 +94,15 @@ router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   }
 });
 
+router.get("/createqr", marabacheck, async (req: any, res: any) => {
+  const id = req.token.id;
+  const user = await User.findById(id).populate("userMenu");
+
+  res.render("user/dashboard/createqr", {
+    user: user,
+  });
+});
+
 router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");
@@ -867,7 +876,7 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
     try {
       res.redirect(`/user/dashboard`);
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(404).render("error/404");
     }
   } else {
     res.render("error/404");

@@ -11,6 +11,9 @@ router.get("/", async (req: any, res: any) => {
     populate: [{ path: "Urunler" }],
   });
 
+  menu.viewCount += 0.5;
+  await menu.save();
+
   if (menu) {
     const user = await User.findById(menu.user);
     if (user.userLevel !== "Maraba") {

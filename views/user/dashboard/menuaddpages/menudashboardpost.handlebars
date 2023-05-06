@@ -60,7 +60,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="/user/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>User Dashboard</span></a>
+            <span>Kullanıcı Paneli</span></a>
         </li>
 
         <!-- Divider -->
@@ -68,12 +68,20 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Menu Panel
+          Menü Paneli
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
 
         <li class="nav-item">
+          <a class="nav-link" href="/user/menu/post">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Menü Ekle</span>
+          </a>
+          <a class="nav-link" href="/user/menu/post">
+            <i class="fas fa-fw fa-qrcode"></i>
+            <span>QR Oluştur</span>
+          </a>
           {{#each user.userMenu}}
             <a
               class="nav-link collapsed"
@@ -83,7 +91,7 @@
               aria-expanded="true"
               aria-controls="collapseTwo"
             >
-              <i class="fas fa-fw fa-cog"></i>
+              <i class="fas fa-fw fa-bars"></i>
               <span>{{this.Name}}</span>
             </a>
             <div

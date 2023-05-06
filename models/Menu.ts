@@ -53,6 +53,10 @@ const MenuSchema = new Schema({
     type: Number,
     required: true,
   },
+  viewCount: {
+    type: Number,
+    default: 0,
+  },
   Kategoriler: [
     {
       type: Schema.Types.ObjectId,
