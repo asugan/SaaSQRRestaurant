@@ -83,14 +83,26 @@ router.get("/logout", async (req, res) => {
 router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   const id = req.token.id;
 
-  try {
-    const user = await User.findById(id).populate("userMenu");
+  if (req.acceptsLanguages("tr-TR")) {
+    try {
+      const user = await User.findById(id).populate("userMenu");
 
-    res.render("user/dashboard/index", {
-      user: user,
-    });
-  } catch (err) {
-    console.log(err);
+      res.render("user/dashboard/index", {
+        user: user,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    try {
+      const user = await User.findById(id).populate("userMenu");
+
+      res.render("user/dashboard/dashboarden/index", {
+        user: user,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 });
 
@@ -98,9 +110,15 @@ router.get("/createqr", marabacheck, async (req: any, res: any) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");
 
-  res.render("user/dashboard/createqr", {
-    user: user,
-  });
+  if (req.acceptsLanguages("tr-TR")) {
+    res.render("user/dashboard/createqr", {
+      user: user,
+    });
+  } else {
+    res.render("user/dashboard/dashboarden/createqr", {
+      user: user,
+    });
+  }
 });
 
 router.get("/menu/post", marabacheck, async (req: any, res: Response) => {

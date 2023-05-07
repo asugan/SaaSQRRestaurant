@@ -51,9 +51,9 @@ router.post("/scan", async (req, res) => {
       findmenu.QRCode = src;
       await findmenu.save();
 
-      res.redirect("/user/dashboard");
+      res.redirect("/user/createqr");
     } else {
-      res.redirect("/user/dashboard");
+      res.redirect("/user/createqr");
     }
   });
 });
