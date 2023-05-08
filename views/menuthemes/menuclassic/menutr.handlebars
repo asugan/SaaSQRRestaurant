@@ -99,7 +99,7 @@
                 <button
                   class="btn btn-warning mt-2 mt-lg-0"
                   onclick="filterfunc(this)"
-                >{{this.Name}}</button>
+                >{{this.Nametr}}</button>
               {{/each}}
             </div>
           </div>
@@ -112,12 +112,12 @@
         <div class="row">
           <div class="col-lg-8 offset-lg-2">
             {{#each menu.Kategoriler}}
-              <div class="row selectrow {{this.Name}}">
+              <div class="row selectrow {{this.Nametr}}">
                 <div
                   class="col-12 p-5 category--background"
                   style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('/images/{{this.image}}');"
                 >
-                  <h1 class="text-white text-center">{{this.Name}}</h1>
+                  <h1 class="text-white text-center">{{this.Nametr}}</h1>
                 </div>
                 <div class="col-12 pt-3 pb-3 itembg">
                   {{#each this.Urunler}}
@@ -138,10 +138,10 @@
                           <div
                             class="aciklama d-flex flex-column justify-content-evenly align-items-center"
                           >
-                            <h4 class="text-white itemname">{{this.Name}}</h4>
+                            <h4 class="text-white itemname">{{this.Nametr}}</h4>
                             <p
                               class="text-white text-center"
-                            >{{this.Description}}</p>
+                            >{{this.Descriptiontr}}</p>
                           </div>
                         </div>
                         <div
