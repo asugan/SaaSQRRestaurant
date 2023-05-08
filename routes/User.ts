@@ -460,25 +460,79 @@ router.post(
 
       if (filter.length) {
         const menu = await Menu.findById(menuid);
+        const nativelang = menu.NativeLang;
 
-        const newKategori: any = new Kategori({
-          Name: name,
-          Menu: menu,
-          Nameen: nameen,
-          Namefr: namefr,
-          Nameru: nameru,
-        });
+        if (nativelang === "tr") {
+          const newKategori: any = new Kategori({
+            Nametr: name,
+            Menu: menu,
+            Nameen: nameen,
+            Namefr: namefr,
+            Nameru: nameru,
+          });
 
-        try {
-          menu.Kategoriler.push(newKategori);
-          await newKategori.save();
-          await menu.save();
-          res.redirect(`/user/${menu.Slug}/kategoriekle`);
-        } catch (err) {
-          console.log(err);
+          try {
+            menu.Kategoriler.push(newKategori);
+            await newKategori.save();
+            await menu.save();
+            res.redirect(`/user/${menu.Slug}/kategoriekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "en") {
+          const newKategori: any = new Kategori({
+            Nametr: nametr,
+            Menu: menu,
+            Nameen: name,
+            Namefr: namefr,
+            Nameru: nameru,
+          });
+
+          try {
+            menu.Kategoriler.push(newKategori);
+            await newKategori.save();
+            await menu.save();
+            res.redirect(`/user/${menu.Slug}/kategoriekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "fr") {
+          const newKategori: any = new Kategori({
+            Nametr: nametr,
+            Menu: menu,
+            Nameen: nameen,
+            Namefr: name,
+            Nameru: nameru,
+          });
+
+          try {
+            menu.Kategoriler.push(newKategori);
+            await newKategori.save();
+            await menu.save();
+            res.redirect(`/user/${menu.Slug}/kategoriekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "ru") {
+          const newKategori: any = new Kategori({
+            Nametr: nametr,
+            Menu: menu,
+            Nameen: nameen,
+            Namefr: namefr,
+            Nameru: name,
+          });
+
+          try {
+            menu.Kategoriler.push(newKategori);
+            await newKategori.save();
+            await menu.save();
+            res.redirect(`/user/${menu.Slug}/kategoriekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else {
+          res.render("error/404");
         }
-      } else {
-        res.render("error/404");
       }
     }
   }
@@ -495,13 +549,16 @@ router.post(
       kategori,
       menuid,
       description,
+      nametr,
       nameen,
       nameru,
       namefr,
       currency,
+      descriptionen,
+      descriptionru,
+      descriptionfr,
+      descriptiontr,
     } = req.body;
-
-    let descriptionen, descriptionru, descriptionfr;
 
     const id: any = req.token.id;
     const filePath = "public/images";
@@ -527,29 +584,104 @@ router.post(
 
       if (filter.length) {
         const category = await Kategori.findById(kategori);
+        const nativelang = mainmenu.NativeLang;
 
-        const newUrun: any = new Urun({
-          Name: name,
-          Currency: currency,
-          Nameen: nameen,
-          Namefr: namefr,
-          Nameru: nameru,
-          Price: price,
-          Kategori: kategori,
-          image: image,
-          Description: description,
-          Descriptionen: descriptionen,
-          Descriptionfr: descriptionfr,
-          Descriptionru: descriptionru,
-        });
+        if (nativelang === "tr") {
+          const newUrun: any = new Urun({
+            Nametr: name,
+            Currency: currency,
+            Nameen: nameen,
+            Namefr: namefr,
+            Nameru: nameru,
+            Price: price,
+            Kategori: kategori,
+            image: image,
+            Descriptiontr: description,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          });
 
-        try {
-          await newUrun.save();
-          category.Urunler.push(newUrun);
-          await category.save();
-          res.redirect(`/user/${mainmenu.Slug}/urunekle`);
-        } catch (err) {
-          console.log(err);
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "en") {
+          const newUrun: any = new Urun({
+            Nameen: name,
+            Currency: currency,
+            Nametr: nametr,
+            Namefr: namefr,
+            Nameru: nameru,
+            Price: price,
+            Kategori: kategori,
+            image: image,
+            Descriptionen: description,
+            Descriptiontr: descriptiontr,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          });
+
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "ru") {
+          const newUrun: any = new Urun({
+            Nameru: name,
+            Currency: currency,
+            Nameen: nameen,
+            Namefr: namefr,
+            Nametr: nametr,
+            Price: price,
+            Kategori: kategori,
+            image: image,
+            Descriptiontr: descriptiontr,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptionru: description,
+          });
+
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "fr") {
+          const newUrun: any = new Urun({
+            Namefr: name,
+            Currency: currency,
+            Nameen: nameen,
+            Nametr: nametr,
+            Nameru: nameru,
+            Price: price,
+            Kategori: kategori,
+            image: image,
+            Descriptiontr: descriptiontr,
+            Descriptionen: descriptionen,
+            Descriptionfr: description,
+            Descriptionru: descriptionru,
+          });
+
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
         }
       } else {
         res.render("error/404");
@@ -564,28 +696,100 @@ router.post(
 
       if (filter.length) {
         const category = await Kategori.findById(kategori);
+        const nativelang = mainmenu.NativeLang;
 
-        const newUrun: any = new Urun({
-          Name: name,
-          Currency: currency,
-          Nameen: nameen,
-          Namefr: namefr,
-          Nameru: nameru,
-          Price: price,
-          Kategori: kategori,
-          Description: description,
-          Descriptionen: descriptionen,
-          Descriptionfr: descriptionfr,
-          Descriptionru: descriptionru,
-        });
+        if (nativelang === "tr") {
+          const newUrun: any = new Urun({
+            Nametr: name,
+            Currency: currency,
+            Nameen: nameen,
+            Namefr: namefr,
+            Nameru: nameru,
+            Price: price,
+            Kategori: kategori,
+            Descriptiontr: description,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          });
 
-        try {
-          await newUrun.save();
-          category.Urunler.push(newUrun);
-          await category.save();
-          res.redirect(`/user/${mainmenu.Slug}/urunekle`);
-        } catch (err) {
-          console.log(err);
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "en") {
+          const newUrun: any = new Urun({
+            Nameen: name,
+            Currency: currency,
+            Nametr: nametr,
+            Namefr: namefr,
+            Nameru: nameru,
+            Price: price,
+            Kategori: kategori,
+            Descriptionen: description,
+            Descriptiontr: descriptiontr,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          });
+
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "ru") {
+          const newUrun: any = new Urun({
+            Nameru: name,
+            Currency: currency,
+            Nameen: nameen,
+            Namefr: namefr,
+            Nametr: nametr,
+            Price: price,
+            Kategori: kategori,
+            Descriptiontr: descriptiontr,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptionru: description,
+          });
+
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (nativelang === "fr") {
+          const newUrun: any = new Urun({
+            Namefr: name,
+            Currency: currency,
+            Nameen: nameen,
+            Nametr: nametr,
+            Nameru: nameru,
+            Price: price,
+            Kategori: kategori,
+            Descriptiontr: descriptiontr,
+            Descriptionen: descriptionen,
+            Descriptionfr: description,
+            Descriptionru: descriptionru,
+          });
+
+          try {
+            await newUrun.save();
+            category.Urunler.push(newUrun);
+            await category.save();
+            res.redirect(`/user/${mainmenu.Slug}/urunekle`);
+          } catch (err) {
+            console.log(err);
+          }
         }
       } else {
         res.render("error/404");
