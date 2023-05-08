@@ -7,6 +7,7 @@ const LemonController = require("./Lemon");
 const { authornot } = require("../middlewares/AuthCheck");
 const qr = require("qrcode");
 const router = express.Router();
+const { translate } = require("free-translate");
 
 router.get("/", authornot, async (req: any, res: any) => {
   //console.log(req.get("Accept-Language"));
@@ -23,6 +24,27 @@ router.get("/", authornot, async (req: any, res: any) => {
     });
   } else {
     res.render("index");
+  }
+});
+
+router.post("/translate/:menuid", async (req: any, res: any) => {
+  const lang = req.body.lang;
+  const main = req.body.main;
+  const menuid = req.params.menuid;
+  const menu = await Menu.findById(menuid);
+
+  if (menu && main) {
+    const menulang = menu.NativeLang;
+
+    const translated = await translate(main, { from: menulang, to: lang });
+
+    res.json(translated);
+  } else {
+    if (menu.NativeLang === "tr") {
+      res.json("Kategori Adı Gİrin !");
+    } else {
+      res.json("Please Write Category Title !");
+    }
   }
 });
 

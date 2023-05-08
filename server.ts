@@ -48,6 +48,12 @@ app.engine(
       datehelper: function (date: any) {
         return date.toISOString().slice(0, 10);
       },
+      ifeq: function (a: any, b: any, options: any) {
+        if (a === b) {
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      },
     },
   })
 );

@@ -10,7 +10,7 @@ interface Menu {
 }
 
 const KategoriSchema = new Schema({
-  Name: {
+  Nametr: {
     type: String,
   },
   Nameen: {

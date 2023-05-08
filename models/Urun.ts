@@ -10,7 +10,7 @@ interface Menu {
 }
 
 const UrunSchema = new Schema({
-  Name: {
+  Nametr: {
     type: String,
   },
   Currency: {
@@ -25,7 +25,7 @@ const UrunSchema = new Schema({
   Namefr: {
     type: String,
   },
-  Description: {
+  Descriptiontr: {
     type: String,
   },
   Descriptionen: {
