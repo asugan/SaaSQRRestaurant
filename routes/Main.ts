@@ -7,7 +7,7 @@ const LemonController = require("./Lemon");
 const { authornot } = require("../middlewares/AuthCheck");
 const qr = require("qrcode");
 const router = express.Router();
-const { translate } = require("free-translate");
+const translatte = require("translatte");
 
 router.get("/", authornot, async (req: any, res: any) => {
   //console.log(req.get("Accept-Language"));
@@ -36,9 +36,9 @@ router.post("/translate/:menuid", async (req: any, res: any) => {
   if (menu && main) {
     const menulang = menu.NativeLang;
 
-    const translated = await translate(main, { from: menulang, to: lang });
+    const translated = await translatte(main, { from: menulang, to: lang });
 
-    res.json(translated);
+    res.json(translated.text);
   } else {
     if (menu.NativeLang === "tr") {
       res.json("Kategori Adı Gİrin !");

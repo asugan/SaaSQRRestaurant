@@ -27,7 +27,6 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
-    "free-translate": "^0.6.1",
     "fs": "^0.0.1-security",
     "handlebars": "^4.7.7",
     "joi": "^17.9.1",
@@ -39,6 +38,7 @@
     "nodemailer": "^6.9.1",
     "qrcode": "^1.5.1",
     "sharp-multer": "^0.2.5",
+    "translatte": "^3.0.1",
     "vhost": "^3.0.2"
   }
 }
