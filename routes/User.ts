@@ -124,9 +124,13 @@ router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");
 
-  res.render("user/dashboard/menuaddpages/menudashboardpost", {
-    user: user,
-  });
+  if (user.menuLeft > 0) {
+    res.render("user/dashboard/menuaddpages/menudashboardpost", {
+      user: user,
+    });
+  } else {
+    res.render("error/nomenuleft");
+  }
 });
 
 router.get("/:menu/edit", marabacheck, async (req: any, res: Response) => {
@@ -295,8 +299,9 @@ router.post(
     const id: any = req.token.id;
     const slug = stringToSlug(name);
     const filePath = "public/images";
+    const user = await User.findById(id);
 
-    if (req.file) {
+    if (req.file && user.menuLeft > 0) {
       const splitname = req.file.filename.split(".")[0];
       const image = stringToSlug(splitname + " " + date) + ".webp";
 
@@ -307,8 +312,6 @@ router.post(
           console.log("success");
         }
       );
-
-      const user = await User.findById(id);
 
       const newMenu = new Menu({
         Name: name,
@@ -326,6 +329,7 @@ router.post(
 
       try {
         user.userMenu.push(newMenu);
+        user.menuLeft -= 1!;
         await user.save();
         await newMenu.save();
         const menuid = newMenu.Slug;
@@ -1012,6 +1016,8 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
       }
     }
     const data = await Menu.findByIdAndDelete(id);
+    user.menuLeft += 1;
+    await user.save();
     try {
       res.redirect(`/user/dashboard`);
     } catch (error) {

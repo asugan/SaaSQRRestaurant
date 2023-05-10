@@ -6,6 +6,7 @@ interface User {
   password: string;
   verified: boolean;
   userLevel: string;
+  menuLeft: number;
   email: string;
   daysLeft: Date;
   userMenu: Types.Array<Types.ObjectId>;
@@ -34,6 +35,11 @@ const userSchema = new Schema<User>({
     required: true,
     enum: ["Maraba", "Deneme", "Abone"],
     default: "Deneme",
+  },
+  menuLeft: {
+    type: Number,
+    required: true,
+    default: 1,
   },
   daysLeft: {
     type: Date,
