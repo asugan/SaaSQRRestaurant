@@ -4,6 +4,24 @@ const menuid = document.getElementById("menuid").value;
 const click = document.getElementById("clickable");
 const inputs = document.getElementById("inputs");
 
+// Urun Edit Sayfası Input loaderları
+
+const onload = async () => {
+  const urunadi = document.getElementById("urunadi").value;
+  const urundescription = document.getElementById("urundescription").value;
+
+  inputcategory(urunadi);
+  inputurundescription(urundescription);
+};
+
+const onloadkategori = async () => {
+  const urunadi = document.getElementById("urunadi").value;
+
+  inputcategory(urunadi);
+};
+
+//////////////////////////////////////
+
 const inputcategory = (val) => {
   main = val;
 };

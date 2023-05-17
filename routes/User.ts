@@ -212,7 +212,6 @@ router.get(
     const urunid = req.params.menu;
     const findmenu = await Kategori.findById(urunid);
     const mymenu = await Menu.findById(findmenu.Menu._id);
-    const Slug = mymenu.Slug;
 
     const filter = user.userMenu.filter((item: any) => {
       return item.Slug === mymenu.Slug;
@@ -221,7 +220,7 @@ router.get(
     if (filter.length) {
       res.render("user/dashboard/menueditpages/menueditonepagekategori", {
         menu: findmenu,
-        menuSlug: Slug,
+        mymenu: mymenu,
         user: user,
       });
     } else {
@@ -882,7 +881,7 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: any) => {
-    const { name, id } = req.body;
+    const { name, id, nametr, nameen, nameru, namefr } = req.body;
 
     const menu = await Kategori.findById(id);
     const mymenu = await Menu.findById(menu.Menu._id);
@@ -893,6 +892,7 @@ router.post(
     });
     const Slug = mymenu.Slug;
     const filePath = "public/images";
+    const nativelang = mymenu.NativeLang;
 
     if (filter.length) {
       if (req.file) {
@@ -908,28 +908,125 @@ router.post(
           }
         );
 
-        const updatedData = {
-          Name: name,
-          image: image,
-        };
-        const options = { new: true };
-        const result = await Kategori.findByIdAndUpdate(
-          id,
-          updatedData,
-          options
-        );
-        res.redirect(`/user/${Slug}/edit2`);
+        if (nativelang === "tr") {
+          const updatedData = {
+            Nametr: name,
+            Namefr: namefr,
+            Nameen: nameen,
+            Nameru: nameru,
+            image: image,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        } else if (nativelang === "en") {
+          const updatedData = {
+            Nametr: nametr,
+            Namefr: namefr,
+            Nameen: name,
+            Nameru: nameru,
+            image: image,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        } else if (nativelang === "fr") {
+          const updatedData = {
+            Nametr: nametr,
+            Namefr: name,
+            Nameen: nameen,
+            Nameru: nameru,
+            image: image,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        } else if (nativelang === "ru") {
+          const updatedData = {
+            Nametr: nametr,
+            Namefr: namefr,
+            Nameen: nameen,
+            Nameru: name,
+            image: image,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        }
       } else {
-        const updatedData = {
-          Name: name,
-        };
-        const options = { new: true };
-        const result = await Kategori.findByIdAndUpdate(
-          id,
-          updatedData,
-          options
-        );
-        res.redirect(`/user/${Slug}/edit2`);
+        if (nativelang === "tr") {
+          const updatedData = {
+            Nametr: name,
+            Namefr: namefr,
+            Nameen: nameen,
+            Nameru: nameru,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        } else if (nativelang === "en") {
+          const updatedData = {
+            Nametr: nametr,
+            Namefr: namefr,
+            Nameen: name,
+            Nameru: nameru,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        } else if (nativelang === "fr") {
+          const updatedData = {
+            Nametr: nametr,
+            Namefr: name,
+            Nameen: nameen,
+            Nameru: nameru,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        } else if (nativelang === "ru") {
+          const updatedData = {
+            Nametr: nametr,
+            Namefr: namefr,
+            Nameen: nameen,
+            Nameru: name,
+          };
+          const options = { new: true };
+          const result = await Kategori.findByIdAndUpdate(
+            id,
+            updatedData,
+            options
+          );
+          res.redirect(`/user/${Slug}/edit2`);
+        }
       }
     } else {
       res.render("error/401");
@@ -942,7 +1039,20 @@ router.post(
   upload.single("image"),
   marabacheck,
   async (req: any, res: any) => {
-    const { name, id, price, description } = req.body;
+    const {
+      name,
+      id,
+      price,
+      description,
+      descriptionen,
+      descriptionru,
+      descriptionfr,
+      descriptiontr,
+      nametr,
+      nameen,
+      nameru,
+      namefr,
+    } = req.body;
 
     const menu = await Urun.findById(id);
     const mycategory = await Kategori.findById(menu.Kategori._id);
@@ -959,6 +1069,7 @@ router.post(
         await fs.unlinkSync(`${filePath}/${menu.image}`);
         const splitname = req.file.filename.split(".")[0];
         const image = stringToSlug(splitname + " " + date) + ".webp";
+        const nativelang = mymenu.NativeLang;
 
         await fs.rename(
           `${filePath}/${req.file.filename}`,
@@ -968,27 +1079,137 @@ router.post(
           }
         );
 
-        const updatedData = {
-          Name: name,
-          image: image,
-          Price: price,
-          Description: description,
-        };
-        const options = { new: true };
-        const result = await Urun.findByIdAndUpdate(id, updatedData, options);
-        res.redirect(`/user/${mymenu.Slug}/edit2`);
+        if (nativelang === "tr") {
+          const updatedData = {
+            Nametr: name,
+            Nameen: nameen,
+            namefr: namefr,
+            Nameru: nameru,
+            image: image,
+            Price: price,
+            Descriptiontr: description,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } else if (nativelang === "en") {
+          const updatedData = {
+            Nameen: name,
+            Nametr: nametr,
+            namefr: namefr,
+            Nameru: nameru,
+            image: image,
+            Price: price,
+            Descriptionen: description,
+            Descriptiontr: descriptiontr,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } else if (nativelang === "fr") {
+          const updatedData = {
+            Namefr: name,
+            Nameen: nameen,
+            nametr: nametr,
+            Nameru: nameru,
+            image: image,
+            Price: price,
+            Descriptionfr: description,
+            Descriptionen: descriptionen,
+            Descriptiontr: descriptiontr,
+            Descriptionru: descriptionru,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } else if (nativelang === "ru") {
+          const updatedData = {
+            Nameru: name,
+            Nameen: nameen,
+            namefr: namefr,
+            Nametr: nametr,
+            image: image,
+            Price: price,
+            Descriptionru: description,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptiontr: descriptiontr,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        }
       } else {
-        const updatedData = {
-          Name: name,
-          Price: price,
-          Description: description,
-        };
-        const options = { new: true };
-        const result = await Urun.findByIdAndUpdate(id, updatedData, options);
-        res.redirect(`/user/${mymenu.Slug}/edit2`);
+        const nativelang = mymenu.NativeLang;
+        if (nativelang === "tr") {
+          const updatedData = {
+            Nametr: name,
+            Nameen: nameen,
+            namefr: namefr,
+            Nameru: nameru,
+            Price: price,
+            Descriptiontr: description,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } else if (nativelang === "en") {
+          const updatedData = {
+            Nameen: name,
+            Nametr: nametr,
+            namefr: namefr,
+            Nameru: nameru,
+            Price: price,
+            Descriptionen: description,
+            Descriptiontr: descriptiontr,
+            Descriptionfr: descriptionfr,
+            Descriptionru: descriptionru,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } else if (nativelang === "fr") {
+          const updatedData = {
+            Namefr: name,
+            Nameen: nameen,
+            nametr: nametr,
+            Nameru: nameru,
+            Price: price,
+            Descriptionfr: description,
+            Descriptionen: descriptionen,
+            Descriptiontr: descriptiontr,
+            Descriptionru: descriptionru,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } else if (nativelang === "ru") {
+          const updatedData = {
+            Nameru: name,
+            Nameen: nameen,
+            namefr: namefr,
+            Nametr: nametr,
+            Price: price,
+            Descriptionru: description,
+            Descriptionen: descriptionen,
+            Descriptionfr: descriptionfr,
+            Descriptiontr: descriptiontr,
+          };
+          const options = { new: true };
+          const result = await Urun.findByIdAndUpdate(id, updatedData, options);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        }
       }
     } else {
-      res.render("error/401");
+      res.render("error/404");
     }
   }
 );
