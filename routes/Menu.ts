@@ -11,7 +11,7 @@ router.get("/", async (req: any, res: any) => {
     populate: [{ path: "Urunler" }],
   });
 
-  menu.viewCount += 0.5;
+  menu.viewCount += 1;
   await menu.save();
 
   if (menu) {
@@ -32,7 +32,7 @@ router.get("/", async (req: any, res: any) => {
   }
 });
 
-router.get("/:lang", async (req: any, res: any) => {
+router.get("/lang/:lang", async (req: any, res: any) => {
   const menuid = req.vhost[0];
   let lang;
 
@@ -40,6 +40,9 @@ router.get("/:lang", async (req: any, res: any) => {
     path: "Kategoriler",
     populate: [{ path: "Urunler" }],
   });
+
+  menu.viewCount += 1;
+  await menu.save();
 
   if (menu) {
     if (
