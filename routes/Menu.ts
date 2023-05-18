@@ -11,7 +11,7 @@ router.get("/", async (req: any, res: any) => {
     populate: [{ path: "Urunler" }],
   });
 
-  menu.viewCount += 1;
+  menu.viewCount++;
   await menu.save();
 
   if (menu) {
@@ -41,7 +41,7 @@ router.get("/lang/:lang", async (req: any, res: any) => {
     populate: [{ path: "Urunler" }],
   });
 
-  menu.viewCount += 1;
+  menu.viewCount++;
   await menu.save();
 
   if (menu) {
