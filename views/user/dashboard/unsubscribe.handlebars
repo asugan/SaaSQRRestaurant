@@ -28,13 +28,6 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"
-    ></script>
 
   </head>
 
@@ -217,179 +210,21 @@
           </nav>
           <!-- End of Topbar -->
 
-          <form method="post" action="/user/{{menu._id}}/menusil">
-            <button class="ml-5 btn btn-sm btn-danger" type="submit">Menüyü Sil</button>
-          </form>
-
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <form
-              action="/user/menu/edit"
-              method="post"
-              enctype="multipart/form-data"
-            >
-              <div
-                class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
-              >
-                <div class="col-md-4 col-12 text-center">
-                  <input
-                    placeholder="Menü Adı"
-                    class="form-control"
-                    type="text"
-                    name="name"
-                    value="{{menu.Name}}"
-                  />
-                </div>
 
-                <div class="col-md-4 col-12">
-                  <select
-                    class="form-control form-select mt-3"
-                    aria-label="Default select example"
-                    name="lang"
-                  >
-                    <option
-                      value="{{menu.NativeLang}}"
-                    >{{menu.NativeLang}}</option>
-                    <option value="tr">Türkçe</option>
-                    <option value="en">İngilizce</option>
-                    <option value="fr">Fransızca</option>
-                    <option value="ru">Rusça</option>
-                  </select>
-                  <select
-                    class="form-control form-select mt-3"
-                    aria-label="Default select example"
-                    name="currency"
-                  >
-                    <option value="{{menu.Currency}}">{{menu.Currency}}</option>
-                    <option value="₺">TL</option>
-                    <option value="$">USD</option>
-                    <option value="€">EUR</option>
-                  </select>
-                </div>
-
-                <div
-                  class="social mt-3 col-12 p-0 d-flex justify-content-center"
-                >
-                  <div class="col-md-4 col-12">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <input
-                          class="form-control"
-                          placeholder="Instagram"
-                          type="text"
-                          name="instagram"
-                          value="{{menu.Instagram}}"
-                        />
-                      </div>
-                      <div class="col-md-6 mt-2 mt-md-0">
-                        <input
-                          class="form-control"
-                          placeholder="Facebook"
-                          type="text"
-                          name="facebook"
-                          value="{{menu.Facebook}}"
-                        />
-                      </div>
-                      <div class="col-md-6 mt-2">
-                        <input
-                          class="form-control"
-                          placeholder="Twitter"
-                          type="text"
-                          name="twitter"
-                          value="{{menu.Twitter}}"
-                        />
-                      </div>
-                      <div class="col-md-6 mt-2">
-                        <input
-                          class="form-control"
-                          placeholder="Whatsapp"
-                          type="tel"
-                          id="phone"
-                          name="whatsapp"
-                          value="{{menu.Whatsapp}}"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="row">
+              <div class="col-12 p-0 mt-3">
+                <h3 class="text-danger">Aboneliğinizi bu bölümden iptal
+                  edebilirsiniz. Aboneliğinizi iptal ederseniz birdahaki ay
+                  kartınızdan ücret alınmayacak ve menünüze erişiminiz
+                  sonlanacak.</h3>
               </div>
-              <div
-                class="label1 d-flex flex-column justify-content-center align-items-center mt-5"
-              >
-                <div class="input-group col-md-4 col-12">
-                  <div class="input-group-prepend">
-                    <span
-                      class="input-group-text"
-                      id="inputGroupFileAddon01"
-                    >Restoran Logosu</span>
-                  </div>
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      name="image"
-                      class="custom-file-input"
-                      id="inputGroupFile01"
-                      aria-describedby="inputGroupFileAddon01"
-                      onchange="showPreview(event);"
-                    />
-                    <label
-                      class="custom-file-label"
-                      for="inputGroupFile01"
-                    >Logonuzu Yükleyin</label>
-                  </div>
-                </div>
-                <div class="preview mt-3">
-                  <img style="width: 200px;" id="file-ip-1-preview" />
-                </div>
-                {{#if menu.image}}
-                  <img
-                    style="width: 200px; height:200px;"
-                    src="/images/{{menu.image}}"
-                    alt=""
-                  />
-                {{/if}}
-                <div class="menuid mt-3">
-                  <div
-                    class="selectable d-flex justify-content-center align-items-center"
-                  >
-                    <div class="col-md-4 col-12">
-                      <select
-                        class="form-control form-select mt-3"
-                        name="menuid"
-                      >
-                        <option value="1">Menü Tasarımı Seçin</option>
-                        <option value="1">Classic</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div
-                    class="first d-flex justify-content-center align-items-center"
-                  >
-                    <img class="w-25" src="/img/landing1.png" alt="" />
-                  </div>
-                </div>
-                <input type="hidden" name="id" value="{{menu._id}}" />
-              </div>
-              <div
-                class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
-              >
-                <button
-                  class="btn btn-sm btn-danger"
-                  type="submit"
-                >Kaydet</button>
-                <a
-                  class="btn btn-sm btn-danger ml-3"
-                  href="/user/{{menu.Slug}}/edit2"
-                >Kategori ya da Ürün Düzenle</a>
-              </div>
-            </form>
-
-            <script>
-              function showPreview(event){ if(event.target.files.length > 0){
-              var src = URL.createObjectURL(event.target.files[0]); var preview
-              = document.getElementById("file-ip-1-preview"); preview.src = src;
-              preview.style.display = "block"; } }
-            </script>
+              <a
+                class="btn btn-danger btn-lg mt-3"
+                href="/lemon/unsubscribe"
+              >Aboneliğimi İptal Et</a>
+            </div>
 
           </div>
           <!-- /.container-fluid -->
@@ -448,7 +283,7 @@
               type="button"
               data-dismiss="modal"
             >Cancel</button>
-            <a class="btn btn-primary" href="/user/logout">Logout</a>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
@@ -465,18 +300,11 @@
     <script src="/js/sb-admin-2.min.js"></script>
 
     <script>
-      var input = document.querySelector("#phone"); window.intlTelInput(input, {
-      utilsScript:
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
-      });
-    </script>
-
-    <script>
       let hamham = $( "#menu" ).find('option:selected').val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);
+      $('#urlinput:text').val(`http://${hamham}.localhost:3000`);
       $("#menu").change(function() { let hamham =
       $(this).find("option:selected").val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);});
+      $('#urlinput:text').val(`http://${hamham}.localhost:3000`);});
     </script>
 
   </body>

@@ -105,6 +105,21 @@ router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   }
 });
 
+router.get("/unsubscribe", marabacheck, async (req: any, res: any) => {
+  const id = req.token.id;
+  const user = await User.findById(id).populate("userMenu");
+
+  if (req.acceptsLanguages("tr-TR")) {
+    res.render("user/dashboard/unsubscribe", {
+      user: user,
+    });
+  } else {
+    res.render("user/dashboard/dashboarden/createqr", {
+      user: user,
+    });
+  }
+});
+
 router.get("/createqr", marabacheck, async (req: any, res: any) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");

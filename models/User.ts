@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 interface User {
   username: string;
   password: string;
+  lemonid: number;
   verified: boolean;
   userLevel: string;
   menuLeft: number;
@@ -17,6 +18,9 @@ const userSchema = new Schema<User>({
   username: {
     type: String,
     required: true,
+  },
+  lemonid: {
+    type: Number,
   },
   verified: {
     type: Boolean,

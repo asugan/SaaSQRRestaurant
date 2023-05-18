@@ -126,6 +126,12 @@
               </div>
             </div>
           {{/each}}
+          {{#ifeq user.userLevel "Abone"}}
+            <a class="nav-link" href="/user/unsubscribe">
+              <i class="fas fa-fw fa-qrcode"></i>
+              <span>Abonelik İptal</span>
+            </a>
+          {{/ifeq}}
         </li>
 
       </ul>
@@ -601,7 +607,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2021</span>
+              <span>Copyright &copy; QRMenux 2023</span>
             </div>
           </div>
         </footer>
@@ -648,7 +654,7 @@
               type="button"
               data-dismiss="modal"
             >Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/user/logout">Logout</a>
           </div>
         </div>
       </div>
