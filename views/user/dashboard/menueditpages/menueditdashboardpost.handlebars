@@ -28,6 +28,13 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"
+    ></script>
 
   </head>
 
@@ -254,8 +261,10 @@
                   </select>
                 </div>
 
-                <div class="social mt-3 col-12 p-0">
-                  <div class="col-md-12 col-12">
+                <div
+                  class="social mt-3 col-12 p-0 d-flex justify-content-center"
+                >
+                  <div class="col-md-4 col-12">
                     <div class="row">
                       <div class="col-md-6">
                         <input
@@ -288,7 +297,8 @@
                         <input
                           class="form-control"
                           placeholder="Whatsapp"
-                          type="text"
+                          type="tel"
+                          id="phone"
                           name="whatsapp"
                           value="{{menu.Whatsapp}}"
                         />
@@ -336,10 +346,15 @@
                   <div
                     class="selectable d-flex justify-content-center align-items-center"
                   >
-                    <select class="form-control form-select mt-3" name="menuid">
-                      <option value="1">Menü Tasarımı Seçin</option>
-                      <option value="1">Classic</option>
-                    </select>
+                    <div class="col-md-4 col-12">
+                      <select
+                        class="form-control form-select mt-3"
+                        name="menuid"
+                      >
+                        <option value="1">Menü Tasarımı Seçin</option>
+                        <option value="1">Classic</option>
+                      </select>
+                    </div>
                   </div>
                   <div
                     class="first d-flex justify-content-center align-items-center"
@@ -442,6 +457,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+
+    <script>
+      var input = document.querySelector("#phone"); window.intlTelInput(input, {
+      utilsScript:
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+      });
+    </script>
 
     <script>
       let hamham = $( "#menu" ).find('option:selected').val();
