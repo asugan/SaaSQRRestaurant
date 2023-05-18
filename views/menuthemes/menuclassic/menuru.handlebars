@@ -38,9 +38,20 @@
               </div>
               <div class="col-lg-4 d-flex flex-column p-0">
                 <div class="social-media d-flex justify-content-evenly pt-3">
-                  <i class="fa fa-3x fa-facebook-official"></i>
-                  <i class="fa fa-3x fa-instagram"></i>
-                  <i class="fa fa-3x fa-twitter-square"></i>
+                  {{#if menu.Facebook}}
+                    <a target="_blank" href="{{menu.Facebook}}">
+                      <i class="fa fa-3x fa-facebook-official"></i></a>
+                  {{/if}}
+                  {{#if menu.Instagram}}
+                    <a target="_blank" href="{{menu.Instagram}}"><i
+                        class="fa fa-3x fa-instagram"
+                      ></i></a>
+                  {{/if}}
+                  {{#if menu.Twitter}}
+                    <a target="_blank" href="{{menu.Twitter}}"><i
+                        class="fa fa-3x fa-twitter-square"
+                      ></i></a>
+                  {{/if}}
                 </div>
                 <h1
                   class="text-center pt-3 pb-3 pb-lg-0"
