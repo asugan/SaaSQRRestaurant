@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-12 pt-3 pb-3 itembg">
                   {{#each this.Urunler}}
-                    <div class="uruncontainer ps-3 pe-3 {{this._id}}">
+                    <div class="uruncontainer pt-2 pb-2 ps-3 pe-3 {{this._id}}">
                       <div class="row">
                         <div
                           class="col-4 p-0 d-flex justify-content-center align-items-center"
@@ -143,17 +143,24 @@
                             alt=""
                           />
                         </div>
-                        <div
-                          class="col-6 d-flex justify-content-center mt-3 mt-xl-0"
-                        >
+                        <div class="col-6 d-flex justify-content-center">
                           <div
                             class="aciklama d-flex flex-column justify-content-evenly align-items-center"
                           >
                             <h4 class="text-white itemname">{{this.Namefr}}</h4>
-                            <p
-                              class="text-white text-center"
-                            >{{this.Descriptionfr}}</p>
+                            <button
+                              class="{{this._id}} btn btn-warning mt-2 mt-lg-0"
+                              onclick="displayicindekiler(this)"
+                            >İçindekiler</button>
                           </div>
+                        </div>
+                        <div class="icindekiler {{this._id}}">
+                          <h5>{{this.Descriptionfr}}</h5>
+                          <i
+                            class="{{this._id}} fa fa-times"
+                            onclick="closeicindekiler(this)"
+                            aria-hidden="true"
+                          ></i>
                         </div>
                         <div
                           class="col-2 p-0 d-flex justify-content-center align-items-center pricediv"
