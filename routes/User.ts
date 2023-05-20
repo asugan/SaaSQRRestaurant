@@ -1409,7 +1409,6 @@ router.post("/register", async (req: Request, res: Response) => {
     const finduser = await User.findOne({
       $or: [{ username: username }, { email: email }],
     });
-    console.log(finduser);
 
     if (finduser) {
       res.send("email yada kullanıcı adı kayıtlı");
@@ -1424,7 +1423,10 @@ router.post("/register", async (req: Request, res: Response) => {
       try {
         await newUser.save();
         await sendMail(email);
-        res.redirect("/");
+        res.render("user/register", {
+          mailsend:
+            "Lütfen Mail Adresinize Gelen Link ile Hesabınızı Onaylayın.",
+        });
       } catch (err) {
         console.log(err);
       }

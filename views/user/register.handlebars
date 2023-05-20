@@ -13,18 +13,20 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Document</title>
+    <title>QR Menux</title>
   </head>
   <body>
     <div class="vh100">
       <nav>
         <div class="logo">
-          <h1>logo</h1>
+          <a href="/">
+            <i class="fas fa-2x fa-utensils"></i>
+            <span>QR Menu</span>
+          </a>
         </div>
         <div class="sections">
           <ul>
             <li><a href="/">Anasayfa</a></li>
-            <li><a href="/prices">Fiyatlar</a></li>
             <li><a href="/user/register">Üye Ol</a></li>
             <li><a href="/user/login">Giriş</a></li>
           </ul>
@@ -32,7 +34,6 @@
         <div class="mobilesection">
           <ul>
             <li><a href="/">Anasayfa</a></li>
-            <li><a href="/prices">Fiyatlar</a></li>
             <li><a href="/user/register">Üye Ol</a></li>
             <li><a href="/user/login">Giriş</a></li>
           </ul>
@@ -79,6 +80,14 @@
             {{#each error}}
               <h4>{{this.message}}</h4>
             {{/each}}
+          </div>
+        {{/if}}
+        {{#if mailsend}}
+          <div class="error">
+            <div onclick="kapat()" class="errorclose">
+              <h1>KAPAT</h1>
+            </div>
+            <h4>{{this.mailsend}}</h4>
           </div>
         {{/if}}
       </section>
