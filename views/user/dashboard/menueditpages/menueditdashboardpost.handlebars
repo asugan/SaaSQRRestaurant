@@ -473,10 +473,24 @@
     <script src="/js/sb-admin-2.min.js"></script>
 
     <script>
-      var input = document.querySelector("#phone"); window.intlTelInput(input, {
+      var input = document.querySelector("#phone"); var iti =
+      window.intlTelInput(input, { hiddenInput: "full_number", nationalMode:
+      false, formatOnDisplay: false, separateDialCode: true, autoHideDialCode:
+      false, autoPlaceholder: "aggressive" , initialCountry: "auto",
+      placeholderNumberType: "MOBILE", preferredCountries: ['tr','us'],
       utilsScript:
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
-      });
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
+      }); input.addEventListener('keyup', formatIntlTelInput);
+      input.addEventListener('change', formatIntlTelInput); function
+      formatIntlTelInput() { if (typeof intlTelInputUtils !== 'undefined') {var
+      currentText = iti.getNumber(intlTelInputUtils.numberFormat.E164); if
+      (typeof currentText === 'string') { iti.setNumber(currentText);
+      formatOnDisplay=true } } } input.addEventListener('keyup', function(e) {
+      e.preventDefault(); var num = iti.getNumber(), valid =
+      iti.isValidNumber(); input.value = num }, false);
+      input.addEventListener("focus", function() { input.value = ""; }, false);
+      $(input).on("focusout", function(e, countryData) { var intlNumber =
+      iti.getNumber(); input.value = intlNumber; });
     </script>
 
     <script>
