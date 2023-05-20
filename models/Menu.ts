@@ -20,6 +20,9 @@ const MenuSchema = new Schema({
     enum: ["tr", "en", "ru", "fr"],
     default: "tr",
   },
+  Adres: {
+    type: String,
+  },
   Currency: {
     type: String,
     required: true,

@@ -179,10 +179,59 @@
       </div>
     </section>
 
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 pr-2 pl-2 p-lg-0">
+            <div
+              class="row d-flex justify-content-center align-items-center pt-5 pb-5"
+            >
+              {{#if menu.Adres}}
+                <div class="col-lg-6 col-12">
+                  <h5 class="text-center text-lg-start">{{menu.Adres}}</h5>
+                </div>
+              {{/if}}
+              <div class="col-lg-6 col-12">
+                <div class="social-media d-flex justify-content-evenly pt-3">
+                  {{#if menu.Facebook}}
+                    <a target="_blank" href="{{menu.Facebook}}">
+                      <i class="fa fa-3x fa-facebook-official"></i></a>
+                  {{/if}}
+                  {{#if menu.Instagram}}
+                    <a target="_blank" href="{{menu.Instagram}}"><i
+                        class="fa fa-3x fa-instagram"
+                      ></i></a>
+                  {{/if}}
+                  {{#if menu.Twitter}}
+                    <a target="_blank" href="{{menu.Twitter}}"><i
+                        class="fa fa-3x fa-twitter-square"
+                      ></i></a>
+                  {{/if}}
+                </div>
+                {{#if menu.Whatsapp}}
+                  <div
+                    class="second d-flex justify-content-center align-items-center mt-4"
+                  >
+                    <i class="fa fa-3x fa-phone phonebottom me-3"></i>
+                    <h5>{{menu.Whatsapp}}</h5>
+                  </div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <div class="wrapper">
-      <a class="social" href="#"><i class="fa fa-2x fa-whatsapp"></i></a>
-      <a class="social" href="#"> <i class="fa fa-2x fa-phone"></i></a>
-      <a class="close-button" href="#"> <i class="fa fa-2x fa-close"></i></a>
+      <a
+        class="social"
+        target="_blank"
+        href="https://wa.me/{{menu.Whatsapp}}"
+      ><i class="fa fa-2x fa-whatsapp"></i></a>
+      <a class="social" href="tel:{{menu.Whatsapp}}">
+        <i class="fa fa-2x fa-phone"></i></a>
+      <a class="close-button"> <i class="fa fa-2x fa-close"></i></a>
     </div>
 
     <script

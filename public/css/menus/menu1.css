@@ -121,8 +121,12 @@ button {
   color: #2b3467;
 }
 
+.phonebottom {
+  color: #2b3467;
+}
+
 .categories {
-  margin-bottom: 6rem;
+  margin-bottom: 2rem;
 }
 
 .bottombar {
@@ -239,4 +243,12 @@ button {
   text-decoration: none;
   color: #fff;
   margin: 2px;
+}
+
+.close-button {
+  cursor: pointer;
+}
+
+footer {
+  background-color: #bad7e9;
 }

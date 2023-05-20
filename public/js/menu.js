@@ -143,9 +143,14 @@ close_button.addEventListener("click", () => {
 
 const displayicindekiler = (id) => {
   const urunid = id.classList[0];
+  const allicindekiler = document.getElementsByClassName("icindekiler");
   const urunicindekiler = document.getElementsByClassName(
     `icindekiler ${urunid}`
   )[0];
+
+  for (i = 0; i < allicindekiler.length; i++) {
+    allicindekiler[i].style.display = "none";
+  }
 
   urunicindekiler.style.display = "block";
 };

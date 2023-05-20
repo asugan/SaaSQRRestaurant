@@ -309,6 +309,7 @@ router.post(
       twitter,
       whatsapp,
       menuid,
+      adres,
     } = req.body;
     const id: any = req.token.id;
     const slug = stringToSlug(name);
@@ -339,6 +340,7 @@ router.post(
         Twitter: twitter,
         Whatsapp: whatsapp,
         MenuID: menuid,
+        Adres: adres,
       });
 
       try {
@@ -831,6 +833,7 @@ router.post(
       whatsapp,
       twitter,
       menuid,
+      adres,
     } = req.body;
     const userid: any = req.token.id;
     const user = await User.findById(userid).populate("userMenu");
@@ -866,6 +869,7 @@ router.post(
           Twitter: twitter,
           Whatsapp: whatsapp,
           MenuID: menuid,
+          Adres: adres,
         };
         const options = { new: true };
         const result = await Menu.findByIdAndUpdate(id, updatedData, options);
@@ -880,6 +884,7 @@ router.post(
           Twitter: twitter,
           Whatsapp: whatsapp,
           MenuID: menuid,
+          Adres: adres,
         };
         const options = { new: true };
         const result = await Menu.findByIdAndUpdate(id, updatedData, options);
