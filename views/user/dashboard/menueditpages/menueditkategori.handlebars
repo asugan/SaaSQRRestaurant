@@ -290,62 +290,66 @@
                 <div
                   class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  {{#each this.Urunler}}
-                    {{#if this.image}}
-                      <div class="row">
-                        <div class="col-md-3 text-center">
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        </div>
-                        <div
-                          class="col-md-9 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Nametr}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                  <div
+                    class="urun d-flex flex-column justify-content-center align-items-start mt-1 mb-1"
+                  >
+                    {{#each this.Urunler}}
+                      {{#if this.image}}
+                        <div class="row">
+                          <div class="col-md-3 text-center">
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          </div>
+                          <div
+                            class="col-md-9 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Nametr}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{else}}
-                      <div class="row">
-                        <div
-                          class="col-md-12 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Nametr}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                      {{else}}
+                        <div class="row">
+                          <div
+                            class="col-md-12 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Nametr}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{/if}}
-                  {{/each}}
+                      {{/if}}
+                    {{/each}}
+                  </div>
                 </div>
               </div>
             {{/each}}
@@ -414,62 +418,66 @@
                 <div
                   class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  {{#each this.Urunler}}
-                    {{#if this.image}}
-                      <div class="row">
-                        <div class="col-md-3 text-center">
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        </div>
-                        <div
-                          class="col-md-9 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Nameen}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                  <div
+                    class="urun d-flex flex-column justify-content-center align-items-start mt-1 mb-1"
+                  >
+                    {{#each this.Urunler}}
+                      {{#if this.image}}
+                        <div class="row">
+                          <div class="col-md-3 text-center">
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          </div>
+                          <div
+                            class="col-md-9 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Nameen}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{else}}
-                      <div class="row">
-                        <div
-                          class="col-md-12 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Nameen}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                      {{else}}
+                        <div class="row">
+                          <div
+                            class="col-md-12 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Nameen}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{/if}}
-                  {{/each}}
+                      {{/if}}
+                    {{/each}}
+                  </div>
                 </div>
               </div>
             {{/each}}
@@ -538,62 +546,66 @@
                 <div
                   class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  {{#each this.Urunler}}
-                    {{#if this.image}}
-                      <div class="row">
-                        <div class="col-md-3 text-center">
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        </div>
-                        <div
-                          class="col-md-9 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Namefr}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                  <div
+                    class="urun d-flex flex-column justify-content-center align-items-start mt-1 mb-1"
+                  >
+                    {{#each this.Urunler}}
+                      {{#if this.image}}
+                        <div class="row">
+                          <div class="col-md-3 text-center">
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          </div>
+                          <div
+                            class="col-md-9 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Namefr}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{else}}
-                      <div class="row">
-                        <div
-                          class="col-md-12 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Namefr}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                      {{else}}
+                        <div class="row">
+                          <div
+                            class="col-md-12 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Namefr}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{/if}}
-                  {{/each}}
+                      {{/if}}
+                    {{/each}}
+                  </div>
                 </div>
               </div>
             {{/each}}
@@ -662,62 +674,66 @@
                 <div
                   class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  {{#each this.Urunler}}
-                    {{#if this.image}}
-                      <div class="row">
-                        <div class="col-md-3 text-center">
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        </div>
-                        <div
-                          class="col-md-9 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Nameru}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                  <div
+                    class="urun d-flex flex-column justify-content-center align-items-start mt-1 mb-1"
+                  >
+                    {{#each this.Urunler}}
+                      {{#if this.image}}
+                        <div class="row">
+                          <div class="col-md-3 text-center">
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          </div>
+                          <div
+                            class="col-md-9 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Nameru}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{else}}
-                      <div class="row">
-                        <div
-                          class="col-md-12 d-flex justify-content-center align-items-center"
-                        >
-                          <h5 class="text-dark mr-5">{{this.Nameru}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                          <a
-                            class="btn btn-sm btn-danger ml-5"
-                            href="/user/{{this._id}}/urunedit"
-                          >Düzenle</a>
-                          <form
-                            method="post"
-                            action="/user/{{this._id}}/urunsil"
+                      {{else}}
+                        <div class="row">
+                          <div
+                            class="col-md-12 d-flex justify-content-center align-items-center"
                           >
-                            <button
-                              class="ml-2 mt-3 btn btn-sm btn-danger"
-                              type="submit"
-                            >Sil</button>
-                          </form>
+                            <h5 class="text-dark mr-5">{{this.Nameru}}</h5>
+                            <h5 class="text-dark">{{this.Price}}
+                              {{this.Currency}}</h5>
+                            <a
+                              class="btn btn-sm btn-danger ml-5"
+                              href="/user/{{this._id}}/urunedit"
+                            >Düzenle</a>
+                            <form
+                              method="post"
+                              action="/user/{{this._id}}/urunsil"
+                            >
+                              <button
+                                class="ml-2 mt-3 btn btn-sm btn-danger"
+                                type="submit"
+                              >Sil</button>
+                            </form>
+                          </div>
                         </div>
-                      </div>
-                    {{/if}}
-                  {{/each}}
+                      {{/if}}
+                    {{/each}}
+                  </div>
                 </div>
               </div>
             {{/each}}

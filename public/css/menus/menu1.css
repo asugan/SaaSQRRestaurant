@@ -65,7 +65,35 @@ button {
 
 .itembg {
   background-color: #2b3467;
+}
+
+.uruncontainer {
+  border-top: 2px solid #eb455f;
   border-bottom: 2px solid #eb455f;
+  position: relative;
+}
+
+.icindekiler {
+  display: none;
+  position: absolute;
+  color: black;
+  background-color: #bad7e9;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
+  z-index: 1;
+}
+
+.icindekiler .fa-times {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .btnsupdown {

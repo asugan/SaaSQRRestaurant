@@ -666,7 +666,7 @@
               {{#ifeq menu.NativeLang "tr"}}
                 {{#each menu.Kategoriler}}
                   <div
-                    class="inline d-flex flex-column justify-content-center align-items-center mt-3"
+                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
                   >
                     <div
                       class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
@@ -681,19 +681,23 @@
                       <h3 class="text-dark">{{this.Nametr}}</h3>
                     </div>
                     <div
-                      class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
                     >
                       {{#each this.Urunler}}
-                        {{#if this.image}}
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        {{/if}}
-                        <h5 class="text-dark mr-5">{{this.Nametr}}</h5>
-                        <h5 class="text-dark">{{this.Price}}
-                          {{this.Currency}}</h5>
+                        <div
+                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
+                        >
+                          {{#if this.image}}
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          {{/if}}
+                          <h5 class="text-dark mr-5">{{this.Nametr}}</h5>
+                          <h5 class="text-dark">{{this.Price}}
+                            {{this.Currency}}</h5>
+                        </div>
                       {{/each}}
                     </div>
                   </div>
@@ -702,7 +706,7 @@
               {{#ifeq menu.NativeLang "en"}}
                 {{#each menu.Kategoriler}}
                   <div
-                    class="inline d-flex flex-column justify-content-center align-items-center mt-3"
+                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
                   >
                     <div
                       class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
@@ -717,19 +721,23 @@
                       <h3 class="text-dark">{{this.Nameen}}</h3>
                     </div>
                     <div
-                      class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
                     >
                       {{#each this.Urunler}}
-                        {{#if this.image}}
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        {{/if}}
-                        <h5 class="text-dark mr-5">{{this.Nameen}}</h5>
-                        <h5 class="text-dark">{{this.Price}}
-                          {{this.Currency}}</h5>
+                        <div
+                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
+                        >
+                          {{#if this.image}}
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          {{/if}}
+                          <h5 class="text-dark mr-5">{{this.Nameen}}</h5>
+                          <h5 class="text-dark">{{this.Price}}
+                            {{this.Currency}}</h5>
+                        </div>
                       {{/each}}
                     </div>
                   </div>
@@ -738,7 +746,7 @@
               {{#ifeq menu.NativeLang "fr"}}
                 {{#each menu.Kategoriler}}
                   <div
-                    class="inline d-flex flex-column justify-content-center align-items-center mt-3"
+                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
                   >
                     <div
                       class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
@@ -753,19 +761,23 @@
                       <h3 class="text-dark">{{this.Namefr}}</h3>
                     </div>
                     <div
-                      class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
                     >
                       {{#each this.Urunler}}
-                        {{#if this.image}}
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        {{/if}}
-                        <h5 class="text-dark mr-5">{{this.Namefr}}</h5>
-                        <h5 class="text-dark">{{this.Price}}
-                          {{this.Currency}}</h5>
+                        <div
+                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
+                        >
+                          {{#if this.image}}
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          {{/if}}
+                          <h5 class="text-dark mr-5">{{this.Namefr}}</h5>
+                          <h5 class="text-dark">{{this.Price}}
+                            {{this.Currency}}</h5>
+                        </div>
                       {{/each}}
                     </div>
                   </div>
@@ -774,7 +786,7 @@
               {{#ifeq menu.NativeLang "ru"}}
                 {{#each menu.Kategoriler}}
                   <div
-                    class="inline d-flex flex-column justify-content-center align-items-center mt-3"
+                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
                   >
                     <div
                       class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
@@ -789,19 +801,23 @@
                       <h3 class="text-dark">{{this.Nameru}}</h3>
                     </div>
                     <div
-                      class="seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
+                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
                     >
                       {{#each this.Urunler}}
-                        {{#if this.image}}
-                          <img
-                            class="mr-5"
-                            style="width: 100px; height:60px;"
-                            src="/images/{{this.image}}"
-                          />
-                        {{/if}}
-                        <h5 class="text-dark mr-5">{{this.Nameru}}</h5>
-                        <h5 class="text-dark">{{this.Price}}
-                          {{this.Currency}}</h5>
+                        <div
+                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
+                        >
+                          {{#if this.image}}
+                            <img
+                              class="mr-5"
+                              style="width: 100px; height:60px;"
+                              src="/images/{{this.image}}"
+                            />
+                          {{/if}}
+                          <h5 class="text-dark mr-5">{{this.Nameru}}</h5>
+                          <h5 class="text-dark">{{this.Price}}
+                            {{this.Currency}}</h5>
+                        </div>
                       {{/each}}
                     </div>
                   </div>

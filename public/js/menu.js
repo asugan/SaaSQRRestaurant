@@ -132,7 +132,6 @@ const filterfunc = (name) => {
   }
 };
 
-
 var close_button = document.querySelector(".close-button");
 var social_buttons = document.querySelectorAll(".social");
 
@@ -141,3 +140,21 @@ close_button.addEventListener("click", () => {
     buttons.classList.toggle("hide");
   });
 });
+
+const displayicindekiler = (id) => {
+  const urunid = id.classList[0];
+  const urunicindekiler = document.getElementsByClassName(
+    `icindekiler ${urunid}`
+  )[0];
+
+  urunicindekiler.style.display = "block";
+};
+
+const closeicindekiler = (id) => {
+  const urunid = id.classList[0];
+  const urunicindekiler = document.getElementsByClassName(
+    `icindekiler ${urunid}`
+  )[0];
+
+  urunicindekiler.style.display = "none";
+};
