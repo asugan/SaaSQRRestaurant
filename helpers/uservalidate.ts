@@ -32,7 +32,6 @@ export const userSignupValidate = Joi.object({
 
 export const menuValidate = Joi.object({
   name: Joi.string()
-    .alphanum()
     .min(3)
     .message("Menü Adı Minimum 3 harf olmalı")
     .max(50)
