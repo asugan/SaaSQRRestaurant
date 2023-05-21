@@ -317,6 +317,13 @@
                           value="{{menu.Adres}}"
                         />
                       </div>
+                      {{#if error}}
+                        <div class="error">
+                          {{#each error}}
+                            <h4 class="text-danger">{{this.message}}</h4>
+                          {{/each}}
+                        </div>
+                      {{/if}}
                     </div>
                   </div>
                 </div>

@@ -456,10 +456,10 @@
 
     <script>
       var input = document.querySelector("#phone"); var iti =
-      window.intlTelInput(input, { hiddenInput: "full_number", nationalMode:
-      false, formatOnDisplay: false, separateDialCode: true, autoHideDialCode:
-      false, initialCountry: "tr", placeholderNumberType: "MOBILE",
-      preferredCountries: ['tr','us'], utilsScript:
+      window.intlTelInput(input, { nationalMode: false, formatOnDisplay: false,
+      separateDialCode: true, autoHideDialCode: false, initialCountry: "tr",
+      placeholderNumberType: "MOBILE", preferredCountries: ['tr','us'],
+      utilsScript:
       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
       }); input.addEventListener('keyup', formatIntlTelInput);
       input.addEventListener('change', formatIntlTelInput); function
