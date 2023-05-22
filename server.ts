@@ -54,6 +54,9 @@ app.engine(
         }
         return options.inverse(this);
       },
+      doctype: function () {
+        return new Handlebars.SafeString("<!DOCTYPE html>");
+      },
     },
   })
 );

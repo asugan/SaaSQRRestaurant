@@ -243,7 +243,7 @@ body {
 .bottom {
   justify-content: center;
   display: flex;
-  height: 25%;
+  height: 12rem;
   align-items: center;
 }
 
