@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -505,26 +505,28 @@ body {
 
 .landing-4 .container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   padding: 5rem 10rem;
   align-items: center;
   gap: 2rem;
 }
 
+.landing-4 .container .one {
+  text-align: center;
+}
+
+.landing-4 .container .two {
+  text-align: center;
+}
+
 .landing-4 .container .one img {
-  max-width: 450px;
+  max-width: 600px;
   width: 100%;
   height: auto;
 }
 
 .landing-4 .container .two img {
-  max-width: 450px;
-  width: 100%;
-  height: auto;
-}
-
-.landing-4 .container .three img {
-  max-width: 450px;
+  max-width: 600px;
   width: 100%;
   height: auto;
 }
@@ -533,14 +535,14 @@ body {
   grid-column: 1/4;
 }
 
-.landing-4 .container .call h1 {
+.landing-4 .container .call h2 {
   margin-bottom: 2rem;
   text-align: center;
   font-weight: bolder;
   font-size: 2.6rem;
 }
 
-.landing-4 .container .call h5 {
+.landing-4 .container .call p {
   font-size: 1.4rem;
   line-height: 1.8rem;
   font-weight: bold;
@@ -571,11 +573,6 @@ body {
     grid-row: 2/3;
     grid-column: 1/2;
   }
-
-  .landing-4 .container .three {
-    grid-row: 3/4;
-    grid-column: 1/2;
-  }
 }
 
 /* Tanitim-3 Bitiş */
@@ -588,7 +585,7 @@ body {
   padding-right: 10rem;
 }
 
-.landing-5 .container h5 {
+.landing-5 .container p {
   margin-bottom: 2rem;
   text-align: center;
   font-weight: bolder;
@@ -661,6 +658,14 @@ body {
   text-align: start;
 }
 
+.price .container .pricediv {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 .price .container .call {
   margin-top: 3rem;
   margin-bottom: 1.5rem;
@@ -693,3 +698,19 @@ body {
 }
 
 /* Fiyat Bitiş */
+
+/* Footer Başlangıç */
+
+footer section .container {
+  padding: 5rem 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--third);
+}
+
+footer section .container .copyright {
+  font-size: 1.5rem;
+}
+
+/* Footer Bitiş */

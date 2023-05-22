@@ -11,13 +11,12 @@ router.get("/", async (req: any, res: any) => {
     populate: [{ path: "Urunler" }],
   });
 
-  menu.viewCount++;
-  await menu.save();
-
   if (menu) {
     const user = await User.findById(menu.user);
     if (user.userLevel !== "Maraba") {
       try {
+        menu.viewCount++;
+        await menu.save();
         res.render(`menuthemes/menuclassic/menu${menu.NativeLang}`, {
           menu: menu,
         });
@@ -41,10 +40,9 @@ router.get("/lang/:lang", async (req: any, res: any) => {
     populate: [{ path: "Urunler" }],
   });
 
-  menu.viewCount++;
-  await menu.save();
-
   if (menu) {
+    menu.viewCount++;
+    await menu.save();
     if (
       req.params.lang === "tr" ||
       req.params.lang === "fr" ||

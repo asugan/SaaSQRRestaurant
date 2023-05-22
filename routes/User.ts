@@ -42,26 +42,6 @@ const storage: any = SharpMulter({
 
 const upload = multer({ storage: storage });
 
-router.get("/register", authornot, async (req: any, res: any) => {
-  const user = req.token;
-
-  if (user) {
-    res.redirect("/");
-  } else {
-    res.render("user/register");
-  }
-});
-
-router.get("/login", authornot, async (req: any, res: any) => {
-  const user = req.token;
-
-  if (user) {
-    res.redirect("/");
-  } else {
-    res.render("user/login");
-  }
-});
-
 router.get("/logout", async (req, res) => {
   const jwt = req.cookies.OursiteJWT;
 
@@ -85,26 +65,14 @@ router.get("/logout", async (req, res) => {
 router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   const id = req.token.id;
 
-  if (req.acceptsLanguages("tr-TR")) {
-    try {
-      const user = await User.findById(id).populate("userMenu");
+  try {
+    const user = await User.findById(id).populate("userMenu");
 
-      res.render("user/dashboard/index", {
-        user: user,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    try {
-      const user = await User.findById(id).populate("userMenu");
-
-      res.render("user/dashboard/dashboarden/index", {
-        user: user,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    res.render("user/dashboard/index", {
+      user: user,
+    });
+  } catch (err) {
+    console.log(err);
   }
 });
 
@@ -112,30 +80,18 @@ router.get("/unsubscribe", marabacheck, async (req: any, res: any) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");
 
-  if (req.acceptsLanguages("tr-TR")) {
-    res.render("user/dashboard/unsubscribe", {
-      user: user,
-    });
-  } else {
-    res.render("user/dashboard/dashboarden/createqr", {
-      user: user,
-    });
-  }
+  res.render("user/dashboard/unsubscribe", {
+    user: user,
+  });
 });
 
 router.get("/createqr", marabacheck, async (req: any, res: any) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");
 
-  if (req.acceptsLanguages("tr-TR")) {
-    res.render("user/dashboard/createqr", {
-      user: user,
-    });
-  } else {
-    res.render("user/dashboard/dashboarden/createqr", {
-      user: user,
-    });
-  }
+  res.render("user/dashboard/createqr", {
+    user: user,
+  });
 });
 
 router.get("/menu/post", marabacheck, async (req: any, res: Response) => {

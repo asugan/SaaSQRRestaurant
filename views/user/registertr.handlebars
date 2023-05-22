@@ -14,8 +14,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Giriş | QR Menux</title>
-    <meta name="description" content="QR Menux panel girişi." />
+    <title>Kayıt Ol | QR Menux</title>
+    <meta name="description" content="QR Menux müşteri kayıt sayfası." />
   </head>
   <body>
     <div class="vh100">
@@ -45,15 +45,15 @@
             <div class="sections">
               <ul>
                 <li><a href="/">Anasayfa</a></li>
-                <li><a href="/user/register">Üye Ol</a></li>
-                <li><a href="/user/login">Giriş</a></li>
+                <li><a href="/tr/register">Üye Ol</a></li>
+                <li><a href="/tr/login">Giriş</a></li>
               </ul>
             </div>
             <div class="mobilesection">
               <ul>
                 <li><a href="/">Anasayfa</a></li>
-                <li><a href="/user/register">Üye Ol</a></li>
-                <li><a href="/user/login">Giriş</a></li>
+                <li><a href="/tr/register">Üye Ol</a></li>
+                <li><a href="/tr/login">Giriş</a></li>
               </ul>
             </div>
           {{/if}}
@@ -64,7 +64,7 @@
       </header>
 
       <section class="register">
-        <form action="/user/login" method="post">
+        <form action="/user/register" method="post">
           <div class="username">
             <label for="username">Kullanıcı Adı</label>
             <input type="text" name="username" />
@@ -74,8 +74,23 @@
               <label for="password">Şifre</label>
               <input type="password" name="password" />
             </div>
+            <div class="pass2">
+              <label for="confimpassword">Şifre Onay</label>
+              <input type="password" name="confirmpassword" />
+            </div>
           </div>
-          <button type="submit">Giriş Yap</button>
+          <div class="email">
+            <div class="email1">
+              <label for="email">Eposta</label>
+              <input type="text" name="email" />
+            </div>
+            <div class="email2">
+              <label for="confirmemail">Eposta Onay</label>
+              <input type="text" name="confirmemail" />
+            </div>
+
+          </div>
+          <button type="submit">Kayıt Ol , 4 Gün Ücretsiz Dene !</button>
         </form>
         {{#if error}}
           <div class="error">
@@ -87,12 +102,12 @@
             {{/each}}
           </div>
         {{/if}}
-        {{#if oneerror}}
+        {{#if mailsend}}
           <div class="error">
             <div onclick="kapat()" class="errorclose">
               <h1>KAPAT</h1>
             </div>
-            <h4>{{oneerror}}</h4>
+            <h4>{{this.mailsend}}</h4>
           </div>
         {{/if}}
       </section>

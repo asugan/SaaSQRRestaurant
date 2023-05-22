@@ -15,15 +15,83 @@ router.get("/", authornot, async (req: any, res: any) => {
 
   const user = req.token;
 
+  res.redirect("/tr");
+  /* if (req.acceptsLanguages("tr-TR")) {
+    res.redirect("/tr");
+  } else {
+    if (user) {
+      const userid = req.token.id;
+      const username = await User.findById(userid);
+
+      res.render("indexen", {
+        user: username,
+      });
+    } else {
+      res.render("indexen");
+    }
+  } */
+});
+
+router.get("/tr", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
   if (user) {
     const userid = req.token.id;
     const username = await User.findById(userid);
 
-    res.render("index", {
+    res.render("indextr", {
       user: username,
     });
   } else {
-    res.render("index");
+    res.render("indextr");
+  }
+});
+
+router.get("/register", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (req.acceptsLanguages("tr-TR")) {
+    res.redirect("/tr/register");
+  } else {
+    if (user) {
+      res.redirect("/");
+    } else {
+      res.render("user/register");
+    }
+  }
+});
+
+router.get("/login", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (req.acceptsLanguages("tr-TR")) {
+    res.redirect("/tr/login");
+  } else {
+    if (user) {
+      res.redirect("/");
+    } else {
+      res.render("user/login");
+    }
+  }
+});
+
+router.get("/tr/register", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/registertr");
+  }
+});
+
+router.get("/tr/login", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/logintr");
   }
 });
 

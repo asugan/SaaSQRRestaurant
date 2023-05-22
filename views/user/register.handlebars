@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/register.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="icon" type="image/x-icon" href="/img/logo.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -13,35 +14,54 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>QR Menux</title>
+    <title>Kayıt Ol | QR Menux</title>
+    <meta name="description" content="QR Menux müşteri kayıt sayfası." />
   </head>
   <body>
     <div class="vh100">
-      <nav>
-        <div class="logo">
-          <a href="/">
-            <i class="fas fa-2x fa-utensils"></i>
-            <span>QR Menu</span>
-          </a>
-        </div>
-        <div class="sections">
-          <ul>
-            <li><a href="/">Anasayfa</a></li>
-            <li><a href="/user/register">Üye Ol</a></li>
-            <li><a href="/user/login">Giriş</a></li>
-          </ul>
-        </div>
-        <div class="mobilesection">
-          <ul>
-            <li><a href="/">Anasayfa</a></li>
-            <li><a href="/user/register">Üye Ol</a></li>
-            <li><a href="/user/login">Giriş</a></li>
-          </ul>
-        </div>
-        <div class="hamburger">
-          <i class="fas fa-hamburger"></i>
-        </div>
-      </nav>
+      <header>
+        <a href="/">
+          <img src="/img/logo.png" alt="QR Menux" />
+        </a>
+        <nav>
+          {{#if user}}
+            <div class="sections">
+              <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
+                <li><a href="/user/logout">Çıkış Yap</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
+                <li><a href="/user/logout">Çıkış Yap</a></li>
+              </ul>
+            </div>
+          {{else}}
+            <div class="sections">
+              <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/user/register">Üye Ol</a></li>
+                <li><a href="/user/login">Giriş</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/user/register">Üye Ol</a></li>
+                <li><a href="/user/login">Giriş</a></li>
+              </ul>
+            </div>
+          {{/if}}
+          <div class="hamburger">
+            <i class="fas fa-hamburger"></i>
+          </div>
+        </nav>
+      </header>
 
       <section class="register">
         <form action="/user/register" method="post">
@@ -92,6 +112,17 @@
         {{/if}}
       </section>
     </div>
+
+    <footer>
+      <section>
+        <div class="container">
+          <div class="copyright">
+            © 2023 QRMenux Yeni Mahalle, Isfendiyar Sokak, No: 10, Merkez
+            Cankiri 18100, Turkey
+          </div>
+        </div>
+      </section>
+    </footer>
 
     <script>
       const kapat = () =>
