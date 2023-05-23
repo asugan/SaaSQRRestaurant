@@ -67,6 +67,11 @@ export const menuValidate = Joi.object({
     .message("Currency Minimum 3 harf olmalı")
     .max(5),
   menuid: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(20),
+  id: Joi.string()
+    .min(1)
+    .message("Menuid Minimum 3 harf olmalı")
+    .max(30)
+    .allow(""),
 });
 
 export const categoryValidate = Joi.object({
