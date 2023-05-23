@@ -39,17 +39,28 @@ export const menuValidate = Joi.object({
   instagram: Joi.string()
     .min(3)
     .message("Instagram Minimum 3 harf olmalı")
-    .max(100),
+    .max(100)
+    .allow(""),
   facebook: Joi.string()
     .min(3)
     .message("Facebook Minimum 3 harf olmalı")
-    .max(100),
+    .max(100)
+    .allow(""),
   twitter: Joi.string()
     .min(3)
     .message("Twitter Minimum 3 harf olmalı")
-    .max(100),
-  whatsapp: Joi.string().min(3).message("Telefon Numarası Girin.").max(100),
-  adres: Joi.string().min(3).message("Adres Minimum 3 harf olmalı").max(200),
+    .max(100)
+    .allow(""),
+  whatsapp: Joi.string()
+    .min(3)
+    .message("Telefon Numarası Girin.")
+    .max(100)
+    .allow(""),
+  adres: Joi.string()
+    .min(3)
+    .message("Adres Minimum 3 harf olmalı")
+    .max(200)
+    .allow(""),
   lang: Joi.string().min(1).message("Lang Minimum 3 harf olmalı").max(3),
   currency: Joi.string()
     .min(1)
@@ -64,22 +75,10 @@ export const categoryValidate = Joi.object({
     .message("Kategori Adı Minimum 3 harf olmalı")
     .max(50)
     .required(),
-  nametr: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
-  namefr: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
-  nameru: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
-  nameen: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
+  nametr: Joi.string().allow("").max(50),
+  namefr: Joi.string().allow("").max(50),
+  nameru: Joi.string().allow("").max(50),
+  nameen: Joi.string().allow("").max(50),
   idmenu: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(30),
   menuid: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(30),
   id: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(30),
@@ -91,44 +90,20 @@ export const urunValidate = Joi.object({
     .message("Kategori Adı Minimum 3 harf olmalı")
     .max(50)
     .required(),
-  nametr: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
-  namefr: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
-  nameru: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
-  nameen: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(50),
+  nametr: Joi.string().allow("").max(50),
+  namefr: Joi.string().allow("").max(50),
+  nameru: Joi.string().allow("").max(50),
+  nameen: Joi.string().allow("").max(50),
   menuid: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(30),
   price: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(30),
   description: Joi.string()
     .min(3)
     .message("Kategori Adı Minimum 3 harf olmalı")
     .max(300),
-  descriptiontr: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(300),
-  descriptionfr: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(300),
-  descriptionru: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(300),
-  descriptionen: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(300),
+  descriptiontr: Joi.string().allow("").max(300),
+  descriptionfr: Joi.string().allow("").max(300),
+  descriptionru: Joi.string().allow("").max(300),
+  descriptionen: Joi.string().allow("").max(300),
   currency: Joi.string()
     .min(1)
     .message("Currency Minimum 3 harf olmalı")

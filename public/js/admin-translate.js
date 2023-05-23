@@ -44,7 +44,7 @@ const submit = async (id) => {
 
   const lang = id.classList[0];
 
-  await fetch(`http://localhost:3000/translate/${menuid}`, {
+  await fetch(`https://qrmenux.com/translate/${menuid}`, {
     method: "POST",
     mode: "cors",
     headers: {
@@ -64,7 +64,7 @@ const submitdesc = async (id) => {
 
   const lang = id.classList[0];
 
-  await fetch(`http://localhost:3000/translate/${menuid}`, {
+  await fetch(`https://qrmenux.com/translate/${menuid}`, {
     method: "POST",
     mode: "cors",
     headers: {
