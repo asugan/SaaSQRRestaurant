@@ -15,19 +15,15 @@ router.get("/", authornot, async (req: any, res: any) => {
 
   const user = req.token;
 
-  if (req.acceptsLanguages("tr-TR")) {
-    res.redirect("/tr");
-  } else {
-    if (user) {
-      const userid = req.token.id;
-      const username = await User.findById(userid);
+  if (user) {
+    const userid = req.token.id;
+    const username = await User.findById(userid);
 
-      res.render("indexen", {
-        user: username,
-      });
-    } else {
-      res.render("indexen");
-    }
+    res.render("indexen", {
+      user: username,
+    });
+  } else {
+    res.render("indexen");
   }
 });
 
