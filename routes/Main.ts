@@ -15,8 +15,7 @@ router.get("/", authornot, async (req: any, res: any) => {
 
   const user = req.token;
 
-  res.redirect("/tr");
-  /* if (req.acceptsLanguages("tr-TR")) {
+  if (req.acceptsLanguages("tr-TR")) {
     res.redirect("/tr");
   } else {
     if (user) {
@@ -29,7 +28,7 @@ router.get("/", authornot, async (req: any, res: any) => {
     } else {
       res.render("indexen");
     }
-  } */
+  }
 });
 
 router.get("/tr", authornot, async (req: any, res: any) => {
