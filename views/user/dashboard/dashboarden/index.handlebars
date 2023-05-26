@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>QRMenux Yönetim Paneli</title>
+    <title>QRMenux Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -68,7 +68,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Menu Dashboard
+          Menu Panel
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -80,7 +80,7 @@
           </a>
           <a class="nav-link" href="/user/createqr">
             <i class="fas fa-fw fa-qrcode"></i>
-            <span>Create QR Code</span>
+            <span>Create QR</span>
           </a>
           {{#each user.userMenu}}
             <a
@@ -104,7 +104,7 @@
 
                 <h6 class="collapse-header">Edit Menu</h6>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit">Edit
-                  Menu</a>
+                  Menu Page</a>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit2">Edit
                   Category, Item</a>
                 <a
@@ -117,6 +117,12 @@
               </div>
             </div>
           {{/each}}
+          {{#ifeq user.userLevel "Abone"}}
+            <a class="nav-link" href="/user/unsubscribe">
+              <i class="fas fa-fw fa-qrcode"></i>
+              <span>Cancel Subscription</span>
+            </a>
+          {{/ifeq}}
         </li>
 
       </ul>
@@ -212,6 +218,26 @@
 
             <!-- Content Row -->
             <div class="row">
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div
+                          class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                        >
+                          Remaining Menu</div>
+                        <div
+                          class="h5 mb-0 font-weight-bold text-gray-800"
+                        >{{user.menuLeft}}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <!-- Earnings (Monthly) Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
@@ -222,7 +248,7 @@
                         <div
                           class="text-xs font-weight-bold text-primary text-uppercase mb-1"
                         >
-                          Menu Count</div>
+                          Active Menu</div>
                         <div
                           class="h5 mb-0 font-weight-bold text-gray-800"
                         >{{user.userMenu.length}}</div>
@@ -244,13 +270,35 @@
                         <div
                           class="text-xs font-weight-bold text-warning text-uppercase mb-1"
                         >
-                          Subscription Expiration Date</div>
+                          Subscription End</div>
                         <div
                           class="h5 mb-0 font-weight-bold text-gray-800"
                         >{{datehelper user.daysLeft}}</div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pending Requests Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div
+                          class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+                        >
+                          Subscription Level</div>
+                        <div
+                          class="h5 mb-0 font-weight-bold text-gray-800"
+                        >{{user.userLevel}}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-user fa-2x text-gray-300"></i>
                       </div>
                     </div>
                   </div>
@@ -266,7 +314,7 @@
                           <div
                             class="text-xs font-weight-bold text-warning text-uppercase mb-1"
                           >
-                            QR Menu View Count({{this.Name}})</div>
+                            QR Scan({{this.Name}})</div>
                           <div
                             class="h5 mb-0 font-weight-bold text-gray-800"
                           >{{this.viewCount}}</div>
@@ -291,7 +339,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2023</span>
+              <span>Copyright &copy; QRMenux 2023</span>
             </div>
           </div>
         </footer>
@@ -338,7 +386,7 @@
               type="button"
               data-dismiss="modal"
             >Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/user/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -353,14 +401,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
-
-    <script>
-      let hamham = $( "#menu" ).find('option:selected').val();
-      $('#urlinput:text').val(`http://${hamham}.localhost:3000`);
-      $("#menu").change(function() { let hamham =
-      $(this).find("option:selected").val();
-      $('#urlinput:text').val(`http://${hamham}.localhost:3000`);});
-    </script>
 
   </body>
 

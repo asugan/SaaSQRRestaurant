@@ -68,9 +68,13 @@ router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
   try {
     const user = await User.findById(id).populate("userMenu");
 
-    res.render("user/dashboard/index", {
-      user: user,
-    });
+    if (req.acceptsLanguages("tr-TR")) {
+      res.render("user/dashboard/index", {
+        user: user,
+      });
+    } else {
+      res.render("user/dashboard/dashboarden/index");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -80,18 +84,26 @@ router.get("/unsubscribe", marabacheck, async (req: any, res: any) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");
 
-  res.render("user/dashboard/unsubscribe", {
-    user: user,
-  });
+  if (req.acceptsLanguages("tr-TR")) {
+    res.render("user/dashboard/unsubscribe", {
+      user: user,
+    });
+  } else {
+    res.render("user/dashboard/dashboarden/unsubscribe");
+  }
 });
 
 router.get("/createqr", marabacheck, async (req: any, res: any) => {
   const id = req.token.id;
   const user = await User.findById(id).populate("userMenu");
 
-  res.render("user/dashboard/createqr", {
-    user: user,
-  });
+  if (req.acceptsLanguages("tr-TR")) {
+    res.render("user/dashboard/createqr", {
+      user: user,
+    });
+  } else {
+    res.render("user/dashboard/dashboarden/createqr");
+  }
 });
 
 router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
@@ -99,9 +111,13 @@ router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
   const user = await User.findById(id).populate("userMenu");
 
   if (user.menuLeft > 0) {
-    res.render("user/dashboard/menuaddpages/menudashboardpost", {
-      user: user,
-    });
+    if (req.acceptsLanguages("tr-TR")) {
+      res.render("user/dashboard/menuaddpages/menudashboardpost", {
+        user: user,
+      });
+    } else {
+      res.render("user/dashboard/dashboarden/menuaddpages/menudashboardpost");
+    }
   } else {
     res.render("error/nomenuleft");
   }
@@ -119,10 +135,20 @@ router.get("/:menu/edit", marabacheck, async (req: any, res: Response) => {
   if (filter.length) {
     const findmenu = await Menu.findOne({ Slug: menuid });
 
-    res.render("user/dashboard/menueditpages/menueditdashboardpost", {
-      menu: findmenu,
-      user: user,
-    });
+    if (req.acceptsLanguages("tr-TR")) {
+      res.render("user/dashboard/menueditpages/menueditdashboardpost", {
+        menu: findmenu,
+        user: user,
+      });
+    } else {
+      res.render(
+        "user/dashboard/dashboarden/menueditpages/menueditdashboardpost",
+        {
+          menu: findmenu,
+          user: user,
+        }
+      );
+    }
   } else {
     res.render("error/401");
   }
@@ -143,10 +169,17 @@ router.get("/:menu/edit2", marabacheck, async (req: any, res: Response) => {
       populate: [{ path: "Urunler" }],
     });
 
-    res.render("user/dashboard/menueditpages/menueditkategori", {
-      menu: findmenu,
-      user: user,
-    });
+    if (req.acceptsLanguages("tr-TR")) {
+      res.render("user/dashboard/menueditpages/menueditkategori", {
+        menu: findmenu,
+        user: user,
+      });
+    } else {
+      res.render("user/dashboard/dashboarden/menueditpages/menueditkategori", {
+        menu: findmenu,
+        user: user,
+      });
+    }
   } else {
     req.render("error/401");
   }
@@ -167,11 +200,19 @@ router.get("/:menu/urunedit", marabacheck, async (req: any, res: Response) => {
   });
 
   if (filter.length) {
-    res.render("user/dashboard/menueditpages/menuediturun", {
-      menu: findmenu,
-      menuSlug: mymenu,
-      user: user,
-    });
+    if (req.acceptsLanguages("tr-TR")) {
+      res.render("user/dashboard/menueditpages/menuediturun", {
+        menu: findmenu,
+        menuSlug: mymenu,
+        user: user,
+      });
+    } else {
+      res.render("user/dashboard/dashboarden/menueditpages/menuediturun", {
+        menu: findmenu,
+        menuSlug: mymenu,
+        user: user,
+      });
+    }
   } else {
     res.render("error/404");
   }
@@ -192,11 +233,22 @@ router.get(
     });
 
     if (filter.length) {
-      res.render("user/dashboard/menueditpages/menueditonepagekategori", {
-        menu: findmenu,
-        mymenu: mymenu,
-        user: user,
-      });
+      if (req.acceptsLanguages("tr-TR")) {
+        res.render("user/dashboard/menueditpages/menueditonepagekategori", {
+          menu: findmenu,
+          mymenu: mymenu,
+          user: user,
+        });
+      } else {
+        res.render(
+          "user/dashboard/dashboarden/menueditpages/menueditonepagekategori",
+          {
+            menu: findmenu,
+            mymenu: mymenu,
+            user: user,
+          }
+        );
+      }
     } else {
       res.render("error/404");
     }
@@ -220,10 +272,17 @@ router.get(
         "Kategoriler"
       );
 
-      res.render("user/dashboard/menuaddpages/menukategoripost", {
-        menu: findmenu,
-        user: user,
-      });
+      if (req.acceptsLanguages("tr-TR")) {
+        res.render("user/dashboard/menuaddpages/menukategoripost", {
+          menu: findmenu,
+          user: user,
+        });
+      } else {
+        res.render("user/dashboard/dashboarden/menuaddpages/menukategoripost", {
+          menu: findmenu,
+          user: user,
+        });
+      }
     } else {
       res.render("error/404");
     }
@@ -245,10 +304,17 @@ router.get("/:menu/urunekle", marabacheck, async (req: any, res: Response) => {
       populate: [{ path: "Urunler" }],
     });
 
-    res.render("user/dashboard/menuaddpages/menuurunpost", {
-      menu: findmenu,
-      user: user,
-    });
+    if (req.acceptsLanguages("tr-TR")) {
+      res.render("user/dashboard/menuaddpages/menuurunpost", {
+        menu: findmenu,
+        user: user,
+      });
+    } else {
+      res.render("user/dashboard/dashboarden/menuaddpages/menuurunpost", {
+        menu: findmenu,
+        user: user,
+      });
+    }
   } else {
     res.render("error/401");
   }

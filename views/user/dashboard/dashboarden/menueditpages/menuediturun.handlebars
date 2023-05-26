@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>QRMenux Yönetim Paneli</title>
+    <title>QRMenux Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -68,7 +68,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Menu Dashboard
+          Menu Panel
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -80,7 +80,7 @@
           </a>
           <a class="nav-link" href="/user/createqr">
             <i class="fas fa-fw fa-qrcode"></i>
-            <span>Create QR Code</span>
+            <span>Create QR</span>
           </a>
           {{#each user.userMenu}}
             <a
@@ -104,7 +104,7 @@
 
                 <h6 class="collapse-header">Edit Menu</h6>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit">Edit
-                  Menu</a>
+                  Menu Page</a>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit2">Edit
                   Category, Item</a>
                 <a
@@ -117,6 +117,12 @@
               </div>
             </div>
           {{/each}}
+          {{#ifeq user.userLevel "Abone"}}
+            <a class="nav-link" href="/user/unsubscribe">
+              <i class="fas fa-fw fa-qrcode"></i>
+              <span>Cancel Subscription</span>
+            </a>
+          {{/ifeq}}
         </li>
 
       </ul>
@@ -207,42 +213,558 @@
               method="post"
               enctype="multipart/form-data"
             >
-              <div
-                class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
-              >
-                <label for="kategori">Kategori Seçin</label>
-                <div class="col-sm-4">
-                  <select class="form-control form-select" name="kategori">
-                    {{#each menuSlug.Kategoriler}}
-                      <option value="{{this._id}}">{{this.Name}}</option>
-                    {{/each}}
-                  </select>
-                </div>
-                <div class="col-sm-4">
-                  <input
-                    class="form-control mt-2 tr"
-                    type="text"
-                    name="name"
-                    placeholder="Ürün Adı"
-                    value="{{menu.Name}}"
-                  />
-                  <input
-                    class="form-control mt-2"
-                    type="text"
-                    name="price"
-                    placeholder="Ürün Fiyatı"
-                    value="{{menu.Price}}"
-                  />
+              {{#ifeq menuSlug.NativeLang "tr"}}
+                <div
+                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
+                >
+                  <label for="kategori">Select Category</label>
+                  <div class="col-sm-4">
+                    <select class="form-control form-select" name="kategori">
+                      {{#each menuSlug.Kategoriler}}
+                        <option value="{{this._id}}">{{this.Nametr}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                  <div class="col-sm-4">
+                    <input
+                      id="menuid"
+                      type="hidden"
+                      name="menuid"
+                      value="{{menuSlug.id}}"
+                    />
+                    <input
+                      class="form-control mt-2 tr"
+                      id="urunadi"
+                      type="text"
+                      name="name"
+                      placeholder="Ürün Adı"
+                      onchange="inputcategory(this.value)"
+                      value="{{menu.Nametr}}"
+                    />
+                    <input
+                      class="form-control mt-2"
+                      type="text"
+                      name="price"
+                      placeholder="Ürün Fiyatı"
+                      value="{{menu.Price}}"
+                    />
 
-                  <textarea
-                    class="form-control mt-2"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                    name="description"
-                    placeholder="Ürün Açıklaması"
-                  >{{menu.Description}}</textarea>
+                    <textarea
+                      class="form-control mt-2"
+                      id="urundescription"
+                      rows="3"
+                      name="description"
+                      placeholder="Ürün Açıklaması"
+                      onchange="inputurundescription(this.value)"
+                    >{{menu.Descriptiontr}}</textarea>
+                  </div>
+                  <div class="col-md-4">
+                    <div
+                      class="bg-danger text-white mt-3"
+                      id="clickable"
+                      onclick="opentranslate()"
+                    >
+                      <div
+                        class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="mt-auto mb-auto">Click for translate panel.</h5>
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </div>
+                    </div>
+                    <div id="inputs">
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nameen"
+                        id="en"
+                        value="{{menu.Nameen}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descen"
+                        rows="3"
+                        name="descriptionen"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionen}}</textarea>
+                      <a
+                        class="en btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item English</a>
+                      <a
+                        class="en btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description English</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="namefr"
+                        id="fr"
+                        value="{{menu.Namefr}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descfr"
+                        rows="3"
+                        name="descriptionfr"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionfr}}</textarea>
+                      <a
+                        class="fr btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item French</a>
+                      <a
+                        class="fr btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description French</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nameru"
+                        id="ru"
+                        value="{{menu.Nameru}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descru"
+                        rows="3"
+                        name="descriptionru"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionru}}</textarea>
+                      <a
+                        class="ru btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item Russian</a>
+                      <a
+                        class="ru btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description Russian</a>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              {{/ifeq}}
+              {{#ifeq menuSlug.NativeLang "en"}}
+                <div
+                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
+                >
+                  <label for="kategori">Select Category</label>
+                  <div class="col-sm-4">
+                    <select class="form-control form-select" name="kategori">
+                      {{#each menuSlug.Kategoriler}}
+                        <option value="{{this._id}}">{{this.Nameen}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                  <div class="col-sm-4">
+                    <input
+                      id="menuid"
+                      type="hidden"
+                      name="menuid"
+                      value="{{menuSlug.id}}"
+                    />
+                    <input
+                      class="form-control mt-2 tr"
+                      id="urunadi"
+                      type="text"
+                      name="name"
+                      placeholder="Ürün Adı"
+                      onchange="inputcategory(this.value)"
+                      value="{{menu.Nameen}}"
+                    />
+                    <input
+                      class="form-control mt-2"
+                      type="text"
+                      name="price"
+                      placeholder="Ürün Fiyatı"
+                      value="{{menu.Price}}"
+                    />
+
+                    <textarea
+                      class="form-control mt-2"
+                      id="urundescription"
+                      rows="3"
+                      name="description"
+                      placeholder="Ürün Açıklaması"
+                      onchange="inputurundescription(this.value)"
+                    >{{menu.Descriptionen}}</textarea>
+                  </div>
+                  <div class="col-md-4">
+                    <div
+                      class="bg-danger text-white mt-3"
+                      id="clickable"
+                      onclick="opentranslate()"
+                    >
+                      <div
+                        class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="mt-auto mb-auto">Click for translate panel.</h5>
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </div>
+                    </div>
+                    <div id="inputs">
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nametr"
+                        id="tr"
+                        value="{{menu.Nametr}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="desctr"
+                        rows="3"
+                        name="descriptiontr"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptiontr}}</textarea>
+                      <a
+                        class="tr btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item Turkish</a>
+                      <a
+                        class="tr btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description Turkish</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="namefr"
+                        id="fr"
+                        value="{{menu.Namefr}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descfr"
+                        rows="3"
+                        name="descriptionfr"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionfr}}</textarea>
+                      <a
+                        class="fr btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item French</a>
+                      <a
+                        class="fr btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description French</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nameru"
+                        id="ru"
+                        value="{{menu.Nameru}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descru"
+                        rows="3"
+                        name="descriptionru"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionru}}</textarea>
+                      <a
+                        class="ru btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item Russian</a>
+                      <a
+                        class="ru btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description Russian</a>
+                    </div>
+                  </div>
+                </div>
+              {{/ifeq}}
+              {{#ifeq menuSlug.NativeLang "fr"}}
+                <div
+                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
+                >
+                  <label for="kategori">Select Category</label>
+                  <div class="col-sm-4">
+                    <select class="form-control form-select" name="kategori">
+                      {{#each menuSlug.Kategoriler}}
+                        <option value="{{this._id}}">{{this.Namefr}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                  <div class="col-sm-4">
+                    <input
+                      id="menuid"
+                      type="hidden"
+                      name="menuid"
+                      value="{{menuSlug.id}}"
+                    />
+                    <input
+                      class="form-control mt-2 tr"
+                      id="urunadi"
+                      type="text"
+                      name="name"
+                      placeholder="Ürün Adı"
+                      onchange="inputcategory(this.value)"
+                      value="{{menu.Namefr}}"
+                    />
+                    <input
+                      class="form-control mt-2"
+                      type="text"
+                      name="price"
+                      placeholder="Ürün Fiyatı"
+                      value="{{menu.Price}}"
+                    />
+
+                    <textarea
+                      class="form-control mt-2"
+                      id="urundescription"
+                      rows="3"
+                      name="description"
+                      placeholder="Ürün Açıklaması"
+                      onchange="inputurundescription(this.value)"
+                    >{{menu.Descriptionfr}}</textarea>
+                  </div>
+                  <div class="col-md-4">
+                    <div
+                      class="bg-danger text-white mt-3"
+                      id="clickable"
+                      onclick="opentranslate()"
+                    >
+                      <div
+                        class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="mt-auto mb-auto">Click for translate panel.</h5>
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </div>
+                    </div>
+                    <div id="inputs">
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nameen"
+                        id="en"
+                        value="{{menu.Nameen}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descen"
+                        rows="3"
+                        name="descriptionen"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionen}}</textarea>
+                      <a
+                        class="en btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item English</a>
+                      <a
+                        class="en btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description English</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nametr"
+                        id="tr"
+                        value="{{menu.Nametr}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="desctr"
+                        rows="3"
+                        name="descriptiontr"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptiontr}}</textarea>
+                      <a
+                        class="tr btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item Turkish</a>
+                      <a
+                        class="tr btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description Turkish</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nameru"
+                        id="ru"
+                        value="{{menu.Nameru}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descru"
+                        rows="3"
+                        name="descriptionru"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionru}}</textarea>
+                      <a
+                        class="ru btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item Russian</a>
+                      <a
+                        class="ru btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description Russian</a>
+                    </div>
+                  </div>
+                </div>
+              {{/ifeq}}
+              {{#ifeq menuSlug.NativeLang "ru"}}
+                <div
+                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
+                >
+                  <label for="kategori">Select Category</label>
+                  <div class="col-sm-4">
+                    <select class="form-control form-select" name="kategori">
+                      {{#each menuSlug.Kategoriler}}
+                        <option value="{{this._id}}">{{this.Nameru}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                  <div class="col-sm-4">
+                    <input
+                      id="menuid"
+                      type="hidden"
+                      name="menuid"
+                      value="{{menuSlug.id}}"
+                    />
+                    <input
+                      class="form-control mt-2 tr"
+                      id="urunadi"
+                      type="text"
+                      name="name"
+                      placeholder="Ürün Adı"
+                      onchange="inputcategory(this.value)"
+                      value="{{menu.Nameru}}"
+                    />
+                    <input
+                      class="form-control mt-2"
+                      type="text"
+                      name="price"
+                      placeholder="Ürün Fiyatı"
+                      value="{{menu.Price}}"
+                    />
+
+                    <textarea
+                      class="form-control mt-2"
+                      id="urundescription"
+                      rows="3"
+                      name="description"
+                      placeholder="Ürün Açıklaması"
+                      onchange="inputurundescription(this.value)"
+                    >{{menu.Descriptionru}}</textarea>
+                  </div>
+                  <div class="col-md-4">
+                    <div
+                      class="bg-danger text-white mt-3"
+                      id="clickable"
+                      onclick="opentranslate()"
+                    >
+                      <div
+                        class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="mt-auto mb-auto">Click for translate panel.</h5>
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </div>
+                    </div>
+                    <div id="inputs">
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nameen"
+                        id="en"
+                        value="{{menu.Nameen}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descen"
+                        rows="3"
+                        name="descriptionen"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionen}}</textarea>
+                      <a
+                        class="en btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item English</a>
+                      <a
+                        class="en btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description English</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="namefr"
+                        id="fr"
+                        value="{{menu.Namefr}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="descfr"
+                        rows="3"
+                        name="descriptionfr"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptionfr}}</textarea>
+                      <a
+                        class="fr btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item French</a>
+                      <a
+                        class="fr btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description French</a>
+                      <input
+                        placeholder="Ürün Adı"
+                        class="form-control mt-2"
+                        type="text"
+                        name="nametr"
+                        id="tr"
+                        value="{{menu.Nametr}}"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="desctr"
+                        rows="3"
+                        name="descriptiontr"
+                        placeholder="Ürün Açıklaması Girin"
+                      >{{menu.Descriptiontr}}</textarea>
+                      <a
+                        class="tr btn bt-sm btn-danger mt-2"
+                        onclick="submit(this)"
+                      >
+                        Translate Item Turkish</a>
+                      <a
+                        class="tr btn bt-sm btn-danger mt-2"
+                        onclick="submitdesc(this)"
+                      >
+                        Translate Description Turkish</a>
+                    </div>
+                  </div>
+                </div>
+              {{/ifeq}}
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center mt-3"
               >
@@ -260,7 +782,7 @@
                       <span
                         class="input-group-text"
                         id="inputGroupFileAddon01"
-                      >Ürün Resmi</span>
+                      >Item Image</span>
                     </div>
                     <div class="custom-file">
                       <input
@@ -274,7 +796,7 @@
                       <label
                         class="custom-file-label"
                         for="inputGroupFile01"
-                      >Ürün Resmi</label>
+                      >Item Image</label>
                     </div>
                   </div>
                 </div>
@@ -289,11 +811,11 @@
                 <button
                   class="btn btn-sm btn-danger mr-4"
                   type="submit"
-                >Kaydet</button>
+                >Save</button>
                 <a
                   class="btn btn-sm btn-danger"
                   href="/user/{{menuSlug.Slug}}/edit2"
-                >Ürünler Sayfasına Dön</a>
+                >Back to Items Page</a>
               </div>
 
             </form>
@@ -315,7 +837,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2021</span>
+              <span>Copyright &copy; QRMenux 2023</span>
             </div>
           </div>
         </footer>
@@ -362,9 +884,17 @@
               type="button"
               data-dismiss="modal"
             >Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/user/logout">Logout</a>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="loading">
+      <div
+        align="center"
+        style="position: absolute; margin-top: 120px; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: 550; color: black;"
+      >Çeviriler Yapılıyor...
       </div>
     </div>
 
@@ -377,14 +907,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
-
-    <script>
-      let hamham = $( "#menu" ).find('option:selected').val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);
-      $("#menu").change(function() { let hamham =
-      $(this).find("option:selected").val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);});
-    </script>
+    <!-- Dashboard Loading -->
+    <script src="/js/admin-translate.js"></script>
 
   </body>
 

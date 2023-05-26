@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>QRMenux Yönetim Paneli</title>
+    <title>QRMenux Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -28,7 +28,6 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/dashboards/loading.css" />
 
   </head>
 
@@ -69,7 +68,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Menu Dashboard
+          Menu Panel
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -81,7 +80,7 @@
           </a>
           <a class="nav-link" href="/user/createqr">
             <i class="fas fa-fw fa-qrcode"></i>
-            <span>Create QR Code</span>
+            <span>Create QR</span>
           </a>
           {{#each user.userMenu}}
             <a
@@ -105,7 +104,7 @@
 
                 <h6 class="collapse-header">Edit Menu</h6>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit">Edit
-                  Menu</a>
+                  Menu Page</a>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit2">Edit
                   Category, Item</a>
                 <a
@@ -118,6 +117,12 @@
               </div>
             </div>
           {{/each}}
+          {{#ifeq user.userLevel "Abone"}}
+            <a class="nav-link" href="/user/unsubscribe">
+              <i class="fas fa-fw fa-qrcode"></i>
+              <span>Cancel Subscription</span>
+            </a>
+          {{/ifeq}}
         </li>
 
       </ul>
@@ -213,49 +218,195 @@
                   class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
                 >
                   <div class="col-md-6 col-12">
-                    <input type="hidden" name="idmenu" value={{menu.id}} />
                     <input
-                      placeholder="Category Title"
-                      class="form-control tr"
+                      id="menuid"
+                      type="hidden"
+                      name="idmenu"
+                      value={{menu.id}}
+                    />
+                    <input
+                      placeholder="Category Name"
+                      class="form-control"
                       type="text"
                       name="name"
+                      id="main"
+                      onchange="inputcategory(this.value)"
                     />
                   </div>
-                  <div class="form-check mt-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="defaultCheck1"
-                      value="yes"
-                      name="nameen"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">
-                      İngilizce Çevrilsin
-                    </label>
-                  </div>
-                  <div class="form-check mt-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="defaultCheck1"
-                      value="yes"
-                      name="namefr"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">
-                      Fransızca Çevrilsin
-                    </label>
-                  </div>
-                  <div class="form-check mt-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="defaultCheck1"
-                      value="yes"
-                      name="nameru"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">
-                      Rusça Çevrilsin
-                    </label>
+
+                  <div class="col-md-6 col-12">
+                    <div
+                      class="bg-danger text-white mt-3"
+                      id="clickable"
+                      onclick="opentranslate()"
+                    >
+                      <div
+                        class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                      >
+                        <h5 class="mt-auto mb-auto">Click for translate panel.</h5>
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </div>
+                    </div>
+                    {{#ifeq menu.NativeLang "tr"}}
+                      <div id="inputs">
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nameen"
+                          id="en"
+                        />
+                        <a
+                          class="en btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate English</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="namefr"
+                          id="fr"
+                        />
+                        <a
+                          class="fr btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate French</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nameru"
+                          id="ru"
+                        />
+                        <a
+                          class="ru btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate Russian</a>
+                      </div>
+                    {{/ifeq}}
+                    {{#ifeq menu.NativeLang "en"}}
+                      <div id="inputs">
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nametr"
+                          id="tr"
+                        />
+                        <a
+                          class="tr btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate Turkish</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="namefr"
+                          id="fr"
+                        />
+                        <a
+                          class="fr btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate French</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nameru"
+                          id="ru"
+                        />
+                        <a
+                          class="ru btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate Russian</a>
+                      </div>
+                    {{/ifeq}}
+                    {{#ifeq menu.NativeLang "fr"}}
+                      <div id="inputs">
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nameen"
+                          id="en"
+                        />
+                        <a
+                          class="en btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate English</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nametr"
+                          id="tr"
+                        />
+                        <a
+                          class="tr btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate Turkish</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nameru"
+                          id="ru"
+                        />
+                        <a
+                          class="ru btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate Russian</a>
+                      </div>
+                    {{/ifeq}}
+                    {{#ifeq menu.NativeLang "ru"}}
+                      <div id="inputs">
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nameen"
+                          id="en"
+                        />
+                        <a
+                          class="en btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate English</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="namefr"
+                          id="fr"
+                        />
+                        <a
+                          class="fr btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate French</a>
+                        <input
+                          placeholder="Category Name"
+                          class="form-control mt-2"
+                          type="text"
+                          name="nametr"
+                          id="tr"
+                        />
+                        <a
+                          class="tr btn bt-sm btn-danger mt-2"
+                          onclick="submit(this)"
+                        >
+                          Translate Turkish</a>
+                      </div>
+                    {{/ifeq}}
                   </div>
                 </div>
                 <div
@@ -267,7 +418,7 @@
                         <span
                           class="input-group-text"
                           id="inputGroupFileAddon01"
-                        >Kategori Resmi</span>
+                        >Category Image</span>
                       </div>
                       <div class="custom-file">
                         <input
@@ -281,7 +432,7 @@
                         <label
                           class="custom-file-label"
                           for="inputGroupFile01"
-                        >Kategori Resmi</label>
+                        >Category Image</label>
                       </div>
                     </div>
                   </div>
@@ -292,15 +443,12 @@
                 <div
                   class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
                 >
-                  <button
-                    class="btn btn-sm btn-danger mr-4"
-                    type="submit"
-                    onclick="loadingscreen()"
-                  >Kategoriyi Ekle</button>
+                  <button class="btn btn-sm btn-danger mr-4" type="submit">Add
+                    Category</button>
                   <a
                     class="btn btn-sm btn-danger"
                     href="/user/{{menu.Slug}}/urunekle"
-                  >Ürün Ekleme Sayfasına Geç</a>
+                  >Add Item</a>
                 </div>
 
               </form>
@@ -308,20 +456,74 @@
             <div
               class="col-lg-6 d-flex flex-column justify-content-start align-items-center align-items-lg-start"
             >
-              {{#each menu.Kategoriler}}
-                <div
-                  class="inline d-flex flex-row justify-content-center align-items-center mt-3"
-                >
-                  {{#if this.image}}
-                    <img
-                      class="mr-5"
-                      style="width: 200px; height:120px;"
-                      src="/images/{{this.image}}"
-                    />
-                  {{/if}}
-                  <h3 class="text-dark">{{this.Name}}</h3>
-                </div>
-              {{/each}}
+              {{#ifeq menu.NativeLang "tr"}}
+                {{#each menu.Kategoriler}}
+                  <div
+                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
+                    {{#if this.image}}
+                      <img
+                        class="mr-5"
+                        style="width: 200px; height:120px;"
+                        src="/images/{{this.image}}"
+                      />
+                    {{/if}}
+
+                    <h3 class="text-dark">{{this.Nametr}}</h3>
+                  </div>
+                {{/each}}
+              {{/ifeq}}
+              {{#ifeq menu.NativeLang "fr"}}
+                {{#each menu.Kategoriler}}
+                  <div
+                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
+                    {{#if this.image}}
+                      <img
+                        class="mr-5"
+                        style="width: 200px; height:120px;"
+                        src="/images/{{this.image}}"
+                      />
+                    {{/if}}
+
+                    <h3 class="text-dark">{{this.Namefr}}</h3>
+                  </div>
+                {{/each}}
+              {{/ifeq}}
+              {{#ifeq menu.NativeLang "en"}}
+                {{#each menu.Kategoriler}}
+                  <div
+                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
+                    {{#if this.image}}
+                      <img
+                        class="mr-5"
+                        style="width: 200px; height:120px;"
+                        src="/images/{{this.image}}"
+                      />
+                    {{/if}}
+
+                    <h3 class="text-dark">{{this.Nameen}}</h3>
+                  </div>
+                {{/each}}
+              {{/ifeq}}
+              {{#ifeq menu.NativeLang "ru"}}
+                {{#each menu.Kategoriler}}
+                  <div
+                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
+                    {{#if this.image}}
+                      <img
+                        class="mr-5"
+                        style="width: 200px; height:120px;"
+                        src="/images/{{this.image}}"
+                      />
+                    {{/if}}
+
+                    <h3 class="text-dark">{{this.Nameru}}</h3>
+                  </div>
+                {{/each}}
+              {{/ifeq}}
             </div>
           </div>
           <!-- /.container-fluid -->
@@ -333,7 +535,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2021</span>
+              <span>Copyright &copy; QRMenux 2023</span>
             </div>
           </div>
         </footer>
@@ -380,7 +582,7 @@
               type="button"
               data-dismiss="modal"
             >Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/user/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -409,17 +611,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
-
-    <!-- Dashboard Loading -->
-    <script src="/js/loadings.js"></script>
-
-    <script>
-      let hamham = $( "#menu" ).find('option:selected').val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);
-      $("#menu").change(function() { let hamham =
-      $(this).find("option:selected").val();
-      $('#urlinput:text').val(`http://localhost:3000/menu/${hamham}`);});
-    </script>
+    <script src="/js/admin-translate.js"></script>
 
   </body>
 

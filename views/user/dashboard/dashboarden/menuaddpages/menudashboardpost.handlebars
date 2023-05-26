@@ -11,7 +11,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>QRMenux Yönetim Paneli</title>
+    <title>QRMenux Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -68,7 +68,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Menu Dashboard
+          Menu Panel
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -80,7 +80,7 @@
           </a>
           <a class="nav-link" href="/user/createqr">
             <i class="fas fa-fw fa-qrcode"></i>
-            <span>Create QR Code</span>
+            <span>Create QR</span>
           </a>
           {{#each user.userMenu}}
             <a
@@ -104,7 +104,7 @@
 
                 <h6 class="collapse-header">Edit Menu</h6>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit">Edit
-                  Menu</a>
+                  Menu Page</a>
                 <a class="collapse-item" href="/user/{{this.Slug}}/edit2">Edit
                   Category, Item</a>
                 <a
@@ -117,6 +117,12 @@
               </div>
             </div>
           {{/each}}
+          {{#ifeq user.userLevel "Abone"}}
+            <a class="nav-link" href="/user/unsubscribe">
+              <i class="fas fa-fw fa-qrcode"></i>
+              <span>Cancel Subscription</span>
+            </a>
+          {{/ifeq}}
         </li>
 
       </ul>
@@ -213,7 +219,7 @@
               >
                 <div class="col-md-4 col-12 text-center">
                   <input
-                    placeholder="Menu Title"
+                    placeholder="Menu Name"
                     class="form-control"
                     type="text"
                     name="name"
@@ -244,8 +250,10 @@
                   </select>
                 </div>
 
-                <div class="social mt-3 col-12 p-0">
-                  <div class="col-md-12 col-12">
+                <div
+                  class="social mt-3 col-12 p-0 d-flex justify-content-center"
+                >
+                  <div class="col-md-4 col-12">
                     <div class="row">
                       <div class="col-md-6">
                         <input
@@ -275,8 +283,16 @@
                         <input
                           class="form-control"
                           placeholder="Whatsapp"
-                          type="text"
+                          type="tel"
+                          id="phone"
                           name="whatsapp"
+                        />
+                      </div>
+                      <div class="col-md-12 mt-2">
+                        <input
+                          class="form-control"
+                          placeholder="Adress"
+                          name="adres"
                         />
                       </div>
                     </div>
@@ -291,7 +307,7 @@
                       <span
                         class="input-group-text"
                         id="inputGroupFileAddon01"
-                      >Restourant Logo</span>
+                      >Menu Logo</span>
                     </div>
                     <div class="custom-file">
                       <input
@@ -305,7 +321,7 @@
                       <label
                         class="custom-file-label"
                         for="inputGroupFile01"
-                      >Upload Logo</label>
+                      >Please Upload Logo</label>
                     </div>
                   </div>
                   <div class="preview mt-3">
@@ -320,15 +336,20 @@
                   <div
                     class="selectable d-flex justify-content-center align-items-center"
                   >
-                    <select class="form-control form-select mt-3" name="menuid">
-                      <option selected>Select Your Menu Theme</option>
-                      <option value="1">Classic</option>
-                    </select>
+                    <div class="col-md-12">
+                      <select
+                        class="form-control form-select mt-3"
+                        name="menuid"
+                      >
+                        <option selected>Menu Theme</option>
+                        <option value="1">Classic</option>
+                      </select>
+                    </div>
                   </div>
                   <div
                     class="first d-flex justify-content-center align-items-center"
                   >
-                    <img class="w-25" src="/img/landing1.png" alt="" />
+                    <img class="w-75" src="/img/main1trs.webp" alt="" />
                   </div>
                 </div>
               </div>
@@ -336,7 +357,7 @@
               <div
                 class="label1 d-flex flex-column justify-content-center align-items-center mt-3"
               >
-                <button class="btn-sm btn-danger" type="submit">Save</button>
+                <button class="btn-sm btn-danger" type="submit">Add Category</button>
               </div>
             </form>
 
@@ -357,7 +378,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; Your Website 2021</span>
+              <span>Copyright &copy; QRMenux 2023</span>
             </div>
           </div>
         </footer>
@@ -404,7 +425,7 @@
               type="button"
               data-dismiss="modal"
             >Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="/user/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -419,6 +440,26 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+
+    <script>
+      var input = document.querySelector("#phone"); var iti =
+      window.intlTelInput(input, { nationalMode: false, formatOnDisplay: false,
+      separateDialCode: true, autoHideDialCode: false, initialCountry: "tr",
+      placeholderNumberType: "MOBILE", preferredCountries: ['tr','us'],
+      utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
+      }); input.addEventListener('keyup', formatIntlTelInput);
+      input.addEventListener('change', formatIntlTelInput); function
+      formatIntlTelInput() { if (typeof intlTelInputUtils !== 'undefined') {var
+      currentText = iti.getNumber(intlTelInputUtils.numberFormat.E164); if
+      (typeof currentText === 'string') { iti.setNumber(currentText);
+      formatOnDisplay=true } } } input.addEventListener('keyup', function(e) {
+      e.preventDefault(); var num = iti.getNumber(), valid =
+      iti.isValidNumber(); input.value = num }, false);
+      input.addEventListener("focus", function() { input.value = ""; }, false);
+      $(input).on("focusout", function(e, countryData) { var intlNumber =
+      iti.getNumber(); input.value = intlNumber; });
+    </script>
 
     <script>
       let hamham = $( "#menu" ).find('option:selected').val();
