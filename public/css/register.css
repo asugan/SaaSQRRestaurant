@@ -2,6 +2,10 @@
   height: 100vh;
 }
 
+label {
+  font-weight: bold;
+}
+
 .register {
   display: flex;
   flex-direction: column;
@@ -78,13 +82,14 @@
 }
 
 .register button {
-  background-color: var(--second);
+  background-color: var(--sixth);
   text-decoration: none;
   color: white;
-  border: 2px solid var(--first);
+  border: 2px solid var(--fifth);
   border-radius: 15px;
   padding: 1rem 2rem;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .register form {

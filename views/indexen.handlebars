@@ -24,51 +24,51 @@
     <link href="https://qrmenux.com/tr" hreflang="tr" rel="alternate" />
   </head>
   <body>
-    <header>
-      <a href="/">
-        <img src="/img/logo.png" alt="QRMenux" />
-      </a>
-      <nav>
-        {{#if user}}
-          <div class="sections">
-            <ul>
-              <li><a href="/">Homepage</a></li>
-              <li><a href="/user/dashboard">{{user.username}}</a></li>
-              <li><a href="/user/dashboard">Dashboard</a></li>
-              <li><a href="/user/logout">Logout</a></li>
-            </ul>
+    <div class="vh100">
+      <header>
+        <a href="/">
+          <img src="/img/logo.png" alt="QRMenux" />
+        </a>
+        <nav>
+          {{#if user}}
+            <div class="sections">
+              <ul>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Logout</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Logout</a></li>
+              </ul>
+            </div>
+          {{else}}
+            <div class="sections">
+              <ul>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+              </ul>
+            </div>
+          {{/if}}
+          <div class="hamburger">
+            <i class="fas fa-hamburger"></i>
           </div>
-          <div class="mobilesection">
-            <ul>
-              <li><a href="/">Homepage</a></li>
-              <li><a href="/user/dashboard">{{user.username}}</a></li>
-              <li><a href="/user/dashboard">Dashboard</a></li>
-              <li><a href="/user/logout">Logout</a></li>
-            </ul>
-          </div>
-        {{else}}
-          <div class="sections">
-            <ul>
-              <li><a href="/">Homepage</a></li>
-              <li><a href="/register">Register</a></li>
-              <li><a href="/login">Login</a></li>
-            </ul>
-          </div>
-          <div class="mobilesection">
-            <ul>
-              <li><a href="/">Homepage</a></li>
-              <li><a href="/register">Register</a></li>
-              <li><a href="/login">Login</a></li>
-            </ul>
-          </div>
-        {{/if}}
-        <div class="hamburger">
-          <i class="fas fa-hamburger"></i>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
 
-    <main>
       <section class="landing">
         <div class="container">
           <div class="leftdiv">
@@ -96,260 +96,251 @@
 
           </div>
           <div class="rightdiv">
-            <div class="imagediv">
-              <img
-                id="image1"
-                src="/img/main1trs.webp"
-                alt="QR Kod Menü - Karekod Menü"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="bottom">
-          <i class="fa-solid fa-angles-down"></i>
-        </div>
-      </section>
-
-      <section class="landing-2">
-        <div class="container">
-          <div class="leftdiv">
             <img
-              src="/img/main2trs.webp"
-              alt="Çoklu Dil QR Menü"
-              loading="lazy"
+              id="image1"
+              src="/img/qr_menu_en1.webp"
+              alt="QR Code Menu - Restaurant Menu"
             />
           </div>
-          <div class="rightdiv">
-            <h2>Customer Satisfaction with Multi-Language Support</h2>
-            <p>
-              With our modern QR code menu, you can easily translate to other
-              languages with just one click, providing your customers with
-              modern-looking menus that satisfy them from anywhere in the world.
-              You will have visually appealing, modern menus with our multiple
-              theme options.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="landing-2">
+      <div class="container">
+        <div class="leftdiv">
+          <img
+            src="/img/qr_menu_en2.webp"
+            alt="Multilanguage QR Menu"
+            loading="lazy"
+          />
+        </div>
+        <div class="rightdiv">
+          <h2>Customer Satisfaction with Multi-Language Support</h2>
+          <p>
+            With our modern QR code menu, you can easily translate to other
+            languages with just one click, providing your customers with
+            modern-looking menus that satisfy them from anywhere in the world.
+            You will have visually appealing, modern menus with our multiple
+            theme options.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-3">
+      <div class="container">
+        <div class="rightdiv">
+          <img
+            src="/img/qr_menu_en3.webp"
+            alt="QR Menu with Social Media Feature"
+            loading="lazy"
+          />
+        </div>
+        <div class="leftdiv">
+          <h2>Social Media and Google Optimizations</h2>
+          <p>You can easily enable your customers to access your social media
+            accounts and contact information by linking them to your restaurant
+            menu page. Additionally, we optimize your business with Google
+            integrations, ensuring that your menu appears at the top of search
+            engines.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-4">
+      <div class="container">
+        <div class="one">
+          <img
+            src="/img/qr_menu_en_dash1.webp"
+            alt="Qr Code Menu Dashboard"
+            loading="lazy"
+          />
+        </div>
+        <div class="call">
+          <h2>Professional Dashboard</h2>
+          <p>
+            In addition, you can control your QR code menu unlimitedly from the
+            panel by customizing it. You can easily customize the products in
+            the menu, add images, and write descriptions. Our panel system
+            offers the greatest convenience for your business.</p>
+        </div>
+        <div class="two">
+          <img
+            src="/img/qr_menu_en_dash2.webp"
+            alt="Qr Code Menu Dashboard 2"
+            loading="lazy"
+          />
+        </div>
+        <div class="call">
+          <h2>Translate With 1 Click</h2>
+          <p>
+            You can translate your menu to any language you desire with just one
+            click from the administration panel. We provide an excellent
+            translation experience with the framework we use, which includes
+            descriptions and content.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-5">
+      <div class="container">
+        <p>To provide your customers with a modern and enjoyable restaurant
+          experience, Try our QR code menu - Restaurant menu for 4 days. No
+          credit card information is required for the trial period, and there
+          are no advertisements. We have optimized everything for your
+          convenience.</p>
+      </div>
+    </section>
+
+    <section class="price">
+      <div class="container">
+        <div class="trial">
+          <h3>Trial Package</h3>
+          <ul>
+            <li> <i class="fa-solid fa-check"></i> 1 Menu</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Category</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Item
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Image
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Special Restaurant Page (Include Logo)
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Contact and Social Media Links
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Whatsapp Integration
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              4 Language - 3 Currency
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Automatic Translate Module
+            </li>
+          </ul>
+          {{#if user}}
             <div class="call">
-              <a
-                href="https://hamham-steakhouse.qrmenux.com"
-                target="_blank"
-              >Example Menu</a>
+              <a href="/user/dashboard">Try 4 Day</a>
             </div>
-          </div>
-        </div>
-      </section>
-      <section class="landing-3">
-        <div class="container">
-          <div class="leftdiv">
-            <h2>Social Media and Google Optimizations</h2>
-            <p>You can easily enable your customers to access your social media
-              accounts and contact information by linking them to your
-              restaurant menu page. Additionally, we optimize your business with
-              Google integrations, ensuring that your menu appears at the top of
-              search engines.</p>
+          {{else}}
             <div class="call">
-              <a
-                href="https://hamham-steakhouse.qrmenux.com"
-                target="_blank"
-              >Example Menu</a>
+              <a href="/register">Try 4 Day</a>
             </div>
-          </div>
-          <div class="rightdiv">
-            <img
-              src="/img/main3trs.webp"
-              alt="Sosyal Medya Destekli Karekod Menü"
-              loading="lazy"
-            />
-          </div>
+          {{/if}}
         </div>
-      </section>
-
-      <section class="landing-4">
-        <div class="container">
-          <div class="one">
-            <img
-              src="/img/mainsection1.webp"
-              alt="Qr Kod Menü Yönetim Paneli"
-              loading="lazy"
-            />
-          </div>
-          <div class="two">
-            <img
-              src="/img/mainsection2.webp"
-              alt="Karekod Menü Yönetim Paneli"
-              loading="lazy"
-            />
+        <div class="price1">
+          <h3>Normal Package</h3>
+          <ul>
+            <li> <i class="fa-solid fa-check"></i> 1 Menu</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Category</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Item
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Image
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Special Restaurant Page (Include Logo)
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Contact and Social Media Links
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Whatsapp Integration
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              4 Language - 3 Currency
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Automatic Translate Module
+            </li>
+          </ul>
+          <div class="pricediv">
+            <span>$12 Monthly</span>
           </div>
           <div class="call">
-            <h2>Professional Dashboard</h2>
-            <p>
-              In addition, you can control your QR code menu unlimitedly from
-              the panel by customizing it. You can easily customize the products
-              in the menu, add images, and write descriptions. Our panel system
-              offers the greatest convenience for your business.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="landing-5">
-        <div class="container">
-          <p>To provide your customers with a modern and enjoyable restaurant
-            experience, we offer our Modern QR Code Menu - Try our QR code menu
-            for 4 days. No credit card information is required for the trial
-            period, and there are no advertisements. We have optimized
-            everything for your convenience.</p>
-        </div>
-      </section>
-
-      <section class="price">
-        <div class="container">
-          <div class="trial">
-            <h3>Trial Package</h3>
-            <ul>
-              <li> <i class="fa-solid fa-check"></i> 1 Menu</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Category</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Item
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Image
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Special Restaurant Page (Include Logo)
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Contact and Social Media Links
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Whatsapp Integration
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                4 Language - 3 Currency
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Automatic Translate Module
-              </li>
-            </ul>
             {{#if user}}
               <div class="call">
-                <a href="/user/dashboard">Try 4 Day</a>
+                <a
+                  href="https://cagatayeren.lemonsqueezy.com/checkout/buy/0fd2bd56-b08b-4a42-97f3-4a83dac1c7bb?embed=1&logo=0&discount=0&dark=1"
+                  class="lemonsqueezy-button"
+                >Subscribe</a>
               </div>
             {{else}}
               <div class="call">
-                <a href="/register">Try 4 Day</a>
+                <a href="/register">Subscribe</a>
               </div>
             {{/if}}
           </div>
-          <div class="price1">
-            <h3>Normal Package</h3>
-            <ul>
-              <li> <i class="fa-solid fa-check"></i> 1 Menu</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Category</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Item
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Image
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Special Restaurant Page (Include Logo)
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Contact and Social Media Links
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Whatsapp Integration
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                4 Language - 3 Currency
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Automatic Translate Module
-              </li>
-            </ul>
-            <div class="pricediv">
-              <span>$12 Monthly</span>
-            </div>
-            <div class="call">
-              {{#if user}}
-                <div class="call">
-                  <a
-                    href="https://cagatayeren.lemonsqueezy.com/checkout/buy/0fd2bd56-b08b-4a42-97f3-4a83dac1c7bb?embed=1&logo=0&discount=0&dark=1"
-                    class="lemonsqueezy-button"
-                  >Subscribe</a>
-                </div>
-              {{else}}
-                <div class="call">
-                  <a href="/register">Subscribe</a>
-                </div>
-              {{/if}}
-            </div>
+        </div>
+        <div class="price2">
+          <h3>Maxi Package</h3>
+          <ul>
+            <li> <i class="fa-solid fa-check"></i> 5 Menu</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Category</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Item
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Limitless Image
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Special Restaurant Page (Include Logo)
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Contact and Social Media Links
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Whatsapp Integration
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              4 Language - 3 Currency
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Automatic Translate Module
+            </li>
+          </ul>
+          <div class="pricediv">
+            <span>Inactive for now</span>
           </div>
-          <div class="price2">
-            <h3>Maxi Package</h3>
-            <ul>
-              <li> <i class="fa-solid fa-check"></i> 5 Menu</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Category</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Item
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Limitless Image
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Special Restaurant Page (Include Logo)
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Contact and Social Media Links
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Whatsapp Integration
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                4 Language - 3 Currency
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Automatic Translate Module
-              </li>
-            </ul>
-            <div class="pricediv">
-              <span>Inactive for now</span>
-            </div>
-            <div class="call">
-              <a href="/">Subscribe</a>
-            </div>
+          <div class="call">
+            <a href="/">Subscribe</a>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <footer>
       <section>

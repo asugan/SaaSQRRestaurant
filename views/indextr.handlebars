@@ -24,51 +24,51 @@
     <link href="https://qrmenux.com/tr" hreflang="tr" rel="alternate" />
   </head>
   <body>
-    <header>
-      <a href="/tr">
-        <img src="/img/logo.png" alt="QRMenux" />
-      </a>
-      <nav>
-        {{#if user}}
-          <div class="sections">
-            <ul>
-              <li><a href="/tr">Anasayfa</a></li>
-              <li><a href="/user/dashboard">{{user.username}}</a></li>
-              <li><a href="/user/dashboard">Yönetim Paneli</a></li>
-              <li><a href="/user/logout">Çıkış Yap</a></li>
-            </ul>
+    <div class="vh100">
+      <header>
+        <a href="/tr">
+          <img src="/img/logo.png" alt="QRMenux" />
+        </a>
+        <nav>
+          {{#if user}}
+            <div class="sections">
+              <ul>
+                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
+                <li><a href="/user/logout">Çıkış Yap</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
+                <li><a href="/user/logout">Çıkış Yap</a></li>
+              </ul>
+            </div>
+          {{else}}
+            <div class="sections">
+              <ul>
+                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/tr/register">Kayıt Ol</a></li>
+                <li><a href="/tr/login">Giriş</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/tr/register">Kayıt Ol</a></li>
+                <li><a href="/tr/login">Giriş</a></li>
+              </ul>
+            </div>
+          {{/if}}
+          <div class="hamburger">
+            <i class="fas fa-hamburger"></i>
           </div>
-          <div class="mobilesection">
-            <ul>
-              <li><a href="/tr">Anasayfa</a></li>
-              <li><a href="/user/dashboard">{{user.username}}</a></li>
-              <li><a href="/user/dashboard">Yönetim Paneli</a></li>
-              <li><a href="/user/logout">Çıkış Yap</a></li>
-            </ul>
-          </div>
-        {{else}}
-          <div class="sections">
-            <ul>
-              <li><a href="/tr">Anasayfa</a></li>
-              <li><a href="/tr/register">Üye Ol</a></li>
-              <li><a href="/tr/login">Giriş</a></li>
-            </ul>
-          </div>
-          <div class="mobilesection">
-            <ul>
-              <li><a href="/tr">Anasayfa</a></li>
-              <li><a href="/tr/register">Üye Ol</a></li>
-              <li><a href="/tr/login">Giriş</a></li>
-            </ul>
-          </div>
-        {{/if}}
-        <div class="hamburger">
-          <i class="fas fa-hamburger"></i>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
 
-    <main>
       <section class="landing">
         <div class="container">
           <div class="leftdiv">
@@ -90,263 +90,255 @@
                 class="first"
                 target="_blank"
               >Örnek Menü</a>
-              <a href="/tr/register" class="last">Ücretsiz Deneyin!</a>
+              <a href="/register" class="last">Ücretsiz Deneyin!</a>
             </div>
 
           </div>
           <div class="rightdiv">
-            <div class="imagediv">
-              <img
-                id="image1"
-                src="/img/main1trs.webp"
-                alt="QR Kod Menü - Karekod Menü"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="bottom">
-          <i class="fa-solid fa-angles-down"></i>
-        </div>
-      </section>
-
-      <section class="landing-2">
-        <div class="container">
-          <div class="leftdiv">
             <img
-              src="/img/main2trs.webp"
-              alt="Çoklu Dil QR Menü"
-              loading="lazy"
+              id="image1"
+              src="/img/qr_menu_tr1.webp"
+              alt="QR Kod Menü - Karekod Menü"
             />
           </div>
-          <div class="rightdiv">
-            <h2>4 Dil ile Müşteri Memnuniyeti</h2>
-            <p>Modern QR kod menü - karekod menümüz ile 4 tane dile direkt
-              olarak tek tıkla çeviri yapabilir, dünyanın her yerinden
-              müşterilerinizi memnun ederek modern görünümlü menüler sunmuş
-              olursunuz. Çoklu tema seçeneklerimiz ile göze hoş gelen, modern
-              menülere sahip olacaksınız.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="landing-2">
+      <div class="container">
+        <div class="leftdiv">
+          <img
+            src="/img/qr_menu_tr2.webp"
+            alt="Çoklu Dil QR Menü"
+            loading="lazy"
+          />
+        </div>
+        <div class="rightdiv">
+          <h2>4 Dil ile Müşteri Memnuniyeti</h2>
+          <p>
+            Modern QR kod menü - karekod menümüz ile 4 tane dile direkt olarak
+            tek tıkla çeviri yapabilir, dünyanın her yerinden müşterilerinizi
+            memnun ederek modern görünümlü menüler sunmuş olursunuz. Çoklu tema
+            seçeneklerimiz ile göze hoş gelen, modern menülere sahip
+            olacaksınız.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-3">
+      <div class="container">
+        <div class="rightdiv">
+          <img
+            src="/img/qr_menu_tr3.webp"
+            alt="Sosyal Medya Destekli Karekod Menü"
+            loading="lazy"
+          />
+        </div>
+        <div class="leftdiv">
+          <h2>Sosyal Medya, ve Google Optimizasyonları</h2>
+          <p>Burada da bitmiyor, Sosyal medya hesapları ve ulaşım bilgilerinizi
+            restoran menü sayfanıza bağlayarak kolayca müşterilerinizin
+            erişmesini sağlayabilirsiniz. Ayrıca Google entegrasyonları ile
+            işletmenizi Google ile optimize hale getiriyor ve menünüzü arama
+            motorlarında üst sıralarda çıkarıyoruz.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-4">
+      <div class="container">
+        <div class="one">
+          <img
+            src="/img/qr_menu_en_dash1.webp"
+            alt="Qr Kod Menü Yönetim Paneli"
+            loading="lazy"
+          />
+        </div>
+        <div class="call">
+          <h2>Profesyonel Yönetim Paneli</h2>
+          <p>
+            Ek olarak QR kod - karekod menünüzü panelden sınırsız şekilde
+            özelleştirerek kontrol edebilirsiniz. Kolayca menüdeki ürünleri
+            özelleştirebilir, resimler ekleyebilir ve açıklamalar
+            yazabilirsiniz. Panel sistemimiz işletmeniz için en büyük
+            kolaylıkları sunuyor.</p>
+        </div>
+        <div class="two">
+          <img
+            src="/img/qr_menu_en_dash2.webp"
+            alt="Karekod Menü Yönetim Paneli"
+            loading="lazy"
+          />
+        </div>
+        <div class="call">
+          <h2>Tek Tık ile Çeviri</h2>
+          <p>
+            Menünüzü yönetim panelinden tek tıkla istediğiniz dile
+            çevirebilirsiniz. Açıklamalar ve içeriklerde dahil olarak
+            kullandığımız framework ile mükemmel bir çeviri deneyimi sunuyoruz.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-5">
+      <div class="container">
+        <p>Müşterilerinize modern ve zevkli restoran deneyimi sunmak için Modern
+          QR kod menü - Karekod menümüzü 4 gün hemen deneyin. Kredi kartı
+          bilgisi 4 gün için gerekmez. Reklam yok. Sizin için herşeyi optimize
+          ettik.</p>
+      </div>
+    </section>
+
+    <section class="price">
+      <div class="container">
+        <div class="trial">
+          <h3>Deneme Sürümü</h3>
+          <ul>
+            <li> <i class="fa-solid fa-check"></i> 1 Menü Ekleme Hakkı</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Kategori Ekleme Hakkı</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Ürün Ekleme Hakkı
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Resim Ekleme Hakkı
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Restorana Özel Sayfa (logo dahil)
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              İletişim ve Sosyal Medya Butonları
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Whatsapp Entegrasyonu
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              4 Dil - 3 Para Birimi
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Otomatik Çeviri Modülü
+            </li>
+          </ul>
+          {{#if user}}
             <div class="call">
-              <a
-                href="https://hamham-steakhouse.qrmenux.com"
-                target="_blank"
-              >İnceleyin</a>
+              <a href="/user/dashboard">Deneyin !</a>
             </div>
-          </div>
-        </div>
-      </section>
-      <section class="landing-3">
-        <div class="container">
-          <div class="leftdiv">
-            <h2>Sosyal Medya, ve Google Optimizasyonları</h2>
-            <p>Burada da bitmiyor, Sosyal medya hesapları ve ulaşım
-              bilgilerinizi restoran menü sayfanıza bağlayarak kolayca
-              müşterilerinizin erişmesini sağlayabilirsiniz. Ayrıca Google
-              entegrasyonları ile işletmenizi Google ile optimize hale getiriyor
-              ve menünüzü arama motorlarında üst sıralarda çıkarıyoruz.</p>
+          {{else}}
             <div class="call">
-              <a
-                href="https://hamham-steakhouse.qrmenux.com"
-                target="_blank"
-              >İnceleyin</a>
+              <a href="/tr/register">Deneyin !</a>
             </div>
-          </div>
-          <div class="rightdiv">
-            <img
-              src="/img/main3trs.webp"
-              alt="Sosyal Medya Destekli Karekod Menü"
-              loading="lazy"
-            />
-          </div>
+          {{/if}}
         </div>
-      </section>
-
-      <section class="landing-4">
-        <div class="container">
-          <div class="one">
-            <img
-              src="/img/mainsection1.webp"
-              alt="Qr Kod Menü Yönetim Paneli"
-              loading="lazy"
-            />
-          </div>
-          <div class="two">
-            <img
-              src="/img/mainsection2.webp"
-              alt="Karekod Menü Yönetim Paneli"
-              loading="lazy"
-            />
+        <div class="price1">
+          <h3>Normal Plan</h3>
+          <ul>
+            <li> <i class="fa-solid fa-check"></i> 1 Menü Ekleme Hakkı</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Kategori Ekleme Hakkı</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Ürün Ekleme Hakkı
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Resim Ekleme Hakkı
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Restorana Özel Sayfa (logo dahil)
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              İletişim ve Sosyal Medya Butonları
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Whatsapp Entegrasyonu
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              4 Dil - 3 Para Birimi
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Otomatik Çeviri Modülü
+            </li>
+          </ul>
+          <div class="pricediv">
+            <span>120 ₺ Aylık Ücret İle</span>
           </div>
           <div class="call">
-            <h2>Profesyonel Yönetim Paneli</h2>
-            <p>Ek olarak QR kod - karekod menünüzü panelden sınırsız şekilde
-              özelleştirerek kontrol edebilirsiniz. Kolayca menüdeki ürünleri
-              özelleştirebilir, resimler ekleyebilir ve açıklamalar
-              yazabilirsiniz. Panel sistemimiz işletmeniz için en büyük
-              kolaylıkları sunuyor.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="landing-5">
-        <div class="container">
-          <p>Müşterilerinize modern ve zevkli restoran deneyimi sunmak için
-            Modern QR kod menü - Karekod menümüzü 4 gün hemen deneyin. Kredi
-            kartı bilgisi 4 gün için gerekmez. Reklam yok. Sizin için herşeyi
-            optimize ettik.</p>
-        </div>
-      </section>
-
-      <section class="price">
-        <div class="container">
-          <div class="trial">
-            <h3>Deneme Sürümü</h3>
-            <ul>
-              <li> <i class="fa-solid fa-check"></i> 1 Menü Ekleme Hakkı</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Kategori Ekleme Hakkı</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Ürün Ekleme Hakkı
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Resim Ekleme Hakkı
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Restorana Özel Sayfa (logo dahil)
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                İletişim ve Sosyal Medya Butonları
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Whatsapp Entegrasyonu
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                4 Dil - 3 Para Birimi
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Otomatik Çeviri Modülü
-              </li>
-            </ul>
             {{#if user}}
               <div class="call">
-                <a href="/user/dashboard">Deneyin !</a>
+                <a
+                  href="https://cagatayeren.lemonsqueezy.com/checkout/buy/1fbf8973-4cf4-4108-a5b5-418866228eac?embed=1&logo=0&discount=0&dark=1"
+                  class="lemonsqueezy-button"
+                >Abone Ol !</a>
               </div>
             {{else}}
               <div class="call">
-                <a href="/tr/register">Deneyin !</a>
+                <a href="/tr/register">Abone Ol !</a>
               </div>
             {{/if}}
           </div>
-          <div class="price1">
-            <h3>Normal Plan</h3>
-            <ul>
-              <li> <i class="fa-solid fa-check"></i> 1 Menü Ekleme Hakkı</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Kategori Ekleme Hakkı</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Ürün Ekleme Hakkı
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Resim Ekleme Hakkı
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Restorana Özel Sayfa (logo dahil)
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                İletişim ve Sosyal Medya Butonları
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Whatsapp Entegrasyonu
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                4 Dil - 3 Para Birimi
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Otomatik Çeviri Modülü
-              </li>
-            </ul>
-            <div class="pricediv">
-              <span>120 ₺ Aylık Ücret İle</span>
-            </div>
-            <div class="call">
-              {{#if user}}
-                <div class="call">
-                  <a
-                    href="https://cagatayeren.lemonsqueezy.com/checkout/buy/1fbf8973-4cf4-4108-a5b5-418866228eac?embed=1&logo=0&discount=0&dark=1"
-                    class="lemonsqueezy-button"
-                  >Abone Ol !</a>
-                </div>
-              {{else}}
-                <div class="call">
-                  <a href="/tr/register">Abone Ol !</a>
-                </div>
-              {{/if}}
-            </div>
+        </div>
+        <div class="price2">
+          <h3>Maxi Plan</h3>
+          <ul>
+            <li> <i class="fa-solid fa-check"></i> 5 Menü Ekleme Hakkı</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Kategori Ekleme Hakkı</li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Ürün Ekleme Hakkı
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Sınırsız Resim Ekleme Hakkı
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Restorana Özel Sayfa (logo dahil)
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              İletişim ve Sosyal Medya Butonları
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Whatsapp Entegrasyonu
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              4 Dil - 3 Para Birimi
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              Otomatik Çeviri Modülü
+            </li>
+          </ul>
+          <div class="pricediv">
+            <span>Paket Inaktif</span>
           </div>
-          <div class="price2">
-            <h3>Maxi Plan</h3>
-            <ul>
-              <li> <i class="fa-solid fa-check"></i> 5 Menü Ekleme Hakkı</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Kategori Ekleme Hakkı</li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Ürün Ekleme Hakkı
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Sınırsız Resim Ekleme Hakkı
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Restorana Özel Sayfa (logo dahil)
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                İletişim ve Sosyal Medya Butonları
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Whatsapp Entegrasyonu
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                4 Dil - 3 Para Birimi
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i>
-                Otomatik Çeviri Modülü
-              </li>
-            </ul>
-            <div class="pricediv">
-              <span>Paket Inaktif</span>
-            </div>
-            <div class="call">
-              <a href="#">Abone Ol !</a>
-            </div>
+          <div class="call">
+            <a href="#">Abone Ol !</a>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
     <footer>
       <section>
