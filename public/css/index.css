@@ -182,7 +182,7 @@ body {
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  margin-top: 10rem;
+  justify-content: center;
 }
 
 .landing .container .leftdiv h1 {
@@ -226,6 +226,23 @@ body {
 @media screen and (max-height: 900px) {
   .landing .container .rightdiv img {
     max-width: 400px;
+    width: 100%;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .vh100 {
+    height: fit-content;
+  }
+
+  .landing .container {
+    padding: 0rem 4rem;
+    height: 100%;
+  }
+
+  .landing .container .rightdiv img {
+    max-width: 420px;
     width: 100%;
     height: fit-content;
   }
