@@ -197,6 +197,7 @@ body {
   font-weight: bold;
   font-size: 1.4rem;
   line-height: 1.8rem;
+  word-break: break-all;
 }
 
 .landing .container .leftdiv .call {
@@ -307,8 +308,8 @@ body {
     text-align: center;
   }
 
-  .landing .container .leftdiv p {
-    font-size: 1.3rem;
+  .landing .container .leftdiv h1 {
+    font-size: 1.8rem;
   }
 }
 
@@ -343,6 +344,7 @@ body {
   font-weight: bold;
   font-size: 1.4rem;
   line-height: 1.8rem;
+  word-break: break-all;
 }
 
 .landing-2 .container .leftdiv {
@@ -358,6 +360,12 @@ body {
 @media screen and (max-width: 1200px) {
   .landing-2 .container {
     padding: 4rem 4rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .landing-2 .container .rightdiv h2 {
+    font-size: 1.8rem;
   }
 }
 
@@ -396,6 +404,7 @@ body {
   font-weight: bold;
   font-size: 1.4rem;
   line-height: 1.8rem;
+  word-break: break-all;
 }
 
 .landing-3 .container .rightdiv {
@@ -411,6 +420,12 @@ body {
 @media screen and (max-width: 1200px) {
   .landing-3 .container {
     padding: 4rem 4rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .landing-3 .container .leftdiv h2 {
+    font-size: 1.8rem;
   }
 }
 
@@ -473,6 +488,7 @@ body {
   font-size: 1.4rem;
   line-height: 1.8rem;
   font-weight: bold;
+  word-break: break-all;
 }
 
 @media screen and (max-width: 1200px) {
@@ -482,6 +498,12 @@ body {
     justify-content: center;
     align-items: center;
     padding: 4rem 4rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .landing-4 .container .call h2 {
+    font-size: 1.8rem;
   }
 }
 
@@ -503,7 +525,6 @@ body {
 }
 
 .landing-5 .container p {
-  margin-bottom: 2rem;
   text-align: center;
   font-weight: bolder;
   font-size: 2.6rem;
@@ -511,13 +532,23 @@ body {
 
 @media screen and (max-width: 1200px) {
   .landing-5 .container {
-    padding: 4rem 4rem;
+    padding-top: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .landing-5 .container p {
+    font-size: 1.8rem;
   }
 }
 
 @media screen and (max-width: 768px) {
   .landing-5 .container {
-    padding: 4rem 2rem;
+    padding-top: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
