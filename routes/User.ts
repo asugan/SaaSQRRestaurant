@@ -380,7 +380,7 @@ router.post(
 
         try {
           user.userMenu.push(newMenu);
-          user.menuLeft -= 1!;
+          user.menuLeft -= 1;
           await user.save();
           await newMenu.save();
           const menuid = newMenu.Slug;

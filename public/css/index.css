@@ -157,10 +157,6 @@ body {
 
 /* Landing Başlangıç */
 
-.landing {
-  height: 100%;
-}
-
 .landing .container {
   display: grid;
   height: 100%;
@@ -225,6 +221,14 @@ body {
 
 .landing .container .leftdiv .last {
   margin-left: 1rem;
+}
+
+@media screen and (max-height: 900px) {
+  .landing .container .rightdiv img {
+    max-width: 400px;
+    width: 100%;
+    height: fit-content;
+  }
 }
 
 @media screen and (max-width: 1200px) {
