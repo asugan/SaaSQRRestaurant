@@ -172,7 +172,7 @@ body {
 }
 
 .landing .container .rightdiv img {
-  max-width: 450px;
+  max-width: 420px;
   width: 100%;
   height: fit-content;
 }
@@ -221,14 +221,6 @@ body {
 
 .landing .container .leftdiv .last {
   margin-left: 1rem;
-}
-
-@media screen and (max-height: 900px) {
-  .landing .container .rightdiv img {
-    max-width: 400px;
-    width: 100%;
-    height: fit-content;
-  }
 }
 
 @media screen and (max-width: 1400px) {
