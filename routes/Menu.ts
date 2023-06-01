@@ -17,7 +17,7 @@ router.get("/", async (req: any, res: any) => {
       try {
         menu.viewCount++;
         await menu.save();
-        res.render(`menuthemes/menuclassic/menu${menu.NativeLang}`, {
+        res.render(`menuthemes/menu2/indextr`, {
           menu: menu,
         });
       } catch (err) {
