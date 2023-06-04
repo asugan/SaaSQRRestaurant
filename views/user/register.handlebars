@@ -14,8 +14,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Kayıt Ol | QRMenux</title>
-    <meta name="description" content="QR Menux müşteri kayıt sayfası." />
+    <title>Register | QRMenux</title>
+    <meta name="description" content="QR Menux Register Page" />
     <link href="https://qrmenux.com/register" rel="canonical" />
     <link
       href="https://qrmenux.com/register"
@@ -39,33 +39,33 @@
           {{#if user}}
             <div class="sections">
               <ul>
-                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/">Homepage</a></li>
                 <li><a href="/user/dashboard">{{user.username}}</a></li>
-                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
-                <li><a href="/user/logout">Çıkış Yap</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Logout</a></li>
               </ul>
             </div>
             <div class="mobilesection">
               <ul>
-                <li><a href="/">Anasayfa</a></li>
+                <li><a href="/">Homepage</a></li>
                 <li><a href="/user/dashboard">{{user.username}}</a></li>
-                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
-                <li><a href="/user/logout">Çıkış Yap</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Logout</a></li>
               </ul>
             </div>
           {{else}}
             <div class="sections">
               <ul>
-                <li><a href="/">Anasayfa</a></li>
-                <li><a href="/user/register">Üye Ol</a></li>
-                <li><a href="/user/login">Giriş</a></li>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
               </ul>
             </div>
             <div class="mobilesection">
               <ul>
-                <li><a href="/">Anasayfa</a></li>
-                <li><a href="/user/register">Üye Ol</a></li>
-                <li><a href="/user/login">Giriş</a></li>
+                <li><a href="/">Homepage</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
               </ul>
             </div>
           {{/if}}
@@ -78,36 +78,36 @@
       <section class="register">
         <form action="/user/register" method="post">
           <div class="username">
-            <label for="username">Kullanıcı Adı</label>
+            <label for="username">Username</label>
             <input type="text" name="username" />
           </div>
           <div class="password">
             <div class="pass1">
-              <label for="password">Şifre</label>
+              <label for="password">Password</label>
               <input type="password" name="password" />
             </div>
             <div class="pass2">
-              <label for="confimpassword">Şifre Onay</label>
+              <label for="confimpassword">Repeat Password</label>
               <input type="password" name="confirmpassword" />
             </div>
           </div>
           <div class="email">
             <div class="email1">
-              <label for="email">Eposta</label>
+              <label for="email">Email</label>
               <input type="text" name="email" />
             </div>
             <div class="email2">
-              <label for="confirmemail">Eposta Onay</label>
+              <label for="confirmemail">Repeat Email</label>
               <input type="text" name="confirmemail" />
             </div>
 
           </div>
-          <button type="submit">Kayıt Ol , 4 Gün Ücretsiz Dene !</button>
+          <button type="submit">Register, 4 Day Free!</button>
         </form>
         {{#if error}}
           <div class="error">
             <div onclick="kapat()" class="errorclose">
-              <h1>KAPAT</h1>
+              <h1>CLOSE</h1>
             </div>
             {{#each error}}
               <h4>{{this.message}}</h4>
@@ -117,7 +117,7 @@
         {{#if mailsend}}
           <div class="error">
             <div onclick="kapat()" class="errorclose">
-              <h1>KAPAT</h1>
+              <h1>CLOSE</h1>
             </div>
             <h4>{{this.mailsend}}</h4>
           </div>

@@ -73,7 +73,9 @@ router.get("/dashboard", marabacheck, async (req: any, res: Response) => {
         user: user,
       });
     } else {
-      res.render("user/dashboard/dashboarden/index");
+      res.render("user/dashboard/dashboarden/index", {
+        user: user,
+      });
     }
   } catch (err) {
     console.log(err);
@@ -89,7 +91,9 @@ router.get("/unsubscribe", marabacheck, async (req: any, res: any) => {
       user: user,
     });
   } else {
-    res.render("user/dashboard/dashboarden/unsubscribe");
+    res.render("user/dashboard/dashboarden/unsubscribe", {
+      user: user,
+    });
   }
 });
 
@@ -102,7 +106,9 @@ router.get("/createqr", marabacheck, async (req: any, res: any) => {
       user: user,
     });
   } else {
-    res.render("user/dashboard/dashboarden/createqr");
+    res.render("user/dashboard/dashboarden/createqr", {
+      user: user,
+    });
   }
 });
 
@@ -116,7 +122,9 @@ router.get("/menu/post", marabacheck, async (req: any, res: Response) => {
         user: user,
       });
     } else {
-      res.render("user/dashboard/dashboarden/menuaddpages/menudashboardpost");
+      res.render("user/dashboard/dashboarden/menuaddpages/menudashboardpost", {
+        user: user,
+      });
     }
   } else {
     res.render("error/nomenuleft");

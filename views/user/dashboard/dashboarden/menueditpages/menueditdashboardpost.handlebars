@@ -361,15 +361,24 @@
                         class="form-control form-select mt-3"
                         name="menuid"
                       >
-                        <option value="1">Menü Theme</option>
+                        <option value="{{menu.MenuID}}">Menu Theme</option>
                         <option value="1">Classic</option>
+                        <option value="2">Golden</option>
                       </select>
                     </div>
                   </div>
                   <div
                     class="first d-flex justify-content-center align-items-center"
                   >
-                    <img class="w-75" src="/img/main1trs.webp" alt="" />
+                    <div class="first text-center">
+                      <h3 class="text-danger mt-3">Classic Menu</h3>
+                      <img class="w-75" src="/img/qr_menu_en1.webp" alt="" />
+                    </div>
+
+                    <div class="second text-center">
+                      <h3 class="text-danger mt-3">Golden Menu</h3>
+                      <img class="w-75" src="/img/qr_menu2_tr1.png" alt="" />
+                    </div>
                   </div>
                 </div>
                 <input type="hidden" name="id" value="{{menu._id}}" />

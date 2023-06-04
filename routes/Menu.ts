@@ -17,9 +17,15 @@ router.get("/", async (req: any, res: any) => {
       try {
         menu.viewCount++;
         await menu.save();
-        res.render(`menuthemes/menu2/indextr`, {
-          menu: menu,
-        });
+        if (menu.MenuID === 1) {
+          res.render(`menuthemes/menuclassic/menu${menu.NativeLang}`, {
+            menu: menu,
+          });
+        } else {
+          res.render(`menuthemes/menu2/index${menu.NativeLang}`, {
+            menu: menu,
+          });
+        }
       } catch (err) {
         console.log(err);
       }
@@ -57,9 +63,15 @@ router.get("/lang/:lang", async (req: any, res: any) => {
     const user = await User.findById(menu.user);
     try {
       if (menu.NativeLang !== lang && user.userLevel !== "Maraba") {
-        res.render(`menuthemes/menuclassic/menu${lang}`, {
-          menu: menu,
-        });
+        if (menu.MenuID === 1) {
+          res.render(`menuthemes/menuclassic/menu${lang}`, {
+            menu: menu,
+          });
+        } else {
+          res.render(`menuthemes/menu2/index${lang}`, {
+            menu: menu,
+          });
+        }
       } else {
         res.redirect(`/`);
       }
