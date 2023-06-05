@@ -3,10 +3,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/css/register.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="icon" type="image/x-icon" href="/img/logo.png" />
+    <link rel="stylesheet" href="/css/templates.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -14,17 +13,20 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Kayıt Ol | QRMenux</title>
-    <meta name="description" content="QR Menux müşteri kayıt sayfası." />
-    <link href="https://qrmenux.com/tr/register" rel="canonical" />
+    <title>Dijital QR Kod Menü - Tema Satın Al | QRMenux</title>
+    <meta
+      name="description"
+      content="QR Kod Menü - Karekod Menü ile menü masraflarınızı sıfırlayın, menünüzü dijitale taşıyım ve müşteri memnuniyetini arttırın. Çoklu dil ve çoklu para birimi modülleri ile teknolojiye ayak uydurun."
+    />
+    <link href="https://qrmenux.com/tr/templates" rel="canonical" />
     <link
-      href="https://qrmenux.com/register"
+      href="https://qrmenux.com/templates"
       hreflang="x-default"
       rel="alternate"
     />
-    <link href="https://qrmenux.com/register" hreflang="en" rel="alternate" />
+    <link href="https://qrmenux.com/templates" hreflang="en" rel="alternate" />
     <link
-      href="https://qrmenux.com/tr/register"
+      href="https://qrmenux.com/tr/templates"
       hreflang="tr"
       rel="alternate"
     />
@@ -32,14 +34,14 @@
   <body>
     <div class="vh100">
       <header>
-        <a href="/tr">
+        <a href="/">
           <img src="/img/logo.png" alt="QRMenux" />
         </a>
         <nav>
           {{#if user}}
             <div class="sections">
               <ul>
-                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/">Anasayfa</a></li>
                 <li><a href="/user/dashboard">{{user.username}}</a></li>
                 <li><a href="/user/dashboard">Yönetim Paneli</a></li>
                 <li><a href="/user/logout">Çıkış Yap</a></li>
@@ -47,7 +49,7 @@
             </div>
             <div class="mobilesection">
               <ul>
-                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/">Anasayfa</a></li>
                 <li><a href="/user/dashboard">{{user.username}}</a></li>
                 <li><a href="/user/dashboard">Yönetim Paneli</a></li>
                 <li><a href="/user/logout">Çıkış Yap</a></li>
@@ -56,14 +58,14 @@
           {{else}}
             <div class="sections">
               <ul>
-                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/">Anasayfa</a></li>
                 <li><a href="/tr/register">Üye Ol</a></li>
                 <li><a href="/tr/login">Giriş</a></li>
               </ul>
             </div>
             <div class="mobilesection">
               <ul>
-                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/">Anasayfa</a></li>
                 <li><a href="/tr/register">Üye Ol</a></li>
                 <li><a href="/tr/login">Giriş</a></li>
               </ul>
@@ -75,53 +77,57 @@
         </nav>
       </header>
 
-      <section class="register">
-        <form action="/user/register" method="post">
-          <div class="username">
-            <label for="username">Kullanıcı Adı</label>
-            <input type="text" name="username" />
+      <section class="main">
+        <div class="container">
+          <div class="inline">
+            <h3>QRMenux Classic</h3>
+            <div class="imagediv">
+              <img
+                src="/img/qr_menu_tr1.webp"
+                alt="Çoklu Dil QR Menü"
+                loading="lazy"
+              />
+            </div>
+            <div class="pricediv">
+              <span>120 ₺</span>
+            </div>
+            <div class="call">
+              <a href="/tr/register">Satın Al</a>
+            </div>
           </div>
-          <div class="password">
-            <div class="pass1">
-              <label for="password">Şifre</label>
-              <input type="password" name="password" />
+          <div class="inline">
+            <h3>QRMenux Golden</h3>
+            <div class="imagediv">
+              <img
+                src="/img/qr_menu2_tr1.webp"
+                alt="Çoklu Dil QR Menü"
+                loading="lazy"
+              />
             </div>
-            <div class="pass2">
-              <label for="confimpassword">Şifre Onay</label>
-              <input type="password" name="confirmpassword" />
+            <div class="pricediv">
+              <span>120 ₺</span>
+            </div>
+            <div class="call">
+              <a href="/tr/register">Satın Al</a>
             </div>
           </div>
-          <div class="email">
-            <div class="email1">
-              <label for="email">Eposta</label>
-              <input type="text" name="email" />
+          <div class="inline">
+            <h3>Normal Plan</h3>
+            <div class="imagediv">
+              <img
+                src="/img/qr_menu_tr1.webp"
+                alt="Çoklu Dil QR Menü"
+                loading="lazy"
+              />
             </div>
-            <div class="email2">
-              <label for="confirmemail">Eposta Onay</label>
-              <input type="text" name="confirmemail" />
+            <div class="pricediv">
+              <span>120 ₺</span>
             </div>
-
+            <div class="call">
+              <a href="/tr/register">Satın Al</a>
+            </div>
           </div>
-          <button type="submit">Kayıt Ol , 4 Gün Ücretsiz Dene!</button>
-        </form>
-        {{#if error}}
-          <div class="error">
-            <div onclick="kapat()" class="errorclose">
-              <h1>KAPAT</h1>
-            </div>
-            {{#each error}}
-              <h4>{{this.message}}</h4>
-            {{/each}}
-          </div>
-        {{/if}}
-        {{#if mailsend}}
-          <div class="error">
-            <div onclick="kapat()" class="errorclose">
-              <h1>KAPAT</h1>
-            </div>
-            <h4>{{this.mailsend}}</h4>
-          </div>
-        {{/if}}
+        </div>
       </section>
     </div>
 
@@ -135,11 +141,5 @@
         </div>
       </section>
     </footer>
-
-    <script>
-      const kapat = () =>
-      document.getElementsByClassName("error")[0].style.display = "none"
-    </script>
-    <script src="/js/hamburger.js"></script>
   </body>
 </html>

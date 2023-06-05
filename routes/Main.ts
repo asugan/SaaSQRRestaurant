@@ -42,6 +42,21 @@ router.get("/tr", authornot, async (req: any, res: any) => {
   }
 });
 
+/* router.get("/tr/templates", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    const userid = req.token.id;
+    const username = await User.findById(userid);
+
+    res.render("buytr", {
+      user: username,
+    });
+  } else {
+    res.render("buytr");
+  }
+}); */
+
 router.get("/register", authornot, async (req: any, res: any) => {
   const user = req.token;
 

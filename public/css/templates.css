@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* RESET CSS SONU */
+
+:root {
+  --first: #6c4ab6;
+  --second: #8d72e1;
+  --third: #8d9eff;
+  --fourth: #b9e0ff;
+  --fifth: #054ada;
+  --sixth: #f80;
+  --seventh: #fff;
+}
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.vh100 {
+  height: 100%;
+  background-image: url(../img/background.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Main Container Başlangıç */
+
+.main .container {
+  padding: 5rem 6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.main .container .inline {
+  background-color: var(--fifth);
+  padding: 2rem 3rem;
+  border: 5px solid var(--sixth);
+  border-radius: 10px;
+}
+
+.main .container .inline h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 5px solid var(--sixth);
+  padding-bottom: 0.6rem;
+  color: white;
+}
+
+.main .container .inline .imagediv {
+  text-align: center;
+}
+
+.main .container .inline .imagediv img {
+  max-width: 900px;
+  width: 100%;
+  height: auto;
+}
+
+.main .container .inline .pricediv {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.main .container .inline .call {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.main .container .inline .call a {
+  background-color: var(--sixth);
+  text-decoration: none;
+  color: white;
+  border: 2px solid var(--fifth);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  font-weight: bold;
+}
+
+/* Main Container Bitiş */
+
+/* Footer Başlangıç */
+
+footer section .container {
+  padding: 5rem 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--fifth);
+  color: white;
+}
+
+footer section .container .copyright {
+  font-size: 1.5rem;
+}
+
+/* Footer Bitiş */
