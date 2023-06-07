@@ -42,6 +42,21 @@ router.get("/tr", authornot, async (req: any, res: any) => {
   }
 });
 
+router.get("/fr", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    const userid = req.token.id;
+    const username = await User.findById(userid);
+
+    res.render("indexfr", {
+      user: username,
+    });
+  } else {
+    res.render("indexfr");
+  }
+});
+
 /* router.get("/tr/templates", authornot, async (req: any, res: any) => {
   const user = req.token;
 
@@ -62,6 +77,8 @@ router.get("/register", authornot, async (req: any, res: any) => {
 
   if (req.acceptsLanguages("tr-TR")) {
     res.redirect("/tr/register");
+  } else if (req.acceptsLanguages("fr")) {
+    res.redirect("/fr/register");
   } else {
     if (user) {
       res.redirect("/");
@@ -76,6 +93,8 @@ router.get("/login", authornot, async (req: any, res: any) => {
 
   if (req.acceptsLanguages("tr-TR")) {
     res.redirect("/tr/login");
+  } else if (req.acceptsLanguages("fr")) {
+    res.redirect("/fr/login");
   } else {
     if (user) {
       res.redirect("/");
@@ -95,6 +114,16 @@ router.get("/tr/register", authornot, async (req: any, res: any) => {
   }
 });
 
+router.get("/fr/register", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/registerfr");
+  }
+});
+
 router.get("/tr/login", authornot, async (req: any, res: any) => {
   const user = req.token;
 
@@ -102,6 +131,16 @@ router.get("/tr/login", authornot, async (req: any, res: any) => {
     res.redirect("/");
   } else {
     res.render("user/logintr");
+  }
+});
+
+router.get("/fr/login", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/loginfr");
   }
 });
 

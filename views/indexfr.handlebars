@@ -1,4 +1,4 @@
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,23 +17,23 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
     />
-    <title>Dijital QR Kod Menü - Karekod Menü | QRMenux</title>
+    <title>Menu QR Code Numérique - Menu du Restaurant | QRMenux</title>
     <meta
       name="description"
-      content="QR Kod Menü - Karekod Menü ile menü masraflarınızı sıfırlayın, menünüzü dijitale taşıyım ve müşteri memnuniyetini arttırın. Çoklu dil ve çoklu para birimi modülleri ile teknolojiye ayak uydurun."
+      content="Réinitialisez vos dépenses de menu avec le menu QR Code numérique - Menu du restaurant. Numérisez votre menu et augmentez la satisfaction des clients. Restez à la pointe de la technologie avec des modules multilingues et multi-devises."
     />
-    <link href="https://qrmenux.com/tr" rel="canonical" />
+    <link href="https://qrmenux.com/fr" rel="canonical" />
     <link href="https://qrmenux.com" hreflang="x-default" rel="alternate" />
     <link href="https://qrmenux.com" hreflang="en" rel="alternate" />
     <link href="https://qrmenux.com/tr" hreflang="tr" rel="alternate" />
     <link href="https://qrmenux.com/fr" hreflang="fr" rel="alternate" />
-    <link rel="preload" as="image" href="/img/background.webp" />
-    <link rel="preload" as="image" href="/img/qr_menu_tr1.webp" />
+    <link rel="prefetch" href="/img/background.webp" />
+    <link rel="prefetch" href="/img/qr_menu_en1.webp" />
   </head>
   <body>
     <div class="vh100">
       <header>
-        <a href="/tr">
+        <a href="/fr">
           <img src="/img/logo.png" alt="QRMenux" />
         </a>
         <nav>
@@ -44,28 +44,27 @@
                   class="langli"
                   onmouseenter="showlang()"
                   onmouseleave="removelang()"
-                ><a>Dil Seçin <i class="fa-solid fa-arrow-down"></i></a>
+                ><a>Langue <i class="fa-solid fa-arrow-down"></i></a>
                   <div class="langsection">
                     <div class="body">
-                      <a href="/"><span class="fi fi-gb-eng"></span>
-                        English</a>
+                      <a href="/"><span class="fi fi-gb-eng"></span> English</a>
                       <a href="/tr"><span class="fi fi-tr"></span> Türkçe</a>
                       <a href="/fr"><span class="fi fi-fr"></span> Français</a>
                     </div>
                   </div>
                 </li>
-                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/fr">Accueil</a></li>
                 <li><a href="/user/dashboard">{{user.username}}</a></li>
-                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
-                <li><a href="/user/logout">Çıkış Yap</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Déconnecter</a></li>
               </ul>
             </div>
             <div class="mobilesection">
               <ul>
-                <li><a href="/tr">Anasayfa</a></li>
+                <li><a href="/fr">Accueil</a></li>
                 <li><a href="/user/dashboard">{{user.username}}</a></li>
-                <li><a href="/user/dashboard">Yönetim Paneli</a></li>
-                <li><a href="/user/logout">Çıkış Yap</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Déconnecter</a></li>
               </ul>
             </div>
           {{else}}
@@ -75,26 +74,25 @@
                   class="langli"
                   onmouseenter="showlang()"
                   onmouseleave="removelang()"
-                ><a>Dil Seçin <i class="fa-solid fa-arrow-down"></i></a>
+                ><a>Langue <i class="fa-solid fa-arrow-down"></i></a>
                   <div class="langsection">
                     <div class="body">
-                      <a href="/"><span class="fi fi-gb-eng"></span>
-                        English</a>
+                      <a href="/"><span class="fi fi-gb-eng"></span> English</a>
                       <a href="/tr"><span class="fi fi-tr"></span> Türkçe</a>
                       <a href="/fr"><span class="fi fi-fr"></span> Français</a>
                     </div>
                   </div>
                 </li>
-                <li><a href="/tr">Anasayfa</a></li>
-                <li><a href="/tr/register">Kayıt Ol</a></li>
-                <li><a href="/tr/login">Giriş</a></li>
+                <li><a href="/fr">Accueil</a></li>
+                <li><a href="/fr/register">Enregistrer</a></li>
+                <li><a href="/fr/login">Connexion</a></li>
               </ul>
             </div>
             <div class="mobilesection">
               <ul>
-                <li><a href="/tr">Anasayfa</a></li>
-                <li><a href="/tr/register">Kayıt Ol</a></li>
-                <li><a href="/tr/login">Giriş</a></li>
+                <li><a href="/fr">Accueil</a></li>
+                <li><a href="/fr/register">Enregistrer</a></li>
+                <li><a href="/fr/login">Connexion</a></li>
               </ul>
             </div>
           {{/if}}
@@ -108,15 +106,18 @@
         <div class="container">
           <div class="leftdiv">
             <h1>
-              Otomatik Dil ve Para Birimi Çevirili QR Kod Menü - Karekod Menümüz
-              ile Tanışın
+              Découvrez notre menu numérique avec code QR - Menu du restaurant
+              avec fonction de traduction automatique de la langue et de la
+              devise.
             </h1>
             <p>
-              Sizlere yeni nesil, çoklu dil destekli ve otomatik çeviri modülü
-              ile QR kod menü - karekod menümüzü sunuyoruz. Modern restoranlar,
-              oteller ve kafeler için sunduğumuz bu çözümü, uygun fiyat ve
-              kalite ile sizlere edinebilirsiniz. Eski menülere elveda deyin ve
-              yeni nesil menünüz ile daha memnun müşterilere merhaba deyin!
+              Nous vous proposons un support multilingue de nouvelle génération
+              et un module de traduction automatique avec menu QR code - Menu du
+              restaurant. Vous pouvez obtenir cette solution que nous offrons
+              aux restaurants, hôtels et cafés modernes à un prix abordable et
+              de qualité. Dites au revoir aux anciens menus et dites bonjour à
+              des clients plus satisfaits avec votre menu de nouvelle génération
+              !
             </p>
 
             <div class="call">
@@ -124,16 +125,16 @@
                 href="https://hamham-steakhouse.qrmenux.com"
                 class="first"
                 target="_blank"
-              >Örnek Menü</a>
-              <a href="/register" class="last">Ücretsiz Deneyin!</a>
+              >Exemple de menu</a>
+              <a href="/register" class="last">Essayer gratuitement!</a>
             </div>
 
           </div>
           <div class="rightdiv">
             <img
               id="image1"
-              src="/img/qr_menu_tr1.webp"
-              alt="QR Kod Menü - Karekod Menü"
+              src="/img/qr_menu_en1.webp"
+              alt="QR Code Menu - Restaurant Menu"
             />
           </div>
         </div>
@@ -145,17 +146,18 @@
         <div class="leftdiv">
           <img
             src="/img/qr_menu2_tr1.webp"
-            alt="Çoklu Tema QR Menü"
+            alt="Multiple Theme QR Menu"
             loading="lazy"
           />
         </div>
         <div class="rightdiv">
-          <h2>Çoklu Tema Desteği</h2>
+          <h2>Options De Thème Multiples.</h2>
           <p>
-            Çoklu menü temalarımız ile istediğiniz menü tasarımını kolayca
-            panelden değiştirerek kullanabilirsiniz. Tasarımlara sürekli
-            yenilerini ekleyip güncelliyoruz. Tasarımlar tüm dillere ve para
-            birimlerine entegre çalışabilirler.
+            Avec nos multiples thèmes de menu, vous pouvez facilement changer et
+            utiliser le design de menu que vous souhaitez à partir du panneau.
+            Nous ajoutons et mettons régulièrement à jour de nouveaux designs.
+            Les designs peuvent être intégrés de manière transparente dans
+            toutes les langues et devises.
           </p>
         </div>
       </div>
@@ -165,19 +167,19 @@
       <div class="container">
         <div class="leftdiv">
           <img
-            src="/img/qr_menu_tr2.webp"
-            alt="Çoklu Dil QR Menü"
+            src="/img/qr_menu_en2.webp"
+            alt="Multilanguage QR Menu"
             loading="lazy"
           />
         </div>
         <div class="rightdiv">
-          <h2>4 Dil ile Müşteri Memnuniyeti</h2>
+          <h2>Satisfaction Client Avec Support Multilingue</h2>
           <p>
-            Modern QR kod menü - karekod menümüz ile 4 tane dile direkt olarak
-            tek tıkla çeviri yapabilir, dünyanın her yerinden müşterilerinizi
-            memnun ederek modern görünümlü menüler sunmuş olursunuz. Çoklu tema
-            seçeneklerimiz ile göze hoş gelen, modern menülere sahip
-            olacaksınız.
+            Avec notre menu QR code moderne, vous pouvez facilement traduire
+            vers d'autres langues en un seul clic, offrant à vos clients des
+            menus au look moderne qui les satisferont de n'importe où dans le
+            monde. Vous aurez des menus visuellement attrayants et modernes
+            grâce à nos options de thème multiples.
           </p>
         </div>
       </div>
@@ -187,18 +189,19 @@
       <div class="container">
         <div class="rightdiv">
           <img
-            src="/img/qr_menu_tr3.webp"
-            alt="Sosyal Medya Destekli Karekod Menü"
+            src="/img/qr_menu_en3.webp"
+            alt="QR Menu with Social Media Feature"
             loading="lazy"
           />
         </div>
         <div class="leftdiv">
-          <h2>Sosyal Medya, ve Google Optimizasyonları</h2>
-          <p>Burada da bitmiyor, Sosyal medya hesapları ve ulaşım bilgilerinizi
-            restoran menü sayfanıza bağlayarak kolayca müşterilerinizin
-            erişmesini sağlayabilirsiniz. Ayrıca Google entegrasyonları ile
-            işletmenizi Google ile optimize hale getiriyor ve menünüzü arama
-            motorlarında üst sıralarda çıkarıyoruz.
+          <h2>Réseaux Sociaux Et Optimisations Google</h2>
+          <p>
+            Vous pouvez facilement permettre à vos clients d'accéder à vos
+            comptes de médias sociaux et à vos coordonnées en les reliant à la
+            page de votre menu de restaurant. De plus, nous optimisons votre
+            entreprise avec des intégrations Google, garantissant que votre menu
+            apparaît en tête des moteurs de recherche.
           </p>
         </div>
       </div>
@@ -209,188 +212,191 @@
         <div class="one">
           <img
             src="/img/qr_menu_en_dash1.webp"
-            alt="Qr Kod Menü Yönetim Paneli"
+            alt="Qr Code Menu Dashboard"
             loading="lazy"
           />
         </div>
         <div class="call">
-          <h2>Profesyonel Yönetim Paneli</h2>
+          <h2>Tableau de Bord Professionnel</h2>
           <p>
-            Ek olarak QR kod - karekod menünüzü panelden sınırsız şekilde
-            özelleştirerek kontrol edebilirsiniz. Kolayca menüdeki ürünleri
-            özelleştirebilir, resimler ekleyebilir ve açıklamalar
-            yazabilirsiniz. Panel sistemimiz işletmeniz için en büyük
-            kolaylıkları sunuyor.</p>
+            De plus, vous pouvez contrôler votre menu QR code de manière
+            illimitée à partir du panneau en le personnalisant. Vous pouvez
+            facilement personnaliser les produits du menu, ajouter des images et
+            rédiger des descriptions. Notre système de panneau offre la plus
+            grande commodité pour votre entreprise.
+          </p>
         </div>
         <div class="two">
           <img
             src="/img/qr_menu_en_dash2.webp"
-            alt="Karekod Menü Yönetim Paneli"
+            alt="Qr Code Menu Dashboard 2"
             loading="lazy"
           />
         </div>
         <div class="call">
-          <h2>Tek Tık ile Çeviri</h2>
+          <h2>Traduire en 1 Clic</h2>
           <p>
-            Menünüzü yönetim panelinden tek tıkla istediğiniz dile
-            çevirebilirsiniz. Açıklamalar ve içeriklerde dahil olarak
-            kullandığımız framework ile mükemmel bir çeviri deneyimi sunuyoruz.</p>
+            Vous pouvez traduire votre menu dans n'importe quelle langue que
+            vous souhaitez en un seul clic à partir du panneau d'administration.
+            Nous offrons une excellente expérience de traduction avec le cadre
+            que nous utilisons, qui inclut les descriptions et le contenu.</p>
         </div>
       </div>
     </section>
 
     <section class="landing-5">
       <div class="container">
-        <p>Müşterilerinize modern ve zevkli restoran deneyimi sunmak için Modern
-          QR kod menü - Karekod menümüzü 4 gün hemen deneyin. Kredi kartı
-          bilgisi 4 gün için gerekmez. Reklam yok. Sizin için herşeyi optimize
-          ettik.</p>
+        <p>Pour offrir à vos clients une expérience de restaurant moderne et
+          agréable, essayez notre menu QR code - Menu du restaurant pendant 4
+          jours. Aucune information de carte de crédit n'est requise pour la
+          période d'essai et il n'y a pas de publicités. Nous avons optimisé
+          tout pour votre commodité.</p>
       </div>
     </section>
 
     <section class="price">
       <div class="container">
         <div class="trial">
-          <h3>Deneme Sürümü</h3>
+          <h3>Forfait d'essai</h3>
           <ul>
-            <li> <i class="fa-solid fa-check"></i> 1 Menü Ekleme Hakkı</li>
+            <li> <i class="fa-solid fa-check"></i> 1 Menu</li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Kategori Ekleme Hakkı</li>
+              Catégorie illimitée</li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Ürün Ekleme Hakkı
+              Article illimité
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Resim Ekleme Hakkı
+              Image illimitée
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Restorana Özel Sayfa (logo dahil)
+              Page Spéciale Restaurant (Inclure le logo)
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              İletişim ve Sosyal Medya Butonları
+              Contact et liens vers les réseaux sociaux
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Whatsapp Entegrasyonu
+              Intégration WhatsApp
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              4 Dil - 3 Para Birimi
+              4 langues - 3 devises
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Otomatik Çeviri Modülü
+              Module de traduction automatique
             </li>
           </ul>
           {{#if user}}
             <div class="call">
-              <a href="/user/dashboard">Deneyin !</a>
+              <a href="/user/dashboard">Essayez 4 jours</a>
             </div>
           {{else}}
             <div class="call">
-              <a href="/tr/register">Deneyin !</a>
+              <a href="/register">Essayez 4 jours</a>
             </div>
           {{/if}}
         </div>
         <div class="price1">
-          <h3>Normal Plan</h3>
+          <h3>Forfait Normal</h3>
           <ul>
-            <li> <i class="fa-solid fa-check"></i> 1 Menü Ekleme Hakkı</li>
+            <li> <i class="fa-solid fa-check"></i> 1 Menu</li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Kategori Ekleme Hakkı</li>
+              Catégorie illimitée</li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Ürün Ekleme Hakkı
+              Article illimité
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Resim Ekleme Hakkı
+              Image illimitée
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Restorana Özel Sayfa (logo dahil)
+              Page Spéciale Restaurant (Inclure le logo)
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              İletişim ve Sosyal Medya Butonları
+              Contact et liens vers les réseaux sociaux
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Whatsapp Entegrasyonu
+              Intégration WhatsApp
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              4 Dil - 3 Para Birimi
+              4 langues - 3 devises
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Otomatik Çeviri Modülü
+              Module de traduction automatique
             </li>
           </ul>
           <div class="pricediv">
-            <span>120 ₺ Aylık Ücret İle</span>
+            <span>$12 Mensuel</span>
           </div>
           <div class="call">
             {{#if user}}
               <div class="call">
                 <a
-                  href="https://cagatayeren.lemonsqueezy.com/checkout/buy/1fbf8973-4cf4-4108-a5b5-418866228eac?embed=1&logo=0&discount=0&dark=1"
+                  href="https://cagatayeren.lemonsqueezy.com/checkout/buy/0fd2bd56-b08b-4a42-97f3-4a83dac1c7bb?embed=1&logo=0&discount=0&dark=1"
                   class="lemonsqueezy-button"
-                >Abone Ol !</a>
+                >S'abonner</a>
               </div>
             {{else}}
               <div class="call">
-                <a href="/tr/register">Abone Ol !</a>
+                <a href="/register">S'abonner</a>
               </div>
             {{/if}}
           </div>
         </div>
         <div class="price2">
-          <h3>Maxi Plan</h3>
+          <h3>Forfait Maxi</h3>
           <ul>
-            <li> <i class="fa-solid fa-check"></i> 5 Menü Ekleme Hakkı</li>
+            <li> <i class="fa-solid fa-check"></i> 5 Menu</li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Kategori Ekleme Hakkı</li>
+              Catégorie illimitée</li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Ürün Ekleme Hakkı
+              Article illimité
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Sınırsız Resim Ekleme Hakkı
+              Image illimitée
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Restorana Özel Sayfa (logo dahil)
+              Page Spéciale Restaurant (Inclure le logo)
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              İletişim ve Sosyal Medya Butonları
+              Contact et liens vers les réseaux sociaux
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Whatsapp Entegrasyonu
+              Intégration WhatsApp
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              4 Dil - 3 Para Birimi
+              4 langues - 3 devises
             </li>
             <li>
               <i class="fa-solid fa-check"></i>
-              Otomatik Çeviri Modülü
+              Module de traduction automatique
             </li>
           </ul>
           <div class="pricediv">
-            <span>Paket Inaktif</span>
+            <span>Inactif pour le moment</span>
           </div>
           <div class="call">
-            <a href="#">Abone Ol !</a>
+            <a href="/">S'abonner</a>
           </div>
         </div>
       </div>
