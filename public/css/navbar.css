@@ -62,7 +62,34 @@ nav .mobilesection {
   display: none;
 }
 
-@media screen and (max-width: 720px) {
+/* Language Panel */
+
+.langli {
+  cursor: pointer;
+}
+
+.langsection {
+  display: none;
+  position: absolute;
+}
+
+.langsection .body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background-color: var(--fifth);
+  border: 2px solid var(--sixth);
+  padding: 1rem;
+  margin-top: 0.8rem;
+}
+
+.langsection .body a {
+  color: white !important;
+}
+
+/* Language Panel */
+
+@media screen and (max-width: 992px) {
   header {
     padding: 2rem 2rem;
   }

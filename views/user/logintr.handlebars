@@ -14,6 +14,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+    />
     <title>Giriş | QRMenux</title>
     <meta name="description" content="QR Menux panel girişi." />
     <link href="https://qrmenux.com/tr/login" rel="canonical" />
@@ -35,6 +39,19 @@
           {{#if user}}
             <div class="sections">
               <ul>
+                <li
+                  class="langli"
+                  onmouseenter="showlang()"
+                  onmouseleave="removelang()"
+                ><a>Dil Seçin <i class="fa-solid fa-arrow-down"></i></a>
+                  <div class="langsection">
+                    <div class="body">
+                      <a href="/"><span class="fi fi-gb-eng"></span>
+                        İngilizce</a>
+                      <a href="/tr"><span class="fi fi-tr"></span> Türkçe</a>
+                    </div>
+                  </div>
+                </li>
                 <li><a href="/tr">Anasayfa</a></li>
                 <li><a href="/user/dashboard">{{user.username}}</a></li>
                 <li><a href="/user/dashboard">Yönetim Paneli</a></li>
@@ -52,6 +69,19 @@
           {{else}}
             <div class="sections">
               <ul>
+                <li
+                  class="langli"
+                  onmouseenter="showlang()"
+                  onmouseleave="removelang()"
+                ><a>Dil Seçin <i class="fa-solid fa-arrow-down"></i></a>
+                  <div class="langsection">
+                    <div class="body">
+                      <a href="/"><span class="fi fi-gb-eng"></span>
+                        İngilizce</a>
+                      <a href="/tr"><span class="fi fi-tr"></span> Türkçe</a>
+                    </div>
+                  </div>
+                </li>
                 <li><a href="/tr">Anasayfa</a></li>
                 <li><a href="/tr/register">Üye Ol</a></li>
                 <li><a href="/tr/login">Giriş</a></li>

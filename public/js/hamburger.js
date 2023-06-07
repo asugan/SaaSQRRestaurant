@@ -8,3 +8,13 @@ hamburger.addEventListener("click", function () {
     mobilemenu.style.display = "block";
   }
 });
+
+const langsection = document.getElementsByClassName("langsection")[0];
+
+const showlang = () => {
+  langsection.style.display = "block";
+};
+
+const removelang = () => {
+  langsection.style.display = "none";
+};
