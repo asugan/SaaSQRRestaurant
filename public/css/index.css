@@ -145,6 +145,7 @@ table {
 body {
   background-color: var(--seventh);
   font-family: "IBM Plex Sans", sans-serif;
+  font-display: optional;
 }
 
 .vh100 {
@@ -290,8 +291,8 @@ body {
 
   .landing .container .rightdiv {
     justify-content: center;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
   }
 
   .landing .container .rightdiv img {
