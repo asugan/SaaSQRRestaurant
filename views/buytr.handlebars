@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link
       rel="preload"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
@@ -47,7 +51,7 @@
     <div class="vh100">
       <header>
         <a href="/">
-          <img src="/img/logo.png" alt="QRMenux" />
+          <img src="/img/logo.webp" alt="QRMenux" />
         </a>
         <nav>
           {{#if user}}
@@ -57,7 +61,7 @@
                   class="langli"
                   onmouseenter="showlang()"
                   onmouseleave="removelang()"
-                ><a>Dil Seçin <i class="fa-solid fa-arrow-down"></i></a>
+                ><div>Dil Seçin <i class="fa-solid fa-arrow-down"></i></div>
                   <div class="langsection">
                     <div class="body">
                       <a href="/"><span class="fi fi-gb-eng"></span>
@@ -87,7 +91,7 @@
                   class="langli"
                   onmouseenter="showlang()"
                   onmouseleave="removelang()"
-                ><a>Dil Seçin <i class="fa-solid fa-arrow-down"></i></a>
+                ><div>Dil Seçin <i class="fa-solid fa-arrow-down"></i></div>
                   <div class="langsection">
                     <div class="body">
                       <a href="/"><span class="fi fi-gb-eng"></span>
