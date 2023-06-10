@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "npx nodemon"
+    "serve": "npx nodemon",
+    "prod": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
