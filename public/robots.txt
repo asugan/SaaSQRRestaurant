@@ -1,8 +1,14 @@
 User-agent: *
 Allow: /
 Allow: /tr
+Allow: /fr
+Allow: /es
 Disallow: /user/*
 Disallow: /tr/register
 Disallow: /tr/login
 Disallow: /login
 Disallow: /register
+Disallow: /fr/register
+Disallow: /fr/login
+Disallow: /es/register
+Disallow: /es/login

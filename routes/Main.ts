@@ -57,6 +57,21 @@ router.get("/fr", authornot, async (req: any, res: any) => {
   }
 });
 
+router.get("/es", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    const userid = req.token.id;
+    const username = await User.findById(userid);
+
+    res.render("indexes", {
+      user: username,
+    });
+  } else {
+    res.render("indexes");
+  }
+});
+
 /* router.get("/tr/templates", authornot, async (req: any, res: any) => {
   const user = req.token;
 
@@ -79,6 +94,8 @@ router.get("/register", authornot, async (req: any, res: any) => {
     res.redirect("/tr/register");
   } else if (req.acceptsLanguages("fr")) {
     res.redirect("/fr/register");
+  } else if (req.acceptsLanguages("es")) {
+    res.redirect("/es/register");
   } else {
     if (user) {
       res.redirect("/");
@@ -97,6 +114,8 @@ router.get("/login", authornot, async (req: any, res: any) => {
     res.redirect("/tr/login");
   } else if (req.acceptsLanguages("fr")) {
     res.redirect("/fr/login");
+  } else if (req.acceptsLanguages("es")) {
+    res.redirect("/es/login");
   } else {
     if (user) {
       res.redirect("/");
@@ -132,6 +151,18 @@ router.get("/fr/register", authornot, async (req: any, res: any) => {
   }
 });
 
+router.get("/es/register", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/registeres", {
+      message: req.flash("error"),
+    });
+  }
+});
+
 router.get("/tr/login", authornot, async (req: any, res: any) => {
   const user = req.token;
 
@@ -151,6 +182,18 @@ router.get("/fr/login", authornot, async (req: any, res: any) => {
     res.redirect("/");
   } else {
     res.render("user/loginfr", {
+      message: req.flash("error"),
+    });
+  }
+});
+
+router.get("/es/login", authornot, async (req: any, res: any) => {
+  const user = req.token;
+
+  if (user) {
+    res.redirect("/");
+  } else {
+    res.render("user/logines", {
       message: req.flash("error"),
     });
   }

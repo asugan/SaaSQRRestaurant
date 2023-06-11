@@ -1,0 +1,193 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="preload"
+      fetchpriority="high"
+      as="image"
+      href="/img/background.webp"
+      type="image/webp"
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/register.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link rel="icon" type="image/x-icon" href="/img/logo.webp" />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <title>Registro | QRMenux</title>
+    <meta name="description" content="QR Menux Registro Page" />
+    <link href="https://qrmenux.com/es/register" rel="canonical" />
+    <link
+      href="https://qrmenux.com/register"
+      hreflang="x-default"
+      rel="alternate"
+    />
+    <link href="https://qrmenux.com/register" hreflang="en" rel="alternate" />
+    <link
+      href="https://qrmenux.com/tr/register"
+      hreflang="tr"
+      rel="alternate"
+    />
+    <link
+      href="https://qrmenux.com/fr/register"
+      hreflang="fr"
+      rel="alternate"
+    />
+    <link
+      href="https://qrmenux.com/es/register"
+      hreflang="es"
+      rel="alternate"
+    />
+  </head>
+  <body>
+    <div class="vh100">
+      <header>
+        <a href="/">
+          <img src="/img/logo.webp" alt="QRMenux" />
+        </a>
+        <nav>
+          {{#if user}}
+            <div class="sections">
+              <ul>
+                <li
+                  class="langli"
+                  onmouseenter="showlang()"
+                  onmouseleave="removelang()"
+                ><div>Lenguaje <i class="fa-solid fa-arrow-down"></i></div>
+                  <div class="langsection">
+                    <div class="body">
+                      <a href="/"><span class="fi fi-gb-eng"></span> English</a>
+                      <a href="/tr"><span class="fi fi-tr"></span> Türkçe</a>
+                      <a href="/fr"><span class="fi fi-fr"></span> Français</a>
+                      <a href="/es"><span class="fi fi-es"></span> Español</a>
+                    </div>
+                  </div>
+                </li>
+                <li><a href="/es">Inicio</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Cerrar Sesión</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/es">Inicio</a></li>
+                <li><a href="/user/dashboard">{{user.username}}</a></li>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <li><a href="/user/logout">Cerrar Sesión</a></li>
+              </ul>
+            </div>
+          {{else}}
+            <div class="sections">
+              <ul>
+                <li
+                  class="langli"
+                  onmouseenter="showlang()"
+                  onmouseleave="removelang()"
+                ><div>Lenguaje <i class="fa-solid fa-arrow-down"></i></div>
+                  <div class="langsection">
+                    <div class="body">
+                      <a href="/"><span class="fi fi-gb-eng"></span> English</a>
+                      <a href="/tr"><span class="fi fi-tr"></span> Türkçe</a>
+                      <a href="/fr"><span class="fi fi-fr"></span> Français</a>
+                      <a href="/es"><span class="fi fi-es"></span> Español</a>
+                    </div>
+                  </div>
+                </li>
+                <li><a href="/es">Inicio</a></li>
+                <li><a href="/register">Registro</a></li>
+                <li><a href="/login">Acceso</a></li>
+              </ul>
+            </div>
+            <div class="mobilesection">
+              <ul>
+                <li><a href="/es">Inicio</a></li>
+                <li><a href="/register">Registro</a></li>
+                <li><a href="/login">Acceso</a></li>
+              </ul>
+            </div>
+          {{/if}}
+          <div class="hamburger">
+            <i class="fas fa-hamburger"></i>
+          </div>
+        </nav>
+      </header>
+
+      <section class="register">
+        <form action="/user/register" method="post">
+          <div class="username">
+            <label for="username">Nombre de usuario</label>
+            <input type="text" name="username" />
+          </div>
+          <div class="password">
+            <div class="pass1">
+              <label for="password">Contraseña</label>
+              <input type="password" name="password" />
+            </div>
+            <div class="pass2">
+              <label for="confimpassword">Repetir Contraseña</label>
+              <input type="password" name="confirmpassword" />
+            </div>
+          </div>
+          <div class="email">
+            <div class="email1">
+              <label for="email">Email</label>
+              <input type="text" name="email" />
+            </div>
+            <div class="email2">
+              <label for="confirmemail">Repetir Email</label>
+              <input type="text" name="confirmemail" />
+            </div>
+
+          </div>
+          <button type="submit">¡Regístrese, 4 días gratis!</button>
+        </form>
+        {{#if message}}
+          <div class="error">
+            <div onclick="kapat()" class="errorclose">
+              <h1>CERCA</h1>
+            </div>
+            {{#each message}}
+              <h4>{{this.message}}</h4>
+            {{/each}}
+          </div>
+        {{/if}}
+      </section>
+    </div>
+
+    <footer>
+      <section>
+        <div class="container">
+          <div class="copyright">
+            © 2023 QRMenux Yeni Mahalle, Isfendiyar Sokak, No: 10, Merkez
+            Cankiri 18100, Turkey
+          </div>
+        </div>
+      </section>
+    </footer>
+
+    <script>
+      const kapat = () =>
+      document.getElementsByClassName("error")[0].style.display = "none"
+    </script>
+    <script src="/js/hamburger.js"></script>
+  </body>
+</html>
