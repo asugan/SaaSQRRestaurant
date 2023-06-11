@@ -83,7 +83,9 @@ router.get("/register", authornot, async (req: any, res: any) => {
     if (user) {
       res.redirect("/");
     } else {
-      res.render("user/register");
+      res.render("user/register", {
+        message: req.flash("error"),
+      });
     }
   }
 });
@@ -99,7 +101,9 @@ router.get("/login", authornot, async (req: any, res: any) => {
     if (user) {
       res.redirect("/");
     } else {
-      res.render("user/login");
+      res.render("user/login", {
+        message: req.flash("error"),
+      });
     }
   }
 });
@@ -110,7 +114,9 @@ router.get("/tr/register", authornot, async (req: any, res: any) => {
   if (user) {
     res.redirect("/");
   } else {
-    res.render("user/registertr");
+    res.render("user/registertr", {
+      message: req.flash("error"),
+    });
   }
 });
 
@@ -120,7 +126,9 @@ router.get("/fr/register", authornot, async (req: any, res: any) => {
   if (user) {
     res.redirect("/");
   } else {
-    res.render("user/registerfr");
+    res.render("user/registerfr", {
+      message: req.flash("error"),
+    });
   }
 });
 
@@ -130,7 +138,9 @@ router.get("/tr/login", authornot, async (req: any, res: any) => {
   if (user) {
     res.redirect("/");
   } else {
-    res.render("user/logintr");
+    res.render("user/logintr", {
+      message: req.flash("error"),
+    });
   }
 });
 
@@ -140,7 +150,9 @@ router.get("/fr/login", authornot, async (req: any, res: any) => {
   if (user) {
     res.redirect("/");
   } else {
-    res.render("user/loginfr");
+    res.render("user/loginfr", {
+      message: req.flash("error"),
+    });
   }
 });
 

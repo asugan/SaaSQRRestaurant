@@ -1465,15 +1465,14 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   }
 });
 
-router.post("/login", async (req: Request, res: Response) => {
+router.post("/login", async (req: any, res: Response) => {
   const { error, value } = userLoginValidate.validate(req.body, {
     abortEarly: false,
   });
   if (error) {
     try {
-      res.status(500).render("user/login", {
-        error: error.details,
-      });
+      req.flash("error", error.details);
+      res.redirect("/login");
     } catch (err) {
       console.log(err);
     }
@@ -1505,30 +1504,30 @@ router.post("/login", async (req: Request, res: Response) => {
 
           res.status(200).redirect("/");
         } else {
-          res.render("user/login", {
-            oneerror: "kullanıcı adı yada şifre yanlış.",
-          });
+          req.flash("error", { message: "Wrong Username or Password" });
+          res.redirect("/login");
         }
       } catch (err) {
         console.log(err);
       }
     } else {
-      res.render("user/login", {
-        oneerror: "lütfen hesabınızı doğrulayın.",
+      req.flash("error", {
+        message:
+          "Please confirm your account with the link sent to your e-mail address.",
       });
+      res.redirect("/login");
     }
   }
 });
 
-router.post("/register", async (req: Request, res: Response) => {
+router.post("/register", async (req: any, res: Response) => {
   const { error, value } = userSignupValidate.validate(req.body, {
     abortEarly: false,
   });
   if (error) {
     try {
-      res.status(500).render("user/register", {
-        error: error.details,
-      });
+      req.flash("error", error.details);
+      res.redirect("/register");
     } catch (err) {
       console.log(err);
     }
@@ -1542,7 +1541,8 @@ router.post("/register", async (req: Request, res: Response) => {
     });
 
     if (finduser) {
-      res.send("email yada kullanıcı adı kayıtlı");
+      req.flash("error", { message: "Email or Username already Registered." });
+      res.redirect("/register");
     } else {
       const newUser = new User({
         username: username,
@@ -1554,10 +1554,11 @@ router.post("/register", async (req: Request, res: Response) => {
       try {
         await newUser.save();
         await sendMail(email);
-        res.render("user/register", {
-          mailsend:
-            "Lütfen Mail Adresinize Gelen Link ile Hesabınızı Onaylayın.",
+        req.flash("error", {
+          message:
+            "Please confirm your account with the link sent to your e-mail address.",
         });
+        res.redirect("/register");
       } catch (err) {
         console.log(err);
       }

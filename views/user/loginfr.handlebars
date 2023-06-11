@@ -130,22 +130,14 @@
           </div>
           <button type="submit">Connexion</button>
         </form>
-        {{#if error}}
+        {{#if message}}
           <div class="error">
             <div onclick="kapat()" class="errorclose">
               <h1>FERMER</h1>
             </div>
-            {{#each error}}
+            {{#each message}}
               <h4>{{this.message}}</h4>
             {{/each}}
-          </div>
-        {{/if}}
-        {{#if oneerror}}
-          <div class="error">
-            <div onclick="kapat()" class="errorclose">
-              <h1>FERMER</h1>
-            </div>
-            <h4>{{oneerror}}</h4>
           </div>
         {{/if}}
       </section>

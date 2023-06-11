@@ -13,9 +13,20 @@ const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
 import { checkUser } from "./crontasks/UserCheck";
+const flash = require("connect-flash");
+const session = require("express-session");
 
 require("dotenv").config();
 
+app.use(
+  session({
+    cookie: { maxAge: 60000 },
+    secret: "woot",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(flash());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());

@@ -155,22 +155,14 @@
           </div>
           <button type="submit">Kayıt Ol , 4 Gün Ücretsiz Dene!</button>
         </form>
-        {{#if error}}
+        {{#if message}}
           <div class="error">
             <div onclick="kapat()" class="errorclose">
               <h1>KAPAT</h1>
             </div>
-            {{#each error}}
+            {{#each message}}
               <h4>{{this.message}}</h4>
             {{/each}}
-          </div>
-        {{/if}}
-        {{#if mailsend}}
-          <div class="error">
-            <div onclick="kapat()" class="errorclose">
-              <h1>KAPAT</h1>
-            </div>
-            <h4>{{this.mailsend}}</h4>
           </div>
         {{/if}}
       </section>
