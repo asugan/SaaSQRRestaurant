@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 interface User {
   username: string;
   password: string;
+  userLevel: string;
 }
 
 const adminSchema = new Schema<User>({
@@ -12,6 +13,11 @@ const adminSchema = new Schema<User>({
     required: true,
   },
   password: {
+    type: String,
+    required: true,
+  },
+  userLevel: {
+    default: "Admin",
     type: String,
     required: true,
   },
