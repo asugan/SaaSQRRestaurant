@@ -75,11 +75,6 @@ export const menuValidate = Joi.object({
 });
 
 export const categoryValidate = Joi.object({
-  name: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(100)
-    .required(),
   nametr: Joi.string().allow("").max(100),
   namefr: Joi.string().allow("").max(100),
   nameru: Joi.string().allow("").max(100),
@@ -90,21 +85,12 @@ export const categoryValidate = Joi.object({
 });
 
 export const urunValidate = Joi.object({
-  name: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(100)
-    .required(),
   nametr: Joi.string().allow("").max(100),
   namefr: Joi.string().allow("").max(100),
   nameru: Joi.string().allow("").max(100),
   nameen: Joi.string().allow("").max(100),
   menuid: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(30),
   price: Joi.string().min(1).message("Menuid Minimum 3 harf olmalı").max(30),
-  description: Joi.string()
-    .min(3)
-    .message("Kategori Adı Minimum 3 harf olmalı")
-    .max(600),
   descriptiontr: Joi.string().allow("").max(600),
   descriptionfr: Joi.string().allow("").max(600),
   descriptionru: Joi.string().allow("").max(600),

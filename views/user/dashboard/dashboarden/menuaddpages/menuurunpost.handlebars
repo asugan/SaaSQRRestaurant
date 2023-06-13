@@ -29,6 +29,12 @@
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="/css/dashboards/loading.css" />
+
+    <style>
+      #inputs{ display: none; } #clickable{ cursor: pointer; }
+    </style>
+
   </head>
 
   <body id="page-top">
@@ -264,7 +270,7 @@
                     <input
                       class="form-control mt-2 tr"
                       type="text"
-                      name="name"
+                      name="{{nativename}}"
                       placeholder="Item Name"
                       onchange="inputcategory(this.value)"
                     />
@@ -278,7 +284,7 @@
                       class="form-control mt-2"
                       id="exampleFormControlTextarea1"
                       rows="3"
-                      name="description"
+                      name="{{nativedesc}}"
                       placeholder="Item Description"
                       onchange="inputurundescription(this.value)"
                     ></textarea>
@@ -884,7 +890,7 @@
       <div
         align="center"
         style="position: absolute; margin-top: 120px; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: 550; color: black;"
-      >Çeviriler Yapılıyor...
+      >Translating...
       </div>
     </div>
 

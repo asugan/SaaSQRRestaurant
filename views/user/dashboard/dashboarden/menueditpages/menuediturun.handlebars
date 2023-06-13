@@ -29,6 +29,12 @@
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="/css/dashboards/loading.css" />
+
+    <style>
+      #inputs{ display: none; } #clickable{ cursor: pointer; }
+    </style>
+
   </head>
 
   <body id="page-top">
@@ -236,7 +242,7 @@
                       class="form-control mt-2 tr"
                       id="urunadi"
                       type="text"
-                      name="name"
+                      name="nametr"
                       placeholder="Item Name"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Nametr}}"
@@ -253,7 +259,7 @@
                       class="form-control mt-2"
                       id="urundescription"
                       rows="3"
-                      name="description"
+                      name="descriptiontr"
                       placeholder="Ürün Açıklaması"
                       onchange="inputurundescription(this.value)"
                     >{{menu.Descriptiontr}}</textarea>
@@ -374,7 +380,7 @@
                       class="form-control mt-2 tr"
                       id="urunadi"
                       type="text"
-                      name="name"
+                      name="nameen"
                       placeholder="Item Name"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Nameen}}"
@@ -391,7 +397,7 @@
                       class="form-control mt-2"
                       id="urundescription"
                       rows="3"
-                      name="description"
+                      name="descriptionen"
                       placeholder="Ürün Açıklaması"
                       onchange="inputurundescription(this.value)"
                     >{{menu.Descriptionen}}</textarea>
@@ -512,7 +518,7 @@
                       class="form-control mt-2 tr"
                       id="urunadi"
                       type="text"
-                      name="name"
+                      name="namefr"
                       placeholder="Item Name"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Namefr}}"
@@ -529,7 +535,7 @@
                       class="form-control mt-2"
                       id="urundescription"
                       rows="3"
-                      name="description"
+                      name="descriptionfr"
                       placeholder="Ürün Açıklaması"
                       onchange="inputurundescription(this.value)"
                     >{{menu.Descriptionfr}}</textarea>
@@ -650,7 +656,7 @@
                       class="form-control mt-2 tr"
                       id="urunadi"
                       type="text"
-                      name="name"
+                      name="nameru"
                       placeholder="Item Name"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Nameru}}"
@@ -667,7 +673,7 @@
                       class="form-control mt-2"
                       id="urundescription"
                       rows="3"
-                      name="description"
+                      name="descriptionru"
                       placeholder="Ürün Açıklaması"
                       onchange="inputurundescription(this.value)"
                     >{{menu.Descriptionru}}</textarea>
@@ -894,7 +900,7 @@
       <div
         align="center"
         style="position: absolute; margin-top: 120px; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: 550; color: black;"
-      >Çeviriler Yapılıyor...
+      >Translating...
       </div>
     </div>
 

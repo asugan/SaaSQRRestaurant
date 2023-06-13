@@ -29,6 +29,12 @@
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="/css/dashboards/loading.css" />
+
+    <style>
+      #inputs{ display: none; } #clickable{ cursor: pointer; }
+    </style>
+
   </head>
 
   <body id="page-top">
@@ -223,7 +229,7 @@
                       class="form-control tr"
                       type="text"
                       id="urunadi"
-                      name="name"
+                      name="nametr"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Nametr}}"
                     />
@@ -300,7 +306,7 @@
                       class="form-control tr"
                       type="text"
                       id="urunadi"
-                      name="name"
+                      name="nameen"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Nameen}}"
                     />
@@ -331,7 +337,7 @@
                         placeholder="Category Name"
                         class="form-control mt-2"
                         type="text"
-                        name="nameen"
+                        name="nametr"
                         id="tr"
                         value="{{menu.Nametr}}"
                       />
@@ -377,7 +383,7 @@
                       class="form-control tr"
                       type="text"
                       id="urunadi"
-                      name="name"
+                      name="namefr"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Namefr}}"
                     />
@@ -421,7 +427,7 @@
                         placeholder="Category Name"
                         class="form-control mt-2"
                         type="text"
-                        name="namefr"
+                        name="nametr"
                         id="fr"
                         value="{{menu.Nametr}}"
                       />
@@ -454,7 +460,7 @@
                       class="form-control tr"
                       type="text"
                       id="urunadi"
-                      name="name"
+                      name="nameru"
                       onchange="inputcategory(this.value)"
                       value="{{menu.Nameru}}"
                     />
@@ -511,7 +517,7 @@
                         placeholder="Category Name"
                         class="form-control mt-2"
                         type="text"
-                        name="nameru"
+                        name="nametr"
                         id="tr"
                         value="{{menu.Nametr}}"
                       />
@@ -655,7 +661,7 @@
       <div
         align="center"
         style="position: absolute; margin-top: 120px; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: 550; color: black;"
-      >Çeviriler Yapılıyor...
+      >Translating...
       </div>
     </div>
 

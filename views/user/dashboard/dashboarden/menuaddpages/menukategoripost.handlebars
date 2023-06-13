@@ -29,6 +29,12 @@
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="/css/dashboards/loading.css" />
+
+    <style>
+      #inputs{ display: none; } #clickable{ cursor: pointer; }
+    </style>
+
   </head>
 
   <body id="page-top">
@@ -228,7 +234,7 @@
                       placeholder="Category Name"
                       class="form-control"
                       type="text"
-                      name="name"
+                      name={{nativelang}}
                       id="main"
                       onchange="inputcategory(this.value)"
                     />
@@ -592,7 +598,7 @@
       <div
         align="center"
         style="position: absolute; margin-top: 120px; text-align: center; font-size: 18px; font-family: sans-serif; font-weight: 550; color: black;"
-      >Çeviriler Yapılıyor...
+      >Translating...
       </div>
     </div>
 
