@@ -869,25 +869,101 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
   });
   const filePath = "public/images";
   if (filter.length) {
-    await fs.unlinkSync(`${filePath}/${menu.image}`);
-    for (let i = 0; i < menu.Kategoriler.length; i++) {
-      const kategori: any = await Kategori.findById(
-        menu.Kategoriler[i].id
-      ).populate("Urunler");
-      if (kategori.image) {
-        for (let x = 0; x < kategori.Urunler.length; x++) {
-          await fs.unlinkSync(`${filePath}/${kategori.Urunler[x].image}`);
+    const unlink = fs.existsSync(`${filePath}/${menu.image}`);
+
+    if (unlink) {
+      await fs.unlinkSync(`${filePath}/${menu.image}`);
+      for (let i = 0; i < menu.Kategoriler.length; i++) {
+        const kategori: any = await Kategori.findById(
+          menu.Kategoriler[i].id
+        ).populate("Urunler");
+        if (kategori.image) {
+          for (let x = 0; x < kategori.Urunler.length; x++) {
+            if (kategori.Urunler[x].image) {
+              const unlink3 = fs.existsSync(
+                `${filePath}/${kategori.Urunler[x].image}`
+              );
+
+              if (unlink3) {
+                await fs.unlinkSync(`${filePath}/${kategori.Urunler[x].image}`);
+              }
+            }
+          }
+          const unlink2 = fs.existsSync(
+            `${filePath}/${menu.Kategoriler[i].image}`
+          );
+
+          if (unlink2) {
+            await fs.unlinkSync(`${filePath}/${menu.Kategoriler[i].image}`);
+          }
+        } else {
+          for (let x = 0; x < kategori.Urunler.length; x++) {
+            if (kategori.Urunler[x].image) {
+              const unlink3 = fs.existsSync(
+                `${filePath}/${kategori.Urunler[x].image}`
+              );
+
+              if (unlink3) {
+                await fs.unlinkSync(`${filePath}/${kategori.Urunler[x].image}`);
+              }
+            }
+          }
         }
-        await fs.unlinkSync(`${filePath}/${menu.Kategoriler[i].image}`);
       }
-    }
-    const data = await Menu.findByIdAndDelete(id);
-    user.menuLeft += 1;
-    await user.save();
-    try {
-      res.redirect(`/user/dashboard`);
-    } catch (error) {
-      res.status(404).render("error/404");
+      const data = await Menu.findByIdAndDelete(id);
+      user.menuLeft += 1;
+      await user.save();
+      try {
+        res.redirect(`/user/dashboard`);
+      } catch (error) {
+        res.status(404).render("error/404");
+      }
+    } else {
+      for (let i = 0; i < menu.Kategoriler.length; i++) {
+        const kategori: any = await Kategori.findById(
+          menu.Kategoriler[i].id
+        ).populate("Urunler");
+        if (kategori.image) {
+          for (let x = 0; x < kategori.Urunler.length; x++) {
+            if (kategori.Urunler[x].image) {
+              const unlink3 = fs.existsSync(
+                `${filePath}/${kategori.Urunler[x].image}`
+              );
+
+              if (unlink3) {
+                await fs.unlinkSync(`${filePath}/${kategori.Urunler[x].image}`);
+              }
+            }
+          }
+          const unlink2 = fs.existsSync(
+            `${filePath}/${menu.Kategoriler[i].image}`
+          );
+
+          if (unlink2) {
+            await fs.unlinkSync(`${filePath}/${menu.Kategoriler[i].image}`);
+          }
+        } else {
+          for (let x = 0; x < kategori.Urunler.length; x++) {
+            if (kategori.Urunler[x].image) {
+              const unlink3 = fs.existsSync(
+                `${filePath}/${kategori.Urunler[x].image}`
+              );
+
+              if (unlink3) {
+                await fs.unlinkSync(`${filePath}/${kategori.Urunler[x].image}`);
+              }
+            }
+          }
+        }
+      }
+      const data = await Menu.findByIdAndDelete(id);
+      user.menuLeft += 1;
+      await user.save();
+      try {
+        res.redirect(`/user/dashboard`);
+      } catch (error) {
+        res.status(404).render("error/404");
+      }
     }
   } else {
     res.render("error/404");
