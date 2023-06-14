@@ -450,6 +450,15 @@
       </div>
     </section>
 
+    <div class="wrapper">
+      <a class="social" target="_blank" href="https://wa.me/+905426430505"><i
+          class="fa-brands fa-2x fa-whatsapp"
+        ></i></a>
+      <a class="social" href="mailto:cagatayeren1898@gmail.com">
+        <i class="fa fa-2x fa-envelope"></i></a>
+      <a class="close-button"> <i class="fa fa-2x fa-close"></i></a>
+    </div>
+
     <footer>
       <section>
         <div class="container">
@@ -461,6 +470,13 @@
       </section>
     </footer>
 
+    <script>
+      var close_button = document.querySelector(".close-button"); var
+      social_buttons = document.querySelectorAll(".social");
+      close_button.addEventListener("click", () => {
+      social_buttons.forEach(function (buttons) {
+      buttons.classList.toggle("hide"); }); });
+    </script>
     <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
     <script src="/js/hamburger.js"></script>
   </body>
