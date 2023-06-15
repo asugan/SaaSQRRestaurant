@@ -213,323 +213,401 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="row">
-            <div class="col-lg-6">
-              <form
-                action="/user/menu/post1"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <div
-                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+                <form
+                  action="/user/menu/post1"
+                  method="post"
+                  enctype="multipart/form-data"
                 >
-                  <div class="col-md-6 col-12">
-                    <input
-                      id="menuid"
-                      type="hidden"
-                      name="idmenu"
-                      value={{menu.id}}
-                    />
-                    <input
-                      placeholder="Category Name"
-                      class="form-control"
-                      type="text"
-                      name={{nativelang}}
-                      id="main"
-                      onchange="inputcategory(this.value)"
-                    />
-                  </div>
+                  <div
+                    class="label1 d-flex flex-column justify-content-center align-items-start pt-5"
+                  >
+                    <div class="col-md-12 col-12">
+                      <input
+                        id="menuid"
+                        type="hidden"
+                        name="idmenu"
+                        value={{menu.id}}
+                      />
+                      <input
+                        placeholder="Category Name"
+                        class="form-control"
+                        type="text"
+                        name={{nativelang}}
+                        id="main"
+                        onchange="inputcategory(this.value)"
+                      />
+                    </div>
 
-                  <div class="col-md-6 col-12">
-                    <div
-                      class="bg-danger text-white mt-3"
-                      id="clickable"
-                      onclick="opentranslate()"
-                    >
+                    <div class="col-md-12 col-12">
                       <div
-                        class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                        class="bg-danger text-white mt-3"
+                        id="clickable"
+                        onclick="opentranslate()"
                       >
-                        <h5 class="mt-auto mb-auto">Click for translate panel.</h5>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <div
+                          class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                        >
+                          <h5 class="mt-auto mb-auto">Click for translate panel.</h5>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
                       </div>
-                    </div>
-                    {{#ifeq menu.NativeLang "tr"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameen"
-                          id="en"
-                        />
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate English</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="namefr"
-                          id="fr"
-                        />
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate French</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameru"
-                          id="ru"
-                        />
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate Russian</a>
-                      </div>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "en"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nametr"
-                          id="tr"
-                        />
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate Turkish</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="namefr"
-                          id="fr"
-                        />
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate French</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameru"
-                          id="ru"
-                        />
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate Russian</a>
-                      </div>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "fr"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameen"
-                          id="en"
-                        />
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate English</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nametr"
-                          id="tr"
-                        />
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate Turkish</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameru"
-                          id="ru"
-                        />
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate Russian</a>
-                      </div>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "ru"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameen"
-                          id="en"
-                        />
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate English</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="namefr"
-                          id="fr"
-                        />
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate French</a>
-                        <input
-                          placeholder="Category Name"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nametr"
-                          id="tr"
-                        />
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Translate Turkish</a>
-                      </div>
-                    {{/ifeq}}
-                  </div>
-                </div>
-                <div
-                  class="col-12 d-flex flex-column justify-content-center align-items-center"
-                >
-                  <div class="col-md-6 mt-3">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span
-                          class="input-group-text"
-                          id="inputGroupFileAddon01"
-                        >Category Image</span>
-                      </div>
-                      <div class="custom-file">
-                        <input
-                          type="file"
-                          name="image"
-                          class="custom-file-input"
-                          id="inputGroupFile01"
-                          aria-describedby="inputGroupFileAddon01"
-                          onchange="showPreview(event);"
-                        />
-                        <label
-                          class="custom-file-label"
-                          for="inputGroupFile01"
-                        >Category Image</label>
-                      </div>
+                      {{#ifeq menu.NativeLang "tr"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameen"
+                            id="en"
+                          />
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate English</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="namefr"
+                            id="fr"
+                          />
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate French</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameru"
+                            id="ru"
+                          />
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate Russian</a>
+                        </div>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "en"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nametr"
+                            id="tr"
+                          />
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate Turkish</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="namefr"
+                            id="fr"
+                          />
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate French</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameru"
+                            id="ru"
+                          />
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate Russian</a>
+                        </div>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "fr"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameen"
+                            id="en"
+                          />
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate English</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nametr"
+                            id="tr"
+                          />
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate Turkish</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameru"
+                            id="ru"
+                          />
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate Russian</a>
+                        </div>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "ru"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameen"
+                            id="en"
+                          />
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate English</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="namefr"
+                            id="fr"
+                          />
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate French</a>
+                          <input
+                            placeholder="Category Name"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nametr"
+                            id="tr"
+                          />
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Translate Turkish</a>
+                        </div>
+                      {{/ifeq}}
                     </div>
                   </div>
-                  <div class="preview mt-3">
-                    <img style="width: 200px;" id="file-ip-1-preview" />
+                  <div
+                    class="col-12 d-flex flex-column justify-content-center align-items-center"
+                  >
+                    <div class="col-md-12 mt-3">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="inputGroupFileAddon01"
+                          >Category Image</span>
+                        </div>
+                        <div class="custom-file">
+                          <input
+                            type="file"
+                            name="image"
+                            class="custom-file-input"
+                            id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01"
+                            onchange="showPreview(event);"
+                          />
+                          <label
+                            class="custom-file-label"
+                            for="inputGroupFile01"
+                          >Category Image</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="preview mt-3">
+                      <img style="width: 200px;" id="file-ip-1-preview" />
+                    </div>
                   </div>
+                  <div
+                    class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
+                    <button class="btn btn-sm btn-danger mr-4" type="submit">Add
+                      Category</button>
+                    <a
+                      class="btn btn-sm btn-danger"
+                      href="/user/{{menu.Slug}}/urunekle"
+                    >Add Item</a>
+                  </div>
+
+                </form>
+              </div>
+              <div class="col-lg-6 pt-5">
+                <div class="row">
+                  {{#ifeq menu.NativeLang "tr"}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Category Name</th>
+                          <th scope="col">Edit/Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each menu.Kategoriler}}
+                          <tr>
+                            <th class="mt-auto mb-auto">{{this.Nametr}}</th>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/kategoriedit"
+                                >Edit</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/kategorisil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Delete</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/ifeq}}
+                  {{#ifeq menu.NativeLang "fr"}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Category Name</th>
+                          <th scope="col">Edit/Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each menu.Kategoriler}}
+                          <tr>
+                            <th class="mt-auto mb-auto">{{this.Namefr}}</th>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/kategoriedit"
+                                >Edit</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/kategorisil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Delete</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/ifeq}}
+                  {{#ifeq menu.NativeLang "en"}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Category Name</th>
+                          <th scope="col">Edit/Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each menu.Kategoriler}}
+                          <tr>
+                            <th class="mt-auto mb-auto">{{this.Nameen}}</th>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/kategoriedit"
+                                >Edit</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/kategorisil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Delete</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/ifeq}}
+                  {{#ifeq menu.NativeLang "ru"}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Category Name</th>
+                          <th scope="col">Edit/Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each menu.Kategoriler}}
+                          <tr>
+                            <th class="mt-auto mb-auto">{{this.Nameru}}</th>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/kategoriedit"
+                                >Edit</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/kategorisil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Delete</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/ifeq}}
                 </div>
-                <div
-                  class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
-                >
-                  <button class="btn btn-sm btn-danger mr-4" type="submit">Add
-                    Category</button>
-                  <a
-                    class="btn btn-sm btn-danger"
-                    href="/user/{{menu.Slug}}/urunekle"
-                  >Add Item</a>
-                </div>
-
-              </form>
-            </div>
-            <div
-              class="col-lg-6 d-flex flex-column justify-content-start align-items-center align-items-lg-start"
-            >
-              {{#ifeq menu.NativeLang "tr"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
-                  >
-                    {{#if this.image}}
-                      <img
-                        class="mr-5"
-                        style="width: 200px; height:120px;"
-                        src="/images/{{this.image}}"
-                      />
-                    {{/if}}
-
-                    <h3 class="text-dark">{{this.Nametr}}</h3>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
-              {{#ifeq menu.NativeLang "fr"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
-                  >
-                    {{#if this.image}}
-                      <img
-                        class="mr-5"
-                        style="width: 200px; height:120px;"
-                        src="/images/{{this.image}}"
-                      />
-                    {{/if}}
-
-                    <h3 class="text-dark">{{this.Namefr}}</h3>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
-              {{#ifeq menu.NativeLang "en"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
-                  >
-                    {{#if this.image}}
-                      <img
-                        class="mr-5"
-                        style="width: 200px; height:120px;"
-                        src="/images/{{this.image}}"
-                      />
-                    {{/if}}
-
-                    <h3 class="text-dark">{{this.Nameen}}</h3>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
-              {{#ifeq menu.NativeLang "ru"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-row justify-content-center align-items-center mt-3"
-                  >
-                    {{#if this.image}}
-                      <img
-                        class="mr-5"
-                        style="width: 200px; height:120px;"
-                        src="/images/{{this.image}}"
-                      />
-                    {{/if}}
-
-                    <h3 class="text-dark">{{this.Nameru}}</h3>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
+              </div>
             </div>
           </div>
           <!-- /.container-fluid -->

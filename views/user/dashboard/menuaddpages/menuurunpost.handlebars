@@ -30,7 +30,9 @@
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/dashboards/loading.css" />
     <style>
-      #inputs{ display: none; } #clickable{ cursor: pointer; }
+      #inputs{ display: none; } #clickable{ cursor: pointer; } .bgcategory {
+      background-position: center; background-repeat: no-repeat;
+      background-size: cover; }
     </style>
 
   </head>
@@ -215,616 +217,808 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-
-          <div class="row">
-            <div class="col-lg-6">
-              <form
-                action="/user/menu/post2"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <div
-                  class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6">
+                <form
+                  action="/user/menu/post2"
+                  method="post"
+                  enctype="multipart/form-data"
                 >
-                  <input
-                    id="menuid"
-                    type="hidden"
-                    name="menuid"
-                    value="{{menu.id}}"
-                  />
-                  <input
-                    type="hidden"
-                    name="currency"
-                    value="{{menu.Currency}}"
-                  />
-                  <label for="kategori">Kategori Seçin</label>
-                  <div class="col-sm-6">
-                    {{#ifeq menu.NativeLang "tr"}}
-                      <select class="form-control form-select" name="kategori">
-                        {{#each menu.Kategoriler}}
-                          <option value="{{this._id}}">{{this.Nametr}}</option>
-                        {{/each}}
-                      </select>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "en"}}
-                      <select class="form-control form-select" name="kategori">
-                        {{#each menu.Kategoriler}}
-                          <option value="{{this._id}}">{{this.Nameen}}</option>
-                        {{/each}}
-                      </select>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "ru"}}
-                      <select class="form-control form-select" name="kategori">
-                        {{#each menu.Kategoriler}}
-                          <option value="{{this._id}}">{{this.Nameru}}</option>
-                        {{/each}}
-                      </select>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "fr"}}
-                      <select class="form-control form-select" name="kategori">
-                        {{#each menu.Kategoriler}}
-                          <option value="{{this._id}}">{{this.Namefr}}</option>
-                        {{/each}}
-                      </select>
-                    {{/ifeq}}
-                  </div>
-                  <div class="col-sm-6">
+                  <div
+                    class="label1 d-flex flex-column justify-content-center align-items-center pt-5"
+                  >
                     <input
-                      class="form-control mt-2 tr"
-                      type="text"
-                      name={{nativename}}
-                      placeholder="Ürün Adı"
-                      onchange="inputcategory(this.value)"
+                      id="menuid"
+                      type="hidden"
+                      name="menuid"
+                      value="{{menu.id}}"
                     />
                     <input
-                      class="form-control mt-2"
-                      type="text"
-                      name="price"
-                      placeholder="Ürün Fiyatı"
+                      type="hidden"
+                      name="currency"
+                      value="{{menu.Currency}}"
                     />
-                    <textarea
-                      class="form-control mt-2"
-                      id="exampleFormControlTextarea1"
-                      rows="3"
-                      name={{nativedesc}}
-                      placeholder="Ürün Açıklaması Girin"
-                      onchange="inputurundescription(this.value)"
-                    ></textarea>
-                  </div>
+                    <label for="kategori">Kategori Seçin</label>
+                    <div class="col-sm-12">
+                      {{#ifeq menu.NativeLang "tr"}}
+                        <select
+                          class="form-control form-select"
+                          name="kategori"
+                        >
+                          {{#each menu.Kategoriler}}
+                            <option
+                              value="{{this._id}}"
+                            >{{this.Nametr}}</option>
+                          {{/each}}
+                        </select>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "en"}}
+                        <select
+                          class="form-control form-select"
+                          name="kategori"
+                        >
+                          {{#each menu.Kategoriler}}
+                            <option
+                              value="{{this._id}}"
+                            >{{this.Nameen}}</option>
+                          {{/each}}
+                        </select>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "ru"}}
+                        <select
+                          class="form-control form-select"
+                          name="kategori"
+                        >
+                          {{#each menu.Kategoriler}}
+                            <option
+                              value="{{this._id}}"
+                            >{{this.Nameru}}</option>
+                          {{/each}}
+                        </select>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "fr"}}
+                        <select
+                          class="form-control form-select"
+                          name="kategori"
+                        >
+                          {{#each menu.Kategoriler}}
+                            <option
+                              value="{{this._id}}"
+                            >{{this.Namefr}}</option>
+                          {{/each}}
+                        </select>
+                      {{/ifeq}}
+                    </div>
+                    <div class="col-sm-12">
+                      <input
+                        class="form-control mt-2 tr"
+                        type="text"
+                        name={{nativename}}
+                        placeholder="Ürün Adı"
+                        onchange="inputcategory(this.value)"
+                      />
+                      <input
+                        class="form-control mt-2"
+                        type="text"
+                        name="price"
+                        placeholder="Ürün Fiyatı"
+                      />
+                      <textarea
+                        class="form-control mt-2"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        name={{nativedesc}}
+                        placeholder="Ürün Açıklaması Girin"
+                        onchange="inputurundescription(this.value)"
+                      ></textarea>
+                    </div>
 
-                  <div class="col-md-6 col-12">
-                    <div
-                      class="bg-danger text-white mt-3"
-                      id="clickable"
-                      onclick="opentranslate()"
-                    >
+                    <div class="col-md-12 col-12">
                       <div
-                        class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                        class="bg-danger text-white mt-3"
+                        id="clickable"
+                        onclick="opentranslate()"
                       >
-                        <h5 class="mt-auto mb-auto">Çeviri Paneli İçin Tıklayın.</h5>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <div
+                          class="pr-5 pl-5 pt-2 pb-2 d-flex justify-content-between align-items-center"
+                        >
+                          <h5 class="mt-auto mb-auto">Çeviri Paneli İçin
+                            Tıklayın.</h5>
+                          <i class="fa-solid fa-chevron-down"></i>
+                        </div>
                       </div>
-                    </div>
-                    {{#ifeq menu.NativeLang "tr"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameen"
-                          id="en"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descen"
-                          rows="3"
-                          name="descriptionen"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün İngilizce Çevir</a>
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama İngilizce Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="namefr"
-                          id="fr"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descfr"
-                          rows="3"
-                          name="descriptionfr"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Fransızca Çevir</a>
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Fransızca Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameru"
-                          id="ru"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descru"
-                          rows="3"
-                          name="descriptionru"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Rusça Çevir</a>
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Rusça Çevir</a>
-                      </div>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "en"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nametr"
-                          id="tr"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="desctr"
-                          rows="3"
-                          name="descriptiontr"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Türkçe Çevir</a>
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Türkçe Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="namefr"
-                          id="fr"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descfr"
-                          rows="3"
-                          name="descriptionfr"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Fransızca Çevir</a>
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Fransızca Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameru"
-                          id="ru"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descru"
-                          rows="3"
-                          name="descriptionru"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Rusça Çevir</a>
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Rusça Çevir</a>
-                      </div>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "fr"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nametr"
-                          id="tr"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="desctr"
-                          rows="3"
-                          name="descriptiontr"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Türkçe Çevir</a>
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Türkçe Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameen"
-                          id="en"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descen"
-                          rows="3"
-                          name="descriptionen"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün İngilizce Çevir</a>
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama İngilizce Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameru"
-                          id="ru"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descru"
-                          rows="3"
-                          name="descriptionru"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Rusça Çevir</a>
-                        <a
-                          class="ru btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Rusça Çevir</a>
-                      </div>
-                    {{/ifeq}}
-                    {{#ifeq menu.NativeLang "ru"}}
-                      <div id="inputs">
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nametr"
-                          id="tr"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="desctr"
-                          rows="3"
-                          name="descriptiontr"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Türkçe Çevir</a>
-                        <a
-                          class="tr btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Türkçe Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="namefr"
-                          id="fr"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descfr"
-                          rows="3"
-                          name="descriptionfr"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün Fransızca Çevir</a>
-                        <a
-                          class="fr btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama Fransızca Çevir</a>
-                        <input
-                          placeholder="Ürün Adı"
-                          class="form-control mt-2"
-                          type="text"
-                          name="nameen"
-                          id="en"
-                        />
-                        <textarea
-                          class="form-control mt-2"
-                          id="descen"
-                          rows="3"
-                          name="descriptionen"
-                          placeholder="Ürün Açıklaması Girin"
-                        ></textarea>
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submit(this)"
-                        >
-                          Ürün İngilizce Çevir</a>
-                        <a
-                          class="en btn bt-sm btn-danger mt-2"
-                          onclick="submitdesc(this)"
-                        >
-                          Açıklama İngilizce Çevir</a>
-                      </div>
-                    {{/ifeq}}
-                  </div>
-                </div>
-                <div
-                  class="col-12 d-flex flex-column justify-content-center align-items-center"
-                >
-                  <div class="col-md-6 mt-3">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span
-                          class="input-group-text"
-                          id="inputGroupFileAddon01"
-                        >Ürün Resmi</span>
-                      </div>
-                      <div class="custom-file">
-                        <input
-                          type="file"
-                          name="image"
-                          class="custom-file-input"
-                          id="inputGroupFile01"
-                          aria-describedby="inputGroupFileAddon01"
-                          onchange="showPreview(event);"
-                        />
-                        <label
-                          class="custom-file-label"
-                          for="inputGroupFile01"
-                        >Ürün Resmi</label>
-                      </div>
+                      {{#ifeq menu.NativeLang "tr"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameen"
+                            id="en"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descen"
+                            rows="3"
+                            name="descriptionen"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün İngilizce Çevir</a>
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama İngilizce Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="namefr"
+                            id="fr"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descfr"
+                            rows="3"
+                            name="descriptionfr"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Fransızca Çevir</a>
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Fransızca Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameru"
+                            id="ru"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descru"
+                            rows="3"
+                            name="descriptionru"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Rusça Çevir</a>
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Rusça Çevir</a>
+                        </div>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "en"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nametr"
+                            id="tr"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="desctr"
+                            rows="3"
+                            name="descriptiontr"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Türkçe Çevir</a>
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Türkçe Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="namefr"
+                            id="fr"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descfr"
+                            rows="3"
+                            name="descriptionfr"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Fransızca Çevir</a>
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Fransızca Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameru"
+                            id="ru"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descru"
+                            rows="3"
+                            name="descriptionru"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Rusça Çevir</a>
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Rusça Çevir</a>
+                        </div>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "fr"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nametr"
+                            id="tr"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="desctr"
+                            rows="3"
+                            name="descriptiontr"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Türkçe Çevir</a>
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Türkçe Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameen"
+                            id="en"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descen"
+                            rows="3"
+                            name="descriptionen"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün İngilizce Çevir</a>
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama İngilizce Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameru"
+                            id="ru"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descru"
+                            rows="3"
+                            name="descriptionru"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Rusça Çevir</a>
+                          <a
+                            class="ru btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Rusça Çevir</a>
+                        </div>
+                      {{/ifeq}}
+                      {{#ifeq menu.NativeLang "ru"}}
+                        <div id="inputs">
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nametr"
+                            id="tr"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="desctr"
+                            rows="3"
+                            name="descriptiontr"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Türkçe Çevir</a>
+                          <a
+                            class="tr btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Türkçe Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="namefr"
+                            id="fr"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descfr"
+                            rows="3"
+                            name="descriptionfr"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün Fransızca Çevir</a>
+                          <a
+                            class="fr btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama Fransızca Çevir</a>
+                          <input
+                            placeholder="Ürün Adı"
+                            class="form-control mt-2"
+                            type="text"
+                            name="nameen"
+                            id="en"
+                          />
+                          <textarea
+                            class="form-control mt-2"
+                            id="descen"
+                            rows="3"
+                            name="descriptionen"
+                            placeholder="Ürün Açıklaması Girin"
+                          ></textarea>
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submit(this)"
+                          >
+                            Ürün İngilizce Çevir</a>
+                          <a
+                            class="en btn bt-sm btn-danger mt-2"
+                            onclick="submitdesc(this)"
+                          >
+                            Açıklama İngilizce Çevir</a>
+                        </div>
+                      {{/ifeq}}
                     </div>
                   </div>
-                  <div class="preview mt-3">
-                    <img style="width: 200px;" id="file-ip-1-preview" />
+                  <div
+                    class="col-12 d-flex flex-column justify-content-center align-items-center"
+                  >
+                    <div class="col-md-12 mt-3">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            id="inputGroupFileAddon01"
+                          >Ürün Resmi</span>
+                        </div>
+                        <div class="custom-file">
+                          <input
+                            type="file"
+                            name="image"
+                            class="custom-file-input"
+                            id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01"
+                            onchange="showPreview(event);"
+                          />
+                          <label
+                            class="custom-file-label"
+                            for="inputGroupFile01"
+                          >Ürün Resmi</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="preview mt-3">
+                      <img style="width: 200px;" id="file-ip-1-preview" />
+                    </div>
                   </div>
-                </div>
-                <div
-                  class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
-                >
-                  <button
-                    class="btn btn-sm btn-danger mr-4"
-                    onclick="loadingscreen()"
-                    type="submit"
-                  >Ürün Ekle</button>
-                  <a
-                    class="btn btn-sm btn-danger"
-                    href="https://{{menu.Slug}}.qrmenux.com"
-                    target="_blank"
-                  >Menümü Yayınla</a>
-                </div>
+                  <div
+                    class="label1 d-flex flex-row justify-content-center align-items-center mt-3"
+                  >
+                    <button
+                      class="btn btn-sm btn-danger mr-4"
+                      onclick="loadingscreen()"
+                      type="submit"
+                    >Ürün Ekle</button>
+                    <a
+                      class="btn btn-sm btn-danger"
+                      href="https://{{menu.Slug}}.qrmenux.com"
+                      target="_blank"
+                    >Menümü Yayınla</a>
+                  </div>
 
-              </form>
+                </form>
+              </div>
+
+              <div class="col-lg-6 pt-5">
+                {{#ifeq menu.NativeLang "tr"}}
+                  {{#each menu.Kategoriler}}
+                    {{#if this.image}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('/images/{{this.image}}');"
+                      >
+                        <h3 class="text-white text-center">{{this.Nametr}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{else}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-color: #4e73df;"
+                      >
+                        <h3 class="text-white text-center">{{this.Nametr}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{/if}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Fiyat</th>
+                          <th scope="col">Ürün Adı</th>
+                          <th scope="col">Düzenle/Sil</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each this.Urunler}}
+                          <tr>
+                            <th scope="row">{{this.Price}}
+                              {{this.Currency}}</th>
+                            <td class="w-50">
+                              {{this.Nametr}}</td>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/urunedit"
+                                >Düzenle</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/urunsil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Sil</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/each}}
+                {{/ifeq}}
+                {{#ifeq menu.NativeLang "en"}}
+                  {{#each menu.Kategoriler}}
+                    {{#if this.image}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('/images/{{this.image}}');"
+                      >
+                        <h3 class="text-white text-center">{{this.Nametr}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{else}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-color: #4e73df;"
+                      >
+                        <h3 class="text-white text-center">{{this.Nameen}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{/if}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Fiyat</th>
+                          <th scope="col">Ürün Adı</th>
+                          <th scope="col">Düzenle/Sil</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each this.Urunler}}
+                          <tr>
+                            <th scope="row">{{this.Price}}
+                              {{this.Currency}}</th>
+                            <td class="w-50">
+                              {{this.Nameen}}</td>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/urunedit"
+                                >Düzenle</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/urunsil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Sil</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/each}}
+                {{/ifeq}}
+                {{#ifeq menu.NativeLang "fr"}}
+                  {{#each menu.Kategoriler}}
+                    {{#if this.image}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('/images/{{this.image}}');"
+                      >
+                        <h3 class="text-white text-center">{{this.Nametr}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{else}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-color: #4e73df;"
+                      >
+                        <h3 class="text-white text-center">{{this.Namefr}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{/if}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Fiyat</th>
+                          <th scope="col">Ürün Adı</th>
+                          <th scope="col">Düzenle/Sil</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each this.Urunler}}
+                          <tr>
+                            <th scope="row">{{this.Price}}
+                              {{this.Currency}}</th>
+                            <td class="w-50">
+                              {{this.Namefr}}</td>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/urunedit"
+                                >Düzenle</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/urunsil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Sil</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/each}}
+                {{/ifeq}}
+                {{#ifeq menu.NativeLang "ru"}}
+                  {{#each menu.Kategoriler}}
+                    {{#if this.image}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('/images/{{this.image}}');"
+                      >
+                        <h3 class="text-white text-center">{{this.Nametr}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{else}}
+                      <div
+                        class="bgcategory d-flex w-100 mt-3 pt-5 pb-5 justify-content-center align-items-center"
+                        style="background-color: #4e73df;"
+                      >
+                        <h3 class="text-white text-center">{{this.Nameru}}</h3>
+                        <a
+                          class="btn btn-sm btn-danger ml-5"
+                          href="/user/{{this._id}}/kategoriedit"
+                        >Kategori Düzenle</a>
+                        <form
+                          method="post"
+                          action="/user/{{this._id}}/kategorisil"
+                        >
+                          <button
+                            class="ml-2 btn btn-sm btn-danger"
+                            type="submit"
+                          >Kategoriyi Sil</button>
+                        </form>
+                      </div>
+                    {{/if}}
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col">Fiyat</th>
+                          <th scope="col">Ürün Adı</th>
+                          <th scope="col">Düzenle/Sil</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each this.Urunler}}
+                          <tr>
+                            <th scope="row">{{this.Price}}
+                              {{this.Currency}}</th>
+                            <td class="w-50">
+                              {{this.Nameru}}</td>
+                            <td>
+                              <div
+                                class="d-flex justify-content-center align-items-center w-25"
+                              >
+                                <a
+                                  class="btn btn-sm btn-danger ml-5"
+                                  href="/user/{{this._id}}/urunedit"
+                                >Düzenle</a>
+                                <form
+                                  method="post"
+                                  action="/user/{{this._id}}/urunsil"
+                                >
+                                  <button
+                                    class="ml-2 btn btn-sm btn-danger"
+                                    type="submit"
+                                  >Sil</button>
+                                </form>
+                              </div>
+                            </td>
+                          </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  {{/each}}
+                {{/ifeq}}
+              </div>
+
             </div>
-
-            <div
-              class="col-lg-6 d-flex flex-column justify-content-start align-items-center align-items-lg-start"
-            >
-              {{#ifeq menu.NativeLang "tr"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
-                  >
-                    <div
-                      class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
-                    >
-                      {{#if this.image}}
-                        <img
-                          class="mr-5"
-                          style="width: 200px; height:120px;"
-                          src="/images/{{this.image}}"
-                        />
-                      {{/if}}
-                      <h3 class="text-dark">{{this.Nametr}}</h3>
-                    </div>
-                    <div
-                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
-                    >
-                      {{#each this.Urunler}}
-                        <div
-                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
-                        >
-                          {{#if this.image}}
-                            <img
-                              class="mr-5"
-                              style="width: 100px; height:60px;"
-                              src="/images/{{this.image}}"
-                            />
-                          {{/if}}
-                          <h5 class="text-dark mr-5">{{this.Nametr}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                        </div>
-                      {{/each}}
-                    </div>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
-              {{#ifeq menu.NativeLang "en"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
-                  >
-                    <div
-                      class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
-                    >
-                      {{#if this.image}}
-                        <img
-                          class="mr-5"
-                          style="width: 200px; height:120px;"
-                          src="/images/{{this.image}}"
-                        />
-                      {{/if}}
-                      <h3 class="text-dark">{{this.Nameen}}</h3>
-                    </div>
-                    <div
-                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
-                    >
-                      {{#each this.Urunler}}
-                        <div
-                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
-                        >
-                          {{#if this.image}}
-                            <img
-                              class="mr-5"
-                              style="width: 100px; height:60px;"
-                              src="/images/{{this.image}}"
-                            />
-                          {{/if}}
-                          <h5 class="text-dark mr-5">{{this.Nameen}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                        </div>
-                      {{/each}}
-                    </div>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
-              {{#ifeq menu.NativeLang "fr"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
-                  >
-                    <div
-                      class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
-                    >
-                      {{#if this.image}}
-                        <img
-                          class="mr-5"
-                          style="width: 200px; height:120px;"
-                          src="/images/{{this.image}}"
-                        />
-                      {{/if}}
-                      <h3 class="text-dark">{{this.Namefr}}</h3>
-                    </div>
-                    <div
-                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
-                    >
-                      {{#each this.Urunler}}
-                        <div
-                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
-                        >
-                          {{#if this.image}}
-                            <img
-                              class="mr-5"
-                              style="width: 100px; height:60px;"
-                              src="/images/{{this.image}}"
-                            />
-                          {{/if}}
-                          <h5 class="text-dark mr-5">{{this.Namefr}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                        </div>
-                      {{/each}}
-                    </div>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
-              {{#ifeq menu.NativeLang "ru"}}
-                {{#each menu.Kategoriler}}
-                  <div
-                    class="inline d-flex flex-column justify-content-center align-items-start mt-3"
-                  >
-                    <div
-                      class="firstdiv seconddiv d-flex flex-row justify-content-center align-items-center mt-3"
-                    >
-                      {{#if this.image}}
-                        <img
-                          class="mr-5"
-                          style="width: 200px; height:120px;"
-                          src="/images/{{this.image}}"
-                        />
-                      {{/if}}
-                      <h3 class="text-dark">{{this.Nameru}}</h3>
-                    </div>
-                    <div
-                      class="seconddiv d-flex flex-column justify-content-center align-items-start mt-3"
-                    >
-                      {{#each this.Urunler}}
-                        <div
-                          class="urun d-flex flex-row justify-content-center align-items-center mt-1 mb-1"
-                        >
-                          {{#if this.image}}
-                            <img
-                              class="mr-5"
-                              style="width: 100px; height:60px;"
-                              src="/images/{{this.image}}"
-                            />
-                          {{/if}}
-                          <h5 class="text-dark mr-5">{{this.Nameru}}</h5>
-                          <h5 class="text-dark">{{this.Price}}
-                            {{this.Currency}}</h5>
-                        </div>
-                      {{/each}}
-                    </div>
-                  </div>
-                {{/each}}
-              {{/ifeq}}
-            </div>
-
           </div>
           <!-- /.container-fluid -->
 

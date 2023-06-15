@@ -723,32 +723,62 @@ router.post(
 
       if (filter.length) {
         if (req.file) {
-          await fs.unlinkSync(`${filePath}/${menu.image}`);
-          const splitname = req.file.filename.split(".")[0];
-          const image = stringToSlug(splitname + " " + date) + ".webp";
+          const control = fs.existsSync(`${filePath}/${menu.image}`);
 
-          await fs.rename(
-            `${filePath}/${req.file.filename}`,
-            `${filePath}/${image}`,
-            () => {
-              console.log("success");
-            }
-          );
+          if (control) {
+            await fs.unlinkSync(`${filePath}/${menu.image}`);
+            const splitname = req.file.filename.split(".")[0];
+            const image = stringToSlug(splitname + " " + date) + ".webp";
 
-          const updatedData = {
-            Nametr: nametr,
-            Namefr: namefr,
-            Nameen: nameen,
-            Nameru: nameru,
-            image: image,
-          };
-          const options = { new: true };
-          const result = await Kategori.findByIdAndUpdate(
-            id,
-            updatedData,
-            options
-          );
-          res.redirect(`/user/${Slug}/edit2`);
+            await fs.rename(
+              `${filePath}/${req.file.filename}`,
+              `${filePath}/${image}`,
+              () => {
+                console.log("success");
+              }
+            );
+
+            const updatedData = {
+              Nametr: nametr,
+              Namefr: namefr,
+              Nameen: nameen,
+              Nameru: nameru,
+              image: image,
+            };
+            const options = { new: true };
+            const result = await Kategori.findByIdAndUpdate(
+              id,
+              updatedData,
+              options
+            );
+            res.redirect(`/user/${Slug}/edit2`);
+          } else {
+            const splitname = req.file.filename.split(".")[0];
+            const image = stringToSlug(splitname + " " + date) + ".webp";
+
+            await fs.rename(
+              `${filePath}/${req.file.filename}`,
+              `${filePath}/${image}`,
+              () => {
+                console.log("success");
+              }
+            );
+
+            const updatedData = {
+              Nametr: nametr,
+              Namefr: namefr,
+              Nameen: nameen,
+              Nameru: nameru,
+              image: image,
+            };
+            const options = { new: true };
+            const result = await Kategori.findByIdAndUpdate(
+              id,
+              updatedData,
+              options
+            );
+            res.redirect(`/user/${Slug}/edit2`);
+          }
         } else {
           const updatedData = {
             Nametr: nametr,
@@ -811,33 +841,64 @@ router.post(
 
       if (filter.length) {
         if (req.file) {
-          await fs.unlinkSync(`${filePath}/${menu.image}`);
-          const splitname = req.file.filename.split(".")[0];
-          const image = stringToSlug(splitname + " " + date) + ".webp";
+          const control = fs.existsSync(`${filePath}/${menu.image}`);
 
-          await fs.rename(
-            `${filePath}/${req.file.filename}`,
-            `${filePath}/${image}`,
-            () => {
-              console.log("success");
-            }
-          );
+          if (control) {
+            await fs.unlinkSync(`${filePath}/${menu.image}`);
+            const splitname = req.file.filename.split(".")[0];
+            const image = stringToSlug(splitname + " " + date) + ".webp";
 
-          const updatedData = {
-            Nametr: nametr,
-            Nameen: nameen,
-            namefr: namefr,
-            Nameru: nameru,
-            image: image,
-            Price: price,
-            Descriptiontr: descriptiontr,
-            Descriptionen: descriptionen,
-            Descriptionfr: descriptionfr,
-            Descriptionru: descriptionru,
-          };
-          const options = { new: true };
-          await Urun.findByIdAndUpdate(id, updatedData, options);
-          res.redirect(`/user/${mymenu.Slug}/edit2`);
+            await fs.rename(
+              `${filePath}/${req.file.filename}`,
+              `${filePath}/${image}`,
+              () => {
+                console.log("success");
+              }
+            );
+
+            const updatedData = {
+              Nametr: nametr,
+              Nameen: nameen,
+              namefr: namefr,
+              Nameru: nameru,
+              image: image,
+              Price: price,
+              Descriptiontr: descriptiontr,
+              Descriptionen: descriptionen,
+              Descriptionfr: descriptionfr,
+              Descriptionru: descriptionru,
+            };
+            const options = { new: true };
+            await Urun.findByIdAndUpdate(id, updatedData, options);
+            res.redirect(`/user/${mymenu.Slug}/edit2`);
+          } else {
+            const splitname = req.file.filename.split(".")[0];
+            const image = stringToSlug(splitname + " " + date) + ".webp";
+
+            await fs.rename(
+              `${filePath}/${req.file.filename}`,
+              `${filePath}/${image}`,
+              () => {
+                console.log("success");
+              }
+            );
+
+            const updatedData = {
+              Nametr: nametr,
+              Nameen: nameen,
+              namefr: namefr,
+              Nameru: nameru,
+              Price: price,
+              image: image,
+              Descriptiontr: descriptiontr,
+              Descriptionen: descriptionen,
+              Descriptionfr: descriptionfr,
+              Descriptionru: descriptionru,
+            };
+            const options = { new: true };
+            await Urun.findByIdAndUpdate(id, updatedData, options);
+            res.redirect(`/user/${mymenu.Slug}/edit2`);
+          }
         } else {
           const updatedData = {
             Nametr: nametr,
