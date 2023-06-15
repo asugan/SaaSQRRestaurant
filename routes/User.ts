@@ -971,6 +971,7 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
           }
         }
       }
+      user.userMenu.remove(id);
       const data = await Menu.findByIdAndDelete(id);
       user.menuLeft += 1;
       await user.save();
@@ -1017,6 +1018,7 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
           }
         }
       }
+      user.userMenu.remove(id);
       const data = await Menu.findByIdAndDelete(id);
       user.menuLeft += 1;
       await user.save();
@@ -1034,7 +1036,9 @@ router.post("/:id/menusil", marabacheck, async (req: any, res: any) => {
 router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
   const id = req.params.id;
   const category = await Kategori.findById(id);
-  const mymenu = await Menu.findById(category.Menu._id);
+  const mymenu: any = await Menu.findById(category.Menu._id).populate(
+    "Kategoriler"
+  );
   const userid: any = req.token.id;
   const user = await User.findById(userid).populate("userMenu");
   const filter = user.userMenu.filter((item: any) => {
@@ -1047,6 +1051,8 @@ router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
 
       if (control) {
         await fs.unlinkSync(`${filePath}/${category.image}`);
+        mymenu.Kategoriler.remove(id);
+        await mymenu.save();
         const data = await Kategori.findByIdAndDelete(id);
         try {
           res.redirect(`/user/${mymenu.Slug}/edit2`);
@@ -1054,6 +1060,8 @@ router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
           res.render("error/401");
         }
       } else {
+        mymenu.Kategoriler.remove(id);
+        await mymenu.save();
         const data = await Kategori.findByIdAndDelete(id);
         try {
           res.redirect(`/user/${mymenu.Slug}/edit2`);
@@ -1062,6 +1070,8 @@ router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
         }
       }
     } else {
+      mymenu.Kategoriler.remove(id);
+      await mymenu.save();
       const data = await Kategori.findByIdAndDelete(id);
       try {
         res.redirect(`/user/${mymenu.Slug}/edit2`);
@@ -1077,7 +1087,9 @@ router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
 router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   const id = req.params.id;
   const menu = await Urun.findById(id);
-  const mycategory = await Kategori.findById(menu.Kategori._id);
+  const mycategory: any = await Kategori.findById(menu.Kategori._id).populate(
+    "Urunler"
+  );
   const mymenu = await Menu.findById(mycategory.Menu._id);
   const userid: any = req.token.id;
   const user = await User.findById(userid).populate("userMenu");
@@ -1092,6 +1104,8 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
       if (control) {
         try {
           await fs.unlinkSync(`${filePath}/${menu.image}`);
+          mycategory.Urunler.remove(id);
+          await mycategory.save();
           const data = await Urun.findByIdAndDelete(id);
           res.redirect(`/user/${mymenu.Slug}/edit2`);
         } catch (error) {
@@ -1099,6 +1113,8 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
         }
       } else {
         try {
+          mycategory.Urunler.remove(id);
+          await mycategory.save();
           const data = await Urun.findByIdAndDelete(id);
           res.redirect(`/user/${mymenu.Slug}/edit2`);
         } catch (error) {
@@ -1107,6 +1123,8 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
       }
     } else {
       try {
+        mycategory.Urunler.remove(id);
+        await mycategory.save();
         const data = await Urun.findByIdAndDelete(id);
         res.redirect(`/user/${mymenu.Slug}/edit2`);
       } catch (error) {
