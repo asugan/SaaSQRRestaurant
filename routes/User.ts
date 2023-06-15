@@ -982,12 +982,23 @@ router.post("/:id/kategorisil", marabacheck, async (req: any, res: any) => {
   const filePath = "public/images";
   if (filter.length) {
     if (category.image) {
-      await fs.unlinkSync(`${filePath}/${category.image}`);
-      const data = await Kategori.findByIdAndDelete(id);
-      try {
-        res.redirect(`/user/${mymenu.Slug}/edit2`);
-      } catch (error) {
-        res.render("error/401");
+      const control = fs.existsSync(`${filePath}/${category.image}`);
+
+      if (control) {
+        await fs.unlinkSync(`${filePath}/${category.image}`);
+        const data = await Kategori.findByIdAndDelete(id);
+        try {
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } catch (error) {
+          res.render("error/401");
+        }
+      } else {
+        const data = await Kategori.findByIdAndDelete(id);
+        try {
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } catch (error) {
+          res.render("error/401");
+        }
       }
     } else {
       const data = await Kategori.findByIdAndDelete(id);
@@ -1015,12 +1026,23 @@ router.post("/:id/urunsil", marabacheck, async (req: any, res: any) => {
   const filePath = "public/images";
   if (filter.length) {
     if (menu.image) {
-      try {
-        await fs.unlinkSync(`${filePath}/${menu.image}`);
-        const data = await Urun.findByIdAndDelete(id);
-        res.redirect(`/user/${mymenu.Slug}/edit2`);
-      } catch (error) {
-        res.render("error/401");
+      const control = fs.existsSync(`${filePath}/${menu.image}`);
+
+      if (control) {
+        try {
+          await fs.unlinkSync(`${filePath}/${menu.image}`);
+          const data = await Urun.findByIdAndDelete(id);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } catch (error) {
+          res.render("error/401");
+        }
+      } else {
+        try {
+          const data = await Urun.findByIdAndDelete(id);
+          res.redirect(`/user/${mymenu.Slug}/edit2`);
+        } catch (error) {
+          res.render("error/401");
+        }
       }
     } else {
       try {

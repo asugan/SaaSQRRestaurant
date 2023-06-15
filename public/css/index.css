@@ -688,6 +688,10 @@ footer section .container .copyright {
   z-index: 100;
 }
 
+.float:hover {
+  background-color: var(--sixth);
+}
+
 .my-float {
   margin-top: 10px;
 }
