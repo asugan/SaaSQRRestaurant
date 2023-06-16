@@ -1143,7 +1143,15 @@ router.post("/login", async (req: any, res: Response) => {
   if (error) {
     try {
       req.flash("error", error.details);
-      res.redirect("/login");
+      if (req.acceptsLanguages("tr-TR")) {
+        res.redirect("/tr/login");
+      } else if (req.acceptsLanguages("fr")) {
+        res.redirect("/fr/login");
+      } else if (req.acceptsLanguages("es")) {
+        res.redirect("/es/login");
+      } else {
+        res.redirect("/login");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -1173,20 +1181,66 @@ router.post("/login", async (req: any, res: Response) => {
 
           res.setHeader("Set-Cookie", serialised);
 
-          res.status(200).redirect("/");
+          if (req.acceptsLanguages("tr-TR")) {
+            res.status(200).redirect("/tr/login");
+          } else if (req.acceptsLanguages("fr")) {
+            res.status(200).redirect("/fr/login");
+          } else if (req.acceptsLanguages("es")) {
+            res.status(200).redirect("/es/login");
+          } else {
+            res.status(200).redirect("/login");
+          }
         } else {
-          req.flash("error", { message: "Wrong Username or Password" });
-          res.redirect("/login");
+          if (req.acceptsLanguages("tr-TR")) {
+            req.flash("error", {
+              message: "Yanlış Kullanıcı adı ya da Şifre.",
+            });
+            res.redirect("/tr/login");
+          } else if (req.acceptsLanguages("fr")) {
+            req.flash("error", {
+              message: "Wrong Username or Password.",
+            });
+            res.redirect("/fr/login");
+          } else if (req.acceptsLanguages("es")) {
+            req.flash("error", {
+              message: "Wrong Username or Password.",
+            });
+            res.redirect("/es/login");
+          } else {
+            req.flash("error", {
+              message: "Wrong Username or Password.",
+            });
+            res.redirect("/login");
+          }
         }
       } catch (err) {
         console.log(err);
       }
     } else {
-      req.flash("error", {
-        message:
-          "Please confirm your account with the link sent to your e-mail address.",
-      });
-      res.redirect("/login");
+      if (req.acceptsLanguages("tr-TR")) {
+        req.flash("error", {
+          message: "Lütfen gönderdiğimiz mail ile üyeliğinizi onaylayın.",
+        });
+        res.redirect("/tr/login");
+      } else if (req.acceptsLanguages("fr")) {
+        req.flash("error", {
+          message:
+            "Please confirm your account with the link sent to your e-mail address.",
+        });
+        res.redirect("/fr/login");
+      } else if (req.acceptsLanguages("es")) {
+        req.flash("error", {
+          message:
+            "Please confirm your account with the link sent to your e-mail address.",
+        });
+        res.redirect("/es/login");
+      } else {
+        req.flash("error", {
+          message:
+            "Please confirm your account with the link sent to your e-mail address.",
+        });
+        res.redirect("/login");
+      }
     }
   }
 });
@@ -1198,7 +1252,15 @@ router.post("/register", async (req: any, res: Response) => {
   if (error) {
     try {
       req.flash("error", error.details);
-      res.redirect("/register");
+      if (req.acceptsLanguages("tr-TR")) {
+        res.redirect("/tr/register");
+      } else if (req.acceptsLanguages("fr")) {
+        res.redirect("/fr/register");
+      } else if (req.acceptsLanguages("es")) {
+        res.redirect("/es/register");
+      } else {
+        res.redirect("/register");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -1212,8 +1274,27 @@ router.post("/register", async (req: any, res: Response) => {
     });
 
     if (finduser) {
-      req.flash("error", { message: "Email or Username already Registered." });
-      res.redirect("/register");
+      if (req.acceptsLanguages("tr-TR")) {
+        req.flash("error", {
+          message: "Kullanıcı adı yada Mail alınmış.",
+        });
+        res.redirect("/tr/register");
+      } else if (req.acceptsLanguages("fr")) {
+        req.flash("error", {
+          message: "Email or Username already Registered.",
+        });
+        res.redirect("/fr/register");
+      } else if (req.acceptsLanguages("es")) {
+        req.flash("error", {
+          message: "Email or Username already Registered.",
+        });
+        res.redirect("/es/register");
+      } else {
+        req.flash("error", {
+          message: "Email or Username already Registered.",
+        });
+        res.redirect("/register");
+      }
     } else {
       const newUser = new User({
         username: username,
@@ -1225,11 +1306,30 @@ router.post("/register", async (req: any, res: Response) => {
       try {
         await newUser.save();
         await sendMail(email);
-        req.flash("error", {
-          message:
-            "Please confirm your account with the link sent to your e-mail address.",
-        });
-        res.redirect("/register");
+        if (req.acceptsLanguages("tr-TR")) {
+          req.flash("error", {
+            message: "Lütfen gönderdiğimiz mail ile üyeliğinizi onaylayın.",
+          });
+          res.redirect("/tr/register");
+        } else if (req.acceptsLanguages("fr")) {
+          req.flash("error", {
+            message:
+              "Please confirm your account with the link sent to your e-mail address.",
+          });
+          res.redirect("/fr/register");
+        } else if (req.acceptsLanguages("es")) {
+          req.flash("error", {
+            message:
+              "Please confirm your account with the link sent to your e-mail address.",
+          });
+          res.redirect("/es/register");
+        } else {
+          req.flash("error", {
+            message:
+              "Please confirm your account with the link sent to your e-mail address.",
+          });
+          res.redirect("/register");
+        }
       } catch (err) {
         console.log(err);
       }
