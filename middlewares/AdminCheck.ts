@@ -7,14 +7,14 @@ export interface CustomRequest extends Request {
   token: string | JwtPayload;
 }
 
-export const marabacheck = async (
+export const AdminCheck = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   const secret: Secret = process.env.SECRET;
 
-  const token = req.cookies.OursiteJWT;
+  const token = req.cookies.AdminJWT;
 
   if (token) {
     const verifying: any = await jwt.verify(token, secret);

@@ -4,28 +4,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
   </head>
   <body>
     <h1>Admin Dashboard</h1>
 
-    <form action="/admin/post" method="POST">
-      <textarea name="name"></textarea>
+    <form action="/admin/post" method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" />
+      <label for="">urlen</label>
+      <input type="text" name="urlen" />
+      <label for="">urlfr</label>
+      <input type="text" name="urlfr" />
+      <label for="">urltr</label>
+      <input type="text" name="urltr" />
+      <label for="">urles</label>
+      <input type="text" name="urles" />
+      <label for="">title</label>
+      <input type="text" name="title" />
+      <label for="">desc</label>
+      <input type="text" name="desc" />
+      <textarea name="body"></textarea>
       <button type="submit">GOOOO</button>
     </form>
 
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"
-    ></script>
-
     <script>
-      var editor = new FroalaEditor('textarea');
+      CKEDITOR.replace('body', { filebrowserUploadUrl: '/admin/uploader',
+      filebrowserUploadMethod: "form" });
     </script>
+
   </body>
 </html>
