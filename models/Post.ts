@@ -25,6 +25,9 @@ const PostSchema = new Schema({
     type: String,
     required: true,
   },
+  Language: {
+    type: String,
+  },
   Image: {
     type: String,
   },
