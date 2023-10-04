@@ -1,4 +1,4 @@
 .env
 node_modules
-public/images
-public/blogimage
+public/images/
+public/blogimage/
