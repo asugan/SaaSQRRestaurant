@@ -293,9 +293,13 @@
                           class="text-xs font-weight-bold text-warning text-uppercase mb-1"
                         >
                           Subscription Level</div>
-                        <div
-                          class="h5 mb-0 font-weight-bold text-gray-800"
-                        >{{user.userLevel}}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          {{#ifeq user.userLevel "Abone"}}
+                            Subscriber
+                          {{else}}
+                            Trial
+                          {{/ifeq}}
+                        </div>
                       </div>
                       <div class="col-auto">
                         <i class="fas fa-user fa-2x text-gray-300"></i>
