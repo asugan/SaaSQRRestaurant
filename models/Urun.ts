@@ -43,6 +43,9 @@ const UrunSchema = new Schema({
   image: {
     type: String,
   },
+  Allergen: {
+    type: [String],
+  },
   Kategori: {
     type: Schema.Types.ObjectId,
     ref: "Kategori",
