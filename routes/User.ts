@@ -523,6 +523,7 @@ router.post(
         descriptionru,
         descriptionfr,
         descriptiontr,
+        allergen,
       } = req.body;
 
       const id: any = req.token.id;
@@ -565,6 +566,9 @@ router.post(
           });
 
           try {
+            for (let i = 0; i < allergen.length; i++) {
+              newUrun.Allergen.push(allergen[i]);
+            }
             await newUrun.save();
             category.Urunler.push(newUrun);
             await category.save();
@@ -592,6 +596,9 @@ router.post(
           });
 
           try {
+            for (let i = 0; i < allergen.length; i++) {
+              newUrun.Allergen.push(allergen[i]);
+            }
             await newUrun.save();
             category.Urunler.push(newUrun);
             await category.save();

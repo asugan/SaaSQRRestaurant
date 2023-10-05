@@ -95,6 +95,7 @@ export const urunValidate = Joi.object({
   descriptionfr: Joi.string().allow("").max(600),
   descriptionru: Joi.string().allow("").max(600),
   descriptionen: Joi.string().allow("").max(600),
+  allergen: Joi.array().allow("").max(600),
   currency: Joi.string()
     .min(1)
     .message("Currency Minimum 3 harf olmalı")

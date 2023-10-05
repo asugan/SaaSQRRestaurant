@@ -11,6 +11,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+    <link rel="icon" type="image/x-icon" href="/img/logo.webp" />
+
     <title>QRMenux Yönetim Paneli</title>
 
     <!-- Custom fonts for this template-->
@@ -32,8 +34,17 @@
     <style>
       #inputs{ display: none; } #clickable{ cursor: pointer; } .bgcategory {
       background-position: center; background-repeat: no-repeat;
-      background-size: cover; }
+      background-size: cover; } .choices__list--dropdown { z-index: 999
+      !important; }
     </style>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"
+    ></script>
 
   </head>
 
@@ -312,6 +323,23 @@
                         placeholder="Ürün Açıklaması Girin"
                         onchange="inputurundescription(this.value)"
                       ></textarea>
+
+                      <select
+                        id="choices-multiple-remove-button"
+                        placeholder="Select Allergens"
+                        multiple
+                        name="allergen"
+                      >
+                        <option value="Gluten">Gluten ve Tahıl</option>
+                        <option value="Yumurta">Yumurta</option>
+                        <option value="Süt">Süt ve Süt Ürünleri</option>
+                        <option value="Balık">Balık</option>
+                        <option value="Yer Fıstığı">Yer Fıstığı</option>
+                        <option value="Hardal">Hardal</option>
+                        <option value="Soya Fasülyesi">Soya Fasülyesi</option>
+                        <option value="Kereviz">Kereviz</option>
+                        <option value="Susam">Susam</option>
+                      </select>
                     </div>
 
                     <div class="col-md-12 col-12">
@@ -1108,6 +1136,12 @@
 
     <!-- Dashboard Loading -->
     <script src="/js/admin-translate.js"></script>
+
+    <script>
+      $(document).ready(function(){ var multipleCancelButton = new
+      Choices('#choices-multiple-remove-button', { removeItemButton: true,
+      maxItemCount:14, searchResultLimit:14, renderChoiceLimit:14 }); });
+    </script>
 
   </body>
 
