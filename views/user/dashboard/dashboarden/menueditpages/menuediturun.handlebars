@@ -35,7 +35,16 @@
 
     <style>
       #inputs{ display: none; } #clickable{ cursor: pointer; }
+      .choices__list--dropdown { z-index: 999 !important; }
     </style>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"
+    ></script>
 
   </head>
 
@@ -258,13 +267,60 @@
                     />
 
                     <textarea
-                      class="form-control mt-2"
+                      class="form-control mt-2 mb-2"
                       id="urundescription"
                       rows="3"
                       name="descriptiontr"
                       placeholder="Ürün Açıklaması"
                       onchange="inputurundescription(this.value)"
                     >{{menu.Descriptiontr}}</textarea>
+
+                    <select
+                      id="choices-multiple-remove-button"
+                      placeholder="Select Allergens"
+                      multiple
+                      name="allergen"
+                    >
+                      {{#each menu.Allergen}}
+                        {{#ifeq this "Gluten"}}
+                          <option value="{{this}}" selected>Gluten</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Yumurta"}}
+                          <option value="{{this}}" selected>Egg</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Süt"}}
+                          <option value="{{this}}" selected>Milk</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Balık"}}
+                          <option value="{{this}}" selected>Fish</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Yer Fıstığı"}}
+                          <option value="{{this}}" selected>Peanut</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Hardal"}}
+                          <option value="{{this}}" selected>Mustard</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Soya Fasülyesi"}}
+                          <option value="{{this}}" selected>Soy</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Kereviz"}}
+                          <option value="{{this}}" selected>Celery</option>
+                        {{/ifeq}}
+                        {{#ifeq this "Susam"}}
+                          <option value="{{this}}" selected>Susame</option>
+                        {{/ifeq}}
+                      {{/each}}
+                      <option value="Gluten">Gluten</option>
+                      <option value="Yumurta">Egg</option>
+                      <option value="Süt">Milk</option>
+                      <option value="Balık">Fish</option>
+                      <option value="Yer Fıstığı">Peanut</option>
+                      <option value="Hardal">Mustard</option>
+                      <option value="Soya Fasülyesi">Soy</option>
+                      <option value="Kereviz">Celery</option>
+                      <option value="Susam">Sesame</option>
+                    </select>
+
                   </div>
                   <div class="col-md-4">
                     <div
@@ -917,6 +973,13 @@
     <script src="/js/sb-admin-2.min.js"></script>
     <!-- Dashboard Loading -->
     <script src="/js/admin-translate.js"></script>
+
+    <script>
+      $(document).ready(function(){ var multipleCancelButton = new
+      Choices('#choices-multiple-remove-button', { removeItemButton: true,
+      maxItemCount:14, searchResultLimit:14, renderChoiceLimit:14, items:
+      ["hardal"], choices: ["hardal"] }); });
+    </script>
 
   </body>
 

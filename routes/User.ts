@@ -834,6 +834,7 @@ router.post(
         nameen,
         nameru,
         namefr,
+        allergen,
       } = req.body;
 
       const menu = await Urun.findById(id);
@@ -863,7 +864,7 @@ router.post(
               }
             );
 
-            const updatedData = {
+            const updatedData: any = {
               Nametr: nametr,
               Nameen: nameen,
               namefr: namefr,
@@ -874,8 +875,12 @@ router.post(
               Descriptionen: descriptionen,
               Descriptionfr: descriptionfr,
               Descriptionru: descriptionru,
+              Allergen: [],
             };
             const options = { new: true };
+            for (let i = 0; i < allergen.length; i++) {
+              updatedData.Allergen.push(allergen[i]);
+            }
             await Urun.findByIdAndUpdate(id, updatedData, options);
             res.redirect(`/user/${mymenu.Slug}/edit2`);
           } else {
@@ -890,7 +895,7 @@ router.post(
               }
             );
 
-            const updatedData = {
+            const updatedData: any = {
               Nametr: nametr,
               Nameen: nameen,
               namefr: namefr,
@@ -901,13 +906,17 @@ router.post(
               Descriptionen: descriptionen,
               Descriptionfr: descriptionfr,
               Descriptionru: descriptionru,
+              Allergen: [],
             };
             const options = { new: true };
+            for (let i = 0; i < allergen.length; i++) {
+              updatedData.Allergen.push(allergen[i]);
+            }
             await Urun.findByIdAndUpdate(id, updatedData, options);
             res.redirect(`/user/${mymenu.Slug}/edit2`);
           }
         } else {
-          const updatedData = {
+          const updatedData: any = {
             Nametr: nametr,
             Nameen: nameen,
             namefr: namefr,
@@ -917,8 +926,12 @@ router.post(
             Descriptionen: descriptionen,
             Descriptionfr: descriptionfr,
             Descriptionru: descriptionru,
+            Allergen: [],
           };
           const options = { new: true };
+          for (let i = 0; i < allergen.length; i++) {
+            updatedData.Allergen.push(allergen[i]);
+          }
           await Urun.findByIdAndUpdate(id, updatedData, options);
           res.redirect(`/user/${mymenu.Slug}/edit2`);
         }
